@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log(direction);
 
         rb2d.velocity = new Vector2 (moveHorizontal, moveVertical).normalized * new Vector2 (speed, speed); 
-        if(Mathf.Abs(rb2d.velocity.x) > Mathf.Abs(rb2d.velocity.y)){
+        if(Mathf.Abs(rb2d.velocity.x) >= Mathf.Abs(rb2d.velocity.y) && rb2d.velocity.x != 0){
             if(rb2d.velocity.x > 0){
                 direction = -1;
             }
