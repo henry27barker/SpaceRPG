@@ -41,11 +41,11 @@ public class PlayerMovement : MonoBehaviour
         {
             if (rb2d.velocity.x > 0)
             {
-                direction = -1;
+                direction = 0;
             }
             else
             {
-                direction = 0;
+                direction = -1;
             }
         }
         else if (rb2d.velocity.y > 0)
