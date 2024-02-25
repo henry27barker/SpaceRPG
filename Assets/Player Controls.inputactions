@@ -1,0 +1,34 @@
+{
+    "name": "Player Controls",
+    "maps": [
+        {
+            "name": "Gameplay",
+            "id": "dfb6a290-8edd-4a39-9699-438139ca1309",
+            "actions": [
+                {
+                    "name": "Look",
+                    "type": "Value",
+                    "id": "3f0b25b0-6a35-46e9-ba06-cee8c9634c53",
+                    "expectedControlType": "Stick",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ac474d05-faab-4b8f-ae09-116cbd465454",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
