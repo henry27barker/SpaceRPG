@@ -5,19 +5,32 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     public float speed;
-    private Rigidbody2D rb2d;
+    public float deathRadius;
+    private bool deathRadiusReached;
+    public float deathTime;
     public GameObject player;
     private float distance;
  
     void Start()
     {
-        rb2d = GetComponent<Rigidbody2D> ();
+        deathRadiusReached = false;
     }
  
     void Update()
     {
         distance = Vector2.Distance(transform.position, player.transform.position);
+        if(distance <= deathRadius){
+            deathRadiusReached = true;
+        }
 
-        rb2d.velocity = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
+        if(deathRadiusReached && deathTime > 0){
+            deathTime -= Time.deltaTime;
+        }
+        else if(deathTime <= 0){
+            Destroy(gameObject);
+        }
+        else{
+            transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
+        }
     }
 }
