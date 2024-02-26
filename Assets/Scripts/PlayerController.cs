@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public int lookRotation;
     public float rightStickDeadZone;
     public WeaponController weapon;
+    public HandsController hands;
  
     void Start()
     {
@@ -91,28 +92,36 @@ public class PlayerMovement : MonoBehaviour
             direction = 0;
             animator.SetBool("FacingDown", true);
             healthBar.animator.SetBool("FacingDown", true);
-            //weapon.transform.position = new Vector2(weapon.transform.position[0] + weapon.offsets[0], weapon.transform.position[1] - weapon.offsets[1]);
+            //hands.animator.SetBool("FacingDown", true);
+
+            weapon.transform.position = new Vector2(transform.position[0] + weapon.offsets[0], transform.position[1] + weapon.offsets[1]);
         }
         else if (lookRotation > 45 && lookRotation < 90)
         {
             direction = 1;
             animator.SetBool("FacingDown", false);
             healthBar.animator.SetBool("FacingDown", false);
-            //weapon.transform.position = new Vector2(weapon.transform.position[0] + weapon.offsets[0], weapon.transform.position[1] - weapon.offsets[1]);
+            hands.animator.SetBool("FacingDown", false);
+
+            weapon.transform.position = new Vector2(transform.position[0] + weapon.offsets[0], transform.position[1] + (weapon.offsets[1]) / 2);
         }
         else if(lookRotation > 90 && lookRotation < 135)
         {
             direction = 2;
             animator.SetBool("FacingDown", false);
             healthBar.animator.SetBool("FacingDown", false);
-            //weapon.transform.position = new Vector2(weapon.transform.position[0] + (- 1 * weapon.offsets[0]), weapon.transform.position[1]+ weapon.offsets[1]);
+            hands.animator.SetBool("FacingDown", false);
+
+            weapon.transform.position = new Vector2(transform.position[0] - weapon.offsets[0], transform.position[1] + (weapon.offsets[1] / 2));
         }
         else
         {
             direction = 3;
             animator.SetBool("FacingDown", true);
             healthBar.animator.SetBool("FacingDown", true);
-            //weapon.transform.position = new Vector2(weapon.transform.position[0] + (-1 * weapon.offsets[0]), weapon.transform.position[1] + weapon.offsets[1]);
+            hands.animator.SetBool("FacingDown", true);
+
+            weapon.transform.position = new Vector2(transform.position[0] - weapon.offsets[0], transform.position[1] + weapon.offsets[1]);
         }
 
         if (direction < 2)
@@ -121,6 +130,7 @@ public class PlayerMovement : MonoBehaviour
             spriteRenderer.flipX = false;
             healthBar.spriteRenderer.flipX = false;
             weapon.spriteRenderer.flipY = false;
+            hands.spriteRenderer.flipX = false;
         }
         else
         {
@@ -128,17 +138,20 @@ public class PlayerMovement : MonoBehaviour
             spriteRenderer.flipX = true;
             healthBar.spriteRenderer.flipX = true;
             weapon.spriteRenderer.flipY = true;
+            hands.spriteRenderer.flipX = true;
         }
 
         if (rb2d.velocity.x != 0 || rb2d.velocity.y != 0)
         {
             animator.SetFloat("Speed", 1);
             healthBar.animator.SetFloat("Speed", 1);
+            hands.animator.SetFloat("Speed", 1);
         }
         else
         {
             animator.SetFloat("Speed", 0);
             healthBar.animator.SetFloat("Speed", 0);
+            hands.animator.SetFloat("Speed", 0);
         }
     }
 
