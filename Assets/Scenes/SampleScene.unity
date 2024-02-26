@@ -737,9 +737,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  damage: 100
   deathRadius: 1
-  deathTime: 1
+  deathTime: 0.3
   player: {fileID: 778697498}
+  playerController: {fileID: 0}
 --- !u!61 &163166907
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -5,15 +5,18 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     public float speed;
+    public int damage;
     public float deathRadius;
     private bool deathRadiusReached;
     public float deathTime;
     public GameObject player;
+    public PlayerMovement playerController;
     private float distance;
  
     void Start()
     {
         deathRadiusReached = false;
+        playerController = player.GetComponent<PlayerMovement>();
     }
  
     void Update()
@@ -27,6 +30,7 @@ public class EnemyMovement : MonoBehaviour
             deathTime -= Time.deltaTime;
         }
         else if(deathTime <= 0){
+            playerController.decreaseHealth(damage);
             Destroy(gameObject);
         }
         else{
