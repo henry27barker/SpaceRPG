@@ -716,7 +716,6 @@ GameObject:
   - component: {fileID: 163166909}
   - component: {fileID: 163166908}
   - component: {fileID: 163166907}
-  - component: {fileID: 163166906}
   - component: {fileID: 163166905}
   m_Layer: 0
   m_Name: Enemy
@@ -737,35 +736,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbb3332cf72fe3e44a8a5e6210d9376c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 3
+  deathRadius: 1
+  deathTime: 1
   player: {fileID: 778697498}
---- !u!50 &163166906
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 163166904}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!61 &163166907
 BoxCollider2D:
   m_ObjectHideFlags: 0
