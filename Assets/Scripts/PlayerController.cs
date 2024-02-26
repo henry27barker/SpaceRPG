@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 lookInputValue;
     public int lookRotation;
     public float rightStickDeadZone;
+    public WeaponController weapon;
  
     void Start()
     {
@@ -51,7 +52,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateLookRotation()
     {
-        Debug.Log(lookInputValue);
         if(Mathf.Abs(lookInputValue[0]) > rightStickDeadZone || Mathf.Abs(lookInputValue[1]) > rightStickDeadZone)
         {
             // Get input from the right stick
@@ -72,58 +72,73 @@ public class PlayerMovement : MonoBehaviour
 
             // Round to nearest integer
             lookRotation = Mathf.RoundToInt(angleDegrees);
-
-            // Output the angle as an integer
-            //Debug.Log("Right Stick Angle (Degrees): " + lookRotation);
+            weapon.UpdateRotation(lookRotation);
         }
     }
 
     private void UpdateAnimations()
     {
-        /*Directions:
+        /********************
+         * Directions:
          * 0 = Right
          * 1 = UpRight
          * 2 = DownLeft
          * 3 = Left
-         */
+         *********************/
 
-        if (lookRotation > 315 || lookRotation <= 45)
+        if (lookRotation > 270 || lookRotation <= 45)
         {
             direction = 0;
             animator.SetBool("FacingDown", true);
+            healthBar.animator.SetBool("FacingDown", true);
+            //weapon.transform.position = new Vector2(weapon.transform.position[0] + weapon.offsets[0], weapon.transform.position[1] - weapon.offsets[1]);
         }
         else if (lookRotation > 45 && lookRotation < 90)
         {
             direction = 1;
             animator.SetBool("FacingDown", false);
+            healthBar.animator.SetBool("FacingDown", false);
+            //weapon.transform.position = new Vector2(weapon.transform.position[0] + weapon.offsets[0], weapon.transform.position[1] - weapon.offsets[1]);
         }
         else if(lookRotation > 90 && lookRotation < 135)
         {
             direction = 2;
             animator.SetBool("FacingDown", false);
+            healthBar.animator.SetBool("FacingDown", false);
+            //weapon.transform.position = new Vector2(weapon.transform.position[0] + (- 1 * weapon.offsets[0]), weapon.transform.position[1]+ weapon.offsets[1]);
         }
         else
         {
             direction = 3;
             animator.SetBool("FacingDown", true);
+            healthBar.animator.SetBool("FacingDown", true);
+            //weapon.transform.position = new Vector2(weapon.transform.position[0] + (-1 * weapon.offsets[0]), weapon.transform.position[1] + weapon.offsets[1]);
         }
 
         if (direction < 2)
         {
+            //Facing Right
             spriteRenderer.flipX = false;
+            healthBar.spriteRenderer.flipX = false;
+            weapon.spriteRenderer.flipY = false;
         }
         else
         {
+            //Facing Left
             spriteRenderer.flipX = true;
+            healthBar.spriteRenderer.flipX = true;
+            weapon.spriteRenderer.flipY = true;
         }
 
         if (rb2d.velocity.x != 0 || rb2d.velocity.y != 0)
         {
             animator.SetFloat("Speed", 1);
+            healthBar.animator.SetFloat("Speed", 1);
         }
         else
         {
             animator.SetFloat("Speed", 0);
+            healthBar.animator.SetFloat("Speed", 0);
         }
     }
 
@@ -139,29 +154,6 @@ public class PlayerMovement : MonoBehaviour
         {
             health += 10;
         }
-        //Direction Update
-        /*
-        Vector3 playerPosition = new Vector3();
-        Vector3 vectorToAdd;
-        playerPosition = transform.position;
-        switch (direction)
-        {
-            case -1:
-                vectorToAdd = new Vector3(-1 * healthBar.sideOffset, 0f, 0f);
-                healthBar.transform.position = playerPosition + vectorToAdd;
-                break;
-            case 0:
-                vectorToAdd = new Vector3(healthBar.sideOffset, 0f, 0f);
-                healthBar.transform.position = playerPosition + vectorToAdd;
-                break;
-            case 1:
-                vectorToAdd = new Vector3(0f, healthBar.backOffset, 0f);
-                healthBar.transform.position = playerPosition + vectorToAdd;
-                break;
-            default:
-                vectorToAdd = new Vector3(0f, 0f, 0f);
-                healthBar.transform.position = playerPosition + vectorToAdd;
-                break;
-        }*/
+        
     }
 }

@@ -5,10 +5,11 @@ using UnityEngine.InputSystem;
 
 public class HealthBar : MonoBehaviour
 {
-    private SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRenderer;
     public float currentHealth;
     public float sideOffset;
     public float backOffset;
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
