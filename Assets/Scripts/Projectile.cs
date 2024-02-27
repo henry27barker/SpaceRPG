@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-
+    public int damage;
     public float speed;
     public Rigidbody2D rb2d;
 
@@ -19,5 +19,12 @@ public class Projectile : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void OnTriggerEnter2D(Collider2D col){
+        if(col.gameObject.tag == "Enemy"){
+            col.gameObject.GetComponent<EnemyMovement>().decreaseHealth(damage);
+            Destroy(gameObject);
+        }
     }
 }

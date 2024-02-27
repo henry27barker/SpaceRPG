@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
+    public int health;
     public float speed;
     public int damage;
     public float deathRadius;
+    public float explosionRadius;
     private bool deathRadiusReached;
     public float deathTime;
     public GameObject player;
@@ -21,7 +23,12 @@ public class EnemyMovement : MonoBehaviour
  
     void Update()
     {
+        if(health <= 0){
+            Destroy(gameObject);
+        }
+
         distance = Vector2.Distance(transform.position, player.transform.position);
+
         if(distance <= deathRadius){
             deathRadiusReached = true;
         }
@@ -30,11 +37,17 @@ public class EnemyMovement : MonoBehaviour
             deathTime -= Time.deltaTime;
         }
         else if(deathTime <= 0){
-            playerController.decreaseHealth(damage);
+            if(distance <= explosionRadius){
+                playerController.decreaseHealth(damage);
+            }
             Destroy(gameObject);
         }
         else{
             transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
         }
+    }
+
+    public void decreaseHealth(int damage){
+        health -= damage;
     }
 }
