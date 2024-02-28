@@ -5,19 +5,54 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    //Ability Specifications
     public float speed;
     public int health;
-    private Rigidbody2D rb2d;
-    public Animator animator;
-    private int direction;
-    private SpriteRenderer spriteRenderer;
-    public HealthBar healthBar;
-    private Vector2 lookInputValue;
+
+    //Helper Fields
     public int lookRotation;
+    private int direction;
     public float rightStickDeadZone;
+
+    //Inputs
+    private Vector2 lookInputValue;
+    private Vector2 moveInputValue;
+    //private InputAction move;
+    //private InputAction fire;
+
+    //Components
+    public Animator animator;
+    private Rigidbody2D rb2d;
+    private SpriteRenderer spriteRenderer;
+    public PlayerInput playerControls;
+    public GameObject mouseCursor;
+
+    //Scripts
+    public HealthBar healthBar;
     public WeaponController weapon;
     public HandsController hands;
- 
+    public PlayerShoot playerShoot;
+    
+    private void Awake()
+    {
+        playerControls = new PlayerInput();
+        Cursor.visible = false;
+    }
+
+    private void OnEnable()
+    {
+        playerControls.Enable();
+        playerControls.Player.Move.performed += ctx => moveInputValue = ctx.ReadValue<Vector2>();
+        playerControls.Player.Move.canceled += ctx => moveInputValue = Vector2.zero;
+    }
+
+    private void OnDisable()
+    {
+        playerControls.Disable();
+        playerControls.Player.Move.performed -= ctx => moveInputValue = ctx.ReadValue<Vector2>();
+        playerControls.Player.Move.canceled -= ctx => moveInputValue = Vector2.zero;
+    }
+
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D> ();
@@ -42,39 +77,65 @@ public class PlayerMovement : MonoBehaviour
         lookInputValue = value.Get<Vector2>();
     }
 
+    private void OnFire()
+    {
+        playerShoot.Shoot();
+    }
+    
     private void MovementLogic()
     {
-        //Movement
-        float moveHorizontal = Input.GetAxisRaw("Horizontal");
-        float moveVertical = Input.GetAxisRaw("Vertical");
-
-        rb2d.velocity = new Vector2(moveHorizontal, moveVertical).normalized * new Vector2(speed, speed);
+        rb2d.velocity = new Vector2(moveInputValue[0], moveInputValue[1]).normalized * new Vector2(speed, speed);
     }
+
 
     private void UpdateLookRotation()
     {
-        if(Mathf.Abs(lookInputValue[0]) > rightStickDeadZone || Mathf.Abs(lookInputValue[1]) > rightStickDeadZone)
+        float angleRadians = 0;
+        // GAMEPAD
+        if (Gamepad.current != null && (Gamepad.current.leftStick.ReadValue() != Vector2.zero || Gamepad.current.rightStick.ReadValue() != Vector2.zero))
         {
-            // Get input from the right stick
-            float rightStickX = lookInputValue[0];
-            float rightStickY = lookInputValue[1];
+            // Remove Crosshair
+            mouseCursor.SetActive(false);
+            // DEADZONE
+            if (Mathf.Abs(lookInputValue[0]) > rightStickDeadZone || Mathf.Abs(lookInputValue[1]) > rightStickDeadZone)
+            {
+                // Calculate the angle in radians
+                angleRadians = Mathf.Atan2(lookInputValue[1], lookInputValue[0]);
+            }
+        }
+        // MOUSE
+        else
+        {
+            //Add Crosshair
+            mouseCursor.SetActive(true);
+            // Find mouse position
+            Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mouseWorldPosition.z = 0f;
+            mouseCursor.transform.position = mouseWorldPosition;
+
+            // Find difference in player and mouse position
+            float deltaX = mouseWorldPosition.x - transform.position.x;
+            float deltaY = mouseWorldPosition.y - transform.position.y;
+
 
             // Calculate the angle in radians
-            float angleRadians = Mathf.Atan2(rightStickY, rightStickX);
-
-            // Convert radians to degrees
-            float angleDegrees = angleRadians * Mathf.Rad2Deg;
-
-            // Convert negative angles to positive equivalent
-            if (angleDegrees < 0)
-            {
-                angleDegrees += 360f;
-            }
-
-            // Round to nearest integer
-            lookRotation = Mathf.RoundToInt(angleDegrees);
-            weapon.UpdateRotation(lookRotation);
+            angleRadians = Mathf.Atan2(deltaY, deltaX);
         }
+
+        // Convert radians to degrees
+        float angleDegrees = angleRadians * Mathf.Rad2Deg;
+
+        // Convert negative angles to positive equivalent
+        if (angleDegrees < 0)
+        {
+            angleDegrees += 360f;
+        }
+
+        // Round to nearest integer
+        lookRotation = Mathf.RoundToInt(angleDegrees);
+        weapon.UpdateRotation(lookRotation);
+
+
     }
 
     private void UpdateAnimations()
@@ -92,7 +153,7 @@ public class PlayerMovement : MonoBehaviour
             direction = 0;
             animator.SetBool("FacingDown", true);
             healthBar.animator.SetBool("FacingDown", true);
-            //hands.animator.SetBool("FacingDown", true);
+            hands.animator.SetBool("FacingDown", true);
 
             weapon.transform.position = new Vector2(transform.position[0] + weapon.offsets[0], transform.position[1] + weapon.offsets[1]);
         }
@@ -173,4 +234,6 @@ public class PlayerMovement : MonoBehaviour
     public void decreaseHealth(int damage){
         health -= damage;
     }
+
+    
 }

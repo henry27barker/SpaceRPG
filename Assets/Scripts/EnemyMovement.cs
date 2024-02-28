@@ -58,12 +58,10 @@ public class EnemyMovement : MonoBehaviour
         //BELOW: Flips the Sprite Based on movement direction
         if (lastPosition[0] < transform.position[0])
         {
-            Debug.Log("Going Right");
             spriteRenderer.flipX = false;
         } 
         else if (lastPosition[0] > transform.position[0])
         {
-            Debug.Log("Going Left");
             spriteRenderer.flipX = true;
         }
 
