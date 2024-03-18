@@ -10,6 +10,7 @@ public class Flicker : MonoBehaviour
     public bool flickerOn;
     public Light2D light2D;
     public SpriteRenderer spriteRenderer;
+    public Material emissiveMaterial;
 
     private float counter;
     private float turnOn;
@@ -20,6 +21,7 @@ public class Flicker : MonoBehaviour
     {
         light2D = GetComponent<Light2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        emissiveMaterial = spriteRenderer.GetComponent<SpriteRenderer>().material;
         counter = 0;
         turnOn = Random.Range(0.1f, 0.5f);
         turnOff = Random.Range(0.1f, 0.5f);
@@ -34,8 +36,7 @@ public class Flicker : MonoBehaviour
             if (counter < turnOn)
             {
                 light2D.intensity = 1;
-                spriteRenderer.material.EnableKeyword("_Emission");
-                spriteRenderer.material.SetColor("_Color", new Color(191f / 255f, 191f / 255f, 0f));
+                emissiveMaterial.SetColor("_Color", new Color(191f / 255f, 191f / 255f, 0f) * 10);
 
                 counter += Time.deltaTime;
             }
@@ -44,8 +45,7 @@ public class Flicker : MonoBehaviour
             {
                 float rand = 0;//Random.Range(0.5f, 1f);
                 light2D.intensity = rand;
-                spriteRenderer.material.DisableKeyword("_Emission");
-                spriteRenderer.material.SetColor("_Color", Color.black);
+                emissiveMaterial.SetColor("_Color", Color.black);
                 counter += Time.deltaTime;
             }
             else
