@@ -24,7 +24,7 @@ public class Projectile : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col){
         if(col.gameObject.tag == "Enemy"){
             col.gameObject.GetComponent<EnemyMovement>().decreaseHealth(damage);
-            Destroy(gameObject);
         }
+        Destroy(gameObject);
     }
 }
