@@ -101,9 +101,20 @@ public class PlayerMovement : MonoBehaviour
             {
                 // Calculate the angle in radians
                 angleRadians = Mathf.Atan2(lookInputValue[1], lookInputValue[0]);
+                // Convert radians to degrees
+                float angleDegrees = angleRadians * Mathf.Rad2Deg;
+
+                // Convert negative angles to positive equivalent
+                if (angleDegrees < 0)
+                {
+                    angleDegrees += 360f;
+                }
+                lookRotation = Mathf.RoundToInt(angleDegrees);
+                weapon.UpdateRotation(lookRotation);
             }
         }
         // MOUSE
+        /*
         else
         {
             //Add Crosshair
@@ -120,20 +131,20 @@ public class PlayerMovement : MonoBehaviour
 
             // Calculate the angle in radians
             angleRadians = Mathf.Atan2(deltaY, deltaX);
+
+            // Convert radians to degrees
+            float angleDegrees = angleRadians * Mathf.Rad2Deg;
+
+            // Convert negative angles to positive equivalent
+            if (angleDegrees < 0)
+            {
+                angleDegrees += 360f;
+            }
+        
+            lookRotation = Mathf.RoundToInt(angleDegrees);
+            weapon.UpdateRotation(lookRotation);
         }
-
-        // Convert radians to degrees
-        float angleDegrees = angleRadians * Mathf.Rad2Deg;
-
-        // Convert negative angles to positive equivalent
-        if (angleDegrees < 0)
-        {
-            angleDegrees += 360f;
-        }
-
-        // Round to nearest integer
-        lookRotation = Mathf.RoundToInt(angleDegrees);
-        weapon.UpdateRotation(lookRotation);
+        */
 
 
     }
