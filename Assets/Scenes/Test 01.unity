@@ -360,7 +360,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.05
+  m_Intensity: 0
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 000000007bafa1b219df21e59582adf9
@@ -1726,6 +1726,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4356286523379830957, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
+      propertyPath: m_Intensity
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4356286523379830957, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5282061660691578340, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1772,7 +1780,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.009578544
+      value: 0.06968933
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
@@ -1780,7 +1788,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.9808429
+      value: 0.8597817
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
