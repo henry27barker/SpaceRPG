@@ -1633,7 +1633,7 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0
+          value: 0.000008046627
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -1641,8 +1641,26 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
+          time: 0.082508504
+          value: 0.98664623
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 0.3099118
+          value: -0.603552
+          inSlope: -0.02806009
+          outSlope: -0.02806009
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.18779355
+        - serializedVersion: 3
           time: 1
-          value: 0
+          value: -0.61247253
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -1686,34 +1704,16 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0.000008046627
+          value: 0
           inSlope: 0
           outSlope: 0
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 0.082508504
-          value: 0.98664623
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 0.3099118
-          value: -0.603552
-          inSlope: -0.02806009
-          outSlope: -0.02806009
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.18779355
         - serializedVersion: 3
           time: 1
-          value: -0.61247253
+          value: 0
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -5001,3 +5001,4 @@ MonoBehaviour:
   light: {fileID: 0}
   intensity: 5.36
   decreaseSpeed: 5
+  extraDeathTime: 1

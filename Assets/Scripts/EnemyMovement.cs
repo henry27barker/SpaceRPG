@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.Rendering.Universal;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -17,26 +20,41 @@ public class EnemyMovement : MonoBehaviour
     public Animator animator;
     public SpriteRenderer spriteRenderer;
     private Vector2 lastPosition;
+    public ParticleSystem enemyExplosionParticle;
+    public float whiteFlashTime;
+    private float whiteFlashCounter;
+    private Light2D deathLight;
  
     void Start()
     {
         deathRadiusReached = false;
         playerController = player.GetComponent<PlayerMovement>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        deathLight = GetComponent<Light2D>();
+        spriteRenderer.material.SetFloat("_FlashAmount", 0);
 
         lastPosition = transform.position;
     }
 
     void Update()
     {
-
+        if(whiteFlashCounter > 0){
+            spriteRenderer.material.SetFloat("_FlashAmount", 0.5f);
+            whiteFlashCounter -= Time.deltaTime;
+            Debug.Log(whiteFlashCounter);
+        }
+        else{
+            spriteRenderer.material.SetFloat("_FlashAmount", 0);
+        }
         if (health <= 0) {
+            Instantiate(enemyExplosionParticle, transform.position, new Quaternion(0,0,0,0));
             Destroy(gameObject);
         }
 
         distance = Vector2.Distance(transform.position, player.transform.position);
 
         if (distance <= deathRadius) {
+            deathLight.enabled = true;
             deathRadiusReached = true;
             animator.SetBool("Explode", true);
         }
@@ -45,6 +63,7 @@ public class EnemyMovement : MonoBehaviour
             deathTime -= Time.deltaTime;
         }
         else if (deathTime <= 0) {
+            Instantiate(enemyExplosionParticle, transform.position, new Quaternion(0,0,0,0));
             if (distance <= explosionRadius) {
                 playerController.decreaseHealth(damage);
             }
@@ -71,6 +90,7 @@ public class EnemyMovement : MonoBehaviour
         
 
     public void decreaseHealth(int damage){
+        whiteFlashCounter = whiteFlashTime;
         health -= damage;
     }
 }

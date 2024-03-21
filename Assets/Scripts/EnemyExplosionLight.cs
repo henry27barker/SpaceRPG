@@ -10,6 +10,7 @@ public class EnemyExplosionLight : MonoBehaviour
     public Light2D light;
     public float intensity;
     public float decreaseSpeed;
+    public float extraDeathTime;
 
     // Start is called before the first frame update
     void Start()
@@ -25,5 +26,14 @@ public class EnemyExplosionLight : MonoBehaviour
         if(light.intensity > 0){
             light.intensity -= Time.deltaTime * decreaseSpeed;
         }
+        else{
+            if(extraDeathTime > 0){
+                extraDeathTime -= Time.deltaTime;
+            }
+            else{
+                Destroy(gameObject);
+            }
+        }
+
     }
 }
