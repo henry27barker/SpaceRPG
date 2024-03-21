@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerStomp : MonoBehaviour
 {
+    public Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,4 +17,10 @@ public class PlayerStomp : MonoBehaviour
     {
         
     }
+
+    public void Stomp()
+    {
+        //animator.SetBool("Stomp", true);
+    }
+
 }

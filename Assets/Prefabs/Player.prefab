@@ -509,6 +509,7 @@ MonoBehaviour:
   weapon: {fileID: 8496650875515938418}
   hands: {fileID: 684520942684252937}
   playerShoot: {fileID: 1691877163533958959}
+  playerStomp: {fileID: 1357962228313159850}
 --- !u!50 &8068078451510694121
 Rigidbody2D:
   serializedVersion: 4
@@ -658,6 +659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9478151d3e0ac20439813351de0d47c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 8154195089337959407}
 --- !u!1 &7220982650035495712
 GameObject:
   m_ObjectHideFlags: 0

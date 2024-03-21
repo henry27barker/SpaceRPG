@@ -9,10 +9,15 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     public int health;
 
+    //Settings
+    public float rightStickDeadZone;
+    public float stompDuration;
+
     //Helper Fields
     public int lookRotation;
     private int direction;
-    public float rightStickDeadZone;
+    private float stompCounter = 0f;
+    private bool isStomping = false;
 
     //Inputs
     private Vector2 lookInputValue;
@@ -32,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     public WeaponController weapon;
     public HandsController hands;
     public PlayerShoot playerShoot;
+    public PlayerStomp playerStomp;
     
     private void Awake()
     {
@@ -70,6 +76,8 @@ public class PlayerMovement : MonoBehaviour
 
         
         UpdateHealthBar();
+
+        StompTimer();
     }
 
     private void OnLook(InputValue value)
@@ -80,6 +88,44 @@ public class PlayerMovement : MonoBehaviour
     private void OnFire()
     {
         playerShoot.Shoot();
+    }
+
+    private void OnStomp()
+    {
+        animator.SetTrigger("Stomp");
+        animator.SetBool("isStomping", true);
+
+        healthBar.animator.SetTrigger("Stomp");
+        hands.animator.SetTrigger("Stomp");
+
+        healthBar.animator.SetBool("isStomping", true);
+        hands.animator.SetBool("isStomping", true);
+
+        isStomping = true;
+    }
+
+    private void StompTimer()
+    {
+        
+        if(isStomping)
+        {
+            if (stompCounter > stompDuration)
+            {
+                animator.SetBool("isStomping", false);
+                healthBar.animator.SetBool("isStomping", false);
+                hands.animator.SetBool("isStomping", false);
+
+                isStomping = false;
+                stompCounter = 0;
+            }
+            else
+            {
+                stompCounter += Time.deltaTime;
+            }
+        } else
+        {
+            stompCounter = 0;
+        }
     }
     
     private void MovementLogic()
