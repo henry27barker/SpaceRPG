@@ -220,6 +220,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lamp
       objectReference: {fileID: 0}
+    - target: {fileID: 4265719620121517933, guid: a2469e275240f2043a90ddb0cd561354, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5177578008106106870, guid: a2469e275240f2043a90ddb0cd561354, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.5
@@ -1780,19 +1784,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.06968933
+      value: 0.15112323
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.008517887
+      value: 0.1042524
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.8597817
+      value: 0.69707286
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.9812606
+      value: 0.79012346
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
