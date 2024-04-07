@@ -73,6 +73,14 @@ public class PlayerMovement : MonoBehaviour
  
     void Update()
     {
+        if(inventoryUI.activeSelf == true){
+            Time.timeScale = 0;
+            return;
+        }
+        else{
+            Time.timeScale = 1;
+        }
+
         MovementLogic();
         
         UpdateLookRotation();
@@ -89,19 +97,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void OnOpenInventory(){
-        // Debug.Log("INVENTORY OPNENEE");
-        // playerControls.actions.FindActionMap("Player").Disable();
-        // //playerControls.UI.Enable();
-        // Debug.Log("playerControls are enabled" + playerControls.Player);
-        // //Debug.Log("UI are enabled" + playerControls.UI.name);
-        // inventoryUI.SetActive(true);
-    }
-
-    private void OnCloseInventory(){
-        // Debug.Log("INVENTORY closesese");
-        // playerControls.Player.Enable();
-        // playerControls.UI.Disable();
-        // inventoryUI.SetActive(false);
+        inventoryUI.SetActive(!inventoryUI.activeSelf);
     }
 
     private void OnLook(InputValue value)

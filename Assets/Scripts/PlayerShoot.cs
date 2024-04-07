@@ -8,6 +8,7 @@ public class PlayerShoot : MonoBehaviour
 
     public Transform shootingPoint;
     public GameObject projectilePrefab;
+    public GameObject inventoryUI;
 
 
     // Update is called once per frame
@@ -17,6 +18,9 @@ public class PlayerShoot : MonoBehaviour
 
     public void Shoot()
     {
+        if(inventoryUI.activeSelf == true){
+            return;
+        }
         Instantiate(projectilePrefab, shootingPoint.position, shootingPoint.rotation);
     }
 }
