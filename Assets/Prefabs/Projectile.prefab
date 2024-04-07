@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: -450765031
   m_SortingLayer: 2
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 349d8c6e8f7efa845b5248c05fecc7e5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a1feda5096a50e443b2df8333718cd96, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -181,8 +181,13 @@ MonoBehaviour:
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
+<<<<<<< Updated upstream
   m_Color: {r: 0.2627451, g: 0.81568635, b: 0.9921569, a: 1}
   m_Intensity: 2.5
+=======
+  m_Color: {r: 0.227451, g: 0.89019614, b: 0.6745098, a: 1}
+  m_Intensity: 2
+>>>>>>> Stashed changes
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 000000007bafa1b219df21e59582adf9
