@@ -38,9 +38,14 @@ public class PlayerMovement : MonoBehaviour
     public HandsController hands;
     public PlayerShoot playerShoot;
     public PlayerStomp playerStomp;
+
+    //ItemPickup
+    public Interactable focus;
+    public LayerMask crateLayerMask;
+    public GameObject inventoryUI;
     
     private void Awake()
-    {
+    {   
         playerControls = new PlayerInput();
         Cursor.visible = false;
     }
@@ -79,6 +84,24 @@ public class PlayerMovement : MonoBehaviour
         UpdateHealthBar();
 
         StompTimer();
+
+        InputInteractable();
+    }
+
+    private void OnOpenInventory(){
+        // Debug.Log("INVENTORY OPNENEE");
+        // playerControls.actions.FindActionMap("Player").Disable();
+        // //playerControls.UI.Enable();
+        // Debug.Log("playerControls are enabled" + playerControls.Player);
+        // //Debug.Log("UI are enabled" + playerControls.UI.name);
+        // inventoryUI.SetActive(true);
+    }
+
+    private void OnCloseInventory(){
+        // Debug.Log("INVENTORY closesese");
+        // playerControls.Player.Enable();
+        // playerControls.UI.Disable();
+        // inventoryUI.SetActive(false);
     }
 
     private void OnLook(InputValue value)
@@ -293,5 +316,33 @@ public class PlayerMovement : MonoBehaviour
         health -= damage;
     }
 
-    
+    private void InputInteractable(){
+        if(Input.GetMouseButtonDown(0)){
+            RemoveFocus();
+        }
+        if(Input.GetMouseButtonDown(1)){
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector3(lookInputValue[0], lookInputValue[1], 0), 100, crateLayerMask);
+            if(hit){
+                Interactable interactable = hit.collider.GetComponent<Interactable>();
+                if(interactable != null){
+                    SetFocus(interactable);
+                }
+            }
+        }
+    }
+
+    void SetFocus(Interactable newFocus){
+        if(newFocus != focus){
+            if(focus != null)
+                focus.OnDefocused();
+            focus = newFocus;
+        }
+        newFocus.OnFocused(transform);
+    }
+
+    void RemoveFocus(){
+        if(focus != null)
+            focus.OnDefocused();
+        focus = null;
+    }
 }
