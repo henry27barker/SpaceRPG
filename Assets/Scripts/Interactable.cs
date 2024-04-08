@@ -7,7 +7,7 @@ public class Interactable : MonoBehaviour
 
     bool hasInteracted = false;
 
-    public float radius = 3f;
+    public float radius = 5f;
 
     public virtual void Interact(){
         Debug.Log("interacting with " + transform.name);
@@ -15,11 +15,11 @@ public class Interactable : MonoBehaviour
 
     void Update(){
         if(isFocus && !hasInteracted){
-            float distance = Vector3.Distance(player.position, transform.position);
-            if(distance <= radius){
+            //float distance = Vector3.Distance(player.position, transform.position);
+            //if(distance <= radius){
                 Interact();
                 hasInteracted = true;
-            }
+            //}
         }
     }
 
@@ -33,6 +33,16 @@ public class Interactable : MonoBehaviour
         isFocus = false;
         player = null;
         hasInteracted = false;
+    }
+
+    public void Prompt()
+    {
+        if (!hasInteracted)
+        {
+            //Debug.Log("Press X to Interact");
+        }
+
+        //ENABLE A PROMPT SPRITE
     }
 
     void OnDrawGizmosSelected(){

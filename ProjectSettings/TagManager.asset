@@ -12,7 +12,7 @@ TagManager:
   - 
   - Water
   - UI
-  - Obstacle
+  - Interactable
   - Floor
   - 
   - 
@@ -50,4 +50,7 @@ TagManager:
     locked: 0
   - name: LilBro
     uniqueID: 4188897941
+    locked: 0
+  - name: MaxFront
+    uniqueID: 2271978111
     locked: 0

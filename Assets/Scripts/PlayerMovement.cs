@@ -39,10 +39,12 @@ public class PlayerMovement : MonoBehaviour
     public PlayerShoot playerShoot;
     public PlayerStomp playerStomp;
 
-    //ItemPickup
+    //Interaction
     public Interactable focus;
-    public LayerMask crateLayerMask;
+    public LayerMask interactableLayerMask;
     public GameObject inventoryUI;
+    public float pickupRadius;
+
     
     private void Awake()
     {   
@@ -93,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
 
         StompTimer();
 
-        InputInteractable();
+        CheckInteractPrompt();
     }
 
     private void OnOpenInventory(){
@@ -122,6 +124,33 @@ public class PlayerMovement : MonoBehaviour
         hands.animator.SetBool("isStomping", true);
 
         isStomping = true;
+    }
+
+    private void OnInteract()
+    {
+        RaycastHit2D hit = Physics2D.CircleCast(transform.position, pickupRadius, new Vector2(0, 0), 0, interactableLayerMask);
+        if (hit)
+        {
+            Interactable interactable = hit.collider.GetComponent<Interactable>();
+            if (interactable != null)
+            {
+                Debug.Log("Hit");
+                SetFocus(interactable);
+            }
+        }
+    }
+
+    private void CheckInteractPrompt()
+    {
+        RaycastHit2D hit = Physics2D.CircleCast(transform.position,pickupRadius, new Vector2(0, 0), 0, interactableLayerMask);
+        if (hit)
+        {
+            Interactable interactable = hit.collider.GetComponent<Interactable>();
+            if (interactable != null)
+            {
+                interactable.Prompt();
+            }
+        }
     }
 
     private void StompTimer()
@@ -311,22 +340,7 @@ public class PlayerMovement : MonoBehaviour
     public void decreaseHealth(int damage){
         health -= damage;
     }
-
-    private void InputInteractable(){
-        if(Input.GetMouseButtonDown(0)){
-            RemoveFocus();
-        }
-        if(Input.GetMouseButtonDown(1)){
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector3(lookInputValue[0], lookInputValue[1], 0), 100, crateLayerMask);
-            if(hit){
-                Interactable interactable = hit.collider.GetComponent<Interactable>();
-                if(interactable != null){
-                    SetFocus(interactable);
-                }
-            }
-        }
-    }
-
+    
     void SetFocus(Interactable newFocus){
         if(newFocus != focus){
             if(focus != null)
@@ -341,4 +355,5 @@ public class PlayerMovement : MonoBehaviour
             focus.OnDefocused();
         focus = null;
     }
+    
 }
