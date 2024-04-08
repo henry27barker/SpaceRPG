@@ -44,6 +44,9 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask interactableLayerMask;
     public GameObject inventoryUI;
     public float pickupRadius;
+    private Collider2D[] hits;
+    Interactable closestInteractable;
+    public GameObject InteractablePrompt;
 
     
     private void Awake()
@@ -128,28 +131,38 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnInteract()
     {
-        RaycastHit2D hit = Physics2D.CircleCast(transform.position, pickupRadius, new Vector2(0, 0), 0, interactableLayerMask);
-        if (hit)
+        hits = Physics2D.OverlapCircleAll(transform.position, pickupRadius, interactableLayerMask);
+        SetClosestHitToFront();
+        if (hits.Length > 0)
         {
-            Interactable interactable = hit.collider.GetComponent<Interactable>();
-            if (interactable != null)
+            Debug.Log("CircleCast hit " + hits[0].transform.name);
+            closestInteractable = hits[0].GetComponent<Interactable>();
+            if (closestInteractable != null)
             {
                 Debug.Log("Hit");
-                SetFocus(interactable);
+                SetFocus(closestInteractable);
             }
         }
     }
 
     private void CheckInteractPrompt()
     {
-        RaycastHit2D hit = Physics2D.CircleCast(transform.position,pickupRadius, new Vector2(0, 0), 0, interactableLayerMask);
-        if (hit)
+        hits = Physics2D.OverlapCircleAll(transform.position, pickupRadius, interactableLayerMask);
+        SetClosestHitToFront();
+        if (hits.Length > 0)
         {
-            Interactable interactable = hit.collider.GetComponent<Interactable>();
-            if (interactable != null)
+            closestInteractable = hits[0].GetComponent<Interactable>();
+            if (closestInteractable != null)
             {
-                interactable.Prompt();
+                InteractablePrompt.SetActive(true);
+                InteractablePrompt.transform.position = closestInteractable.transform.position;
             }
+            else{
+                InteractablePrompt.SetActive(false);
+            }
+        }
+        else{
+            InteractablePrompt.SetActive(false);
         }
     }
 
@@ -356,4 +369,16 @@ public class PlayerMovement : MonoBehaviour
         focus = null;
     }
     
+    private void SetClosestHitToFront(){
+        if(hits.Length < 1){
+            return;
+        }
+        int minIndex = 0;
+        for(int i = 1; i < hits.Length; i++){
+            if(Vector2.Distance(new Vector2(hits[i].transform.position.x, hits[i].transform.position.y), new Vector2(transform.position.x, transform.position.y)) < Vector2.Distance(new Vector2(hits[minIndex].transform.position.x, hits[minIndex].transform.position.y), new Vector2(transform.position.x, transform.position.y))){
+                minIndex = i;
+            }
+        }
+        hits[0] = hits[minIndex];
+    }
 }
