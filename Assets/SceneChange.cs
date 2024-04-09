@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneChange : MonoBehaviour
 {
     BoxCollider2D trigger;
+    public string sceneName;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,6 @@ public class SceneChange : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D trigger)
     {
         Debug.Log("Went through door");
-        SceneManager.LoadScene("Test 01", LoadSceneMode.Single);
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
 }
