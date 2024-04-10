@@ -12,12 +12,16 @@ public class PlayerMovement : MonoBehaviour
     //Settings
     public float rightStickDeadZone;
     public float stompDuration;
+    public float stompRadius;
+    public int stompDamage;
+    public float stompKnockback;
 
     //Helper Fields
     public int lookRotation;
     private int direction;
     private float stompCounter = 0f;
     private bool isStomping = false;
+    private float stompDamageWait;
 
     //Inputs
     private Vector2 lookInputValue;
@@ -37,7 +41,6 @@ public class PlayerMovement : MonoBehaviour
     public WeaponController weapon;
     public HandsController hands;
     public PlayerShoot playerShoot;
-    public PlayerStomp playerStomp;
 
     //Interaction
     public Interactable focus;
@@ -74,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D> ();
         spriteRenderer = GetComponent<SpriteRenderer>();
         health = 100;
+        stompDamageWait = 0.625f * stompDuration;
     }
  
     void Update()
@@ -117,6 +121,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnStomp()
     {
+        Invoke("StompDamage", stompDamageWait);
         animator.SetTrigger("Stomp");
         animator.SetBool("isStomping", true);
 
@@ -128,6 +133,21 @@ public class PlayerMovement : MonoBehaviour
 
         isStomping = true;
     }
+
+    private void StompDamage()
+    {
+        Collider2D[] stompHits = Physics2D.OverlapCircleAll(transform.position, stompRadius);
+
+        foreach (Collider2D hit in stompHits) 
+        {
+            if (hit.gameObject.tag == "Enemy")
+            {
+                hit.gameObject.GetComponent<EnemyMovement>().decreaseHealth(stompDamage);
+                //hit.gameObject.GetComponent<EnemyMovement>().Knockback(stompKnockback);
+            }
+        }
+    }
+
 
     private void OnInteract()
     {

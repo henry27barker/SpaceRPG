@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &158026291557904832
 Transform:
   m_ObjectHideFlags: 0
@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -106069355
-  m_SortingLayer: 3
+  m_SortingLayerID: -2022989185
+  m_SortingLayer: 4
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: f9ac2e7c9ae302045b81435e6dfeb4d3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -159,7 +159,7 @@ SpriteRenderer:
   m_SortingLayerID: -106069355
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9cf3049fe29d26548852a3fc1d97e8f1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 306ac6c792d4c6540b6743c9f3efb626, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -233,10 +233,10 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.25
+  m_Intensity: 0.05
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 000000007bafa1b219df21e59582adf9
+  m_ApplyToSortingLayers: 000000007bafa1b219df21e59582adf97fa26b87
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -255,7 +255,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 10
+  m_PointLightOuterRadius: 5
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -405,7 +405,6 @@ GameObject:
   - component: {fileID: 8154195089337959407}
   - component: {fileID: 1691877163533958959}
   - component: {fileID: 5022706866799061034}
-  - component: {fileID: 1357962228313159850}
   - component: {fileID: 6390419198922573272}
   m_Layer: 0
   m_Name: Player
@@ -502,7 +501,10 @@ MonoBehaviour:
   speed: 5
   health: 100
   rightStickDeadZone: 0.25
-  stompDuration: 0
+  stompDuration: 1
+  stompRadius: 1
+  stompDamage: 25
+  stompKnockback: 4
   lookRotation: 0
   animator: {fileID: 8154195089337959407}
   mouseCursor: {fileID: 1023518832695749715}
@@ -510,13 +512,12 @@ MonoBehaviour:
   weapon: {fileID: 8496650875515938418}
   hands: {fileID: 684520942684252937}
   playerShoot: {fileID: 1691877163533958959}
-  playerStomp: {fileID: 1357962228313159850}
   focus: {fileID: 0}
   interactableLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   inventoryUI: {fileID: 0}
-  pickupRadius: 0
+  pickupRadius: 3
   InteractablePrompt: {fileID: 0}
 --- !u!50 &8068078451510694121
 Rigidbody2D:
@@ -534,7 +535,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: db4d74ca725a3ca4d8bd1001e429d702, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -579,7 +580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootingPoint: {fileID: 2055562610798257817}
-  projectilePrefab: {fileID: 6990576313006417375, guid: 34243c2846fc46b4491bf90de6cbe4d1, type: 3}
+  projectilePrefab: {fileID: 1165675747940340940, guid: 34243c2846fc46b4491bf90de6cbe4d1, type: 3}
   inventoryUI: {fileID: 0}
 --- !u!114 &5022706866799061034
 MonoBehaviour:
@@ -611,19 +612,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &1357962228313159850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6377114168526726802}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9478151d3e0ac20439813351de0d47c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 8154195089337959407}
 --- !u!60 &6390419198922573272
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -904,10 +892,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: -0.020151133
-    y: 0.20272572
-    width: 0.42989084
-    height: 0.4906303
+    x: 0.06968933
+    y: 0.008517887
+    width: 0.8597817
+    height: 0.9812606
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34

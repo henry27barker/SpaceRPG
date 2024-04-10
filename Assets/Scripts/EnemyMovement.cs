@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.AI;
 using UnityEngine.Rendering.Universal;
 
@@ -24,6 +26,8 @@ public class EnemyMovement : MonoBehaviour
     public float whiteFlashTime;
     private float whiteFlashCounter;
     private Light2D deathLight;
+    //public Rigidbody2D rb2d;
+    //public UnityEvent OnBegin, OnDone;
  
     void Start()
     {
@@ -31,6 +35,7 @@ public class EnemyMovement : MonoBehaviour
         playerController = player.GetComponent<PlayerMovement>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         deathLight = GetComponent<Light2D>();
+        //rb2d = GetComponent<Rigidbody2D>();
         spriteRenderer.material.SetFloat("_FlashAmount", 0);
 
         lastPosition = transform.position;
@@ -93,4 +98,19 @@ public class EnemyMovement : MonoBehaviour
         whiteFlashCounter = whiteFlashTime;
         health -= damage;
     }
+    /*
+    public void Knockback(float strength)
+    {
+        StopAllCoroutines();
+        OnBegin?.Invoke();
+        Vector2 direction = (transform.position - player.transform.position).normalized;
+        rb2d.AddForce(direction * strength, ForceMode2D.Impulse);
+        StartCoroutine(Reset());
+    }
+    private IEnumerator Reset()
+    {
+        yield return new WaitForSeconds(.15f);
+        rb2d.velocity = Vector2.zero;
+        OnDone?.Invoke();
+    }*/
 }
