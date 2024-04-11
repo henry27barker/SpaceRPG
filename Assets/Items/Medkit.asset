@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca7564cc54d446f4ab1727260305a71a, type: 3}
-  m_Name: TestItem
+  m_Script: {fileID: 11500000, guid: c42222f2ea45d8940b24096bf8ef01e5, type: 3}
+  m_Name: Medkit
   m_EditorClassIdentifier: 
-  name: TestItem
+  name: Medkit
   icon: {fileID: 21300000, guid: 675b950f3c76b4d42b4e21bd883e05c4, type: 3}
   isDefaultItem: 0
+  player: {fileID: 0}
+  healthAmount: 50

@@ -15,6 +15,7 @@ public class CrateUI : MonoBehaviour
     void Awake(){
         crateUI.SetActive(false);
         slots = itemsParent.GetComponentsInChildren<CrateSlot>();
+        UpdateUI();
     }
 
     void Update(){
@@ -25,18 +26,14 @@ public class CrateUI : MonoBehaviour
     
     public void TakeItem(Item item){
         Inventory.instance.Add(item);
-        for(int i = 0; i < slots.Length; i++){
-            if(i < items.Count){
-                slots[i].AddItem(items[i]);
-            }
-            else{
-                slots[i].ClearSlot();
-            }
-        }
     }
 
     public void Remove(Item item){
         items.Remove(item);
+        UpdateUI();
+    }
+
+    public void UpdateUI(){
         for(int i = 0; i < slots.Length; i++){
             if(i < items.Count){
                 slots[i].AddItem(items[i]);

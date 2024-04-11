@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     //Ability Specifications
     public float speed;
+    public int maxHealth;
     public int health;
 
     //Settings
@@ -372,6 +373,18 @@ public class PlayerMovement : MonoBehaviour
 
     public void decreaseHealth(int damage){
         health -= damage;
+    }
+
+    public void IncreaseHealth(int amount){
+        if(health + amount <= maxHealth){
+            Debug.Log("in increase health if function amount is: " + amount);
+            health += amount;
+        }
+        else{
+            Debug.Log("in increase health else function amount is: " + amount);
+            Debug.Log("health is: " + health + "maxHealth is: " + maxHealth);
+            health = maxHealth;
+        }
     }
     
     void SetFocus(Interactable newFocus){

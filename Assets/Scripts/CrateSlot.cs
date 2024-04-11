@@ -35,5 +35,6 @@ public class CrateSlot : MonoBehaviour
         if(item != null){
             crateUI.TakeItem(item);
         }
+        crateUI.Remove(item);
     }
 }
