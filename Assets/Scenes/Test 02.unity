@@ -6620,10 +6620,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyParent
       objectReference: {fileID: 0}
-    - target: {fileID: 4201904680675906471, guid: 134710e20b2337949833f1c7bbfeb442, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 6200000, guid: db4d74ca725a3ca4d8bd1001e429d702, type: 2}
     - target: {fileID: 5908918543809458759, guid: 134710e20b2337949833f1c7bbfeb442, type: 3}
       propertyPath: target
       value: 
@@ -6636,12 +6632,7 @@ PrefabInstance:
       propertyPath: playerController
       value: 
       objectReference: {fileID: 994341069}
-    - target: {fileID: 6829587914656274804, guid: 134710e20b2337949833f1c7bbfeb442, type: 3}
-      propertyPath: autoRepath.mode
-      value: 2
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4201904680675906471, guid: 134710e20b2337949833f1c7bbfeb442, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
