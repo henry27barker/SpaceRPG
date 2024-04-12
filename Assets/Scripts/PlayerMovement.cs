@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     public int maxHealth;
     public int health;
+    public int money;
 
     //Settings
     public float rightStickDeadZone;
@@ -413,5 +414,9 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         hits[0] = hits[minIndex];
+    }
+
+    public void AddMoney(int amount){
+        money += amount;
     }
 }
