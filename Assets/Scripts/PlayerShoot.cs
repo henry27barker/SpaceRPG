@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,7 +8,23 @@ public class PlayerShoot : MonoBehaviour
 {
 
     public Transform shootingPoint;
-    public GameObject projectilePrefab;
+
+    //Projectile Prefabs
+    public GameObject projectile;
+    public GameObject explosiveProjectile;
+    public GameObject freezeProjectile;
+    public GameObject electricProjectile;
+    public GameObject gravityProjectile;
+
+    //Settings
+    public float critChance;
+
+    public float explosiveRate;
+    public float freezeRate;
+    public float electricRate;
+    public float gravityRate;
+
+
     public GameObject inventoryUI;
 
 
@@ -21,6 +38,16 @@ public class PlayerShoot : MonoBehaviour
         if(inventoryUI.activeSelf == true){
             return;
         }
-        Instantiate(projectilePrefab, shootingPoint.position, shootingPoint.rotation);
+
+        float rng = Random.Range(0f, 100f);
+
+        if(rng >= critChance)
+        {
+            Instantiate(projectile, shootingPoint.position, shootingPoint.rotation);
+        }
+        else
+        {
+            Instantiate(explosiveProjectile, shootingPoint.position, shootingPoint.rotation);
+        }
     }
 }

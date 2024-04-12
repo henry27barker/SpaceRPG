@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyExplosionDamage : MonoBehaviour
 {
     public int damage;
-
+    public bool playerDamage;
     public float radius;
 
     // Start is called before the first frame update
@@ -19,7 +19,7 @@ public class EnemyExplosionDamage : MonoBehaviour
             {
                 hit.gameObject.GetComponent<EnemyMovement>().decreaseHealth(damage);
             }
-            else if (hit.gameObject.tag == "Player")
+            else if (hit.gameObject.tag == "Player" && playerDamage)
             {
                 hit.gameObject.GetComponent<PlayerMovement>().decreaseHealth(damage);
             }

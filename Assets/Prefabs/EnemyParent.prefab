@@ -131,6 +131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 1466161645167311998, guid: 7a9b1abd332856a46b45d22aa3041665, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7221382330435181580, guid: 7a9b1abd332856a46b45d22aa3041665, type: 3}
       propertyPath: m_SortingLayer
       value: 3
@@ -211,6 +215,10 @@ PrefabInstance:
       propertyPath: m_PointLightOuterRadius
       value: 2.57
       objectReference: {fileID: 0}
+    - target: {fileID: 8584919757315948038, guid: 7a9b1abd332856a46b45d22aa3041665, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 810236b09d9d8364cb8f83f0c7388220, type: 2}
     - target: {fileID: 9004955336530942916, guid: 7a9b1abd332856a46b45d22aa3041665, type: 3}
       propertyPath: speed
       value: 0

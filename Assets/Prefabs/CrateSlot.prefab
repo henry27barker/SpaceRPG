@@ -174,8 +174,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: InventorySlot, Assembly-CSharp
+      - m_Target: {fileID: 7274439249551650757}
+        m_TargetAssemblyTypeName: CrateSlot, Assembly-CSharp
         m_MethodName: UseItem
         m_Mode: 1
         m_Arguments:
@@ -381,8 +381,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: InventorySlot, Assembly-CSharp
+      - m_Target: {fileID: 7274439249551650757}
+        m_TargetAssemblyTypeName: CrateSlot, Assembly-CSharp
         m_MethodName: OnRemoveButton
         m_Mode: 1
         m_Arguments:

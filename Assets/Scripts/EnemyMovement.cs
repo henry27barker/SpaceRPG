@@ -39,6 +39,7 @@ public class EnemyMovement : MonoBehaviour
 
         enemyExplosionParticle.GetComponent<EnemyExplosionDamage>().damage = damage;
         enemyExplosionParticle.GetComponent<EnemyExplosionDamage>().radius = explosionRadius;
+        enemyExplosionParticle.GetComponent<EnemyExplosionDamage>().playerDamage = true;
     }
 
     void Update()
