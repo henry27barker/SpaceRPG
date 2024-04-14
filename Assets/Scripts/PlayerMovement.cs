@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public float stompRadius;
     public int stompDamage;
     public float stompKnockback;
+    public float whiteFlashTime;
 
     //Helper Fields
     public int lookRotation;
@@ -24,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     private float stompCounter = 0f;
     private bool isStomping = false;
     private float stompDamageWait;
+    private float whiteFlashCounter = 0f;
 
     //Inputs
     private Vector2 lookInputValue;
@@ -80,6 +82,7 @@ public class PlayerMovement : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         health = 100;
         stompDamageWait = 0.625f * stompDuration;
+        healthBar.currentHealth = health;
     }
  
     void Update()
@@ -105,6 +108,8 @@ public class PlayerMovement : MonoBehaviour
         StompTimer();
 
         CheckInteractPrompt();
+
+        WhiteFlash();
     }
 
     private void OnOpenInventory(){
@@ -209,6 +214,25 @@ public class PlayerMovement : MonoBehaviour
         } else
         {
             stompCounter = 0;
+        }
+    }
+
+    private void WhiteFlash() {
+
+        if (whiteFlashCounter > 0)
+        {
+            spriteRenderer.material.SetFloat("_FlashAmount", 0.5f);
+            hands.spriteRenderer.material.SetFloat("_FlashAmount", 0.5f);
+            weapon.spriteRenderer.material.SetFloat("_FlashAmount", 0.5f);
+            healthBar.spriteRenderer.material.SetFloat("_FlashAmount", 0.5f);
+            whiteFlashCounter -= Time.deltaTime;
+        }
+        else
+        {
+            spriteRenderer.material.SetFloat("_FlashAmount", 0f);
+            hands.spriteRenderer.material.SetFloat("_FlashAmount", 0f);
+            weapon.spriteRenderer.material.SetFloat("_FlashAmount", 0f);
+            healthBar.spriteRenderer.material.SetFloat("_FlashAmount", 0f);
         }
     }
     
@@ -363,27 +387,28 @@ public class PlayerMovement : MonoBehaviour
         healthBar.currentHealth = (float)health;
         if (Input.GetKeyDown(KeyCode.KeypadMinus))
         {
-            health -= 10;
+            decreaseHealth(10);
         }
         if (Input.GetKeyDown(KeyCode.KeypadPlus))
         {
-            health += 10;
+            IncreaseHealth(10);
         }
         
     }
 
-    public void decreaseHealth(int damage){
+    public void decreaseHealth(int damage)
+    {
+        healthBar.UpdateColor();
+        whiteFlashCounter = whiteFlashTime;
         health -= damage;
     }
 
     public void IncreaseHealth(int amount){
-        if(health + amount <= maxHealth){
-            Debug.Log("in increase health if function amount is: " + amount);
+        healthBar.UpdateColor();
+        if (health + amount <= maxHealth){
             health += amount;
         }
         else{
-            Debug.Log("in increase health else function amount is: " + amount);
-            Debug.Log("health is: " + health + "maxHealth is: " + maxHealth);
             health = maxHealth;
         }
     }

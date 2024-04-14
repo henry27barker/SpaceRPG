@@ -18,15 +18,9 @@ public class HealthBar : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        // Update color based on health
-        UpdateColor();
-    }
 
     // Update sprite color based on current health
-    void UpdateColor()
+    public void UpdateColor()
     {
         // Calculate interpolation factor based on current health (from 100 to 0)
         float t = 1f - currentHealth / 100f;
