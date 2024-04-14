@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class InventoryUI : MonoBehaviour
 {
@@ -14,8 +16,11 @@ public class InventoryUI : MonoBehaviour
 
     public PlayerInput playerControls;
 
+    public TMP_Text moneyText;
+
     void Awake(){
         playerControls = playerMovement.playerControls;
+        moneyText = GameObject.FindWithTag("MoneyText").GetComponent<TMP_Text>();
         inventoryUI.SetActive(false);
     }
 
@@ -32,7 +37,8 @@ public class InventoryUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //Debug.Log(playerMovement.money.ToString());
+        moneyText.text = "$" + playerMovement.money.ToString();
     }
 
     void UpdateUI(){
