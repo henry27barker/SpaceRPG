@@ -11,7 +11,6 @@ public class EnemyMovement : MonoBehaviour
 {
     public int health;
     public SpriteRenderer spriteRenderer;
-    private Vector2 lastPosition;
     public float whiteFlashTime;
     private float whiteFlashCounter;
  
@@ -19,8 +18,6 @@ public class EnemyMovement : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.material.SetFloat("_FlashAmount", 0);
-
-        lastPosition = transform.position;
     }
 
     void Update()
@@ -32,19 +29,6 @@ public class EnemyMovement : MonoBehaviour
         else{
             spriteRenderer.material.SetFloat("_FlashAmount", 0);
         }
-
-        //BELOW: Flips the Sprite Based on movement direction
-        if (lastPosition[0] < transform.position[0])
-        {
-            spriteRenderer.flipX = false;
-        } 
-        else if (lastPosition[0] > transform.position[0])
-        {
-            spriteRenderer.flipX = true;
-        }
-
-        lastPosition = transform.position;
-
     }
         
 

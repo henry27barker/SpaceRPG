@@ -568,6 +568,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyParent
       objectReference: {fileID: 0}
+    - target: {fileID: 3546195814298739331, guid: 134710e20b2337949833f1c7bbfeb442, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4949604839196866405, guid: 134710e20b2337949833f1c7bbfeb442, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -609,15 +613,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66f8c592ad9a9c4ea444735dc16acd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
   damage: 100
   deathRadius: 1.5
   explosionRadius: 1.5
   deathTime: 1
+  whiteFlashTime: 0
   animator: {fileID: 347541468}
   enemyExplosionParticle: {fileID: 4022939666424673761, guid: 1bb5d70149b4fe845bc41fd997c3fe25, type: 3}
   player: {fileID: 994341070}
   playerController: {fileID: 994341069}
   enemyMovement: {fileID: 347541469}
+  spriteRenderer: {fileID: 0}
 --- !u!95 &347541468 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6873194639382291505, guid: 134710e20b2337949833f1c7bbfeb442, type: 3}
@@ -3266,7 +3273,7 @@ PrefabInstance:
       objectReference: {fileID: 1667413025}
     - target: {fileID: 1438696587772398955, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: whiteFlashTime
-      value: 0.92
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 1438696587772398955, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: InteractablePrompt
@@ -3274,7 +3281,7 @@ PrefabInstance:
       objectReference: {fileID: 916915554}
     - target: {fileID: 1691877163533958959, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: critChance
-      value: 25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1691877163533958959, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: projectile
@@ -3374,19 +3381,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0
+      value: 0.0682968
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0
+      value: 0.008517887
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 1
+      value: 0.8634064
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 1
+      value: 0.9812606
       objectReference: {fileID: 0}
     - target: {fileID: 8496650875515938418, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: spriteRenderer
@@ -3489,7 +3496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  spriteRenderer: {fileID: 0}
+  spriteRenderer: {fileID: 1002151775}
   whiteFlashTime: 0.15
 --- !u!61 &1002151772
 BoxCollider2D:
@@ -3550,6 +3557,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1002151770}
   enemyMovement: {fileID: 1002151771}
+  weapon: {fileID: 1166657378}
+  player: {fileID: 994341070}
+  spriteRenderer: {fileID: 1002151775}
+  parent: {fileID: 1068820324}
+  deathAnimDuration: 0.75
+  weaponOffsets: {x: 0.15, y: -0.12}
+--- !u!212 &1002151775 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 320746542038836187, guid: d63d1ac9515fb3f4cb4327b5cc50e743, type: 3}
+  m_PrefabInstance: {fileID: 5697715116543405525}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1007677733
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3684,6 +3702,11 @@ Transform:
   - {fileID: 1100339532}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1068820324 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 108750251153743386, guid: d63d1ac9515fb3f4cb4327b5cc50e743, type: 3}
+  m_PrefabInstance: {fileID: 5697715116543405525}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1100339531
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4126,10 +4149,10 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.33, y: -0.06}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -4140,8 +4163,24 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.3125, y: 1.3125}
+  m_Size: {x: 0.58, y: 0.23}
   m_EdgeRadius: 0
+--- !u!114 &1166657386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1166657378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b4ee3b044cf3042996b3b91a867169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 25
+  cooldown: 1
+  enemyMovement: {fileID: 1002151771}
+  chainBotController: {fileID: 1002151773}
 --- !u!1001 &1313820452
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6335,6 +6374,30 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: ecf5f3da115880e49b64936b2fd57b98, type: 2}
+    - target: {fileID: 2375180441208121625, guid: d63d1ac9515fb3f4cb4327b5cc50e743, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2375180441208121625, guid: d63d1ac9515fb3f4cb4327b5cc50e743, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2375180441208121625, guid: d63d1ac9515fb3f4cb4327b5cc50e743, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2375180441208121625, guid: d63d1ac9515fb3f4cb4327b5cc50e743, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2375180441208121625, guid: d63d1ac9515fb3f4cb4327b5cc50e743, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2375180441208121625, guid: d63d1ac9515fb3f4cb4327b5cc50e743, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2648942824676303358, guid: d63d1ac9515fb3f4cb4327b5cc50e743, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.95
@@ -6375,9 +6438,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3406052258632570474, guid: d63d1ac9515fb3f4cb4327b5cc50e743, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4024805943254845756, guid: d63d1ac9515fb3f4cb4327b5cc50e743, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ecf5f3da115880e49b64936b2fd57b98, type: 2}
     - target: {fileID: 5040420656938167999, guid: d63d1ac9515fb3f4cb4327b5cc50e743, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Chainsaw
       objectReference: {fileID: 0}
     - target: {fileID: 7668396611749195311, guid: d63d1ac9515fb3f4cb4327b5cc50e743, type: 3}
       propertyPath: target
@@ -6400,6 +6471,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5040420656938167999, guid: d63d1ac9515fb3f4cb4327b5cc50e743, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1166657382}
+    - targetCorrespondingSourceObject: {fileID: 5040420656938167999, guid: d63d1ac9515fb3f4cb4327b5cc50e743, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1166657386}
   m_SourcePrefab: {fileID: 100100000, guid: d63d1ac9515fb3f4cb4327b5cc50e743, type: 3}
 --- !u!1001 &7556559638599340211
 PrefabInstance:

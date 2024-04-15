@@ -7,19 +7,28 @@ using UnityEngine.Rendering.Universal;
 
 public class SlnkBotController : MonoBehaviour
 {
-
-    private bool deathRadiusReached;
-    private Light2D deathLight;
+    //SETTINGS
+    public int health; 
     public int damage;
     public float deathRadius;
     public float explosionRadius;
     public float deathTime;
+
+    //HELPERS
+    private bool deathRadiusReached;
+    private Vector2 lastPosition;
+    public float whiteFlashTime;
+    private float whiteFlashCounter;
     private float distance;
+
+    //COMPONENTS
+    private Light2D deathLight;
     public Animator animator;
     public ParticleSystem enemyExplosionParticle;
     public GameObject player;
     public PlayerMovement playerController;
     public EnemyMovement enemyMovement;
+    public SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +43,11 @@ public class SlnkBotController : MonoBehaviour
         enemyExplosionParticle.GetComponent<EnemyExplosionDamage>().damage = damage;
         enemyExplosionParticle.GetComponent<EnemyExplosionDamage>().radius = explosionRadius;
         enemyExplosionParticle.GetComponent<EnemyExplosionDamage>().playerDamage = true;
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.material.SetFloat("_FlashAmount", 0);
+
+        lastPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -68,5 +82,18 @@ public class SlnkBotController : MonoBehaviour
             Instantiate(enemyExplosionParticle, transform.position, new Quaternion(0,0,0,0));
             Destroy(gameObject);
         }
+
+
+        //BELOW: Flips the Sprite Based on movement direction
+        if (lastPosition[0] < transform.position[0])
+        {
+            spriteRenderer.flipX = false;
+        }
+        else if (lastPosition[0] > transform.position[0])
+        {
+            spriteRenderer.flipX = true;
+        }
+
+        lastPosition = transform.position;
     }
 }
