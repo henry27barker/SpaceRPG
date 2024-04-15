@@ -99,7 +99,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Intensity: 0.5
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 000000007bafa1b219df21e59582adf9
+  m_ApplyToSortingLayers: 000000007bafa1b219df21e59582adf9519544a27fa26b87
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -199,4 +199,4 @@ MonoBehaviour:
   light2D: {fileID: 5428298300290884285}
   spriteRenderer: {fileID: 2205639095875837723}
   emissiveMaterial: {fileID: 0}
-  color: {r: 1, g: 0.78431374, b: 0.19215687, a: 1}
+  color: {r: 1, g: 0.7855864, b: 0.19339621, a: 1}

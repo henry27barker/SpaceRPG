@@ -130,6 +130,9 @@ GameObject:
   - component: {fileID: 3406052258632570474}
   - component: {fileID: 320746542038836187}
   - component: {fileID: 6860403245461980333}
+  - component: {fileID: 4139485395079995599}
+  - component: {fileID: 2250972629991283110}
+  - component: {fileID: 7195004800395718994}
   m_Layer: 0
   m_Name: CHAIN Bot
   m_TagString: Enemy
@@ -173,7 +176,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: ecf5f3da115880e49b64936b2fd57b98, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -191,8 +194,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -106069355
-  m_SortingLayer: 3
+  m_SortingLayerID: -1572563631
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 757596901, guid: 256f917450964ea469847fcaa05960ce, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -226,6 +229,86 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!61 &4139485395079995599
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1046839098471943278}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.09}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.73, y: 0.85}
+  m_EdgeRadius: 0
+--- !u!114 &2250972629991283110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1046839098471943278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbb3332cf72fe3e44a8a5e6210d9376c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  spriteRenderer: {fileID: 320746542038836187}
+  whiteFlashTime: 0.15
+--- !u!114 &7195004800395718994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1046839098471943278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef61939f0016f784fb9885cdcb665313, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 6860403245461980333}
+  enemyMovement: {fileID: 2250972629991283110}
+  weapon: {fileID: 5040420656938167999}
+  player: {fileID: 0}
+  spriteRenderer: {fileID: 320746542038836187}
+  parent: {fileID: 108750251153743386}
+  deathAnimDuration: 0.75
+  weaponOffsets: {x: 0.15, y: -0.12}
 --- !u!1 &5040420656938167999
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,10 +320,11 @@ GameObject:
   - component: {fileID: 2375180441208121625}
   - component: {fileID: 4024805943254845756}
   - component: {fileID: 5422934759080229054}
-  - component: {fileID: 1441146350900731474}
+  - component: {fileID: 3703672042137974074}
+  - component: {fileID: 6416588487379299561}
   m_Layer: 0
   m_Name: Chainsaw
-  m_TagString: Untagged
+  m_TagString: Chainsaw
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -280,7 +364,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: ecf5f3da115880e49b64936b2fd57b98, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -298,9 +382,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -106069355
-  m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingLayerID: -1572563631
+  m_SortingLayer: 4
+  m_SortingOrder: 1
   m_Sprite: {fileID: -33966659, guid: b27bf3abad61d0c4a969d71aed1b60cd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -333,7 +417,52 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1441146350900731474
+--- !u!61 &3703672042137974074
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5040420656938167999}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.33, y: -0.06}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.3125, y: 1.3125}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.58, y: 0.23}
+  m_EdgeRadius: 0
+--- !u!114 &6416588487379299561
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -342,6 +471,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5040420656938167999}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef61939f0016f784fb9885cdcb665313, type: 3}
+  m_Script: {fileID: 11500000, guid: 26b4ee3b044cf3042996b3b91a867169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 25
+  cooldown: 1
+  enemyMovement: {fileID: 2250972629991283110}
+  chainBotController: {fileID: 7195004800395718994}
+  animator: {fileID: 5422934759080229054}
+  parent: {fileID: 108750251153743386}

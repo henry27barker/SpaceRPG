@@ -9,10 +9,13 @@ public class Chainsaw : MonoBehaviour
 
     public EnemyMovement enemyMovement;
     public ChainBotController chainBotController;
+    public Animator animator;
+    public GameObject parent;
 
     private float counter;
     private bool canDoDamage;
     private GameObject player;
+
 
     // Start is called before the first frame update
     void Start()
@@ -41,9 +44,17 @@ public class Chainsaw : MonoBehaviour
         float distance = Vector3.Distance(transform.position, player.transform.position);
         if (distance < 1)
         {
-            /*
-             * NEED TO IMPLEMENT THE SWING MECHANIC
-             */
+            float yDistance = player.transform.position.y - parent.transform.position.y;
+            float xDistance = player.transform.position.x - parent.transform.position.x;
+            if (xDistance < 0)
+            {
+                animator.SetFloat("yDistance", -1 * yDistance);
+            }
+            else
+            {
+                animator.SetFloat("yDistance", yDistance);
+            }
+            animator.SetTrigger("Swing");
         }
         else
         {
@@ -52,6 +63,14 @@ public class Chainsaw : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Player" && canDoDamage)
+        {
+            canDoDamage = false;
+            col.gameObject.GetComponent<PlayerMovement>().decreaseHealth(damage);
+        }
+    }
+    void OnTriggerStay2D(Collider2D col)
     {
         if (col.gameObject.tag == "Player" && canDoDamage)
         {
