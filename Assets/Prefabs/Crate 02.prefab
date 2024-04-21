@@ -525,9 +525,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryUI: {fileID: 0}
   crateUI: {fileID: 5832564376114911396}
-  items:
+  items: []
+  possibleItems:
   - {fileID: 11400000, guid: 1b0299551989171488fc13e8b208204b, type: 2}
+  - {fileID: 11400000, guid: df3740991749fba46951ca3fd0178580, type: 2}
   itemsParent: {fileID: 625479816483529887}
+  maxPossibleItems: 2
   space: 10
 --- !u!1 &7470808018280928333
 GameObject:

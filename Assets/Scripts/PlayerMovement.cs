@@ -444,4 +444,30 @@ public class PlayerMovement : MonoBehaviour
     public void AddMoney(int amount){
         money += amount;
     }
+
+    public void StartPill(int healthAmount, int time){
+        StartCoroutine(Begin(healthAmount, time));
+        Debug.Log("starting pill");
+    }
+
+    IEnumerator Begin(int healthAmount, int time){
+        Debug.Log("in begin");
+        float counter = time;
+        while(counter > 0){
+            yield return StartCoroutine(Wait(1));
+            Debug.Log("in while loop");
+            IncreaseHealth(healthAmount/time);
+            counter--;
+        }
+    }
+
+    private IEnumerator Wait(float waitTime)
+    {
+        float counter = waitTime;
+        while (counter > 0)
+        {
+            counter -= Time.deltaTime;
+            yield return null;
+        }
+    }
 }

@@ -1857,7 +1857,7 @@ PrefabInstance:
     - target: {fileID: 2308191161979568243, guid: ce949d5ee8d2ba647abc6a7d189a2ef2, type: 3}
       propertyPath: possibleItems.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: ef485f1b5db7b734c95ed107a546fae4, type: 2}
+      objectReference: {fileID: 11400000, guid: df3740991749fba46951ca3fd0178580, type: 2}
     - target: {fileID: 2308191161979568243, guid: ce949d5ee8d2ba647abc6a7d189a2ef2, type: 3}
       propertyPath: possibleItems.Array.data[1]
       value: 
@@ -2215,26 +2215,6 @@ PrefabInstance:
       propertyPath: inventoryUI
       value: 
       objectReference: {fileID: 14176726}
-    - target: {fileID: 2308191161979568243, guid: ce949d5ee8d2ba647abc6a7d189a2ef2, type: 3}
-      propertyPath: items.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2308191161979568243, guid: ce949d5ee8d2ba647abc6a7d189a2ef2, type: 3}
-      propertyPath: maxPossibleItems
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2308191161979568243, guid: ce949d5ee8d2ba647abc6a7d189a2ef2, type: 3}
-      propertyPath: possibleItems.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2308191161979568243, guid: ce949d5ee8d2ba647abc6a7d189a2ef2, type: 3}
-      propertyPath: possibleItems.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 1b0299551989171488fc13e8b208204b, type: 2}
-    - target: {fileID: 2308191161979568243, guid: ce949d5ee8d2ba647abc6a7d189a2ef2, type: 3}
-      propertyPath: possibleItems.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: ef485f1b5db7b734c95ed107a546fae4, type: 2}
     - target: {fileID: 3474869101747176948, guid: ce949d5ee8d2ba647abc6a7d189a2ef2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3680,7 +3660,7 @@ PrefabInstance:
     - target: {fileID: 2308191161979568243, guid: ce949d5ee8d2ba647abc6a7d189a2ef2, type: 3}
       propertyPath: possibleItems.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: ef485f1b5db7b734c95ed107a546fae4, type: 2}
+      objectReference: {fileID: 11400000, guid: df3740991749fba46951ca3fd0178580, type: 2}
     - target: {fileID: 3474869101747176948, guid: ce949d5ee8d2ba647abc6a7d189a2ef2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4271,7 +4251,7 @@ PrefabInstance:
     - target: {fileID: 2308191161979568243, guid: ce949d5ee8d2ba647abc6a7d189a2ef2, type: 3}
       propertyPath: possibleItems.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: ef485f1b5db7b734c95ed107a546fae4, type: 2}
+      objectReference: {fileID: 11400000, guid: df3740991749fba46951ca3fd0178580, type: 2}
     - target: {fileID: 3474869101747176948, guid: ce949d5ee8d2ba647abc6a7d189a2ef2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -5344,19 +5324,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.13261649
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.12870014
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.73405015
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.74131274
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
