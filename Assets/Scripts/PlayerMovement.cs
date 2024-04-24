@@ -409,12 +409,12 @@ public class PlayerMovement : MonoBehaviour
         
         if (health + amount <= maxHealth){
             health += amount;
-            Instantiate(healthParticleSystem, transform.position, transform.rotation);
+            healthBar.UpdateColor();
+            StartCoroutine(BeginHealthParticleSystem());
         }
         else{
             health = maxHealth;
         }
-        healthBar.UpdateColor();
     }
     
     void SetFocus(Interactable newFocus){
@@ -463,6 +463,12 @@ public class PlayerMovement : MonoBehaviour
             IncreaseHealth(healthAmount/time);
             counter--;
         }
+    }
+
+    IEnumerator BeginHealthParticleSystem(){
+        ParticleSystem currentHealthParticle = Instantiate(healthParticleSystem, this.transform);
+        yield return StartCoroutine(Wait(3));
+        Destroy(currentHealthParticle.gameObject);
     }
 
     private IEnumerator Wait(float waitTime)
