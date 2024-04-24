@@ -1642,6 +1642,67 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3060639698974193619, guid: f7cf022b416272946af4e1b631cda044, type: 3}
   m_PrefabInstance: {fileID: 689660702}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &788905910
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4324954059509009693, guid: a62185b3d2da7104c9c809a0adba8685, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5299287754396510264, guid: a62185b3d2da7104c9c809a0adba8685, type: 3}
+      propertyPath: m_Name
+      value: HealthParticleSystem
+      objectReference: {fileID: 0}
+    - target: {fileID: 8013044173907285837, guid: a62185b3d2da7104c9c809a0adba8685, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.9308648
+      objectReference: {fileID: 0}
+    - target: {fileID: 8013044173907285837, guid: a62185b3d2da7104c9c809a0adba8685, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.7552156
+      objectReference: {fileID: 0}
+    - target: {fileID: 8013044173907285837, guid: a62185b3d2da7104c9c809a0adba8685, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.3304944
+      objectReference: {fileID: 0}
+    - target: {fileID: 8013044173907285837, guid: a62185b3d2da7104c9c809a0adba8685, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8013044173907285837, guid: a62185b3d2da7104c9c809a0adba8685, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8013044173907285837, guid: a62185b3d2da7104c9c809a0adba8685, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8013044173907285837, guid: a62185b3d2da7104c9c809a0adba8685, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8013044173907285837, guid: a62185b3d2da7104c9c809a0adba8685, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8013044173907285837, guid: a62185b3d2da7104c9c809a0adba8685, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8013044173907285837, guid: a62185b3d2da7104c9c809a0adba8685, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a62185b3d2da7104c9c809a0adba8685, type: 3}
 --- !u!1 &790097620
 GameObject:
   m_ObjectHideFlags: 0
@@ -3635,6 +3696,10 @@ PrefabInstance:
       propertyPath: InteractablePrompt
       value: 
       objectReference: {fileID: 916915554}
+    - target: {fileID: 1438696587772398955, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
+      propertyPath: healthParticleSystem
+      value: 
+      objectReference: {fileID: 4324954059509009693, guid: a62185b3d2da7104c9c809a0adba8685, type: 3}
     - target: {fileID: 1691877163533958959, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: inventoryUI
       value: 
@@ -3705,19 +3770,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0
+      value: 0.0682968
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0
+      value: 0.008517887
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 1
+      value: 0.8634064
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 1
+      value: 0.9812606
       objectReference: {fileID: 0}
     - target: {fileID: 8154195089337959407, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_Enabled
@@ -6765,3 +6830,4 @@ SceneRoots:
   - {fileID: 1507760663}
   - {fileID: 5697715116543405525}
   - {fileID: 347541463}
+  - {fileID: 788905910}

@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     public PlayerInput playerControls;
     public GameObject mouseCursor;
+    public ParticleSystem healthParticleSystem;
 
     //Scripts
     public HealthBar healthBar;
@@ -346,7 +347,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("FacingDown", true);
             healthBar.animator.SetBool("FacingDown", true);
             hands.animator.SetBool("FacingDown", true);
-
+ 
             weapon.transform.position = new Vector2(transform.position[0] - weapon.offsets[0], transform.position[1] + weapon.offsets[1]);
         }
 
@@ -398,19 +399,22 @@ public class PlayerMovement : MonoBehaviour
 
     public void decreaseHealth(int damage)
     {
-        healthBar.UpdateColor();
         whiteFlashCounter = whiteFlashTime;
         health -= damage;
+
+        healthBar.UpdateColor();
     }
 
     public void IncreaseHealth(int amount){
-        healthBar.UpdateColor();
+        
         if (health + amount <= maxHealth){
             health += amount;
+            Instantiate(healthParticleSystem, transform.position, transform.rotation);
         }
         else{
             health = maxHealth;
         }
+        healthBar.UpdateColor();
     }
     
     void SetFocus(Interactable newFocus){
