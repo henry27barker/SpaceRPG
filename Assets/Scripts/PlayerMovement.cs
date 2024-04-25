@@ -94,6 +94,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else{
             Time.timeScale = 1;
+            healthBar.UpdateColor();
         }
 
         MovementLogic();
@@ -410,9 +411,12 @@ public class PlayerMovement : MonoBehaviour
         if (health + amount <= maxHealth){
             health += amount;
             healthBar.UpdateColor();
-            StartCoroutine(BeginHealthParticleSystem());
+            StartCoroutine(BeginHealthParticleSystem(amount));
         }
         else{
+            if(health < maxHealth){
+                StartCoroutine(BeginHealthParticleSystem(maxHealth - health));
+            }
             health = maxHealth;
         }
     }
@@ -465,7 +469,9 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    IEnumerator BeginHealthParticleSystem(){
+    IEnumerator BeginHealthParticleSystem(int amount){
+        var emission = healthParticleSystem.emission;
+        emission.rateOverTime = amount / 5f;
         ParticleSystem currentHealthParticle = Instantiate(healthParticleSystem, this.transform);
         yield return StartCoroutine(Wait(3));
         Destroy(currentHealthParticle.gameObject);
