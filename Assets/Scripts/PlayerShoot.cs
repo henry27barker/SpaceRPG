@@ -18,24 +18,41 @@ public class PlayerShoot : MonoBehaviour
 
     //Settings
     public float critChance;
+    public float fireRate;
+    public int maxAmmo;
+    public int ammoCount;
 
     public float explosiveRate;
     public float freezeRate;
     public float electricRate;
     public float gravityRate;
 
+    private float fireRateCounter;
+
 
     public GameObject inventoryUI;
 
+    void Start(){
+        fireRateCounter = fireRate;
+    }
 
     // Update is called once per frame
     void Update()
     {
+        if(fireRateCounter < fireRate){
+            fireRateCounter += Time.deltaTime;
+        }
     }
 
     public void Shoot()
     {
         if(inventoryUI.activeSelf == true){
+            return;
+        }
+        if(fireRateCounter < fireRate){
+            return;
+        }
+        if(ammoCount <= 0){
             return;
         }
 
@@ -49,5 +66,8 @@ public class PlayerShoot : MonoBehaviour
         {
             Instantiate(explosiveProjectile, shootingPoint.position, shootingPoint.rotation);
         }
+
+        fireRateCounter = 0;
+        ammoCount--;
     }
 }

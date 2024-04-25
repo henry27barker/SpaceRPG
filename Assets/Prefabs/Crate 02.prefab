@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Crate
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
+  m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -529,6 +529,7 @@ MonoBehaviour:
   possibleItems:
   - {fileID: 11400000, guid: 1b0299551989171488fc13e8b208204b, type: 2}
   - {fileID: 11400000, guid: df3740991749fba46951ca3fd0178580, type: 2}
+  - {fileID: 11400000, guid: ca5afabe68f586d45afedae805631f67, type: 2}
   itemsParent: {fileID: 625479816483529887}
   maxPossibleItems: 2
   space: 10

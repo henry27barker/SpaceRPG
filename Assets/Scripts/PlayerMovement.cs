@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public int maxHealth;
     public int health;
     public int money;
+    public float lifeSteal;
 
     //Settings
     public float rightStickDeadZone;

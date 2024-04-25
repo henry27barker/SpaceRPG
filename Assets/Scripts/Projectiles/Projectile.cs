@@ -8,11 +8,14 @@ public class Projectile : MonoBehaviour
     public float speed;
     public Rigidbody2D rb2d;
 
+    private PlayerMovement playerMovement;
+
     // Start is called before the first frame update
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         rb2d.velocity = transform.right * speed;
+        playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
@@ -25,9 +28,11 @@ public class Projectile : MonoBehaviour
         if (col.gameObject.tag == "Chainsaw")
         {
             col.gameObject.GetComponent<Chainsaw>().enemyMovement.decreaseHealth(damage);
+            playerMovement.IncreaseHealth((int)(damage * playerMovement.lifeSteal));
         }
         if (col.gameObject.tag == "Enemy"){
             col.gameObject.GetComponent<EnemyMovement>().decreaseHealth(damage);
+            playerMovement.IncreaseHealth((int)(damage * playerMovement.lifeSteal));
         }
         Destroy(gameObject);
     }

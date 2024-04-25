@@ -3689,6 +3689,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1438696587772398955, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
+      propertyPath: lifeSteal
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438696587772398955, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: inventoryUI
       value: 
       objectReference: {fileID: 1667413025}
@@ -3700,6 +3704,10 @@ PrefabInstance:
       propertyPath: healthParticleSystem
       value: 
       objectReference: {fileID: 4324954059509009693, guid: a62185b3d2da7104c9c809a0adba8685, type: 3}
+    - target: {fileID: 1691877163533958959, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
+      propertyPath: ammoCount
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1691877163533958959, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: inventoryUI
       value: 
@@ -3770,19 +3778,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.0682968
+      value: 0.13261649
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.008517887
+      value: 0.12870014
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.8634064
+      value: 0.73405015
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.9812606
+      value: 0.74131274
       objectReference: {fileID: 0}
     - target: {fileID: 8154195089337959407, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_Enabled
