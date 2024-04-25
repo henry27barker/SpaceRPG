@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6829587914656274804}
   - component: {fileID: 5908918543809458759}
   m_Layer: 0
-  m_Name: EnemyParent
+  m_Name: SLNK Bot Parent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
