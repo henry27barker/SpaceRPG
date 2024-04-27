@@ -7,6 +7,8 @@ public class SkillTree : MonoBehaviour
     private PlayerMovement playerMovement;
 
     public int maxHealth;
+    public float speed;
+    public float lifeSteal;
 
     // Start is called before the first frame update
     void Start()
@@ -18,5 +20,7 @@ public class SkillTree : MonoBehaviour
     void Update()
     {
         playerMovement.maxHealth = maxHealth;
+        playerMovement.speed = speed;
+        playerMovement.lifeSteal = lifeSteal;
     }
 }
