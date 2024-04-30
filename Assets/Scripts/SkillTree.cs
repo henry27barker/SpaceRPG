@@ -23,4 +23,16 @@ public class SkillTree : MonoBehaviour
         playerMovement.speed = speed;
         playerMovement.lifeSteal = lifeSteal;
     }
+
+    public void IncrementMaxHealth(int incrementAmount){
+        maxHealth += incrementAmount;
+    }
+
+    public void IncrementSpeed(float incrementAmount){
+        speed += incrementAmount;
+    }
+
+    public void IncrementLifeSteal(float incrementAmount){
+        lifeSteal += incrementAmount;
+    }
 }
