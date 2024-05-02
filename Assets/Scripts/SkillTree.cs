@@ -5,6 +5,7 @@ using UnityEngine;
 public class SkillTree : MonoBehaviour
 {
     private PlayerMovement playerMovement;
+    private Inventory inventory;
 
     public int maxHealth;
     public float speed;
@@ -14,6 +15,7 @@ public class SkillTree : MonoBehaviour
     void Start()
     {
         playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
+        inventory = GameObject.FindWithTag("GameManager").GetComponent<Inventory>();
     }
 
     // Update is called once per frame
@@ -25,7 +27,12 @@ public class SkillTree : MonoBehaviour
     }
 
     public void IncrementMaxHealth(int incrementAmount){
-        maxHealth += incrementAmount;
+        foreach(Item item in inventory.items){
+            if(item.name == "UpgradeToken"){
+                inventory.Remove(item);
+                maxHealth += incrementAmount;
+            }
+        }
     }
 
     public void IncrementSpeed(float incrementAmount){
