@@ -30,9 +30,11 @@ public class InventorySlot : MonoBehaviour
     }
 
     public void UseItem(){
-        if(item != null){
-            item.Use();
+        if(item.name != "UpgradeToken"){
+            if(item != null){
+                item.Use();
+            }
+            Inventory.instance.Remove(item);
         }
-        Inventory.instance.Remove(item);
     }
 }

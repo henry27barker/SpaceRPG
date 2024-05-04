@@ -41,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
     public PlayerInput playerControls;
     public GameObject mouseCursor;
     public ParticleSystem healthParticleSystem;
+    public GameObject skillTreeUI;
 
     //Scripts
     public HealthBar healthBar;
@@ -62,6 +63,8 @@ public class PlayerMovement : MonoBehaviour
     {   
         playerControls = new PlayerInput();
         Cursor.visible = false;
+        skillTreeUI = GameObject.FindWithTag("SkillTree");
+        skillTreeUI.SetActive(false);
     }
 
     private void OnEnable()
@@ -89,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
  
     void Update()
     {
-        if(inventoryUI.activeSelf == true){
+        if(inventoryUI.activeSelf == true || skillTreeUI.activeSelf == true){
             Time.timeScale = 0;
             return;
         }
@@ -116,7 +119,10 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void OnOpenInventory(){
-        inventoryUI.SetActive(!inventoryUI.activeSelf);
+        if(skillTreeUI.activeSelf == false){
+            inventoryUI.SetActive(!inventoryUI.activeSelf);
+        }
+        skillTreeUI.SetActive(false);
     }
 
     private void OnLook(InputValue value)
