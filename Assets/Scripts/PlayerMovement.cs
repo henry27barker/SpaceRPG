@@ -64,7 +64,6 @@ public class PlayerMovement : MonoBehaviour
         playerControls = new PlayerInput();
         Cursor.visible = false;
         skillTreeUI = GameObject.FindWithTag("SkillTree");
-        skillTreeUI.SetActive(false);
     }
 
     private void OnEnable()
