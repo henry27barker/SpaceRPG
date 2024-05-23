@@ -58,14 +58,21 @@ public class SkillTree : MonoBehaviour
     public void IncrementMaxHealth(int incrementAmount){
         if(upgradeTokens > 0){
             maxHealth += incrementAmount;
+            playerMovement.health += incrementAmount;
             upgradeTokens--;
         }
     }
 
     public void DecrementMaxHealth(int decrementAmount){
         if(maxHealth > minHealth){
-            maxHealth -= decrementAmount;
-            upgradeTokens++;
+            if(playerMovement.health >= 1 + decrementAmount){
+                maxHealth -= decrementAmount;
+                playerMovement.decreaseHealth(decrementAmount);
+                upgradeTokens++;
+            }
+            else{
+                Debug.Log("Health too low to change");
+            }
         }
     }
 

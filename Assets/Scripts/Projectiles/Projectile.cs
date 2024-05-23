@@ -28,11 +28,11 @@ public class Projectile : MonoBehaviour
         if (col.gameObject.tag == "Chainsaw")
         {
             col.gameObject.GetComponent<Chainsaw>().enemyMovement.decreaseHealth(damage);
-            playerMovement.IncreaseHealth((int)(damage * playerMovement.lifeSteal));
+            playerMovement.IncreaseHealth((int)(damage * (playerMovement.lifeSteal / 100f)));
         }
         if (col.gameObject.tag == "Enemy"){
             col.gameObject.GetComponent<EnemyMovement>().decreaseHealth(damage);
-            playerMovement.IncreaseHealth((int)(damage * playerMovement.lifeSteal));
+            playerMovement.IncreaseHealth((int)(damage * (playerMovement.lifeSteal / 100f)));
         }
         Destroy(gameObject);
     }
