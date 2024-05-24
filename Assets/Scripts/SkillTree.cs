@@ -12,6 +12,10 @@ public class SkillTree : MonoBehaviour
     private TMP_Text upgradeTokensText;
     private TMP_Text speedText;
     private TMP_Text lifeStealText;
+    private TMP_Text messageText;
+    private GameObject messagePanel;
+
+    private float messageTimer = 0f;
 
     public int upgradeTokens;
     public int maxHealth;
@@ -31,6 +35,9 @@ public class SkillTree : MonoBehaviour
         speedText = skillTreeUI.transform.Find("Speed/SpeedPanel/SpeedBackgroundPanel/SpeedTextNumber").gameObject.GetComponent<TMP_Text>();
         lifeStealText = skillTreeUI.transform.Find("LifeSteal/LifeStealPanel/LifeStealBackgroundPanel/LifeStealTextNumber").gameObject.GetComponent<TMP_Text>();
         upgradeTokensText = skillTreeUI.transform.Find("UpgradeTokensPanel/UpgradeTokensBackgroundPanel/UpgradeTokensTextNumber").gameObject.GetComponent<TMP_Text>();
+        messageText = skillTreeUI.transform.Find("MessagePanel/MessageBackgroundPanel/MessageText").gameObject.GetComponent<TMP_Text>();
+        messagePanel = skillTreeUI.transform.Find("MessagePanel").gameObject;
+        messagePanel.SetActive(false);
         skillTreeUI.SetActive(false);
     }
 
@@ -44,6 +51,14 @@ public class SkillTree : MonoBehaviour
         lifeStealText.text = lifeSteal.ToString();
         playerMovement.speed = speed;
         playerMovement.lifeSteal = lifeSteal;
+
+        if(messageTimer > 0){
+            messageTimer -= Time.unscaledDeltaTime;
+            messagePanel.SetActive(true);
+        }
+        else{
+            messagePanel.SetActive(false);
+        }
     }
 
     public void UpdateUpgradeTokens(){
@@ -71,7 +86,9 @@ public class SkillTree : MonoBehaviour
                 upgradeTokens++;
             }
             else{
-                Debug.Log("Health too low to change");
+                messageText.text = "Health is too low to reduce further. Heal to decrease max health more.";
+                messageTimer = 5f;
+                //Debug.Log("Health too low to change");
             }
         }
     }
