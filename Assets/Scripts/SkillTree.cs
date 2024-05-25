@@ -6,12 +6,14 @@ using TMPro;
 public class SkillTree : MonoBehaviour
 {
     private PlayerMovement playerMovement;
+    private PlayerShoot playerShoot;
     private Inventory inventory;
     private GameObject skillTreeUI;
     private TMP_Text maxHealthText;
     private TMP_Text upgradeTokensText;
     private TMP_Text speedText;
     private TMP_Text lifeStealText;
+    private TMP_Text fireRateText;
     private TMP_Text messageText;
     private GameObject messagePanel;
 
@@ -24,16 +26,21 @@ public class SkillTree : MonoBehaviour
     public float minSpeed;
     public float lifeSteal;
     public float minLifeSteal;
+    public float fireRate;
+    public float maxFireRate;
+    public float minFireRate;
 
     // Start is called before the first frame update
     void Start()
     {
         playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
+        playerShoot = GameObject.FindWithTag("Player").GetComponent<PlayerShoot>();
         inventory = GameObject.FindWithTag("GameManager").GetComponent<Inventory>();
         skillTreeUI = GameObject.FindWithTag("SkillTree");
         maxHealthText = skillTreeUI.transform.Find("MaxHealth/MaxHealthPanel/MaxHealthBackgroundPanel/MaxHealthTextNumber").gameObject.GetComponent<TMP_Text>();
         speedText = skillTreeUI.transform.Find("Speed/SpeedPanel/SpeedBackgroundPanel/SpeedTextNumber").gameObject.GetComponent<TMP_Text>();
         lifeStealText = skillTreeUI.transform.Find("LifeSteal/LifeStealPanel/LifeStealBackgroundPanel/LifeStealTextNumber").gameObject.GetComponent<TMP_Text>();
+        fireRateText =  skillTreeUI.transform.Find("FireRate/FireRatePanel/FireRateBackgroundPanel/FireRateTextNumber").gameObject.GetComponent<TMP_Text>();
         upgradeTokensText = skillTreeUI.transform.Find("UpgradeTokensPanel/UpgradeTokensBackgroundPanel/UpgradeTokensTextNumber").gameObject.GetComponent<TMP_Text>();
         messageText = skillTreeUI.transform.Find("MessagePanel/MessageBackgroundPanel/MessageText").gameObject.GetComponent<TMP_Text>();
         messagePanel = skillTreeUI.transform.Find("MessagePanel").gameObject;
@@ -51,6 +58,9 @@ public class SkillTree : MonoBehaviour
         lifeStealText.text = lifeSteal.ToString();
         playerMovement.speed = speed;
         playerMovement.lifeSteal = lifeSteal;
+        playerShoot.fireRate = fireRate;
+        fireRateText.text = fireRate.ToString();
+
 
         if(messageTimer > 0){
             messageTimer -= Time.unscaledDeltaTime;
@@ -76,6 +86,10 @@ public class SkillTree : MonoBehaviour
             playerMovement.health += incrementAmount;
             upgradeTokens--;
         }
+        else{
+            messageText.text = "Out of upgrade tokens.";
+            messageTimer = 5f;
+        }
     }
 
     public void DecrementMaxHealth(int decrementAmount){
@@ -91,12 +105,20 @@ public class SkillTree : MonoBehaviour
                 //Debug.Log("Health too low to change");
             }
         }
+        else{
+            messageText.text = "Cannot decrease past minimum value.";
+            messageTimer = 5f;
+        }
     }
 
     public void IncrementSpeed(float incrementAmount){
         if(upgradeTokens > 0){
             speed += incrementAmount;
             upgradeTokens--;
+        }
+        else{
+            messageText.text = "Out of upgrade tokens.";
+            messageTimer = 5f;
         }
     }
 
@@ -105,6 +127,10 @@ public class SkillTree : MonoBehaviour
             speed -= decrementAmount;
             upgradeTokens++;
         }
+        else{
+            messageText.text = "Cannot decrease past minimum value.";
+            messageTimer = 5f;
+        }
     }
 
     public void IncrementLifeSteal(float incrementAmount){
@@ -112,12 +138,48 @@ public class SkillTree : MonoBehaviour
             lifeSteal += incrementAmount;
             upgradeTokens--;
         }
+        else{
+            messageText.text = "Out of upgrade tokens.";
+            messageTimer = 5f;
+        }
     }
 
     public void DecrementLifeSteal(float decrementAmount){
         if(lifeSteal > minLifeSteal){
             lifeSteal -= decrementAmount;
             upgradeTokens++;
+        }
+        else{
+            messageText.text = "Cannot decrease past minimum value.";
+            messageTimer = 5f;
+        }
+    }
+
+    public void IncrementFireRate(float incrementAmount){
+        if(fireRate < maxFireRate){
+            fireRate = (float)System.Math.Round(fireRate + incrementAmount, 2);
+            upgradeTokens++;
+        }
+        else{
+            messageText.text = "Cannot increase past maximum value.";
+            messageTimer = 5f;
+        }
+    }
+
+    public void DecrementFireRate(float decrementAmount){
+        if(upgradeTokens > 0){
+            if(fireRate > minFireRate){
+                fireRate = (float)System.Math.Round(fireRate - decrementAmount, 2);
+                upgradeTokens--;
+            }
+            else{
+                messageText.text = "Reached minimum fire rate.";
+                messageTimer = 5f;
+            }
+        }
+        else{
+            messageText.text = "Out of upgrade tokens.";
+            messageTimer = 5f;
         }
     }
 }
