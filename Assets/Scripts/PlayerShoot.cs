@@ -21,6 +21,7 @@ public class PlayerShoot : MonoBehaviour
     public float fireRate;
     public int maxAmmo;
     public int ammoCount;
+    public int damage;
 
     public float explosiveRate;
     public float freezeRate;
@@ -60,7 +61,8 @@ public class PlayerShoot : MonoBehaviour
 
         if(rng >= critChance)
         {
-            Instantiate(projectile, shootingPoint.position, shootingPoint.rotation);
+            GameObject copy = Instantiate(projectile, shootingPoint.position, shootingPoint.rotation);
+            copy.GetComponent<Projectile>().damage = damage;
         }
         else
         {

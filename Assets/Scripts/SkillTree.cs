@@ -14,6 +14,7 @@ public class SkillTree : MonoBehaviour
     private TMP_Text speedText;
     private TMP_Text lifeStealText;
     private TMP_Text fireRateText;
+    private TMP_Text damageText;
     private TMP_Text messageText;
     private GameObject messagePanel;
 
@@ -29,6 +30,8 @@ public class SkillTree : MonoBehaviour
     public float fireRate;
     public float maxFireRate;
     public float minFireRate;
+    public int damage;
+    public int minDamage;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +44,7 @@ public class SkillTree : MonoBehaviour
         speedText = skillTreeUI.transform.Find("Speed/SpeedPanel/SpeedBackgroundPanel/SpeedTextNumber").gameObject.GetComponent<TMP_Text>();
         lifeStealText = skillTreeUI.transform.Find("LifeSteal/LifeStealPanel/LifeStealBackgroundPanel/LifeStealTextNumber").gameObject.GetComponent<TMP_Text>();
         fireRateText =  skillTreeUI.transform.Find("FireRate/FireRatePanel/FireRateBackgroundPanel/FireRateTextNumber").gameObject.GetComponent<TMP_Text>();
+        damageText =  skillTreeUI.transform.Find("Damage/DamagePanel/DamageBackgroundPanel/DamageTextNumber").gameObject.GetComponent<TMP_Text>();
         upgradeTokensText = skillTreeUI.transform.Find("UpgradeTokensPanel/UpgradeTokensBackgroundPanel/UpgradeTokensTextNumber").gameObject.GetComponent<TMP_Text>();
         messageText = skillTreeUI.transform.Find("MessagePanel/MessageBackgroundPanel/MessageText").gameObject.GetComponent<TMP_Text>();
         messagePanel = skillTreeUI.transform.Find("MessagePanel").gameObject;
@@ -60,7 +64,8 @@ public class SkillTree : MonoBehaviour
         playerMovement.lifeSteal = lifeSteal;
         playerShoot.fireRate = fireRate;
         fireRateText.text = fireRate.ToString();
-
+        playerShoot.damage = damage;
+        damageText.text = damage.ToString();
 
         if(messageTimer > 0){
             messageTimer -= Time.unscaledDeltaTime;
@@ -179,6 +184,28 @@ public class SkillTree : MonoBehaviour
         }
         else{
             messageText.text = "Out of upgrade tokens.";
+            messageTimer = 5f;
+        }
+    }
+
+    public void IncrementDamage(int incrementAmount){
+        if(upgradeTokens > 0){
+            damage += incrementAmount;
+            upgradeTokens--;
+        }
+        else{
+            messageText.text = "Out of upgrade tokens.";
+            messageTimer = 5f;
+        }
+    }
+
+    public void DecrementDamage(int decrementAmount){
+        if(damage > minDamage){
+            damage -= decrementAmount;
+            upgradeTokens++;
+        }
+        else{
+            messageText.text = "Cannot decrease past minimum value.";
             messageTimer = 5f;
         }
     }
