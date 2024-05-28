@@ -19,6 +19,11 @@ public class SkillTree : MonoBehaviour
     private TMP_Text messageText;
     private GameObject messagePanel;
 
+    private GameObject basicTab;
+    private GameObject weaponTab;
+    private GameObject healthTab;
+    private GameObject critTab;
+
     private float messageTimer = 0f;
 
     public int upgradeTokens;
@@ -45,15 +50,22 @@ public class SkillTree : MonoBehaviour
         playerShoot = GameObject.FindWithTag("Player").GetComponent<PlayerShoot>();
         inventory = GameObject.FindWithTag("GameManager").GetComponent<Inventory>();
         skillTreeUI = GameObject.FindWithTag("SkillTree");
-        maxHealthText = skillTreeUI.transform.Find("MaxHealth/MaxHealthPanel/MaxHealthBackgroundPanel/MaxHealthTextNumber").gameObject.GetComponent<TMP_Text>();
-        speedText = skillTreeUI.transform.Find("Speed/SpeedPanel/SpeedBackgroundPanel/SpeedTextNumber").gameObject.GetComponent<TMP_Text>();
-        lifeStealText = skillTreeUI.transform.Find("LifeSteal/LifeStealPanel/LifeStealBackgroundPanel/LifeStealTextNumber").gameObject.GetComponent<TMP_Text>();
-        fireRateText =  skillTreeUI.transform.Find("FireRate/FireRatePanel/FireRateBackgroundPanel/FireRateTextNumber").gameObject.GetComponent<TMP_Text>();
-        damageText =  skillTreeUI.transform.Find("Damage/DamagePanel/DamageBackgroundPanel/DamageTextNumber").gameObject.GetComponent<TMP_Text>();
-        ammoCapacityText = skillTreeUI.transform.Find("AmmoCapacity/AmmoCapacityPanel/AmmoCapacityBackgroundPanel/AmmoCapacityTextNumber").gameObject.GetComponent<TMP_Text>();
+        basicTab = skillTreeUI.transform.Find("Basic/BasicUpgrades").gameObject;
+        weaponTab = skillTreeUI.transform.Find("Weapon/WeaponUpgrades").gameObject;
+        healthTab = skillTreeUI.transform.Find("Health/HealthUpgrades").gameObject;
+        critTab = skillTreeUI.transform.Find("Crit/CritUpgrades").gameObject;
+        maxHealthText = skillTreeUI.transform.Find("Health/HealthUpgrades/MaxHealth/MaxHealthPanel/MaxHealthBackgroundPanel/MaxHealthTextNumber").gameObject.GetComponent<TMP_Text>();
+        speedText = skillTreeUI.transform.Find("Basic/BasicUpgrades/Speed/SpeedPanel/SpeedBackgroundPanel/SpeedTextNumber").gameObject.GetComponent<TMP_Text>();
+        lifeStealText = skillTreeUI.transform.Find("Health/HealthUpgrades/LifeSteal/LifeStealPanel/LifeStealBackgroundPanel/LifeStealTextNumber").gameObject.GetComponent<TMP_Text>();
+        fireRateText =  skillTreeUI.transform.Find("Weapon/WeaponUpgrades/FireRate/FireRatePanel/FireRateBackgroundPanel/FireRateTextNumber").gameObject.GetComponent<TMP_Text>();
+        damageText =  skillTreeUI.transform.Find("Weapon/WeaponUpgrades/Damage/DamagePanel/DamageBackgroundPanel/DamageTextNumber").gameObject.GetComponent<TMP_Text>();
+        ammoCapacityText = skillTreeUI.transform.Find("Weapon/WeaponUpgrades/AmmoCapacity/AmmoCapacityPanel/AmmoCapacityBackgroundPanel/AmmoCapacityTextNumber").gameObject.GetComponent<TMP_Text>();
         upgradeTokensText = skillTreeUI.transform.Find("UpgradeTokensPanel/UpgradeTokensBackgroundPanel/UpgradeTokensTextNumber").gameObject.GetComponent<TMP_Text>();
         messageText = skillTreeUI.transform.Find("MessagePanel/MessageBackgroundPanel/MessageText").gameObject.GetComponent<TMP_Text>();
         messagePanel = skillTreeUI.transform.Find("MessagePanel").gameObject;
+        weaponTab.SetActive(false);
+        healthTab.SetActive(false);
+        critTab.SetActive(false);
         messagePanel.SetActive(false);
         skillTreeUI.SetActive(false);
     }
@@ -81,6 +93,33 @@ public class SkillTree : MonoBehaviour
         }
         else{
             messagePanel.SetActive(false);
+        }
+    }
+
+    public void EnableTab(string tab){
+        if(tab == "Basic"){
+            weaponTab.SetActive(false);
+            healthTab.SetActive(false);
+            critTab.SetActive(false);
+            basicTab.SetActive(true);
+        }
+        if(tab == "Weapon"){
+            basicTab.SetActive(false);
+            healthTab.SetActive(false);
+            critTab.SetActive(false);
+            weaponTab.SetActive(true);
+        }
+        if(tab == "Health"){
+            weaponTab.SetActive(false);
+            basicTab.SetActive(false);
+            critTab.SetActive(false);
+            healthTab.SetActive(true);
+        }
+        if(tab == "Crit"){
+            weaponTab.SetActive(false);
+            healthTab.SetActive(false);
+            basicTab.SetActive(false);
+            critTab.SetActive(true);
         }
     }
 
