@@ -16,6 +16,7 @@ public class SkillTree : MonoBehaviour
     private TMP_Text fireRateText;
     private TMP_Text damageText;
     private TMP_Text ammoCapacityText;
+    private TMP_Text medkitAmountText;
     private TMP_Text messageText;
     private GameObject messagePanel;
 
@@ -29,10 +30,13 @@ public class SkillTree : MonoBehaviour
     public int upgradeTokens;
     public int maxHealth;
     public int minHealth;
+    public int maxMaxHealth;
     public float speed;
     public float minSpeed;
+    public float maxSpeed;
     public float lifeSteal;
     public float minLifeSteal;
+    public float maxLifeSteal;
     public float fireRate;
     public float maxFireRate;
     public float minFireRate;
@@ -42,6 +46,9 @@ public class SkillTree : MonoBehaviour
     public int ammoCapacity;
     public int maxAmmoCapacity;
     public int minAmmoCapacity;
+    public int medkitAmount;
+    public int minMedkitAmount;
+    public int maxMedkitAmount;
 
     // Start is called before the first frame update
     void Start()
@@ -60,6 +67,7 @@ public class SkillTree : MonoBehaviour
         fireRateText =  skillTreeUI.transform.Find("Weapon/WeaponUpgrades/FireRate/FireRatePanel/FireRateBackgroundPanel/FireRateTextNumber").gameObject.GetComponent<TMP_Text>();
         damageText =  skillTreeUI.transform.Find("Weapon/WeaponUpgrades/Damage/DamagePanel/DamageBackgroundPanel/DamageTextNumber").gameObject.GetComponent<TMP_Text>();
         ammoCapacityText = skillTreeUI.transform.Find("Weapon/WeaponUpgrades/AmmoCapacity/AmmoCapacityPanel/AmmoCapacityBackgroundPanel/AmmoCapacityTextNumber").gameObject.GetComponent<TMP_Text>();
+        medkitAmountText = skillTreeUI.transform.Find("Health/HealthUpgrades/MedkitAmount/MedkitAmountPanel/MedkitAmountBackgroundPanel/MedkitAmountTextNumber").gameObject.GetComponent<TMP_Text>();
         upgradeTokensText = skillTreeUI.transform.Find("UpgradeTokensPanel/UpgradeTokensBackgroundPanel/UpgradeTokensTextNumber").gameObject.GetComponent<TMP_Text>();
         messageText = skillTreeUI.transform.Find("MessagePanel/MessageBackgroundPanel/MessageText").gameObject.GetComponent<TMP_Text>();
         messagePanel = skillTreeUI.transform.Find("MessagePanel").gameObject;
@@ -86,6 +94,7 @@ public class SkillTree : MonoBehaviour
         damageText.text = damage.ToString();
         playerShoot.maxAmmo = ammoCapacity;
         ammoCapacityText.text = ammoCapacity.ToString();
+        medkitAmountText.text = medkitAmount.ToString();
 
         if(messageTimer > 0){
             messageTimer -= Time.unscaledDeltaTime;
@@ -134,9 +143,15 @@ public class SkillTree : MonoBehaviour
 
     public void IncrementMaxHealth(int incrementAmount){
         if(upgradeTokens > 0){
-            maxHealth += incrementAmount;
-            playerMovement.health += incrementAmount;
-            upgradeTokens--;
+            if(maxHealth < maxMaxHealth){
+                maxHealth += incrementAmount;
+                playerMovement.health += incrementAmount;
+                upgradeTokens--;
+            }
+            else{
+                messageText.text = "Cannot increase past maximum value.";
+                messageTimer = 5f;
+            }
         }
         else{
             messageText.text = "Out of upgrade tokens.";
@@ -165,8 +180,14 @@ public class SkillTree : MonoBehaviour
 
     public void IncrementSpeed(float incrementAmount){
         if(upgradeTokens > 0){
-            speed += incrementAmount;
-            upgradeTokens--;
+            if(speed < maxSpeed){
+                speed += incrementAmount;
+                upgradeTokens--;
+            }
+            else{
+                messageText.text = "Cannot increase past maximum value.";
+                messageTimer = 5f;
+            }
         }
         else{
             messageText.text = "Out of upgrade tokens.";
@@ -187,8 +208,14 @@ public class SkillTree : MonoBehaviour
 
     public void IncrementLifeSteal(float incrementAmount){
         if(upgradeTokens > 0){
-            lifeSteal += incrementAmount;
-            upgradeTokens--;
+            if(lifeSteal < maxLifeSteal){
+                lifeSteal += incrementAmount;
+                upgradeTokens--;
+            }
+            else{
+                messageText.text = "Cannot increase past maximum value.";
+                messageTimer = 5f;
+            }
         }
         else{
             messageText.text = "Out of upgrade tokens.";
@@ -299,4 +326,32 @@ public class SkillTree : MonoBehaviour
             messageTimer = 5f;
         }
     }
+
+    public void IncrementMedkitAmount(int incrementAmount){
+        if(upgradeTokens > 0){
+            if(medkitAmount < maxMedkitAmount){
+                medkitAmount += incrementAmount;
+                upgradeTokens--;
+            }
+            else{
+                messageText.text = "Cannot increase past maximum value.";
+                messageTimer = 5f;
+            }
+        }
+        else{
+            messageText.text = "Out of upgrade tokens.";
+            messageTimer = 5f;
+        }
+    }
+
+    public void DecrementMedkitAmount(int decrementAmount){
+        if(medkitAmount > minMedkitAmount){
+            medkitAmount -= decrementAmount;
+            upgradeTokens++;
+        }
+        else{
+            messageText.text = "Cannot decrease past minimum value.";
+            messageTimer = 5f;
+        }
+    } 
 }

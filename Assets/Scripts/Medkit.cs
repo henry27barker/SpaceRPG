@@ -12,6 +12,7 @@ public class Medkit : Item
     public override void Use(){
         base.Use();
         player = GameObject.FindWithTag("Player");
+        healthAmount = player.GetComponent<SkillTree>().medkitAmount;
         player.GetComponent<PlayerMovement>().IncreaseHealth(healthAmount);
     }
 }
