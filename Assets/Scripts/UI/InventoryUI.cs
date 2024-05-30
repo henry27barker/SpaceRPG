@@ -10,7 +10,7 @@ public class InventoryUI : MonoBehaviour
 
     public Transform itemsParent;
 
-    InventorySlot[] slots;
+    public InventorySlot[] slots;
 
     public GameObject inventoryUI;
 
@@ -21,7 +21,6 @@ public class InventoryUI : MonoBehaviour
     void Awake(){
         playerControls = playerMovement.playerControls;
         moneyText = GameObject.FindWithTag("MoneyText").GetComponent<TMP_Text>();
-        inventoryUI.SetActive(false);
     }
 
 
@@ -32,6 +31,10 @@ public class InventoryUI : MonoBehaviour
         inventory.onItemChangedCallback += UpdateUI;
 
         slots = itemsParent.GetComponentsInChildren<InventorySlot>();
+        for(int i = inventory.space; i < slots.Length; i++){
+            slots[i].gameObject.SetActive(false);
+        }
+        inventoryUI.SetActive(false);
     }
 
     // Update is called once per frame

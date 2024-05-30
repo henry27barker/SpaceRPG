@@ -17,6 +17,7 @@ public class SkillTree : MonoBehaviour
     private TMP_Text damageText;
     private TMP_Text ammoCapacityText;
     private TMP_Text medkitAmountText;
+    private TMP_Text inventorySizeText;
     private TMP_Text messageText;
     private GameObject messagePanel;
 
@@ -24,6 +25,8 @@ public class SkillTree : MonoBehaviour
     private GameObject weaponTab;
     private GameObject healthTab;
     private GameObject critTab;
+
+    private InventoryUI inventoryUI;
 
     private float messageTimer = 0f;
 
@@ -49,6 +52,13 @@ public class SkillTree : MonoBehaviour
     public int medkitAmount;
     public int minMedkitAmount;
     public int maxMedkitAmount;
+    public int inventorySize;
+    public int minInventorySize;
+    public int maxInventorySize;
+
+    void Awake(){
+        inventoryUI = GameObject.FindObjectOfType<InventoryUI>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -63,6 +73,7 @@ public class SkillTree : MonoBehaviour
         critTab = skillTreeUI.transform.Find("Crit/CritUpgrades").gameObject;
         maxHealthText = skillTreeUI.transform.Find("Health/HealthUpgrades/MaxHealth/MaxHealthPanel/MaxHealthBackgroundPanel/MaxHealthTextNumber").gameObject.GetComponent<TMP_Text>();
         speedText = skillTreeUI.transform.Find("Basic/BasicUpgrades/Speed/SpeedPanel/SpeedBackgroundPanel/SpeedTextNumber").gameObject.GetComponent<TMP_Text>();
+        inventorySizeText = skillTreeUI.transform.Find("Basic/BasicUpgrades/InventorySize/InventorySizePanel/InventorySizeBackgroundPanel/InventorySizeTextNumber").gameObject.GetComponent<TMP_Text>();
         lifeStealText = skillTreeUI.transform.Find("Health/HealthUpgrades/LifeSteal/LifeStealPanel/LifeStealBackgroundPanel/LifeStealTextNumber").gameObject.GetComponent<TMP_Text>();
         fireRateText =  skillTreeUI.transform.Find("Weapon/WeaponUpgrades/FireRate/FireRatePanel/FireRateBackgroundPanel/FireRateTextNumber").gameObject.GetComponent<TMP_Text>();
         damageText =  skillTreeUI.transform.Find("Weapon/WeaponUpgrades/Damage/DamagePanel/DamageBackgroundPanel/DamageTextNumber").gameObject.GetComponent<TMP_Text>();
@@ -95,6 +106,8 @@ public class SkillTree : MonoBehaviour
         playerShoot.maxAmmo = ammoCapacity;
         ammoCapacityText.text = ammoCapacity.ToString();
         medkitAmountText.text = medkitAmount.ToString();
+        inventory.space = inventorySize;
+        inventorySizeText.text = inventorySize.ToString();
 
         if(messageTimer > 0){
             messageTimer -= Time.unscaledDeltaTime;
@@ -354,4 +367,44 @@ public class SkillTree : MonoBehaviour
             messageTimer = 5f;
         }
     } 
+
+    public void IncrementInventorySize(int incrementAmount){
+        if(upgradeTokens > 0){
+            if(inventorySize < maxInventorySize){
+                inventorySize += incrementAmount;
+                inventoryUI.gameObject.SetActive(true);
+                inventoryUI.slots[inventorySize - 1].gameObject.SetActive(true);
+                inventoryUI.gameObject.SetActive(false);
+                upgradeTokens--;
+            }
+            else{
+                messageText.text = "Cannot increase past maximum value.";
+                messageTimer = 5f;
+            }
+        }
+        else{
+            messageText.text = "Out of upgrade tokens.";
+            messageTimer = 5f;
+        }
+    }
+
+    public void DecrementInventorySize(int decrementAmount){
+        if(inventorySize > minInventorySize){
+            if(inventory.items.Count < inventory.space){
+                inventorySize -= decrementAmount;
+                inventoryUI.gameObject.SetActive(true);
+                inventoryUI.slots[inventorySize].gameObject.SetActive(false);
+                inventoryUI.gameObject.SetActive(false);
+                upgradeTokens++;
+            }
+            else{
+                messageText.text = "Inventory full. Remove items to decrease inventory further.";
+                messageTimer = 5f;
+            }
+        }
+        else{
+            messageText.text = "Cannot decrease past minimum value.";
+            messageTimer = 5f;
+        }
+    }
 }
