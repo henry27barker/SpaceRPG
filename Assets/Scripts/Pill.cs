@@ -13,6 +13,12 @@ public class Pill : Item
     public override void Use(){
         base.Use();
         player = GameObject.FindWithTag("Player");
+        if(this.name == "Syringe"){
+            healthAmount = player.GetComponent<SkillTree>().syringeAmount;
+        }
+        else if(this.name == "Pill"){
+            
+        }
         player.GetComponent<PlayerMovement>().StartPill(healthAmount, time);
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5dfeedfa6ff7d44185dae7465171772, type: 3}
   m_Name: Pill
   m_EditorClassIdentifier: 
-  name: New Item
+  name: Pill
   icon: {fileID: 21300000, guid: 453475179c6587c4cb8cda3efe09b462, type: 3}
   isDefaultItem: 0
   player: {fileID: 0}
