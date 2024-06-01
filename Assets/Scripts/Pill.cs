@@ -17,7 +17,7 @@ public class Pill : Item
             healthAmount = player.GetComponent<SkillTree>().syringeAmount;
         }
         else if(this.name == "Pill"){
-            
+            healthAmount = player.GetComponent<SkillTree>().pillAmount;
         }
         player.GetComponent<PlayerMovement>().StartPill(healthAmount, time);
     }

@@ -32,6 +32,11 @@ public class PlayerShoot : MonoBehaviour
 
 
     public GameObject inventoryUI;
+    private GameObject skillTreeUI;
+
+    void Awake(){
+        skillTreeUI = GameObject.FindWithTag("SkillTree");
+    }
 
     void Start(){
         fireRateCounter = fireRate;
@@ -48,6 +53,9 @@ public class PlayerShoot : MonoBehaviour
     public void Shoot()
     {
         if(inventoryUI.activeSelf == true){
+            return;
+        }
+        if(skillTreeUI.activeSelf == true){
             return;
         }
         if(fireRateCounter < fireRate){
