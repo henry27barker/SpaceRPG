@@ -30,9 +30,14 @@ public class SkillTree : MonoBehaviour
 
     private InventoryUI inventoryUI;
 
+    private List<Item> items = new List<Item>();
+    private CrateSlot[] slots;
+
     private float messageTimer = 0f;
 
     public int upgradeTokens;
+    private int totalUpgradeTokens = 0;
+    private int space = 25;
     public int maxHealth;
     public int minHealth;
     public int maxMaxHealth;
@@ -66,6 +71,7 @@ public class SkillTree : MonoBehaviour
 
     void Awake(){
         inventoryUI = GameObject.FindObjectOfType<InventoryUI>();
+        slots = skillTreeUI.transform.Find("UpgradeInventory/ItemsParent").gameObject.GetComponentsInChildren<CrateSlot>();
     }
 
     // Start is called before the first frame update
@@ -162,9 +168,56 @@ public class SkillTree : MonoBehaviour
             if(item.name == "UpgradeToken"){
                 inventory.Remove(item);
                 upgradeTokens++;
+                totalUpgradeTokens++;
             }
         }
     }
+
+    public void ResetUpgrades(){
+        maxHealth = minHealth;
+        playerMovement.health = minHealth;
+        speed = minSpeed;
+        lifeSteal = minLifeSteal;
+        fireRate = minFireRate;
+        damage = minDamage;
+        ammoCapacity = minAmmoCapacity;
+        medkitAmount = minMedkitAmount;
+        if(Inventory.instance.items.Count - minInventorySize <= space - items.Count){
+            for(int i = minInventorySize; i < Inventory.instance.items.Count; i++){
+                items.Add(Inventory.instance.items[i]);
+                Inventory.instance.Remove(Inventory.instance.items[i]);
+            }
+        }
+        else{
+            messageText.text = "Upgrade station inventory too full to reset. Empty it, or your own inventory to proceed.";
+            messageTimer = 5f;
+        }
+        inventorySize = minInventorySize;
+        syringeAmount = minSyringeAmount;
+        pillAmount = minPillAmount;
+        upgradeTokens = totalUpgradeTokens;
+    }
+
+    public void UpdateUI(){
+        for(int i = 0; i < slots.Length; i++){
+            if(i < items.Count){
+                slots[i].AddItem(items[i]);
+            }
+            else{
+                slots[i].ClearSlot();
+            }
+        }
+    }
+
+    public void TakeItem(Item item){
+        Inventory.instance.Add(item);
+    }
+
+    public void Remove(Item item){
+        items.Remove(item);
+        UpdateUI();
+    }
+
 
     public void IncrementMaxHealth(int incrementAmount){
         if(upgradeTokens > 0){
