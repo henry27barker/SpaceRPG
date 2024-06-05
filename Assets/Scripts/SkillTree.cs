@@ -27,11 +27,12 @@ public class SkillTree : MonoBehaviour
     private GameObject weaponTab;
     private GameObject healthTab;
     private GameObject critTab;
+    private GameObject itemsTab;
 
     private InventoryUI inventoryUI;
 
-    private List<Item> items = new List<Item>();
-    private CrateSlot[] slots;
+    public List<Item> items = new List<Item>();
+    private UpgradeInventorySlot[] slots;
 
     private float messageTimer = 0f;
 
@@ -71,7 +72,8 @@ public class SkillTree : MonoBehaviour
 
     void Awake(){
         inventoryUI = GameObject.FindObjectOfType<InventoryUI>();
-        slots = skillTreeUI.transform.Find("UpgradeInventory/ItemsParent").gameObject.GetComponentsInChildren<CrateSlot>();
+        skillTreeUI = GameObject.FindWithTag("SkillTree");
+        slots = skillTreeUI.transform.Find("UpgradeInventory/UpgradeInventoryUI/ItemsParent").gameObject.GetComponentsInChildren<UpgradeInventorySlot>();
     }
 
     // Start is called before the first frame update
@@ -80,11 +82,11 @@ public class SkillTree : MonoBehaviour
         playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
         playerShoot = GameObject.FindWithTag("Player").GetComponent<PlayerShoot>();
         inventory = GameObject.FindWithTag("GameManager").GetComponent<Inventory>();
-        skillTreeUI = GameObject.FindWithTag("SkillTree");
         basicTab = skillTreeUI.transform.Find("Basic/BasicUpgrades").gameObject;
         weaponTab = skillTreeUI.transform.Find("Weapon/WeaponUpgrades").gameObject;
         healthTab = skillTreeUI.transform.Find("Health/HealthUpgrades").gameObject;
         critTab = skillTreeUI.transform.Find("Crit/CritUpgrades").gameObject;
+        itemsTab = skillTreeUI.transform.Find("UpgradeInventory/UpgradeInventoryUI").gameObject;
         maxHealthText = skillTreeUI.transform.Find("Health/HealthUpgrades/MaxHealth/MaxHealthPanel/MaxHealthBackgroundPanel/MaxHealthTextNumber").gameObject.GetComponent<TMP_Text>();
         speedText = skillTreeUI.transform.Find("Basic/BasicUpgrades/Speed/SpeedPanel/SpeedBackgroundPanel/SpeedTextNumber").gameObject.GetComponent<TMP_Text>();
         inventorySizeText = skillTreeUI.transform.Find("Basic/BasicUpgrades/InventorySize/InventorySizePanel/InventorySizeBackgroundPanel/InventorySizeTextNumber").gameObject.GetComponent<TMP_Text>();
@@ -101,6 +103,7 @@ public class SkillTree : MonoBehaviour
         weaponTab.SetActive(false);
         healthTab.SetActive(false);
         critTab.SetActive(false);
+        itemsTab.SetActive(false);
         messagePanel.SetActive(false);
         skillTreeUI.SetActive(false);
     }
@@ -141,25 +144,36 @@ public class SkillTree : MonoBehaviour
             weaponTab.SetActive(false);
             healthTab.SetActive(false);
             critTab.SetActive(false);
+            itemsTab.SetActive(false);
             basicTab.SetActive(true);
         }
         if(tab == "Weapon"){
             basicTab.SetActive(false);
             healthTab.SetActive(false);
             critTab.SetActive(false);
+            itemsTab.SetActive(false);
             weaponTab.SetActive(true);
         }
         if(tab == "Health"){
             weaponTab.SetActive(false);
             basicTab.SetActive(false);
             critTab.SetActive(false);
+            itemsTab.SetActive(false);
             healthTab.SetActive(true);
         }
         if(tab == "Crit"){
             weaponTab.SetActive(false);
             healthTab.SetActive(false);
             basicTab.SetActive(false);
+            itemsTab.SetActive(false);
             critTab.SetActive(true);
+        }
+        if(tab == "Items"){
+            weaponTab.SetActive(false);
+            healthTab.SetActive(false);
+            basicTab.SetActive(false);
+            critTab.SetActive(false);
+            itemsTab.SetActive(true);
         }
     }
 
@@ -174,6 +188,29 @@ public class SkillTree : MonoBehaviour
     }
 
     public void ResetUpgrades(){
+        inventoryUI.gameObject.SetActive(true);
+        if(inventoryUI.inventory.items.Count - minInventorySize <= space - items.Count){
+            for(int i = minInventorySize; i < inventoryUI.inventory.items.Count; i++){
+                items.Add(inventoryUI.slots[i].item);
+                Debug.Log(items.Count);
+                slots[items.Count - 1].AddItem(inventoryUI.slots[i + 1].item);
+                inventoryUI.slots[i].OnRemoveButton();
+                UpdateUI();
+                inventoryUI.UpdateUI();
+            }
+            for(int i = minInventorySize; i < inventorySize; i++){
+                inventoryUI.slots[i].gameObject.SetActive(false);
+            }
+        }
+        else{
+            messageText.text = "Upgrade station inventory too full to reset. Empty it, or your own inventory to proceed.";
+            messageTimer = 5f;
+            inventoryUI.gameObject.SetActive(false);
+            return;
+        }
+        inventoryUI.inventory.space = minInventorySize;
+        inventoryUI.gameObject.SetActive(false);
+        inventorySize = minInventorySize;
         maxHealth = minHealth;
         playerMovement.health = minHealth;
         speed = minSpeed;
@@ -182,17 +219,6 @@ public class SkillTree : MonoBehaviour
         damage = minDamage;
         ammoCapacity = minAmmoCapacity;
         medkitAmount = minMedkitAmount;
-        if(Inventory.instance.items.Count - minInventorySize <= space - items.Count){
-            for(int i = minInventorySize; i < Inventory.instance.items.Count; i++){
-                items.Add(Inventory.instance.items[i]);
-                Inventory.instance.Remove(Inventory.instance.items[i]);
-            }
-        }
-        else{
-            messageText.text = "Upgrade station inventory too full to reset. Empty it, or your own inventory to proceed.";
-            messageTimer = 5f;
-        }
-        inventorySize = minInventorySize;
         syringeAmount = minSyringeAmount;
         pillAmount = minPillAmount;
         upgradeTokens = totalUpgradeTokens;
@@ -439,6 +465,7 @@ public class SkillTree : MonoBehaviour
                 inventorySize += incrementAmount;
                 inventoryUI.gameObject.SetActive(true);
                 inventoryUI.slots[inventorySize - 1].gameObject.SetActive(true);
+                inventoryUI.inventory.space++;
                 inventoryUI.gameObject.SetActive(false);
                 upgradeTokens--;
             }

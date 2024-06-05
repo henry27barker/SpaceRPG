@@ -5,7 +5,7 @@ public class InventorySlot : MonoBehaviour
 {
     public Image icon;
 
-    Item item;
+    public Item item;
 
     public Button removeButton;
 

@@ -6,7 +6,7 @@ public class InventoryUI : MonoBehaviour
 {
     public PlayerMovement playerMovement;
 
-    Inventory inventory;
+    public Inventory inventory;
 
     public Transform itemsParent;
 
@@ -44,7 +44,7 @@ public class InventoryUI : MonoBehaviour
         moneyText.text = "$" + playerMovement.money.ToString();
     }
 
-    void UpdateUI(){
+    public void UpdateUI(){
         for(int i = 0; i < slots.Length; i++){
             if(i < inventory.items.Count){
                 slots[i].AddItem(inventory.items[i]);
