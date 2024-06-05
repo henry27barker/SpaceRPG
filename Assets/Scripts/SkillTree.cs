@@ -190,11 +190,12 @@ public class SkillTree : MonoBehaviour
     public void ResetUpgrades(){
         inventoryUI.gameObject.SetActive(true);
         if(inventoryUI.inventory.items.Count - minInventorySize <= space - items.Count){
-            for(int i = minInventorySize; i < inventoryUI.inventory.items.Count; i++){
-                items.Add(inventoryUI.slots[i].item);
+            int amount = inventoryUI.inventory.items.Count;
+            for(int i = minInventorySize; i < amount; i++){
+                items.Add(inventoryUI.slots[minInventorySize].item);
                 Debug.Log(items.Count);
-                slots[items.Count - 1].AddItem(inventoryUI.slots[i + 1].item);
-                inventoryUI.slots[i].OnRemoveButton();
+                slots[items.Count - 1].AddItem(inventoryUI.slots[minInventorySize].item);
+                inventoryUI.slots[minInventorySize].OnRemoveButton();
                 UpdateUI();
                 inventoryUI.UpdateUI();
             }
