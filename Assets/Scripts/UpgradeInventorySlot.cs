@@ -12,7 +12,7 @@ public class UpgradeInventorySlot : MonoBehaviour
     public SkillTree skillTree;
 
     void Awake(){
-        skillTree = GameObject.FindWithTag("SkillTree").GetComponent<SkillTree>();
+        skillTree = GameObject.FindWithTag("Player").GetComponent<SkillTree>();
     }
 
     public void AddItem(Item newItem){
