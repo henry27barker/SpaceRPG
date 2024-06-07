@@ -21,6 +21,7 @@ public class SkillTree : MonoBehaviour
     private TMP_Text syringeAmountText;
     private TMP_Text pillAmountText;
     private TMP_Text stompDistanceText;
+    private TMP_Text stompDamageText;
     private TMP_Text messageText;
     private GameObject messagePanel;
 
@@ -73,6 +74,9 @@ public class SkillTree : MonoBehaviour
     public float stompDistance;
     public float minStompDistance;
     public float maxStompDistance;
+    public int stompDamage;
+    public int minStompDamage;
+    public int maxStompDamage;
 
     void Awake(){
         inventoryUI = GameObject.FindObjectOfType<InventoryUI>();
@@ -102,6 +106,7 @@ public class SkillTree : MonoBehaviour
         syringeAmountText = skillTreeUI.transform.Find("Health/HealthUpgrades/SyringeAmount/SyringeAmountPanel/SyringeAmountBackgroundPanel/SyringeAmountTextNumber").gameObject.GetComponent<TMP_Text>();
         pillAmountText = skillTreeUI.transform.Find("Health/HealthUpgrades/PillAmount/PillAmountPanel/PillAmountBackgroundPanel/PillAmountTextNumber").gameObject.GetComponent<TMP_Text>();
         stompDistanceText = skillTreeUI.transform.Find("Basic/BasicUpgrades/StompDistance/StompDistancePanel/StompDistanceBackgroundPanel/StompDistanceTextNumber").gameObject.GetComponent<TMP_Text>();
+        stompDamageText = skillTreeUI.transform.Find("Basic/BasicUpgrades/StompDamage/StompDamagePanel/StompDamageBackgroundPanel/StompDamageTextNumber").gameObject.GetComponent<TMP_Text>();
         upgradeTokensText = skillTreeUI.transform.Find("UpgradeTokensPanel/UpgradeTokensBackgroundPanel/UpgradeTokensTextNumber").gameObject.GetComponent<TMP_Text>();
         messageText = skillTreeUI.transform.Find("MessagePanel/MessageBackgroundPanel/MessageText").gameObject.GetComponent<TMP_Text>();
         messagePanel = skillTreeUI.transform.Find("MessagePanel").gameObject;
@@ -136,6 +141,8 @@ public class SkillTree : MonoBehaviour
         pillAmountText.text = pillAmount.ToString();
         playerMovement.stompRadius = stompDistance;
         stompDistanceText.text = stompDistance.ToString();
+        playerMovement.stompDamage = stompDamage;
+        stompDamageText.text = stompDamage.ToString();
 
         if(messageTimer > 0){
             messageTimer -= Time.unscaledDeltaTime;
@@ -230,6 +237,7 @@ public class SkillTree : MonoBehaviour
         syringeAmount = minSyringeAmount;
         pillAmount = minPillAmount;
         stompDistance = minStompDistance;
+        stompDamage = minStompDamage;
         upgradeTokens = totalUpgradeTokens;
     }
 
@@ -589,6 +597,23 @@ public class SkillTree : MonoBehaviour
         }
         else{
             messageText.text = "Cannot decrease past minimum value.";
+            messageTimer = 5f;
+        }
+    }
+
+    public void IncrementStompDamage(int incrementAmount){
+        if(upgradeTokens > 0){
+            if(stompDamage < maxStompDamage){
+                stompDamage += incrementAmount;
+                upgradeTokens--;
+            }
+            else{
+                messageText.text = "Cannot increase past maximum value.";
+                messageTimer = 5f;
+            }
+        }
+        else{
+            messageText.text = "Out of upgrade tokens.";
             messageTimer = 5f;
         }
     }
