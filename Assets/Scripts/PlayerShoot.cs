@@ -35,6 +35,7 @@ public class PlayerShoot : MonoBehaviour
     private GameObject skillTreeUI;
 
     void Awake(){
+        inventoryUI = GameObject.FindWithTag("InventoryUI");
         skillTreeUI = GameObject.FindWithTag("SkillTree");
     }
 
@@ -56,6 +57,9 @@ public class PlayerShoot : MonoBehaviour
             return;
         }
         if(skillTreeUI.activeSelf == true){
+            return;
+        }
+        if(gameObject.GetComponent<PlayerMovement>().shopUI != null){
             return;
         }
         if(fireRateCounter < fireRate){

@@ -10,11 +10,17 @@ public class Shop : Interactable
         shopUI = gameObject.transform.Find("ShopCanvas").gameObject;
     }
 
+    void Start(){
+        shopUI.SetActive(false);
+    }
+
     public override void Interact()
     {
         base.Interact();
         
         shopUI.SetActive(true);
+
+        shopUI.GetComponent<ShopUI>().ActivateShop();
 
         //Implement CrateUI
     }

@@ -9,6 +9,7 @@ TagManager:
   - Chainsaw
   - SkillTree
   - GameManager
+  - InventoryUI
   layers:
   - Default
   - TransparentFX

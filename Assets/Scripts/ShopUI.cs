@@ -21,4 +21,8 @@ public class ShopUI : MonoBehaviour
     {
         
     }
+
+    public void ActivateShop(){
+        playerMovement.shopUI = gameObject;
+    }
 }
