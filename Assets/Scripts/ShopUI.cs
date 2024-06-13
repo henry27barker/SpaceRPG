@@ -6,6 +6,9 @@ public class ShopUI : MonoBehaviour
 {
     private PlayerMovement playerMovement;
 
+    public int ammoPrice;
+    public int ammoAmountPerPrice;
+
     void Awake(){
         playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
     }
