@@ -27900,8 +27900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c95a1339e61ff43b17fdaa637c0099, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoPrice: 0
-  ammoAmountPerPrice: 0
+  ammoPrice: 10
 --- !u!114 &2067578828
 MonoBehaviour:
   m_ObjectHideFlags: 0
