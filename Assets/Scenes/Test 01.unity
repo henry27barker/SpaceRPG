@@ -1741,7 +1741,7 @@ GameObject:
   - component: {fileID: 178644144}
   - component: {fileID: 178644143}
   m_Layer: 5
-  m_Name: IncreaseFireRate
+  m_Name: DecreaseFireRate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1813,7 +1813,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1193290955}
         m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
-        m_MethodName: IncrementFireRate
+        m_MethodName: DecrementFireRate
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11393,7 +11393,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2308191161979568243, guid: ce949d5ee8d2ba647abc6a7d189a2ef2, type: 3}
       propertyPath: possibleItems.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2308191161979568243, guid: ce949d5ee8d2ba647abc6a7d189a2ef2, type: 3}
       propertyPath: possibleItems.Array.data[0]
@@ -11411,6 +11411,10 @@ PrefabInstance:
       propertyPath: possibleItems.Array.data[3]
       value: 
       objectReference: {fileID: 11400000, guid: 24e5d112042166349b6a22013a812011, type: 2}
+    - target: {fileID: 2308191161979568243, guid: ce949d5ee8d2ba647abc6a7d189a2ef2, type: 3}
+      propertyPath: possibleItems.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 82e1c6928035aa140812a3b171d538ff, type: 2}
     - target: {fileID: 3474869101747176948, guid: ce949d5ee8d2ba647abc6a7d189a2ef2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -12122,12 +12126,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2308191161979568243, guid: ce949d5ee8d2ba647abc6a7d189a2ef2, type: 3}
       propertyPath: possibleItems.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2308191161979568243, guid: ce949d5ee8d2ba647abc6a7d189a2ef2, type: 3}
       propertyPath: possibleItems.Array.data[3]
       value: 
       objectReference: {fileID: 11400000, guid: 24e5d112042166349b6a22013a812011, type: 2}
+    - target: {fileID: 2308191161979568243, guid: ce949d5ee8d2ba647abc6a7d189a2ef2, type: 3}
+      propertyPath: possibleItems.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 82e1c6928035aa140812a3b171d538ff, type: 2}
     - target: {fileID: 3474869101747176948, guid: ce949d5ee8d2ba647abc6a7d189a2ef2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -18564,7 +18572,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2308191161979568243, guid: ce949d5ee8d2ba647abc6a7d189a2ef2, type: 3}
       propertyPath: possibleItems.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2308191161979568243, guid: ce949d5ee8d2ba647abc6a7d189a2ef2, type: 3}
       propertyPath: possibleItems.Array.data[0]
@@ -18582,6 +18590,10 @@ PrefabInstance:
       propertyPath: possibleItems.Array.data[3]
       value: 
       objectReference: {fileID: 11400000, guid: 24e5d112042166349b6a22013a812011, type: 2}
+    - target: {fileID: 2308191161979568243, guid: ce949d5ee8d2ba647abc6a7d189a2ef2, type: 3}
+      propertyPath: possibleItems.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 82e1c6928035aa140812a3b171d538ff, type: 2}
     - target: {fileID: 3474869101747176948, guid: ce949d5ee8d2ba647abc6a7d189a2ef2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -19504,7 +19516,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2308191161979568243, guid: ce949d5ee8d2ba647abc6a7d189a2ef2, type: 3}
       propertyPath: possibleItems.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2308191161979568243, guid: ce949d5ee8d2ba647abc6a7d189a2ef2, type: 3}
       propertyPath: possibleItems.Array.data[0]
@@ -19522,6 +19534,10 @@ PrefabInstance:
       propertyPath: possibleItems.Array.data[3]
       value: 
       objectReference: {fileID: 11400000, guid: 24e5d112042166349b6a22013a812011, type: 2}
+    - target: {fileID: 2308191161979568243, guid: ce949d5ee8d2ba647abc6a7d189a2ef2, type: 3}
+      propertyPath: possibleItems.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 82e1c6928035aa140812a3b171d538ff, type: 2}
     - target: {fileID: 3474869101747176948, guid: ce949d5ee8d2ba647abc6a7d189a2ef2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -28568,7 +28584,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +
+  m_text: '-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}

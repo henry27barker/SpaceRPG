@@ -230,7 +230,7 @@ public class SkillTree : MonoBehaviour
         playerMovement.health = minHealth;
         speed = minSpeed;
         lifeSteal = minLifeSteal;
-        fireRate = minFireRate;
+        fireRate = maxFireRate;
         damage = minDamage;
         ammoCapacity = minAmmoCapacity;
         medkitAmount = minMedkitAmount;

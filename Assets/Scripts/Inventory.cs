@@ -7,6 +7,7 @@ public class Inventory : MonoBehaviour
     #region Singleton
 
     public static Inventory instance;
+    private GameObject player;
 
     void Awake(){
         if(instance != null){
@@ -14,6 +15,7 @@ public class Inventory : MonoBehaviour
             return;
         }
         instance = this;
+        player = GameObject.FindWithTag("Player");
     }
 
     #endregion
@@ -32,6 +34,10 @@ public class Inventory : MonoBehaviour
                 return false;
             }
             items.Add(item);
+            if(item.name == "Ammo"){
+                Ammo tempItem = (Ammo)item;
+                tempItem.ammoAmount = player.GetComponent<SkillTree>().ammoCapacity;
+            }
 
             if(onItemChangedCallback != null)
                 onItemChangedCallback.Invoke();

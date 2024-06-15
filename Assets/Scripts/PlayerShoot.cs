@@ -30,13 +30,14 @@ public class PlayerShoot : MonoBehaviour
 
     private float fireRateCounter;
 
-
+    private Inventory inventory;
     public GameObject inventoryUI;
     private GameObject skillTreeUI;
 
     void Awake(){
         inventoryUI = GameObject.FindWithTag("InventoryUI");
         skillTreeUI = GameObject.FindWithTag("SkillTree");
+        inventory = GameObject.FindWithTag("GameManager").GetComponent<Inventory>();
     }
 
     void Start(){
@@ -65,7 +66,24 @@ public class PlayerShoot : MonoBehaviour
         if(fireRateCounter < fireRate){
             return;
         }
-        if(ammoCount <= 0){
+        // if(ammoCount <= 0){
+        //     return;
+        // }
+        bool ammoFound = false;
+        foreach(Item item in inventory.items){
+            if(item.name == "Ammo"){
+                Ammo ammoItem = (Ammo)item;
+                if(ammoItem.ammoAmount > 0){
+                    ammoItem.ammoAmount--;
+                    ammoFound = true;
+                    if(ammoItem.ammoAmount <= 0){
+                        inventory.Remove(item);
+                    }
+                    continue;
+                }
+            }
+        }
+        if(!ammoFound){
             return;
         }
 
@@ -82,6 +100,6 @@ public class PlayerShoot : MonoBehaviour
         }
 
         fireRateCounter = 0;
-        ammoCount--;
+        // ammoCount--;
     }
 }
