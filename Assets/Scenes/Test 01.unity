@@ -6182,6 +6182,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4291148428715129588, guid: f7cf022b416272946af4e1b631cda044, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4628335410474125009, guid: f7cf022b416272946af4e1b631cda044, type: 3}
       propertyPath: m_Name
       value: InventorySlot (1)
@@ -29837,13 +29841,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4291148428715129588, guid: f7cf022b416272946af4e1b631cda044, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4628335410474125009, guid: f7cf022b416272946af4e1b631cda044, type: 3}
       propertyPath: m_Name
       value: InventorySlot
-      objectReference: {fileID: 0}
-    - target: {fileID: 9059856599331071038, guid: f7cf022b416272946af4e1b631cda044, type: 3}
-      propertyPath: m_Type
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

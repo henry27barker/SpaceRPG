@@ -79,7 +79,7 @@ public class PlayerShoot : MonoBehaviour
                     if(ammoItem.ammoAmount <= 0){
                         inventory.Remove(item);
                     }
-                    continue;
+                    break;
                 }
             }
         }

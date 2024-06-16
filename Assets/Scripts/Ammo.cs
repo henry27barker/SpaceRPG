@@ -8,6 +8,6 @@ public class Ammo : Item
     public int ammoAmount;
 
     public override void Use(){
-        base.Use();
+        //base.Use();
     }
 }

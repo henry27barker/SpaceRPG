@@ -33,9 +33,10 @@ public class Inventory : MonoBehaviour
                 Debug.Log("Not enough room.");
                 return false;
             }
-            items.Add(item);
+            Item newItem = Object.Instantiate(item);
+            items.Add(newItem);
             if(item.name == "Ammo"){
-                Ammo tempItem = (Ammo)item;
+                Ammo tempItem = (Ammo)newItem;
                 tempItem.ammoAmount = player.GetComponent<SkillTree>().ammoCapacity;
             }
 

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class InventorySlot : MonoBehaviour
 {
@@ -8,6 +9,28 @@ public class InventorySlot : MonoBehaviour
     public Item item;
 
     public Button removeButton;
+
+    private TMP_Text slotText;
+
+    void Awake(){
+        slotText = gameObject.transform.Find("InventorySlotText").gameObject.GetComponent<TMP_Text>();
+        slotText.text = "";
+    }
+
+    void Update(){
+        if(item != null){
+            if(item.name == "Ammo"){
+                Ammo ammoItem = (Ammo)item;
+                slotText.text = ammoItem.ammoAmount.ToString();
+            }
+            else{
+                slotText.text = "";
+            }
+        }
+        else{
+            slotText.text = "";
+        }
+    }
 
     public void AddItem(Item newItem){
         item = newItem;
