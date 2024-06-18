@@ -6,6 +6,11 @@ using UnityEngine;
 public class Ammo : Item
 {
     public int ammoAmount;
+    public bool canSell;
+
+    void Awake(){
+        canSell = true;
+    }
 
     public override void Use(){
         //base.Use();

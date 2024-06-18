@@ -75,6 +75,7 @@ public class PlayerShoot : MonoBehaviour
                 Ammo ammoItem = (Ammo)item;
                 if(ammoItem.ammoAmount > 0){
                     ammoItem.ammoAmount--;
+                    ammoItem.canSell = false;
                     ammoFound = true;
                     if(ammoItem.ammoAmount <= 0){
                         inventory.Remove(item);
