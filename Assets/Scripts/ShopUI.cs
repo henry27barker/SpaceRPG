@@ -11,6 +11,8 @@ public class ShopUI : MonoBehaviour
     public Item ammo;
     public Item medkit;
 
+    private TMP_Text moneyText;
+
     public int ammoPrice;
     private TMP_Text ammoText;
     public int medkitPrice;
@@ -19,6 +21,7 @@ public class ShopUI : MonoBehaviour
     void Awake(){
         playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
         inventory = GameObject.FindWithTag("GameManager").GetComponent<Inventory>();
+        moneyText = gameObject.transform.Find("Money/MoneyPanel/MoneyText").gameObject.GetComponent<TMP_Text>();
         ammoText = gameObject.transform.Find("Ammo/AmmoPanel/AmmoBackgroundPanel/AmmoTextNumber").gameObject.GetComponent<TMP_Text>();
         medkitText = gameObject.transform.Find("Medkit/MedkitPanel/MedkitBackgroundPanel/MedkitTextNumber").gameObject.GetComponent<TMP_Text>();
         ammoText.text = "$" + ammoPrice.ToString();
@@ -89,7 +92,7 @@ public class ShopUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        moneyText.text = "$" + playerMovement.money.ToString();
     }
 
     public void ActivateShop(){
