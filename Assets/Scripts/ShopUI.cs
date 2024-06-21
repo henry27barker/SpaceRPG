@@ -1,4 +1,4 @@
-using System.Collections;
+  using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -13,6 +13,10 @@ public class ShopUI : MonoBehaviour
 
     private TMP_Text moneyText;
 
+    private TMP_Text messageText;
+    private GameObject messagePanel;
+    private float messageTimer = 0f;
+
     public int ammoPrice;
     private TMP_Text ammoText;
     public int medkitPrice;
@@ -22,6 +26,8 @@ public class ShopUI : MonoBehaviour
         playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
         inventory = GameObject.FindWithTag("GameManager").GetComponent<Inventory>();
         moneyText = gameObject.transform.Find("Money/MoneyPanel/MoneyText").gameObject.GetComponent<TMP_Text>();
+        messageText = gameObject.transform.Find("MessagePanel/MessageBackgroundPanel/MessageText").gameObject.GetComponent<TMP_Text>();
+        messagePanel = gameObject.transform.Find("MessagePanel").gameObject;
         ammoText = gameObject.transform.Find("Ammo/AmmoPanel/AmmoBackgroundPanel/AmmoTextNumber").gameObject.GetComponent<TMP_Text>();
         medkitText = gameObject.transform.Find("Medkit/MedkitPanel/MedkitBackgroundPanel/MedkitTextNumber").gameObject.GetComponent<TMP_Text>();
         ammoText.text = "$" + ammoPrice.ToString();
@@ -49,11 +55,13 @@ public class ShopUI : MonoBehaviour
                 }
             }
             else{
-                Debug.Log("Not enough money");
+                messageText.text = "Not enough money.";
+                messageTimer = 5f;
             }
         }
         else{
-            Debug.Log("Not enough inventory space");
+            messageText.text = "Not enough inventory space.";
+            messageTimer = 5f;
         }
     }
 
@@ -75,11 +83,13 @@ public class ShopUI : MonoBehaviour
                 }
             }
             else{
-                Debug.Log("Not enough money");
+                messageText.text = "Not enough money.";
+                messageTimer = 5f;
             }
         }
         else{
-            Debug.Log("Not enough inventory space");
+            messageText.text = "Not enough inventory space.";
+            messageTimer = 5f;
         }
     }
 
@@ -93,6 +103,14 @@ public class ShopUI : MonoBehaviour
     void Update()
     {
         moneyText.text = "$" + playerMovement.money.ToString();
+
+        if(messageTimer > 0){
+            messageTimer -= Time.unscaledDeltaTime;
+            messagePanel.SetActive(true);
+        }
+        else{
+            messagePanel.SetActive(false);
+        }
     }
 
     public void ActivateShop(){
