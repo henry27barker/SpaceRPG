@@ -10,6 +10,7 @@ public class ShopUI : MonoBehaviour
 
     public Item ammo;
     public Item medkit;
+    public Item pill;
 
     private TMP_Text moneyText;
 
@@ -21,6 +22,8 @@ public class ShopUI : MonoBehaviour
     private TMP_Text ammoText;
     public int medkitPrice;
     private TMP_Text medkitText;
+    public int pillPrice;
+    private TMP_Text pillText;
 
     void Awake(){
         playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
@@ -30,8 +33,10 @@ public class ShopUI : MonoBehaviour
         messagePanel = gameObject.transform.Find("MessagePanel").gameObject;
         ammoText = gameObject.transform.Find("Ammo/AmmoPanel/AmmoBackgroundPanel/AmmoTextNumber").gameObject.GetComponent<TMP_Text>();
         medkitText = gameObject.transform.Find("Medkit/MedkitPanel/MedkitBackgroundPanel/MedkitTextNumber").gameObject.GetComponent<TMP_Text>();
+        pillText = gameObject.transform.Find("Pill/PillPanel/PillBackgroundPanel/PillTextNumber").gameObject.GetComponent<TMP_Text>();
         ammoText.text = "$" + ammoPrice.ToString();
         medkitText.text = "$" + medkitPrice.ToString();
+        pillText.text = "$" + pillPrice.ToString();
     }
 
     public void SellAmmo(){
@@ -80,6 +85,34 @@ public class ShopUI : MonoBehaviour
             if(playerMovement.money >= medkitPrice){
                 if(inventory.Add(medkit)){
                     playerMovement.money -= medkitPrice;
+                }
+            }
+            else{
+                messageText.text = "Not enough money.";
+                messageTimer = 5f;
+            }
+        }
+        else{
+            messageText.text = "Not enough inventory space.";
+            messageTimer = 5f;
+        }
+    }
+
+    public void SellPill(){
+        foreach(Item item in inventory.items){
+            if(item.name == "Pill"){
+                inventory.Remove(item);
+                playerMovement.money += pillPrice;
+                return;
+            }
+        }
+    }
+
+    public void BuyPill(){
+        if(inventory.items.Count < inventory.space){
+            if(playerMovement.money >= pillPrice){
+                if(inventory.Add(pill)){
+                    playerMovement.money -= pillPrice;
                 }
             }
             else{
