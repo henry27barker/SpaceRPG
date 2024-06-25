@@ -1,4 +1,4 @@
-  using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -12,6 +12,7 @@ public class ShopUI : MonoBehaviour
     public Item medkit;
     public Item pill;
     public Item syringe;
+    public Item upgradeToken;
 
     private TMP_Text moneyText;
 
@@ -27,6 +28,8 @@ public class ShopUI : MonoBehaviour
     private TMP_Text pillText;
     public int syringePrice;
     private TMP_Text syringeText;
+    public int upgradeTokenPrice;
+    private TMP_Text upgradeTokenText;
 
     void Awake(){
         playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
@@ -38,10 +41,12 @@ public class ShopUI : MonoBehaviour
         medkitText = gameObject.transform.Find("Medkit/MedkitPanel/MedkitBackgroundPanel/MedkitTextNumber").gameObject.GetComponent<TMP_Text>();
         pillText = gameObject.transform.Find("Pill/PillPanel/PillBackgroundPanel/PillTextNumber").gameObject.GetComponent<TMP_Text>();
         syringeText = gameObject.transform.Find("Syringe/SyringePanel/SyringeBackgroundPanel/SyringeTextNumber").gameObject.GetComponent<TMP_Text>();
+        upgradeTokenText = gameObject.transform.Find("UpgradeToken/UpgradeTokenPanel/UpgradeTokenBackgroundPanel/UpgradeTokenTextNumber").gameObject.GetComponent<TMP_Text>();
         ammoText.text = "$" + ammoPrice.ToString();
         medkitText.text = "$" + medkitPrice.ToString();
         pillText.text = "$" + pillPrice.ToString();
         syringeText.text = "$" + syringePrice.ToString();
+        upgradeTokenText.text = "$" + upgradeTokenPrice.ToString();
     }
 
     public void SellAmmo(){
@@ -146,6 +151,34 @@ public class ShopUI : MonoBehaviour
             if(playerMovement.money >= syringePrice){
                 if(inventory.Add(syringe)){
                     playerMovement.money -= syringePrice;
+                }
+            }
+            else{
+                messageText.text = "Not enough money.";
+                messageTimer = 5f;
+            }
+        }
+        else{
+            messageText.text = "Not enough inventory space.";
+            messageTimer = 5f;
+        }
+    }
+
+    public void SellUpgradeToken(){
+        foreach(Item item in inventory.items){
+            if(item.name == "UpgradeToken"){
+                inventory.Remove(item);
+                playerMovement.money += upgradeTokenPrice;
+                return;
+            }
+        }
+    }
+
+    public void BuyUpgradeToken(){
+        if(inventory.items.Count < inventory.space){
+            if(playerMovement.money >= upgradeTokenPrice){
+                if(inventory.Add(upgradeToken)){
+                    playerMovement.money -= upgradeTokenPrice;
                 }
             }
             else{
