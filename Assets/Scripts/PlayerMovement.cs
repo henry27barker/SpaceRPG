@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -43,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
     public ParticleSystem healthParticleSystem;
     public GameObject skillTreeUI;
     public GameObject shopUI = null;
+    public GameObject inventoryFirst;
 
     //Scripts
     public HealthBar healthBar;
@@ -62,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
     
     private void Awake()
     {   
-        playerControls = new PlayerInput();
+        playerControls = gameObject.GetComponent<PlayerInput>();
         Cursor.visible = false;
         skillTreeUI = GameObject.FindWithTag("SkillTree");
     }
@@ -121,6 +123,14 @@ public class PlayerMovement : MonoBehaviour
     private void OnOpenInventory(){
         if(skillTreeUI.activeSelf == false && shopUI == null){
             inventoryUI.SetActive(!inventoryUI.activeSelf);
+            if(inventoryUI.activeSelf == true){
+                //playerControls.SwitchCurrentActionMap("UI");
+                //EventSystem.current.SetSelectedGameObject(inventoryFirst);
+            }
+            else{
+                //playerControls.SwitchCurrentActionMap("Player");
+                //EventSystem.current.SetSelectedGameObject(null);
+            }
         }
         skillTreeUI.SetActive(false);
         if(shopUI != null){
