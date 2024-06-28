@@ -71,16 +71,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnEnable()
     {
-        playerControls.Enable();
-        playerControls.Player.Move.performed += ctx => moveInputValue = ctx.ReadValue<Vector2>();
-        playerControls.Player.Move.canceled += ctx => moveInputValue = Vector2.zero;
+        //playerControls.Enable();
+        playerControls.actions["Move"].performed += ctx => moveInputValue = ctx.ReadValue<Vector2>();
+        playerControls.actions["Move"].canceled += ctx => moveInputValue = Vector2.zero;
     }
 
     private void OnDisable()
     {
-        playerControls.Disable();
-        playerControls.Player.Move.performed -= ctx => moveInputValue = ctx.ReadValue<Vector2>();
-        playerControls.Player.Move.canceled -= ctx => moveInputValue = Vector2.zero;
+        //playerControls.Disable();
+        playerControls.actions["Move"].performed -= ctx => moveInputValue = ctx.ReadValue<Vector2>();
+        playerControls.actions["Move"].canceled -= ctx => moveInputValue = Vector2.zero;
     }
 
     void Start()
@@ -124,12 +124,33 @@ public class PlayerMovement : MonoBehaviour
         if(skillTreeUI.activeSelf == false && shopUI == null){
             inventoryUI.SetActive(!inventoryUI.activeSelf);
             if(inventoryUI.activeSelf == true){
-                //playerControls.SwitchCurrentActionMap("UI");
-                //EventSystem.current.SetSelectedGameObject(inventoryFirst);
+                EventSystem.current.SetSelectedGameObject(null);
+                playerControls.SwitchCurrentActionMap("UI");
+                EventSystem.current.SetSelectedGameObject(inventoryFirst);
             }
             else{
-                //playerControls.SwitchCurrentActionMap("Player");
-                //EventSystem.current.SetSelectedGameObject(null);
+                playerControls.SwitchCurrentActionMap("Player");
+                EventSystem.current.SetSelectedGameObject(null);
+            }
+        }
+        skillTreeUI.SetActive(false);
+        if(shopUI != null){
+            shopUI.SetActive(false);
+            shopUI = null;
+        }
+    }
+
+    private void OnCloseInventory(){
+        if(skillTreeUI.activeSelf == false && shopUI == null){
+            inventoryUI.SetActive(!inventoryUI.activeSelf);
+            if(inventoryUI.activeSelf == true){
+                EventSystem.current.SetSelectedGameObject(null);
+                playerControls.SwitchCurrentActionMap("UI");
+                EventSystem.current.SetSelectedGameObject(inventoryFirst);
+            }
+            else{
+                playerControls.SwitchCurrentActionMap("Player");
+                EventSystem.current.SetSelectedGameObject(null);
             }
         }
         skillTreeUI.SetActive(false);

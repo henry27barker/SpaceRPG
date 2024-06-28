@@ -14,12 +14,9 @@ public class InventoryUI : MonoBehaviour
 
     public GameObject inventoryUI;
 
-    public PlayerInput playerControls;
-
     public TMP_Text moneyText;
 
     void Awake(){
-        playerControls = playerMovement.playerControls;
         moneyText = GameObject.FindWithTag("MoneyText").GetComponent<TMP_Text>();
     }
 
