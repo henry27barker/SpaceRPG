@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CrateUI : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class CrateUI : MonoBehaviour
     public Transform itemsParent;
     CrateSlot[] slots;
 
+    private PlayerMovement playerMovement;
+
+    public GameObject crateFirst;
+
     public int maxPossibleItems;
 
     public int space = 10;
@@ -19,6 +24,7 @@ public class CrateUI : MonoBehaviour
         crateUI.SetActive(false);
         slots = itemsParent.GetComponentsInChildren<CrateSlot>();
         UpdateUI();
+        playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
     }
 
     void Start(){
@@ -29,6 +35,17 @@ public class CrateUI : MonoBehaviour
             items.Add(possibleItems[index]);
         }
         UpdateUI();
+    }
+
+    void OnEnable(){
+        EventSystem.current.SetSelectedGameObject(null);
+        playerMovement.playerControls.SwitchCurrentActionMap("UI");
+        EventSystem.current.SetSelectedGameObject(crateFirst);
+    }
+
+    void OnDisable(){
+        EventSystem.current.SetSelectedGameObject(null);
+        playerMovement.playerControls.SwitchCurrentActionMap("Player");
     }
 
     void Update(){

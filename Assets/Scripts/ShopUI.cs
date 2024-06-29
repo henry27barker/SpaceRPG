@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class ShopUI : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class ShopUI : MonoBehaviour
     public Item upgradeToken;
 
     private TMP_Text moneyText;
+
+    public GameObject shopFirst;
 
     private TMP_Text messageText;
     private GameObject messagePanel;
@@ -60,6 +63,17 @@ public class ShopUI : MonoBehaviour
                 }
             }
         }
+    }
+
+    void OnEnable(){
+        EventSystem.current.SetSelectedGameObject(null);
+        playerMovement.playerControls.SwitchCurrentActionMap("UI");
+        EventSystem.current.SetSelectedGameObject(shopFirst);
+    }
+
+    void OnDisable(){
+        EventSystem.current.SetSelectedGameObject(null);
+        playerMovement.playerControls.SwitchCurrentActionMap("Player");
     }
 
     public void BuyAmmo(){

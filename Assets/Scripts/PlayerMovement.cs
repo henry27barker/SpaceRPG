@@ -45,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject skillTreeUI;
     public GameObject shopUI = null;
     public GameObject inventoryFirst;
+    public GameObject skillTreeFirst;
 
     //Scripts
     public HealthBar healthBar;
@@ -154,6 +155,8 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         skillTreeUI.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(null);
+        playerControls.SwitchCurrentActionMap("Player");
         if(shopUI != null){
             shopUI.SetActive(false);
             shopUI = null;
