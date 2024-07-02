@@ -29,7 +29,12 @@ public class ExplosionProjectile : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D col){
-        Instantiate(explosion, transform.position, new Quaternion(0, 0, 0, 0));
-        Destroy(gameObject);
+        if(col.gameObject.tag == "Money"){
+
+        }
+        else{
+            Instantiate(explosion, transform.position, new Quaternion(0, 0, 0, 0));
+            Destroy(gameObject);
+        }
     }
 }

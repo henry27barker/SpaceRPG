@@ -34,6 +34,11 @@ public class Projectile : MonoBehaviour
             col.gameObject.GetComponent<EnemyMovement>().decreaseHealth(damage);
             playerMovement.IncreaseHealth((int)(damage * (playerMovement.lifeSteal / 100f)));
         }
-        Destroy(gameObject);
+        if(col.gameObject.tag == "Money"){
+
+        }
+        else{
+            Destroy(gameObject);
+        }
     }
 }
