@@ -413,13 +413,18 @@ public class SkillTree : MonoBehaviour
     }
 
     public void IncrementAmmoCapacity(int incrementAmount){
-        if(ammoCapacity < maxAmmoCapacity){
-            ammoCapacity += incrementAmount;
-            playerShoot.ammoCount += incrementAmount;
-            upgradeTokens--;
+        if(upgradeTokens > 0){
+            if(ammoCapacity < maxAmmoCapacity){
+                ammoCapacity += incrementAmount;
+                upgradeTokens--;
+            }
+            else{
+                messageText.text = "Cannot increase past maximum value.";
+                messageTimer = 5f;
+            }
         }
         else{
-            messageText.text = "Cannot increase past maximum value.";
+            messageText.text = "Out of upgrade tokens.";
             messageTimer = 5f;
         }
     }
