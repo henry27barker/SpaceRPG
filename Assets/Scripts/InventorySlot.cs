@@ -12,9 +12,12 @@ public class InventorySlot : MonoBehaviour
 
     private TMP_Text slotText;
 
+    private InteractMenu interactMenu;
+
     void Awake(){
         slotText = gameObject.transform.Find("InventorySlotText").gameObject.GetComponent<TMP_Text>();
         slotText.text = "";
+        interactMenu = GameObject.FindObjectOfType<InteractMenu>().GetComponent<InteractMenu>();
     }
 
     void Update(){
@@ -53,6 +56,14 @@ public class InventorySlot : MonoBehaviour
     }
 
     public void UseItem(){
+        //if(item != null){
+            interactMenu.gameObject.transform.parent.gameObject.SetActive(true);
+            interactMenu.SetInventorySlot(gameObject.GetComponent<InventorySlot>());
+            interactMenu.MoveMenu(gameObject.transform.position.x, gameObject.transform.position.y);
+        //}
+    }
+
+    public void Use(){
         if(item.name != "UpgradeToken"){
             if(item != null){
                 item.Use();

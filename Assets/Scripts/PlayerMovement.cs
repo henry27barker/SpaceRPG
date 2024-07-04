@@ -46,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject shopUI = null;
     public GameObject inventoryFirst;
     public GameObject skillTreeFirst;
+    private GameObject interactMenu;
 
     //Scripts
     public HealthBar healthBar;
@@ -68,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
         playerControls = gameObject.GetComponent<PlayerInput>();
         Cursor.visible = false;
         skillTreeUI = GameObject.FindWithTag("SkillTree");
+        interactMenu = GameObject.FindObjectOfType<InteractMenu>().gameObject;
     }
 
     private void OnEnable()
@@ -122,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void OnOpenInventory(){
-        if(skillTreeUI.activeSelf == false && shopUI == null){
+        if(interactMenu.transform.parent.gameObject.activeSelf == false && skillTreeUI.activeSelf == false && shopUI == null){
             inventoryUI.SetActive(!inventoryUI.activeSelf);
             if(inventoryUI.activeSelf == true){
                 EventSystem.current.SetSelectedGameObject(null);
@@ -142,7 +144,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void OnCloseInventory(){
-        if(skillTreeUI.activeSelf == false && shopUI == null){
+        if(interactMenu.transform.parent.gameObject.activeSelf == false && skillTreeUI.activeSelf == false && shopUI == null){
             inventoryUI.SetActive(!inventoryUI.activeSelf);
             if(inventoryUI.activeSelf == true){
                 EventSystem.current.SetSelectedGameObject(null);
@@ -155,11 +157,19 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         skillTreeUI.SetActive(false);
-        EventSystem.current.SetSelectedGameObject(null);
-        playerControls.SwitchCurrentActionMap("Player");
+        if(interactMenu.transform.parent.gameObject.activeSelf == false){
+            EventSystem.current.SetSelectedGameObject(null);
+            playerControls.SwitchCurrentActionMap("Player");
+        }
         if(shopUI != null){
             shopUI.SetActive(false);
             shopUI = null;
+        }
+    }
+
+    private void OnCancel(){
+        if(interactMenu.activeSelf == true){
+            interactMenu.transform.parent.gameObject.SetActive(false);
         }
     }
 
