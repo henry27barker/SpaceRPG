@@ -303,7 +303,7 @@ public class PlayerMovement : MonoBehaviour
     {
         float angleRadians = 0;
         // GAMEPAD
-        if (Gamepad.current != null && (Gamepad.current.leftStick.ReadValue() != Vector2.zero || Gamepad.current.rightStick.ReadValue() != Vector2.zero))
+        if (playerControls.currentControlScheme == "Gamepad")// && (Gamepad.current.leftStick.ReadValue() != Vector2.zero || Gamepad.current.rightStick.ReadValue() != Vector2.zero))
         {
             // Remove Crosshair
             mouseCursor.SetActive(false);
@@ -325,7 +325,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         // MOUSE
-        /*
+        
         else
         {
             //Add Crosshair
@@ -355,7 +355,7 @@ public class PlayerMovement : MonoBehaviour
             lookRotation = Mathf.RoundToInt(angleDegrees);
             weapon.UpdateRotation(lookRotation);
         }
-        */
+        
 
 
     }
