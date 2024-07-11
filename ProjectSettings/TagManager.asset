@@ -11,6 +11,8 @@ TagManager:
   - GameManager
   - InventoryUI
   - Money
+  - SpawnPoint
+  - Rooms
   layers:
   - Default
   - TransparentFX
