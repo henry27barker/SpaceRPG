@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RoomSpawner : MonoBehaviour
 {
+    /*
     public int openingDirection;
     // 1->need bottom opening
     // 2->need top opening
@@ -18,7 +19,7 @@ public class RoomSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Random.seed = (int)System.DateTime.Now.Ticks;
+        Random.seed = System.DateTime.Now.Millisecond;
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         Invoke("Spawn", 0.1f);
     }
@@ -49,34 +50,35 @@ public class RoomSpawner : MonoBehaviour
             }
             spawned = true;
         }
-        else if(spawned == false && isWall == true){
-            Instantiate(templates.wall, transform.position, Quaternion.identity);
-            spawned = true;
-        }
+        // else if(spawned == false && isWall == true){
+        //     Instantiate(templates.wall, transform.position, Quaternion.identity);
+        //     spawned = true;
+        // }
     }
 
     void OnTriggerEnter2D(Collider2D other){
         if(other.CompareTag("SpawnPoint")){
-            if(other.GetComponent<RoomSpawner>().isWall == true && isWall == true){
-                //spawn walls to block off opening
-                //Instantiate(templates.wall, transform.position, Quaternion.identity);
-                if(openingDirection < other.GetComponent<RoomSpawner>().openingDirection)
-                    Destroy(gameObject);
-            }
-            else if(other.GetComponent<RoomSpawner>().isWall == true){
-                Destroy(gameObject);
-            }
-            else if(isWall == true){
-                // Instantiate(templates.wall, transform.position, Quaternion.identity);
-                // spawned = true;
-                Destroy(other.gameObject);
-            }
-            else if(other.GetComponent<RoomSpawner>().spawned == false && spawned == false){
-                //Instantiate(templates.wall, transform.position, Quaternion.identity);
-                if(openingDirection < other.GetComponent<RoomSpawner>().openingDirection)
-                    Destroy(gameObject);
-            }
-            //spawned = true;
+            // if(other.GetComponent<RoomSpawner>().isWall == true && isWall == true){
+            //     //spawn walls to block off opening
+            //     //Instantiate(templates.wall, transform.position, Quaternion.identity);
+            //     if(openingDirection < other.GetComponent<RoomSpawner>().openingDirection)
+            //         Destroy(gameObject);
+            // }
+            // else if(other.GetComponent<RoomSpawner>().isWall == true){
+            //     Destroy(gameObject);
+            // }
+            // else if(isWall == true){
+            //     // Instantiate(templates.wall, transform.position, Quaternion.identity);
+            //     // spawned = true;
+            //     Destroy(other.gameObject);
+            // }
+            // if(other.GetComponent<RoomSpawner>().spawned == false && spawned == false){
+            //     //Instantiate(templates.wall, transform.position, Quaternion.identity);
+            //     // if(openingDirection < other.GetComponent<RoomSpawner>().openingDirection)
+            //         Destroy(gameObject);
+            // }
+            spawned = true;
         }
     }
+    */
 }
