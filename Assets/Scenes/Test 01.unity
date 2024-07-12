@@ -5269,8 +5269,24 @@ MonoBehaviour:
   - {fileID: 33181117777439912, guid: 0dfbc759879040b4494741b917cde4a1, type: 3}
   - {fileID: 8224310358525771042, guid: dbc1d36bdb03475489e4e372cf5981e6, type: 3}
   - {fileID: 7019916991483040212, guid: 1789e29574fd3214b9be6dfad27b016a, type: 3}
+  allRoomTypes:
+  - {fileID: 7019916991483040212, guid: 1789e29574fd3214b9be6dfad27b016a, type: 3}
+  - {fileID: 2454702821478354745, guid: e2297ca70adc3344a8f26fbcac8a5d5b, type: 3}
+  - {fileID: 485296667432453093, guid: 7c2982b08a3875e40b650ff276459b7a, type: 3}
+  - {fileID: 1342049598243787250, guid: 58a3b53bf4673a844bfdcf1e35726e16, type: 3}
+  - {fileID: 4000170604762762274, guid: 8a559c1d6b1a83648989f396746dd635, type: 3}
+  - {fileID: 3506347317174093558, guid: b777a77bc293c3b4394e5cba16c1d8c0, type: 3}
+  - {fileID: 33181117777439912, guid: 0dfbc759879040b4494741b917cde4a1, type: 3}
+  - {fileID: 8941086495953049792, guid: 182d7393fd5a9084e993c30621170a5f, type: 3}
+  - {fileID: 6059756144019436996, guid: d61605421b4285946956152dfd9c77a5, type: 3}
+  - {fileID: 6101724415235230583, guid: 80f7a150bb933de478120178493a7f7e, type: 3}
+  - {fileID: 8224310358525771042, guid: dbc1d36bdb03475489e4e372cf5981e6, type: 3}
+  - {fileID: 485296667432453093, guid: c573c790e5434a04fa5d94bc00aac5f1, type: 3}
+  - {fileID: 485296667432453093, guid: 78ad001feccc84e4e8b5d6166a5bb16a, type: 3}
+  - {fileID: 485296667432453093, guid: c7bbf21cd7c8af946a971c5b174ea7e9, type: 3}
+  - {fileID: 485296667432453093, guid: 8003c11bfd8a3044eb6ab316bd83c1e2, type: 3}
   columnHeight: 20
-  rowHeight: 20
+  rowHeight: 50
 --- !u!1001 &364413063
 PrefabInstance:
   m_ObjectHideFlags: 0
