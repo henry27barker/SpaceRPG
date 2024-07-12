@@ -60,7 +60,6 @@ public class SpdrHeadController : MonoBehaviour
             angleDegrees += 360f;
         }
         int lookRotation = Mathf.RoundToInt(angleDegrees);
-        Debug.Log(lookRotation);
         shootingPoint.rotation = Quaternion.Euler(0, 0, lookRotation);
 
         UpdateSprite(lookRotation);

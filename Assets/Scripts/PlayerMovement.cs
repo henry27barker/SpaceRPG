@@ -47,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject inventoryFirst;
     public GameObject skillTreeFirst;
     private GameObject interactMenu;
+    public GameObject codeUI = null;
 
     //Scripts
     public HealthBar healthBar;
@@ -97,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
  
     void Update()
     {
-        if(inventoryUI.activeSelf == true || skillTreeUI.activeSelf == true || shopUI != null){
+        if(inventoryUI.activeSelf == true || skillTreeUI.activeSelf == true || shopUI != null || codeUI != null){
             Time.timeScale = 0;
             return;
         }
@@ -124,7 +125,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void OnOpenInventory(){
-        if(interactMenu.transform.parent.gameObject.activeSelf == false && skillTreeUI.activeSelf == false && shopUI == null){
+        if(interactMenu.transform.parent.gameObject.activeSelf == false && skillTreeUI.activeSelf == false && shopUI == null && codeUI == null){
             inventoryUI.SetActive(!inventoryUI.activeSelf);
             if(inventoryUI.activeSelf == true){
                 EventSystem.current.SetSelectedGameObject(null);
@@ -137,14 +138,25 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         skillTreeUI.SetActive(false);
-        if(shopUI != null){
+        if (shopUI != null)
+        {
             shopUI.SetActive(false);
             shopUI = null;
+        }/*
+        if (lockerUI != null)
+        {
+            lockerUI.SetActive(false);
+            lockerUI = null;
+        }*/
+        if (codeUI != null)
+        {
+            codeUI.SetActive(false);
+            codeUI = null;
         }
     }
 
     private void OnCloseInventory(){
-        if(interactMenu.transform.parent.gameObject.activeSelf == false && skillTreeUI.activeSelf == false && shopUI == null){
+        if(interactMenu.transform.parent.gameObject.activeSelf == false && skillTreeUI.activeSelf == false && shopUI == null && codeUI == null){
             inventoryUI.SetActive(!inventoryUI.activeSelf);
             if(inventoryUI.activeSelf == true){
                 EventSystem.current.SetSelectedGameObject(null);
@@ -164,6 +176,16 @@ public class PlayerMovement : MonoBehaviour
         if(shopUI != null){
             shopUI.SetActive(false);
             shopUI = null;
+        }/*
+        if (lockerUI != null)
+        {
+            lockerUI.SetActive(false);
+            lockerUI = null;
+        }*/
+        if (codeUI != null)
+        {
+            codeUI.SetActive(false);
+            codeUI = null;
         }
     }
 
@@ -219,11 +241,11 @@ public class PlayerMovement : MonoBehaviour
         SetClosestHitToFront();
         if (hits.Length > 0)
         {
-            Debug.Log("CircleCast hit " + hits[0].transform.name);
+            //Debug.Log("CircleCast hit " + hits[0].transform.name);
             closestInteractable = hits[0].GetComponent<Interactable>();
             if (closestInteractable != null)
             {
-                Debug.Log("Hit");
+                //Debug.Log("Hit");
                 SetFocus(closestInteractable);
             }
         }
