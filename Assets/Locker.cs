@@ -1,5 +1,8 @@
+using Pathfinding.Ionic.Zip;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class Locker : Interactable
@@ -18,6 +21,8 @@ public class Locker : Interactable
 
     public SpriteRenderer spriteRenderer;
 
+    public string key = "ABCDEF";
+
     public string code;
 
     public bool isOpen;
@@ -28,34 +33,14 @@ public class Locker : Interactable
         code = "";
         for (int i = 0; i < 3; i++)
         {
-            int num = Random.Range(0, 5);
-            switch(num)
-            {
-                case 0:
-                    code += 'A';
-                    break;
-                case 1:
-                    code += 'B';
-                    break;
-                case 2:
-                    code += 'D';
-                    break;
-                case 3:
-                    code += 'P';
-                    break;
-                case 4:
-                    code += 'E';
-                    break;
-                default:
-                    code += 'C';
-                    break;
-            }
+            code += key[Random.Range(0, 5)];
         }
+        Debug.Log(code);
         codeUI.SetActive(false);
         inventoryUI.SetActive(false);
         lockerUI.SetActive(false);
         playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
-        Debug.Log(code);
+        gameObject.transform.Find("CodeCanvas/MainPanel").gameObject.GetComponent<LockerMenu>().code = code;
     }
 
 
@@ -68,16 +53,25 @@ public class Locker : Interactable
         {
             inventoryUI.SetActive(true);
             lockerUI.SetActive(true);
-            spriteRenderer = GetComponent<SpriteRenderer>();
-            spriteRenderer.sprite = open;
         }
         else
         {
             codeUI.SetActive(true);
-            playerMovement.lockerUI = gameObject;
         }
 
         //Implement CrateUI
+    }
+
+    public void Open()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = open;
+        isOpen = true;
+    }
+
+    public string GetCode()
+    {
+        return code;
     }
 
 }

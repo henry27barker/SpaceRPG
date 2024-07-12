@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject inventoryFirst;
     public GameObject skillTreeFirst;
     private GameObject interactMenu;
-    public GameObject lockerUI = null;
+    public GameObject codeUI = null;
 
     //Scripts
     public HealthBar healthBar;
@@ -98,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
  
     void Update()
     {
-        if(inventoryUI.activeSelf == true || skillTreeUI.activeSelf == true || shopUI != null || lockerUI != null){
+        if(inventoryUI.activeSelf == true || skillTreeUI.activeSelf == true || shopUI != null || codeUI != null){
             Time.timeScale = 0;
             return;
         }
@@ -125,7 +125,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void OnOpenInventory(){
-        if(interactMenu.transform.parent.gameObject.activeSelf == false && skillTreeUI.activeSelf == false && shopUI == null && lockerUI == null){
+        if(interactMenu.transform.parent.gameObject.activeSelf == false && skillTreeUI.activeSelf == false && shopUI == null && codeUI == null){
             inventoryUI.SetActive(!inventoryUI.activeSelf);
             if(inventoryUI.activeSelf == true){
                 EventSystem.current.SetSelectedGameObject(null);
@@ -142,16 +142,21 @@ public class PlayerMovement : MonoBehaviour
         {
             shopUI.SetActive(false);
             shopUI = null;
-        }
+        }/*
         if (lockerUI != null)
         {
             lockerUI.SetActive(false);
             lockerUI = null;
+        }*/
+        if (codeUI != null)
+        {
+            codeUI.SetActive(false);
+            codeUI = null;
         }
     }
 
     private void OnCloseInventory(){
-        if(interactMenu.transform.parent.gameObject.activeSelf == false && skillTreeUI.activeSelf == false && shopUI == null && lockerUI == null){
+        if(interactMenu.transform.parent.gameObject.activeSelf == false && skillTreeUI.activeSelf == false && shopUI == null && codeUI == null){
             inventoryUI.SetActive(!inventoryUI.activeSelf);
             if(inventoryUI.activeSelf == true){
                 EventSystem.current.SetSelectedGameObject(null);
@@ -171,11 +176,16 @@ public class PlayerMovement : MonoBehaviour
         if(shopUI != null){
             shopUI.SetActive(false);
             shopUI = null;
-        }
+        }/*
         if (lockerUI != null)
         {
             lockerUI.SetActive(false);
             lockerUI = null;
+        }*/
+        if (codeUI != null)
+        {
+            codeUI.SetActive(false);
+            codeUI = null;
         }
     }
 
