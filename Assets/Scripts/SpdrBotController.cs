@@ -16,7 +16,7 @@ public class SpdrBotController : MonoBehaviour
     public int explosionRadius;
 
     //HELPERS
-    private Vector2 lastPosition;
+    private Vector3 lastPosition;
     public float whiteFlashTime;
     private float whiteFlashCounter;
     private bool isAdjustingPosition;
@@ -58,6 +58,7 @@ public class SpdrBotController : MonoBehaviour
         head.GetComponent<SpriteRenderer>().material.SetColor("_FlashColor", enemyMovement.spriteRenderer.material.GetColor("_FlashColor"));
 
         //Movement Logic
+        
         Vector3 direction = player.transform.position - rayCastPoint.transform.position;
 
         Vector3 normalizedDirection = direction.normalized; 
@@ -71,13 +72,15 @@ public class SpdrBotController : MonoBehaviour
         if (hit.collider != null && hit.collider.tag != "Player")
         {
             // If the player is not in sight, start adjusting position
-            transform.position += new Vector3(0,1,0) * 1 * Time.deltaTime;
+            //transform.position += new Vector3(0,1,0) * 1 * Time.deltaTime;
+            aipath.enabled = true;
         }
         else if (hit.collider != null && hit.collider.tag == "Player")
         {
             // If the player is in sight, stop adjusting position
-            isAdjustingPosition = false;
+            aipath.enabled = false;
         }
+        
 
         //Death Logic
         if (enemyMovement.health <= 0)
@@ -94,6 +97,17 @@ public class SpdrBotController : MonoBehaviour
         else if (lastPosition[0] > transform.position[0])
         {
             spriteRenderer.flipX = true;
+        }
+
+        if(lastPosition != transform.position)
+        {
+            Debug.Log("Speed 1");
+            animator.SetFloat("Speed", 1);
+        }
+        else
+        {
+            Debug.Log("Speed 0");
+            animator.SetFloat("Speed", 0);
         }
 
         lastPosition = transform.position;
