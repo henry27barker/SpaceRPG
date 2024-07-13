@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 4139485395079995599}
   - component: {fileID: 2250972629991283110}
   - component: {fileID: 7195004800395718994}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CHAIN Bot
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -322,7 +322,7 @@ GameObject:
   - component: {fileID: 5422934759080229054}
   - component: {fileID: 3703672042137974074}
   - component: {fileID: 6416588487379299561}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chainsaw
   m_TagString: Chainsaw
   m_Icon: {fileID: 0}

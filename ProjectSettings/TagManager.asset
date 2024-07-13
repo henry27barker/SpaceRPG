@@ -13,11 +13,12 @@ TagManager:
   - Money
   - SpawnPoint
   - Rooms
+  - Obstacle
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Interactable

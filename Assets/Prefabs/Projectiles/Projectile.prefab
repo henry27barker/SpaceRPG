@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -6702485082359455502}
   - component: {fileID: -8011421567402628524}
   - component: {fileID: 6338739812223619371}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Intensity: 1.39
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 000000007bafa1b219df21e59582adf9
+  m_ApplyToSortingLayers: 000000007bafa1b219df21e59582adf9519544a2
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0

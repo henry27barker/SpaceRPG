@@ -49,6 +49,7 @@ public class ChainBotController : MonoBehaviour
         animator.SetFloat("Speed", CalculateSpeed());
         CalculateLookDirection();
 
+
         //Death Logic
         if (enemyMovement.health <= 0)
         {

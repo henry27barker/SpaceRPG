@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 158026291557904832}
   - component: {fileID: 91412845357978928}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MouseCursor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 8188928375898390826}
   - component: {fileID: 3323280537712322383}
   - component: {fileID: 8496650875515938418}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +194,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4072237589235683449}
   - component: {fileID: 4356286523379830957}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -278,7 +278,7 @@ GameObject:
   - component: {fileID: 1920525213276513082}
   - component: {fileID: 5081715507185458052}
   - component: {fileID: 5042685722236240516}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -405,8 +405,9 @@ GameObject:
   - component: {fileID: 8154195089337959407}
   - component: {fileID: 1691877163533958959}
   - component: {fileID: 5022706866799061034}
-  - component: {fileID: 6390419198922573272}
-  m_Layer: 0
+  - component: {fileID: 8648924350713012446}
+  - component: {fileID: 4703187022787160584}
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -502,6 +503,7 @@ MonoBehaviour:
   maxHealth: 100
   health: 100
   money: 0
+  lifeSteal: 0.5
   rightStickDeadZone: 0.25
   stompDuration: 1
   stompRadius: 1
@@ -510,7 +512,14 @@ MonoBehaviour:
   whiteFlashTime: 0.15
   lookRotation: 0
   animator: {fileID: 8154195089337959407}
+  playerControls: {fileID: 0}
   mouseCursor: {fileID: 1023518832695749715}
+  healthParticleSystem: {fileID: 4324954059509009693, guid: a62185b3d2da7104c9c809a0adba8685, type: 3}
+  skillTreeUI: {fileID: 0}
+  shopUI: {fileID: 0}
+  inventoryFirst: {fileID: 0}
+  skillTreeFirst: {fileID: 0}
+  codeUI: {fileID: 0}
   healthBar: {fileID: 5081715507185458052}
   weapon: {fileID: 8496650875515938418}
   hands: {fileID: 684520942684252937}
@@ -589,6 +598,10 @@ MonoBehaviour:
   electricProjectile: {fileID: 1165675747940340940, guid: 34243c2846fc46b4491bf90de6cbe4d1, type: 3}
   gravityProjectile: {fileID: 1165675747940340940, guid: 34243c2846fc46b4491bf90de6cbe4d1, type: 3}
   critChance: 0
+  fireRate: 0
+  maxAmmo: 0
+  ammoCount: 10000
+  damage: 0
   explosiveRate: 100
   freezeRate: 0
   electricRate: 0
@@ -624,8 +637,8 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!60 &6390419198922573272
-PolygonCollider2D:
+--- !u!61 &8648924350713012446
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -656,7 +669,7 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0091582835, y: -0.099359624}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -666,30 +679,59 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.265625, y: -0.0234375}
-      - {x: 0.2421875, y: -0.0078125}
-      - {x: 0.2421875, y: 0.1015625}
-      - {x: 0.2109375, y: 0.1640625}
-      - {x: 0.1640625, y: 0.2109375}
-      - {x: 0.09375, y: 0.234375}
-      - {x: -0.0390625, y: 0.234375}
-      - {x: -0.0546875, y: 0.2109375}
-      - {x: -0.1640625, y: 0.2109375}
-      - {x: -0.1953125, y: 0.1796875}
-      - {x: -0.234375, y: 0.09375}
-      - {x: -0.2578125, y: -0.046875}
-      - {x: -0.296875, y: -0.078125}
-      - {x: -0.296875, y: -0.15625}
-      - {x: -0.2734375, y: -0.1953125}
-      - {x: -0.2421875, y: -0.3203125}
-      - {x: -0.1875, y: -0.421875}
-      - {x: -0.1328125, y: -0.5}
-      - {x: 0.140625, y: -0.5}
-      - {x: 0.203125, y: -0.40625}
-      - {x: 0.265625, y: -0.28125}
-  m_UseDelaunayMesh: 0
+  serializedVersion: 2
+  m_Size: {x: 0.49569076, y: 0.6738059}
+  m_EdgeRadius: 0
+--- !u!114 &4703187022787160584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6377114168526726802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c437379ce623b3447b6713426660e6d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items: []
+  upgradeTokens: 0
+  maxHealth: 100
+  minHealth: 100
+  maxMaxHealth: 300
+  speed: 5
+  minSpeed: 3
+  maxSpeed: 6
+  lifeSteal: 10
+  minLifeSteal: 0
+  maxLifeSteal: 100
+  fireRate: 0.25
+  maxFireRate: 0.25
+  minFireRate: 0.1
+  damage: 10
+  minDamage: 5
+  maxDamage: 100
+  ammoCapacity: 20
+  maxAmmoCapacity: 50
+  minAmmoCapacity: 10
+  medkitAmount: 20
+  minMedkitAmount: 10
+  maxMedkitAmount: 100
+  inventorySize: 10
+  minInventorySize: 5
+  maxInventorySize: 30
+  syringeAmount: 50
+  minSyringeAmount: 10
+  maxSyringeAmount: 150
+  pillAmount: 30
+  minPillAmount: 10
+  maxPillAmount: 100
+  stompDistance: 1
+  minStompDistance: 0.5
+  maxStompDistance: 2
+  stompDamage: 50
+  minStompDamage: 20
+  maxStompDamage: 100
 --- !u!1 &7220982650035495712
 GameObject:
   m_ObjectHideFlags: 0
@@ -699,7 +741,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2055562610798257817}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ShootingPoint
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -733,7 +775,7 @@ GameObject:
   - component: {fileID: 1920405223816179861}
   - component: {fileID: 368645446761303845}
   - component: {fileID: 684520942684252937}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Hands
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -855,7 +897,7 @@ GameObject:
   - component: {fileID: 5018407100954443755}
   - component: {fileID: 7660225901296995147}
   - component: {fileID: 4647275076582870860}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -904,10 +946,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.0682968
-    y: 0.008517887
-    width: 0.8634064
-    height: 0.9812606
+    x: 0
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34

@@ -7,6 +7,7 @@ public class SpdrHeadController : MonoBehaviour
     public GameObject player;
     public GameObject projectile;
     public Transform shootingPoint;
+    public Transform raycastPoint;
     public SpriteRenderer spriteRenderer;
 
     //Head Sprites
@@ -28,6 +29,7 @@ public class SpdrHeadController : MonoBehaviour
     public Vector3 offSets_270;
     public Vector3 offSets_315;
 
+    public float raycastOffsetMultiplier;
 
     private float counter;
     public float fireRate;
@@ -61,6 +63,7 @@ public class SpdrHeadController : MonoBehaviour
         }
         int lookRotation = Mathf.RoundToInt(angleDegrees);
         shootingPoint.rotation = Quaternion.Euler(0, 0, lookRotation);
+        raycastPoint.rotation = Quaternion.Euler(0, 0, lookRotation);
 
         UpdateSprite(lookRotation);
 
@@ -87,41 +90,49 @@ public class SpdrHeadController : MonoBehaviour
         {
             spriteRenderer.sprite = angle_0;
             shootingPoint.position = transform.position + offSets_0;
+            raycastPoint.position = gameObject.transform.parent.gameObject.transform.position + raycastOffsetMultiplier * new Vector3(1,0,0);
         }
         else if(degrees < 67)
         {
             spriteRenderer.sprite = angle_45;
             shootingPoint.position = transform.position + offSets_45;
+            raycastPoint.position = gameObject.transform.parent.gameObject.transform.position + raycastOffsetMultiplier * new Vector3(1, 0, 0);
         }
         else if (degrees < 112)
         {
             spriteRenderer.sprite = angle_90;
             shootingPoint.position = transform.position + offSets_90;
+            raycastPoint.position = gameObject.transform.parent.gameObject.transform.position + raycastOffsetMultiplier * new Vector3(0, 1, 0);
         }
         else if (degrees < 157)
         {
             spriteRenderer.sprite = angle_135;
             shootingPoint.position = transform.position + offSets_135;
+            raycastPoint.position = gameObject.transform.parent.gameObject.transform.position + raycastOffsetMultiplier * new Vector3(0, 1, 0);
         }
         else if (degrees < 202)
         {
             spriteRenderer.sprite = angle_180;
             shootingPoint.position = transform.position + offSets_180;
+            raycastPoint.position = gameObject.transform.parent.gameObject.transform.position + raycastOffsetMultiplier * new Vector3(-1, 0, 0);
         }
         else if (degrees < 247)
         {
             spriteRenderer.sprite = angle_225;
             shootingPoint.position = transform.position + offSets_225;
+            raycastPoint.position = gameObject.transform.parent.gameObject.transform.position + raycastOffsetMultiplier * new Vector3(0, -1, 0);
         }
         else if (degrees < 292)
         {
             spriteRenderer.sprite = angle_270;
             shootingPoint.position = transform.position + offSets_270;
+            raycastPoint.position = gameObject.transform.parent.gameObject.transform.position + raycastOffsetMultiplier * new Vector3(0, -1, 0);
         }
         else if (degrees < 337)
         {
             spriteRenderer.sprite = angle_315;
             shootingPoint.position = transform.position + offSets_315;
+            raycastPoint.position = gameObject.transform.parent.gameObject.transform.position + raycastOffsetMultiplier * new Vector3(1, 0, 0);
         }
     }
 }
