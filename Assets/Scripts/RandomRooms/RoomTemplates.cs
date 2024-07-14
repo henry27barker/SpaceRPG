@@ -10,6 +10,8 @@ public class RoomTemplates : MonoBehaviour
     public GameObject[] rightRooms;
 
     public GameObject[] allRoomTypes;
+
+    public GameObject[] allWallTypes;
     //public GameObject wall;
 
     //1->top
@@ -31,6 +33,7 @@ public class RoomTemplates : MonoBehaviour
         Random.InitState(System.DateTime.Now.Millisecond);
         rooms = new GameObject[columnHeight,rowHeight];
         MakeLevel(columnHeight / 2, rowHeight / 2);
+        MakeWalls();
     }
 
     // Update is called once per frame
@@ -42,8 +45,9 @@ public class RoomTemplates : MonoBehaviour
     void MakeLevel(int columnPos, int rowPos){
         Debug.Log(columnPos + " " + rowPos);
         if(columnPos == columnHeight / 2 && rowPos == rowHeight / 2){
-            rand = Random.Range(0, allRoomTypes.Length);
-            rooms[columnPos, rowPos] = Instantiate(allRoomTypes[rand], transform.position, Quaternion.identity);
+            //rand = Random.Range(0, allRoomTypes.Length);
+            //rooms[columnPos, rowPos] = Instantiate(allRoomTypes[rand], transform.position, Quaternion.identity);
+            rooms[columnPos, rowPos] = Instantiate(allRoomTypes[0], transform.position, Quaternion.identity);
             if(rooms[columnPos, rowPos].GetComponent<RoomType>().openingDirections.Contains(1) && rooms[columnPos, rowPos + 1] == null){
                 MakeLevel(columnPos, rowPos + 1);
             }
@@ -120,5 +124,1013 @@ public class RoomTemplates : MonoBehaviour
                 }
             }
         }
+    }
+
+    void MakeWalls(){
+        for(int i = 1; i < columnHeight - 1; i++){
+            for(int j = 1; j < rowHeight - 1; j++){
+                List<int> roomDirections = new List<int>();
+                if(rooms[i,j] == null){
+                    if(rooms[i,j+1] != null){
+                        roomDirections.Add(1);
+                    }
+                    if(rooms[i+1,j+1] != null){
+                        roomDirections.Add(2);
+                    }
+                    if(rooms[i+1,j] != null){
+                        roomDirections.Add(3);
+                    }
+                    if(rooms[i+1,j-1] != null){
+                        roomDirections.Add(4);
+                    }
+                    if(rooms[i,j-1] != null){
+                        roomDirections.Add(5);
+                    }
+                    if(rooms[i-1,j-1] != null){
+                        roomDirections.Add(6);
+                    }
+                    if(rooms[i-1,j] != null){
+                        roomDirections.Add(7);
+                    }
+                    if(rooms[i-1,j+1] != null){
+                        roomDirections.Add(8);
+                    }
+                    if(roomDirections.Count == 0){
+                        continue;
+                    }
+                    if(roomDirections.Contains(1) && roomDirections.Contains(3) && roomDirections.Contains(5) && roomDirections.Contains(7)){
+                        List<int> temp = new List<int>();
+                        temp.Add(1);
+                        temp.Add(3);
+                        temp.Add(5);
+                        temp.Add(7);
+                        foreach(GameObject tempGameObject in allWallTypes){
+                            if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                int columnAdjustment = (i - columnHeight / 2) * 4;
+                                int rowAdjustment = (j - rowHeight / 2) * 4;
+                                Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                break;
+                            }
+                        }
+                    }
+                    else if(roomDirections.Contains(1) && roomDirections.Contains(3) && roomDirections.Contains(5)){
+                        List<int> temp = new List<int>();
+                        temp.Add(1);
+                        temp.Add(3);
+                        temp.Add(5);
+                        foreach(GameObject tempGameObject in allWallTypes){
+                            if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                int columnAdjustment = (i - columnHeight / 2) * 4;
+                                int rowAdjustment = (j - rowHeight / 2) * 4;
+                                Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                break;
+                            }
+                        }
+                    }
+                    else if(roomDirections.Contains(1) && roomDirections.Contains(3) && roomDirections.Contains(7)){
+                        List<int> temp = new List<int>();
+                        temp.Add(1);
+                        temp.Add(3);
+                        temp.Add(7);
+                        foreach(GameObject tempGameObject in allWallTypes){
+                            if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                int columnAdjustment = (i - columnHeight / 2) * 4;
+                                int rowAdjustment = (j - rowHeight / 2) * 4;
+                                Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                break;
+                            }
+                        }
+                    }
+                    else if(roomDirections.Contains(1) && roomDirections.Contains(5) && roomDirections.Contains(7)){
+                        List<int> temp = new List<int>();
+                        temp.Add(1);
+                        temp.Add(5);
+                        temp.Add(7);
+                        foreach(GameObject tempGameObject in allWallTypes){
+                            if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                int columnAdjustment = (i - columnHeight / 2) * 4;
+                                int rowAdjustment = (j - rowHeight / 2) * 4;
+                                Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                break;
+                            }
+                        }
+                    }
+                    else if(roomDirections.Contains(3) && roomDirections.Contains(5) && roomDirections.Contains(7)){
+                        List<int> temp = new List<int>();
+                        temp.Add(3);
+                        temp.Add(5);
+                        temp.Add(7);
+                        foreach(GameObject tempGameObject in allWallTypes){
+                            if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                int columnAdjustment = (i - columnHeight / 2) * 4;
+                                int rowAdjustment = (j - rowHeight / 2) * 4;
+                                Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                break;
+                            }
+                        }
+                    }
+                    else if(roomDirections.Contains(1) && roomDirections.Contains(3)){
+                        if(roomDirections.Contains(6)){
+                            List<int> temp = new List<int>();
+                            temp.Add(1);
+                            temp.Add(3);
+                            temp.Add(6);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                        else{
+                            List<int> temp = new List<int>();
+                            temp.Add(1);
+                            temp.Add(3);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    else if(roomDirections.Contains(1) && roomDirections.Contains(5)){
+                        List<int> temp = new List<int>();
+                        temp.Add(1);
+                        temp.Add(5);
+                        foreach(GameObject tempGameObject in allWallTypes){
+                            if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                int columnAdjustment = (i - columnHeight / 2) * 4;
+                                int rowAdjustment = (j - rowHeight / 2) * 4;
+                                Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                break;
+                            }
+                        }
+                    }
+                    else if(roomDirections.Contains(1) && roomDirections.Contains(7)){
+                        if(roomDirections.Contains(4)){
+                            List<int> temp = new List<int>();
+                            temp.Add(1);
+                            temp.Add(4);
+                            temp.Add(7);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                        else{
+                            List<int> temp = new List<int>();
+                            temp.Add(1);
+                            temp.Add(7);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    else if(roomDirections.Contains(3) && roomDirections.Contains(5)){
+                        if(roomDirections.Contains(8)){
+                            List<int> temp = new List<int>();
+                            temp.Add(3);
+                            temp.Add(5);
+                            temp.Add(8);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                        else{
+                            List<int> temp = new List<int>();
+                            temp.Add(3);
+                            temp.Add(5);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    else if(roomDirections.Contains(3) && roomDirections.Contains(7)){
+                        List<int> temp = new List<int>();
+                        temp.Add(3);
+                        temp.Add(7);
+                        foreach(GameObject tempGameObject in allWallTypes){
+                            if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                int columnAdjustment = (i - columnHeight / 2) * 4;
+                                int rowAdjustment = (j - rowHeight / 2) * 4;
+                                Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                break;
+                            }
+                        }
+                    }
+                    else if(roomDirections.Contains(5) && roomDirections.Contains(7)){
+                        if(roomDirections.Contains(2)){
+                            List<int> temp = new List<int>();
+                            temp.Add(2);
+                            temp.Add(5);
+                            temp.Add(7);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                        else{
+                            List<int> temp = new List<int>();
+                            temp.Add(5);
+                            temp.Add(7);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    else if(roomDirections.Contains(1)){
+                        if(roomDirections.Contains(4) && roomDirections.Contains(6)){
+                            List<int> temp = new List<int>();
+                            temp.Add(1);
+                            temp.Add(4);
+                            temp.Add(6);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                        else if(roomDirections.Contains(4)){
+                            List<int> temp = new List<int>();
+                            temp.Add(1);
+                            temp.Add(4);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                        else if(roomDirections.Contains(6)){
+                            List<int> temp = new List<int>();
+                            temp.Add(1);
+                            temp.Add(6);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                        else{
+                            List<int> temp = new List<int>();
+                            temp.Add(1);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    else if(roomDirections.Contains(3)){
+                        if(roomDirections.Contains(6) && roomDirections.Contains(8)){
+                            List<int> temp = new List<int>();
+                            temp.Add(3);
+                            temp.Add(6);
+                            temp.Add(8);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                        else if(roomDirections.Contains(6)){
+                            List<int> temp = new List<int>();
+                            temp.Add(3);
+                            temp.Add(6);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                        else if(roomDirections.Contains(8)){
+                            List<int> temp = new List<int>();
+                            temp.Add(3);
+                            temp.Add(8);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                        else{
+                            List<int> temp = new List<int>();
+                            temp.Add(3);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    else if(roomDirections.Contains(5)){
+                        if(roomDirections.Contains(2) && roomDirections.Contains(8)){
+                            List<int> temp = new List<int>();
+                            temp.Add(2);
+                            temp.Add(5);
+                            temp.Add(8);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                        else if(roomDirections.Contains(2)){
+                            List<int> temp = new List<int>();
+                            temp.Add(2);
+                            temp.Add(5);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                        else if(roomDirections.Contains(8)){
+                            List<int> temp = new List<int>();
+                            temp.Add(5);
+                            temp.Add(8);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                        else{
+                            List<int> temp = new List<int>();
+                            temp.Add(5);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    else if(roomDirections.Contains(7)){
+                        if(roomDirections.Contains(2) && roomDirections.Contains(4)){
+                            List<int> temp = new List<int>();
+                            temp.Add(2);
+                            temp.Add(4);
+                            temp.Add(7);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                        else if(roomDirections.Contains(2)){
+                            List<int> temp = new List<int>();
+                            temp.Add(2);
+                            temp.Add(7);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                        else if(roomDirections.Contains(4)){
+                            List<int> temp = new List<int>();
+                            temp.Add(4);
+                            temp.Add(7);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                        else{
+                            List<int> temp = new List<int>();
+                            temp.Add(7);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    else if(roomDirections.Contains(2)){
+                        if(roomDirections.Contains(4) && roomDirections.Contains(6) && roomDirections.Contains(8)){
+                            List<int> temp = new List<int>();
+                            temp.Add(2);
+                            temp.Add(4);
+                            temp.Add(6);
+                            temp.Add(8);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                        else if(roomDirections.Contains(4) && roomDirections.Contains(6)){
+                            List<int> temp = new List<int>();
+                            temp.Add(2);
+                            temp.Add(4);
+                            temp.Add(6);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                        else if(roomDirections.Contains(4) && roomDirections.Contains(8)){
+                            List<int> temp = new List<int>();
+                            temp.Add(2);
+                            temp.Add(4);
+                            temp.Add(8);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                        else if(roomDirections.Contains(6) && roomDirections.Contains(8)){
+                            List<int> temp = new List<int>();
+                            temp.Add(2);
+                            temp.Add(6);
+                            temp.Add(8);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                        else if(roomDirections.Contains(4)){
+                            List<int> temp = new List<int>();
+                            temp.Add(2);
+                            temp.Add(4);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                        else if(roomDirections.Contains(6)){
+                            List<int> temp = new List<int>();
+                            temp.Add(2);
+                            temp.Add(6);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                        else if(roomDirections.Contains(8)){
+                            List<int> temp = new List<int>();
+                            temp.Add(2);
+                            temp.Add(8);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                        else{
+                            List<int> temp = new List<int>();
+                            temp.Add(2);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    else if(roomDirections.Contains(4)){
+                        if(roomDirections.Contains(6) && roomDirections.Contains(8)){
+                            List<int> temp = new List<int>();
+                            temp.Add(4);
+                            temp.Add(6);
+                            temp.Add(8);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                        else if(roomDirections.Contains(6)){
+                            List<int> temp = new List<int>();
+                            temp.Add(4);
+                            temp.Add(6);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                        else if(roomDirections.Contains(8)){
+                            List<int> temp = new List<int>();
+                            temp.Add(4);
+                            temp.Add(8);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                        else{
+                            List<int> temp = new List<int>();
+                            temp.Add(4);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    else if(roomDirections.Contains(6)){
+                        if(roomDirections.Contains(8)){
+                            List<int> temp = new List<int>();
+                            temp.Add(6);
+                            temp.Add(8);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                        else{
+                            List<int> temp = new List<int>();
+                            temp.Add(6);
+                            foreach(GameObject tempGameObject in allWallTypes){
+                                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                    int columnAdjustment = (i - columnHeight / 2) * 4;
+                                    int rowAdjustment = (j - rowHeight / 2) * 4;
+                                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    else{
+                        List<int> temp = new List<int>();
+                        temp.Add(8);
+                        foreach(GameObject tempGameObject in allWallTypes){
+                            if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                                int columnAdjustment = (i - columnHeight / 2) * 4;
+                                int rowAdjustment = (j - rowHeight / 2) * 4;
+                                Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                                Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if(rooms[1,1] != null){
+            List<int> temp = new List<int>();
+            temp.Add(2);
+            foreach(GameObject tempGameObject in allWallTypes){
+                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                    int columnAdjustment = (0 - columnHeight / 2) * 4;
+                    int rowAdjustment = (0 - rowHeight / 2) * 4;
+                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                    break;
+                }
+            }
+        }
+        if(rooms[columnHeight - 2, 1] != null){
+            List<int> temp = new List<int>();
+            temp.Add(8);
+            foreach(GameObject tempGameObject in allWallTypes){
+                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                    int columnAdjustment = (columnHeight - 1 - columnHeight / 2) * 4;
+                    int rowAdjustment = (0 - rowHeight / 2) * 4;
+                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                    break;
+                }
+            }
+        }
+        if(rooms[columnHeight - 2, rowHeight - 2] != null){
+            List<int> temp = new List<int>();
+            temp.Add(6);
+            foreach(GameObject tempGameObject in allWallTypes){
+                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                    int columnAdjustment = (columnHeight - 1 - columnHeight / 2) * 4;
+                    int rowAdjustment = (rowHeight - 1 - rowHeight / 2) * 4;
+                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                    break;
+                }
+            }
+        }
+        if(rooms[1, rowHeight - 2] != null){
+            List<int> temp = new List<int>();
+            temp.Add(4);
+            foreach(GameObject tempGameObject in allWallTypes){
+                if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                    int columnAdjustment = (0 - columnHeight / 2) * 4;
+                    int rowAdjustment = (rowHeight - 1 - rowHeight / 2) * 4;
+                    Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                    break;
+                }
+            }
+        }
+        for(int i = 1; i < columnHeight - 1; i++){
+            if(rooms[i,1] != null){
+                List<int> temp = new List<int>();
+                temp.Add(1);
+                foreach(GameObject tempGameObject in allWallTypes){
+                    if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                        int columnAdjustment = (i - columnHeight / 2) * 4;
+                        int rowAdjustment = (0 - rowHeight / 2) * 4;
+                        Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                        Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                        break;
+                    }
+                }
+            }
+            else{
+                if(rooms[i - 1, 1] != null && rooms[i + 1, 1] != null){
+                    List<int> temp = new List<int>();
+                    temp.Add(2);
+                    temp.Add(8);
+                    foreach(GameObject tempGameObject in allWallTypes){
+                        if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                            int columnAdjustment = (i - columnHeight / 2) * 4;
+                            int rowAdjustment = (0 - rowHeight / 2) * 4;
+                            Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                            Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                            break;
+                        }
+                    }
+                }
+                else if(rooms[i - 1, 1] != null){
+                    List<int> temp = new List<int>();
+                    temp.Add(8);
+                    foreach(GameObject tempGameObject in allWallTypes){
+                        if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                            int columnAdjustment = (i - columnHeight / 2) * 4;
+                            int rowAdjustment = (0 - rowHeight / 2) * 4;
+                            Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                            Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                            break;
+                        }
+                    }
+                }
+                else if(rooms[i + 1, 1] != null){
+                    List<int> temp = new List<int>();
+                    temp.Add(2);
+                    foreach(GameObject tempGameObject in allWallTypes){
+                        if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                            int columnAdjustment = (i - columnHeight / 2) * 4;
+                            int rowAdjustment = (0 - rowHeight / 2) * 4;
+                            Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                            Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                            break;
+                        }
+                    }
+                }
+            }
+            if(rooms[i,rowHeight - 2] != null){
+                List<int> temp = new List<int>();
+                temp.Add(5);
+                foreach(GameObject tempGameObject in allWallTypes){
+                    if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                        int columnAdjustment = (i - columnHeight / 2) * 4;
+                        int rowAdjustment = (rowHeight - 1 - rowHeight / 2) * 4;
+                        Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                        Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                        break;
+                    }
+                }
+            }
+            else{
+                if(rooms[i + 1, rowHeight - 2] != null && rooms[i - 1, rowHeight - 2] != null){
+                    List<int> temp = new List<int>();
+                    temp.Add(4);
+                    temp.Add(6);
+                    foreach(GameObject tempGameObject in allWallTypes){
+                        if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                            int columnAdjustment = (i - columnHeight / 2) * 4;
+                            int rowAdjustment = (rowHeight - 1 - rowHeight / 2) * 4;
+                            Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                            Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                            break;
+                        }
+                    }
+                }
+                else if(rooms[i + 1, rowHeight - 2] != null){
+                    List<int> temp = new List<int>();
+                    temp.Add(4);
+                    foreach(GameObject tempGameObject in allWallTypes){
+                        if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                            int columnAdjustment = (i - columnHeight / 2) * 4;
+                            int rowAdjustment = (rowHeight - 1 - rowHeight / 2) * 4;
+                            Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                            Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                            break;
+                        }
+                    }
+                }
+                else if(rooms[i - 1, rowHeight - 2] != null){
+                    List<int> temp = new List<int>();
+                    temp.Add(6);
+                    foreach(GameObject tempGameObject in allWallTypes){
+                        if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                            int columnAdjustment = (i - columnHeight / 2) * 4;
+                            int rowAdjustment = (rowHeight - 1 - rowHeight / 2) * 4;
+                            Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                            Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        for(int j = 1; j < rowHeight - 1; j++){
+            if(rooms[1,j] != null){
+                List<int> temp = new List<int>();
+                temp.Add(3);
+                foreach(GameObject tempGameObject in allWallTypes){
+                    if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                        int columnAdjustment = (0 - columnHeight / 2) * 4;
+                        int rowAdjustment = (j - rowHeight / 2) * 4;
+                        Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                        Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                        break;
+                    }
+                }
+            }
+            else{
+                if(rooms[1, j - 1] != null && rooms[1, j + 1] != null){
+                    List<int> temp = new List<int>();
+                    temp.Add(2);
+                    temp.Add(4);
+                    foreach(GameObject tempGameObject in allWallTypes){
+                        if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                            int columnAdjustment = (0 - columnHeight / 2) * 4;
+                            int rowAdjustment = (j - rowHeight / 2) * 4;
+                            Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                            Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                            break;
+                        }
+                    }
+                }
+                else if(rooms[1, j - 1] != null){
+                    List<int> temp = new List<int>();
+                    temp.Add(4);
+                    foreach(GameObject tempGameObject in allWallTypes){
+                        if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                            int columnAdjustment = (0 - columnHeight / 2) * 4;
+                            int rowAdjustment = (j - rowHeight / 2) * 4;
+                            Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                            Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                            break;
+                        }
+                    }
+                }
+                else if(rooms[1, j + 1] != null){
+                    List<int> temp = new List<int>();
+                    temp.Add(2);
+                    foreach(GameObject tempGameObject in allWallTypes){
+                        if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                            int columnAdjustment = (0 - columnHeight / 2) * 4;
+                            int rowAdjustment = (j - rowHeight / 2) * 4;
+                            Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                            Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                            break;
+                        }
+                    }
+                }
+            }
+            if(rooms[columnHeight - 2, j] != null){
+                List<int> temp = new List<int>();
+                temp.Add(7);
+                foreach(GameObject tempGameObject in allWallTypes){
+                    if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                        int columnAdjustment = (columnHeight - 1 - columnHeight / 2) * 4;
+                        int rowAdjustment = (j - rowHeight / 2) * 4;
+                        Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                        Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                        break;
+                    }
+                }
+            }
+            else{
+                if(rooms[columnHeight - 2, j - 1] != null && rooms[columnHeight - 2, j + 1] != null){
+                    List<int> temp = new List<int>();
+                    temp.Add(6);
+                    temp.Add(8);
+                    foreach(GameObject tempGameObject in allWallTypes){
+                        if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                            int columnAdjustment = (columnHeight - 1 - columnHeight / 2) * 4;
+                            int rowAdjustment = (j - rowHeight / 2) * 4;
+                            Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                            Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                            break;
+                        }
+                    }
+                }
+                else if(rooms[columnHeight - 2, j - 1] != null){
+                    List<int> temp = new List<int>();
+                    temp.Add(6);
+                    foreach(GameObject tempGameObject in allWallTypes){
+                        if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                            int columnAdjustment = (columnHeight - 1 - columnHeight / 2) * 4;
+                            int rowAdjustment = (j - rowHeight / 2) * 4;
+                            Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                            Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                            break;
+                        }
+                    }
+                }
+                else if(rooms[columnHeight - 2, j + 1] != null){
+                    List<int> temp = new List<int>();
+                    temp.Add(8);
+                    foreach(GameObject tempGameObject in allWallTypes){
+                        if(AreListsEqual(temp, tempGameObject.GetComponent<WallType>().adjacentRooms)){
+                            int columnAdjustment = (columnHeight - 1 - columnHeight / 2) * 4;
+                            int rowAdjustment = (j - rowHeight / 2) * 4;
+                            Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
+                            Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private bool AreListsEqual(List<int> list1, List<int> list2){
+        bool areListsEqual = true;
+
+        if (list1.Count != list2.Count)
+            return false;
+
+        for (int i = 0; i < list1.Count; i++)
+        {
+            if (list2[i] != list1[i])
+            {
+                areListsEqual = false;
+            }
+        }
+
+        return areListsEqual;
     }
 }
