@@ -2,6 +2,7 @@ using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -20,6 +21,7 @@ public class SpdrBotController : MonoBehaviour
     public float whiteFlashTime;
     private float whiteFlashCounter;
     private bool isAdjustingPosition;
+    public Transform newTarget;
 
     //COMPONENTS
     public Animator animator;
@@ -30,7 +32,11 @@ public class SpdrBotController : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public ParticleSystem enemyExplosionParticle;
     public AIPath aipath;
+    public AIDestinationSetter enemyDestinationSetter;
     public GameObject rayCastPoint;
+
+    //Debugging
+    public GameObject circle;
 
 
     // Start is called before the first frame update
@@ -58,21 +64,31 @@ public class SpdrBotController : MonoBehaviour
         head.GetComponent<SpriteRenderer>().material.SetColor("_FlashColor", enemyMovement.spriteRenderer.material.GetColor("_FlashColor"));
 
         //Movement Logic
-        
         Vector3 direction = player.transform.position - rayCastPoint.transform.position;
-
-        Vector3 normalizedDirection = direction.normalized; 
-
-        Vector3 orthogonalVector = Vector3.Cross(direction, Vector3.up);
-
-
+        Vector3 normalizedDirection = direction.normalized;
         RaycastHit2D hit = Physics2D.Raycast(rayCastPoint.transform.position, normalizedDirection);
-        Debug.DrawRay(rayCastPoint.transform.position, orthogonalVector);
 
-        if (hit.collider != null && hit.collider.tag != "Player")
+        Debug.DrawRay(rayCastPoint.transform.position, normalizedDirection);
+
+        if (hit.collider != null && hit.collider.tag != "Player" && aipath.enabled == false)
         {
             // If the player is not in sight, start adjusting position
             //transform.position += new Vector3(0,1,0) * 1 * Time.deltaTime;
+
+            Vector3 directionToObstable = hit.transform.position - rayCastPoint.transform.position;
+
+            Vector3 normalizedDirectionToObstable = directionToObstable.normalized;
+
+            Vector3 orthogonalVector = new Vector3(normalizedDirectionToObstable.y, normalizedDirectionToObstable.x * -1, 0);
+
+            Debug.DrawRay(transform.position, orthogonalVector);
+
+            newTarget.position = transform.position + orthogonalVector * 2;
+
+            circle.transform.position = newTarget.position;
+
+            enemyDestinationSetter.target = newTarget;
+
             aipath.enabled = true;
         }
         else if (hit.collider != null && hit.collider.tag == "Player")
@@ -101,12 +117,10 @@ public class SpdrBotController : MonoBehaviour
 
         if(lastPosition != transform.position)
         {
-            Debug.Log("Speed 1");
             animator.SetFloat("Speed", 1);
         }
         else
         {
-            Debug.Log("Speed 0");
             animator.SetFloat("Speed", 0);
         }
 
