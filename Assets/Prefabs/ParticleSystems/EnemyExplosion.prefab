@@ -5016,4 +5016,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 100
+  playerDamage: 1
+  enemyDamage: 0
   radius: 1.5

@@ -35,26 +35,22 @@ public class MissileUp : MonoBehaviour
             if (count > 5)
             {
                 float newPos = transform.position.x;
-                if (transform.position.x > 1.2)
+                if (transform.parent.gameObject.transform.position.x > 1.2 && transform.parent.gameObject.transform.position.x < 1.5)
                 {
-                    Debug.Log("Position is middle right");
-                    transform.position = new Vector3(2, transform.position.y, transform.position.z);
+                    transform.position = new Vector3(transform.position.x + Random.Range(2,3), transform.position.y, transform.position.z);
                 }
-                else if (transform.position.x > 1.5)
+                else if (transform.parent.gameObject.transform.position.x > 1.5)
                 {
-                    Debug.Log("Position is far right");
-                    transform.position = new Vector3(3, transform.position.y, transform.position.z);
+                    transform.position = new Vector3(transform.position.x + Random.Range(3.5f, 5), transform.position.y, transform.position.z);
                 }
-                else if (transform.position.x < -1.2)
+                else if (transform.parent.gameObject.transform.position.x < -1.2 && transform.parent.gameObject.transform.position.x > -1.5)
                 {
-                    Debug.Log("Position is middle left");
-                    transform.position = new Vector3(-2, transform.position.y, transform.position.z);
+                    transform.position = new Vector3(transform.position.x - Random.Range(2, 3), transform.position.y, transform.position.z);
                 }
-                else if (transform.position.x < -1.5)
+                else if (transform.parent.gameObject.transform.position.x < -1.5)
                 {
-                    Debug.Log("Position is far left");
-                    transform.position = new Vector3(-3, transform.position.y, transform.position.z);
-                }
+                    transform.position = new Vector3(transform.position.x - Random.Range(3.5f, 5), transform.position.y, transform.position.z);
+                } 
                 rb2d.velocity = new Vector2(0, -2 * speed);
                 transform.rotation = Quaternion.Euler(0, 0, 180);
                 count = 0;

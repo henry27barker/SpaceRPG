@@ -15,6 +15,7 @@ public class TITANBotController : MonoBehaviour
     public EnemyMovement enemyMovement;
     public Animator animator;
     public GameObject missile;
+    public GameObject projectile;
 
     public Queue<int> missileQueue = new Queue<int>();
 
@@ -25,13 +26,22 @@ public class TITANBotController : MonoBehaviour
     public Transform socket5; 
     public Transform socket6;
 
+    public Transform shootingPoint;
+
     private int maxHealth;
     private float rateCounter = 0;
-    private float shootCounter = 9;
+    private float shootCounter = 0;
     public float rate;
     public float shootRate;
+    public float clawWaitTime;
     public int shots = 2;
-    private bool phase2, phase3;
+    private bool phase2, phase3, chill;
+    private float clawShootCounter = 0;
+    private float clawWaitCounter = 0;
+    private int count = 0;
+    private int count2 = 0;
+    private float chillTime = 2;
+    private float chillCount = 3;
 
     // Start is called before the first frame update
     void Start()
@@ -56,6 +66,9 @@ public class TITANBotController : MonoBehaviour
             rate *= 0.5f;
             shootRate *= 0.5f;
             shots += 2;
+            chillTime = 3;
+            count2 = 0;
+            chillCount = 30;
             phase3 = true;
         } else if (enemyMovement.health < (0.6 * maxHealth) && !phase2)
         {
@@ -63,12 +76,15 @@ public class TITANBotController : MonoBehaviour
             rate *= 0.5f;
             shootRate *= 0.5f;
             shots += 2;
+            chillTime = 2;
+            count2 = 0;
+            chillCount = 20;
             phase2 = true;
         }
 
         if (shootCounter > shootRate)
         {
-            Shoot(shots, 1);
+            ShootMissiles(shots, 1);
             Debug.Log("Start Shooting");
             shootCounter = 0;
         }
@@ -90,9 +106,103 @@ public class TITANBotController : MonoBehaviour
         {
             rateCounter += Time.deltaTime;
         }
+
+        //Claw Weapon Logic
+        if (phase2 && !chill)
+        {
+            if (clawShootCounter > 0.1)
+            {
+                switch (count)
+                {
+                    case 0:
+                        Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, 0));
+                        count++;
+                        break;
+                    case 1:
+                        Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, -20));
+                        count++;
+                        break;
+                    case 2:
+                        Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, -40));
+                        count++;
+                        break;
+                    case 3:
+                        Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, -60));
+                        count++;
+                        break;
+                    case 4:
+                        Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, -80));
+                        count++;
+                        break;
+                    case 5:
+                        Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, -100));
+                        count++;
+                        break;
+                    case 6:
+                        Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, -120));
+                        count++;
+                        break;
+                    case 7:
+                        Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, -140));
+                        count++;
+                        break;
+                    case 8:
+                        Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, -160));
+                        count++;
+                        break;
+                    default:
+                        Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, -180));
+                        count = 0;
+                        break;
+                }
+                count2++;
+                clawShootCounter = 0;
+            }
+            else
+            {
+                clawShootCounter += Time.deltaTime;
+            }
+        }
+        else if (!chill)
+        {
+            if (clawShootCounter > 0.75)
+            {
+                Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, 0));
+                Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, -20));
+                Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, -40));
+                Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, -60));
+                Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, -80));
+                Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, -100));
+                Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, -120));
+                Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, -140));
+                Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, -160));
+                Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, -180));
+
+                count2++;
+                clawShootCounter = 0;
+            }
+            else
+            {
+                clawShootCounter += Time.deltaTime;
+            }
+        }
+        if (count2 >= chillCount)
+        {
+            chill = true;
+            if (clawShootCounter > chillTime)
+            {
+                chill = false;
+                count2 = 0;
+                clawShootCounter = 0;
+            }
+            else
+            {
+                clawShootCounter += Time.deltaTime;
+            }
+        }
     }
 
-    private void Shoot(int num, float rate)
+    private void ShootMissiles(int num, float rate)
     {
         bool[] sockets = {false, false, false, false, false, false};
         List<int> numbers = new List<int>();
@@ -139,6 +249,5 @@ public class TITANBotController : MonoBehaviour
                 break;
         }
     }
-
 
 }

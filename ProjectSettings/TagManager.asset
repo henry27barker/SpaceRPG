@@ -67,6 +67,9 @@ TagManager:
   - name: MaxFront
     uniqueID: 2271978111
     locked: 0
+  - name: TitanFront
+    uniqueID: 52248139
+    locked: 0
   - name: Missiles
     uniqueID: 2335728491
     locked: 0

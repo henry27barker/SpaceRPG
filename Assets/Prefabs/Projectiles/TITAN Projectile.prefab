@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4193430538400826098}
   - component: {fileID: -5617496133133632319}
-  - component: {fileID: -1604690781218288652}
   - component: {fileID: -6702485082359455502}
   - component: {fileID: -8011421567402628524}
   - component: {fileID: 6338739812223619371}
+  - component: {fileID: -3385837052760559089}
   m_Layer: 2
-  m_Name: Projectile
-  m_TagString: Untagged
+  m_Name: TITAN Projectile
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,10 +74,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -106069355
-  m_SortingLayer: 3
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a1feda5096a50e443b2df8333718cd96, type: 3}
+  m_SortingLayerID: -1572563631
+  m_SortingLayer: 4
+  m_SortingOrder: 3
+  m_Sprite: {fileID: 21300000, guid: 5470a4409642bd847b3e2a2bc32a2c0c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -88,21 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-1604690781218288652
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1165675747940340940}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f547f4a6a11cd9346805ab1c41a10b38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 25
-  speed: 10
-  rb2d: {fileID: -8011421567402628524}
 --- !u!58 &-6702485082359455502
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -137,7 +122,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.0625
+  m_Radius: 0.125
 --- !u!50 &-8011421567402628524
 Rigidbody2D:
   serializedVersion: 4
@@ -181,11 +166,11 @@ MonoBehaviour:
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.649
-  m_Color: {r: 0.49803925, g: 1, b: 0.8588236, a: 1}
+  m_Color: {r: 0.8580095, g: 0.5235849, b: 1, a: 1}
   m_Intensity: 1.39
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 000000007bafa1b219df21e59582adf9519544a2
+  m_ApplyToSortingLayers: 000000007bafa1b219df21e59582adf9519544a26b63388b
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -215,3 +200,18 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &-3385837052760559089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1165675747940340940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fa68a1134af58b4da31f52f84a00e1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 25
+  speed: 2
+  rb2d: {fileID: 0}
