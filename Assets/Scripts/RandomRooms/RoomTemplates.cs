@@ -12,6 +12,10 @@ public class RoomTemplates : MonoBehaviour
     public GameObject[] allRoomTypes;
 
     public GameObject[] allWallTypes;
+
+    public GameObject lamp;
+
+    public int flickerChance = 10;
     //public GameObject wall;
 
     //1->top
@@ -42,12 +46,30 @@ public class RoomTemplates : MonoBehaviour
 
     }
 
+    void RandomlyGenerateLamp(int chance, Vector3 position){
+        int rand = Random.Range(1, 101);
+        if(rand <= chance){
+            rand = Random.Range(-1, 2);
+            int temp = Random.Range(-1, 2);
+            int flickerRand = Random.Range(1,101);
+            if(flickerRand <= flickerChance){
+                lamp.GetComponent<Flicker>().flickerOn = true;
+            }
+            else{
+                lamp.GetComponent<Flicker>().flickerOn = false;
+            }
+            Vector3 newPosition = new Vector3(position.x + rand, position.y + temp, 0);
+            Instantiate(lamp, newPosition, Quaternion.identity);
+        }
+    }
+
     void MakeLevel(int columnPos, int rowPos){
         Debug.Log(columnPos + " " + rowPos);
         if(columnPos == columnHeight / 2 && rowPos == rowHeight / 2){
             //rand = Random.Range(0, allRoomTypes.Length);
             //rooms[columnPos, rowPos] = Instantiate(allRoomTypes[rand], transform.position, Quaternion.identity);
             rooms[columnPos, rowPos] = Instantiate(allRoomTypes[0], transform.position, Quaternion.identity);
+            RandomlyGenerateLamp(8, transform.position);
             if(rooms[columnPos, rowPos].GetComponent<RoomType>().openingDirections.Contains(1) && rooms[columnPos, rowPos + 1] == null){
                 MakeLevel(columnPos, rowPos + 1);
             }
@@ -110,6 +132,7 @@ public class RoomTemplates : MonoBehaviour
                 int rowAdjustment = (rowPos - rowHeight / 2) * 4;
                 Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
                 rooms[columnPos, rowPos] = Instantiate(possibleRooms[rand], newPosition, Quaternion.identity);
+                RandomlyGenerateLamp(8, newPosition);
                 if(rooms[columnPos, rowPos].GetComponent<RoomType>().openingDirections.Contains(1) && rooms[columnPos, rowPos + 1] == null){
                     MakeLevel(columnPos, rowPos + 1);
                 }
