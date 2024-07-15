@@ -22,6 +22,8 @@ public class SceneChange : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D trigger)
     {
+        if (trigger.gameObject.tag != "Player")
+            return;
         Debug.Log("Went through door");
         SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }

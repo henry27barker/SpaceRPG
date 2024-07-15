@@ -6,6 +6,7 @@ public class EnemyExplosionDamage : MonoBehaviour
 {
     public int damage;
     public bool playerDamage;
+    public bool enemyDamage;
     public float radius;
 
     // Start is called before the first frame update
@@ -15,7 +16,7 @@ public class EnemyExplosionDamage : MonoBehaviour
 
         foreach (Collider2D hit in hits)
         {
-            if (hit.gameObject.tag == "Enemy")
+            if (hit.gameObject.tag == "Enemy" && enemyDamage)
             {
                 hit.gameObject.GetComponent<EnemyMovement>().decreaseHealth(damage);
             }

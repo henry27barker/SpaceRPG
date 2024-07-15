@@ -14,6 +14,7 @@ TagManager:
   - SpawnPoint
   - Rooms
   - Obstacle
+  - Missile
   layers:
   - Default
   - TransparentFX
@@ -65,4 +66,7 @@ TagManager:
     locked: 0
   - name: MaxFront
     uniqueID: 2271978111
+    locked: 0
+  - name: Missiles
+    uniqueID: 2335728491
     locked: 0

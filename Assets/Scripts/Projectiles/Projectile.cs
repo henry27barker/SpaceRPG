@@ -34,6 +34,10 @@ public class Projectile : MonoBehaviour
             col.gameObject.GetComponent<EnemyMovement>().decreaseHealth(damage);
             playerMovement.IncreaseHealth((int)(damage * (playerMovement.lifeSteal / 100f)));
         }
+        if(col.gameObject.tag == "Missile")
+        {
+            col.gameObject.GetComponent<MissileUp>().Explode();
+        }
         if(col.gameObject.tag == "Money"){
 
         }
