@@ -42,15 +42,19 @@ public class RoomTemplates : MonoBehaviour
 
     private int rand;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
+    void Awake(){
         player = GameObject.FindWithTag("Player");
         Random.InitState(System.DateTime.Now.Millisecond);
         rooms = new GameObject[columnHeight,rowHeight];
         MakeLevel(columnHeight / 2, rowHeight / 2);
         MakeWalls();
+        AstarPath.active.Scan();
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
     }
 
     // Update is called once per frame

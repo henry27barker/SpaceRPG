@@ -14,18 +14,20 @@ public class EnemyMovement : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public float whiteFlashTime;
     private float whiteFlashCounter;
-    //private AIPath aiPath;
+    private AIPath aiPath;
     public AIDestinationSetter aiDestinationSetter;
     private GameObject player;
+    public float seeRadius = 10f;
  
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.material.SetFloat("_FlashAmount", 0);
         if(transform.parent != null){
-            //aiPath = transform.parent.gameObject.GetComponent<AIPath>();
+            aiPath = transform.parent.gameObject.GetComponent<AIPath>();
             aiDestinationSetter = transform.parent.gameObject.GetComponent<AIDestinationSetter>();
             player = GameObject.FindWithTag("Player");
+            aiPath.canMove = false;
         }
     }
 
@@ -33,6 +35,12 @@ public class EnemyMovement : MonoBehaviour
     {
         if(transform.parent != null){
             aiDestinationSetter.target = player.transform;
+            if(Vector3.Distance(gameObject.transform.position, player.transform.position) <= seeRadius){
+                aiPath.canMove = true;
+            }
+            else{
+                //aiPath.canMove = false;
+            }
         }
 
         if(whiteFlashCounter > 0){
