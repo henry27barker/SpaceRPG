@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 2148027872895621646}
   - component: {fileID: 2941621928983845829}
   - component: {fileID: 6327072034147587186}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TRCBLW
   m_TagString: Untagged
   m_Icon: {fileID: 0}

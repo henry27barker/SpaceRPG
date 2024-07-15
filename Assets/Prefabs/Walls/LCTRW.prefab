@@ -684,7 +684,7 @@ GameObject:
   - component: {fileID: 5730246834697102535}
   - component: {fileID: 6378539885453358262}
   - component: {fileID: 626738266386826839}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LCTRW
   m_TagString: Untagged
   m_Icon: {fileID: 0}

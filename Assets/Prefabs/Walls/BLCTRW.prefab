@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 1158967303706170988}
   - component: {fileID: 2996065137367102332}
   - component: {fileID: 1209013109776206360}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BLCTRW
   m_TagString: Untagged
   m_Icon: {fileID: 0}

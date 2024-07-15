@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 7737934298127403157}
   - component: {fileID: 7251426010423617998}
   - component: {fileID: 259468697808175407}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CRBCBLCTLW
   m_TagString: Untagged
   m_Icon: {fileID: 0}

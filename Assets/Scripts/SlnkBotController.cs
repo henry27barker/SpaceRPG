@@ -37,6 +37,7 @@ public class SlnkBotController : MonoBehaviour
         deathRadiusReached = false;
         deathLight = GetComponent<Light2D>();
 
+        player = GameObject.FindWithTag("Player");
         playerController = player.GetComponent<PlayerMovement>();
         enemyMovement = GetComponent<EnemyMovement>();
 

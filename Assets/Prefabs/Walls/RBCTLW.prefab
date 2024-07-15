@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 3394087637717905928}
   - component: {fileID: 998706689516319958}
   - component: {fileID: 3867550392816368037}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RBCTLW
   m_TagString: Untagged
   m_Icon: {fileID: 0}

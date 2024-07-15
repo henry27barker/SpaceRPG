@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1532395392738119071
 Transform:
   m_ObjectHideFlags: 0
@@ -222,6 +222,14 @@ PrefabInstance:
     - target: {fileID: 7850119893267426642, guid: 7a9b1abd332856a46b45d22aa3041665, type: 3}
       propertyPath: m_PointLightOuterRadius
       value: 2.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 7850119893267426642, guid: 7a9b1abd332856a46b45d22aa3041665, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7850119893267426642, guid: 7a9b1abd332856a46b45d22aa3041665, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[4]
+      value: -1572563631
       objectReference: {fileID: 0}
     - target: {fileID: 8584919757315948038, guid: 7a9b1abd332856a46b45d22aa3041665, type: 3}
       propertyPath: m_Controller

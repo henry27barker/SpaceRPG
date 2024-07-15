@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7313507985869562945}
   - component: {fileID: 6920245343872374659}
   - component: {fileID: 7809940540103780235}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CRBCBLW
   m_TagString: Untagged
   m_Icon: {fileID: 0}

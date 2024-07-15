@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6323694915116052651}
   - component: {fileID: 4617508347873079702}
   - component: {fileID: 2565754137115131240}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RBLW
   m_TagString: Untagged
   m_Icon: {fileID: 0}

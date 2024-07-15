@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 26538135863373079}
   - component: {fileID: 7390964261319682716}
   - component: {fileID: 2660504330413823343}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CBLW
   m_TagString: Untagged
   m_Icon: {fileID: 0}

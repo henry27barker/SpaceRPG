@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 5072679619695442741}
   - component: {fileID: 7508367769018257510}
   - component: {fileID: 3158455546438270150}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CTRCRBCTLW
   m_TagString: Untagged
   m_Icon: {fileID: 0}

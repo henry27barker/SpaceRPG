@@ -14,8 +14,20 @@ public class RoomTemplates : MonoBehaviour
     public GameObject[] allWallTypes;
 
     public GameObject lamp;
+    public GameObject enemy;
+
+    public Sprite window;
 
     public int flickerChance = 10;
+
+    public int windowChance = 20;
+
+    public int lampChance = 8;
+    public int enemyChance = 8;
+
+    private bool lampSpawned = false;
+
+    private GameObject player;
     //public GameObject wall;
 
     //1->top
@@ -34,6 +46,7 @@ public class RoomTemplates : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
         Random.InitState(System.DateTime.Now.Millisecond);
         rooms = new GameObject[columnHeight,rowHeight];
         MakeLevel(columnHeight / 2, rowHeight / 2);
@@ -60,6 +73,22 @@ public class RoomTemplates : MonoBehaviour
             }
             Vector3 newPosition = new Vector3(position.x + rand, position.y + temp, 0);
             Instantiate(lamp, newPosition, Quaternion.identity);
+            lampSpawned = true;
+        }
+        else{
+            lampSpawned = false;
+        }
+    }
+
+    void RandomlyGenerateEnemy(int chance, Vector3 position){
+        if(!lampSpawned){
+            int newRand = Random.Range(1, 101);
+            if(newRand <= chance){
+                newRand = Random.Range(-1, 2);
+                int temp = Random.Range(-1, 2);
+                Vector3 newPosition = new Vector3(position.x + newRand, position.y + temp, 0);
+                Instantiate(enemy, newPosition, Quaternion.identity);
+            }
         }
     }
 
@@ -132,7 +161,8 @@ public class RoomTemplates : MonoBehaviour
                 int rowAdjustment = (rowPos - rowHeight / 2) * 4;
                 Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
                 rooms[columnPos, rowPos] = Instantiate(possibleRooms[rand], newPosition, Quaternion.identity);
-                RandomlyGenerateLamp(8, newPosition);
+                RandomlyGenerateLamp(lampChance, newPosition);
+                RandomlyGenerateEnemy(enemyChance, newPosition);
                 if(rooms[columnPos, rowPos].GetComponent<RoomType>().openingDirections.Contains(1) && rooms[columnPos, rowPos + 1] == null){
                     MakeLevel(columnPos, rowPos + 1);
                 }
@@ -577,7 +607,11 @@ public class RoomTemplates : MonoBehaviour
                                     int columnAdjustment = (i - columnHeight / 2) * 4;
                                     int rowAdjustment = (j - rowHeight / 2) * 4;
                                     Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
-                                    Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    GameObject tempWallPiece = Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    int windowRand = Random.Range(1, 101);
+                                    if(windowRand <= windowChance){
+                                        tempWallPiece.transform.Find("BlueWalls2_16").gameObject.GetComponent<SpriteRenderer>().sprite = window;
+                                    }
                                     break;
                                 }
                             }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2056701468354349112}
   - component: {fileID: 8726696007814858925}
   - component: {fileID: 8003625517724135625}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CTRCTLW
   m_TagString: Untagged
   m_Icon: {fileID: 0}

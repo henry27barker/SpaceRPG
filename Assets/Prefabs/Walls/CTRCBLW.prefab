@@ -348,7 +348,7 @@ GameObject:
   - component: {fileID: 8512161506763567040}
   - component: {fileID: 2467085125429908870}
   - component: {fileID: 252921554434590404}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CTRCBLW
   m_TagString: Untagged
   m_Icon: {fileID: 0}

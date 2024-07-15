@@ -431,7 +431,7 @@ GameObject:
   - component: {fileID: 3395326418540623850}
   - component: {fileID: 8886058541850151401}
   - component: {fileID: 1752240337772376255}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TRBW
   m_TagString: Untagged
   m_Icon: {fileID: 0}

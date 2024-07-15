@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 8128753347455825450}
   - component: {fileID: 3040397703903263820}
   - component: {fileID: 5412412879980518185}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RCTLW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
