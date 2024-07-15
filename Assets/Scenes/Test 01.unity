@@ -5333,6 +5333,7 @@ MonoBehaviour:
   - {fileID: 1605884689331873162, guid: e003cfc2a427b674299c26a254453788, type: 3}
   - {fileID: 6864864253130128458, guid: 218595fa689c0b243b05eaf26bc57fe9, type: 3}
   - {fileID: 3773414039769644906, guid: a0734b678f1f7ca478c625f8120bbc3a, type: 3}
+  lamp: {fileID: 4265719620121517933, guid: a2469e275240f2043a90ddb0cd561354, type: 3}
   columnHeight: 20
   rowHeight: 50
 --- !u!1001 &364413063
@@ -23471,19 +23472,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.13626686
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.12870014
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.7267566
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.74131274
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
