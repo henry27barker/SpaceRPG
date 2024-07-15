@@ -33,11 +33,13 @@ public class PlayerShoot : MonoBehaviour
     private Inventory inventory;
     public GameObject inventoryUI;
     private GameObject skillTreeUI;
+    public AudioSource shootSource;
 
     void Awake(){
         inventoryUI = GameObject.FindWithTag("InventoryUI");
         skillTreeUI = GameObject.FindWithTag("SkillTree");
         inventory = GameObject.FindWithTag("GameManager").GetComponent<Inventory>();
+        shootSource.Play();
     }
 
     void Start(){
@@ -92,11 +94,17 @@ public class PlayerShoot : MonoBehaviour
 
         if(rng >= critChance)
         {
+            shootSource.volume = Random.Range(0.5f, 0.75f);
+            shootSource.pitch = Random.Range(0.85f, 1f);
+            shootSource.Play();
             GameObject copy = Instantiate(projectile, shootingPoint.position, shootingPoint.rotation);
             copy.GetComponent<Projectile>().damage = damage;
         }
         else
         {
+            shootSource.volume = Random.Range(0.5f, 0.75f);
+            shootSource.pitch = Random.Range(0.85f, 1f);
+            shootSource.Play();
             Instantiate(explosiveProjectile, shootingPoint.position, shootingPoint.rotation);
         }
 

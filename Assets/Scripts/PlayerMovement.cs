@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -28,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isStomping = false;
     private float stompDamageWait;
     private float whiteFlashCounter = 0f;
+    private float footstepCounter = 0;
+    private float shootingPointOffset = 0;
 
     //Inputs
     private Vector2 lookInputValue;
@@ -48,6 +51,9 @@ public class PlayerMovement : MonoBehaviour
     public GameObject skillTreeFirst;
     private GameObject interactMenu;
     public GameObject codeUI = null;
+    public AudioSource footstepSource;
+    public AudioSource stompSource;
+    public Transform shootingPoint;
 
     //Scripts
     public HealthBar healthBar;
@@ -71,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
         Cursor.visible = false;
         skillTreeUI = GameObject.FindWithTag("SkillTree");
         interactMenu = GameObject.FindObjectOfType<InteractMenu>().gameObject;
+        shootingPointOffset = shootingPoint.localPosition.y;
     }
 
     private void OnEnable()
@@ -222,6 +229,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void StompDamage()
     {
+        stompSource.pitch = Random.Range(0.85f, 1f);
+        stompSource.Play();
         Collider2D[] stompHits = Physics2D.OverlapCircleAll(transform.position, stompRadius);
 
         foreach (Collider2D hit in stompHits) 
@@ -318,6 +327,17 @@ public class PlayerMovement : MonoBehaviour
     private void MovementLogic()
     {
         rb2d.velocity = new Vector2(moveInputValue[0], moveInputValue[1]).normalized * new Vector2(speed, speed);
+
+        if(footstepCounter > Mathf.Abs(rb2d.velocity.magnitude / 10))
+        {
+            footstepSource.volume = Random.Range(0.5f, 0.75f);
+            footstepSource.pitch = Random.Range(0.85f, 1f);
+            footstepSource.Play();
+            footstepCounter = 0;
+        } else
+        {
+            footstepCounter += Time.deltaTime;
+        }
     }
 
 
@@ -436,6 +456,7 @@ public class PlayerMovement : MonoBehaviour
             healthBar.spriteRenderer.flipX = false;
             weapon.spriteRenderer.flipY = false;
             hands.spriteRenderer.flipX = false;
+            shootingPoint.localPosition = new Vector3(0.5f, 0.164f, 0);
         }
         else
         {
@@ -444,6 +465,7 @@ public class PlayerMovement : MonoBehaviour
             healthBar.spriteRenderer.flipX = true;
             weapon.spriteRenderer.flipY = true;
             hands.spriteRenderer.flipX = true;
+            shootingPoint.localPosition = new Vector3(0.5f, -0.164f, 0);
         }
 
         if (rb2d.velocity.x != 0 || rb2d.velocity.y != 0)
