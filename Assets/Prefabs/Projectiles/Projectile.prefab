@@ -103,6 +103,7 @@ MonoBehaviour:
   damage: 25
   speed: 10
   rb2d: {fileID: -8011421567402628524}
+  destroyObject: {fileID: 6768933986504381207, guid: a02fd7d927d2bf241abdcd402e10817a, type: 3}
 --- !u!58 &-6702485082359455502
 CircleCollider2D:
   m_ObjectHideFlags: 0

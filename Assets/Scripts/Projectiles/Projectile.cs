@@ -8,6 +8,8 @@ public class Projectile : MonoBehaviour
     public float speed;
     public Rigidbody2D rb2d;
 
+    public GameObject destroyObject;
+
     private PlayerMovement playerMovement;
 
     // Start is called before the first frame update
@@ -42,6 +44,7 @@ public class Projectile : MonoBehaviour
 
         }
         else{
+            Instantiate(destroyObject, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }
