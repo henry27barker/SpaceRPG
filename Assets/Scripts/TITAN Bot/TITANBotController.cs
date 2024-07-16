@@ -34,7 +34,7 @@ public class TITANBotController : MonoBehaviour
 
     private Transform deathExplosionPoint1, deathExplosionPoint2, deathExplosionPoint3, deathExplosionPoint4, deathExplosionPoint5,deathExplosionPoint6;
 
-    private GameObject camera;
+    private GameObject cameraObject;
 
     private int maxHealth;
     private float rateCounter = 0;
@@ -63,8 +63,8 @@ public class TITANBotController : MonoBehaviour
         deathExplosionPoint5 = transform.Find("DeathExplosionPoints/5").gameObject.transform;
         deathExplosionPoint6 = transform.Find("DeathExplosionPoints/6").gameObject.transform;
 
-        camera = GameObject.FindWithTag("Player").transform.Find("Main Camera").gameObject;
-        camera.transform.localPosition = new Vector3(0, 3, -10);
+        cameraObject = GameObject.FindWithTag("Player").transform.Find("Main Camera").gameObject;
+        cameraObject.transform.localPosition = new Vector3(0, 3, -10);
     }
 
     // Update is called once per frame
