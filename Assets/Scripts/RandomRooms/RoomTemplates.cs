@@ -14,6 +14,7 @@ public class RoomTemplates : MonoBehaviour
     public GameObject[] allWallTypes;
 
     public GameObject lamp;
+    public GameObject crate;
     public GameObject enemy;
 
     public Sprite window;
@@ -23,9 +24,11 @@ public class RoomTemplates : MonoBehaviour
     public int windowChance = 20;
 
     public int lampChance = 8;
+    public int crateChance = 8;
     public int enemyChance = 8;
 
     private bool lampSpawned = false;
+    private bool crateSpawned = false;
 
     private GameObject player;
     //public GameObject wall;
@@ -40,13 +43,22 @@ public class RoomTemplates : MonoBehaviour
     public int columnHeight = 20;
     public int rowHeight = 20;
 
+    private int lowestIndex;
+    private GameObject lowestFloor;
+    private GameObject destroyPossibleSpawn;
+
     private int rand;
 
     void Awake(){
+        lowestIndex = rowHeight / 2;
         player = GameObject.FindWithTag("Player");
         Random.InitState(System.DateTime.Now.Millisecond);
         rooms = new GameObject[columnHeight,rowHeight];
         MakeLevel(columnHeight / 2, rowHeight / 2);
+        if(destroyPossibleSpawn != null){
+            Destroy(destroyPossibleSpawn);
+        }
+        player.transform.position = lowestFloor.transform.position;
         MakeWalls();
         AstarPath.active.Scan();
     }
@@ -63,7 +75,7 @@ public class RoomTemplates : MonoBehaviour
 
     }
 
-    void RandomlyGenerateLamp(int chance, Vector3 position){
+    GameObject RandomlyGenerateLamp(int chance, Vector3 position){
         int rand = Random.Range(1, 101);
         if(rand <= chance){
             rand = Random.Range(-1, 2);
@@ -76,24 +88,48 @@ public class RoomTemplates : MonoBehaviour
                 lamp.GetComponent<Flicker>().flickerOn = false;
             }
             Vector3 newPosition = new Vector3(position.x + rand, position.y + temp, 0);
-            Instantiate(lamp, newPosition, Quaternion.identity);
             lampSpawned = true;
+            return Instantiate(lamp, newPosition, Quaternion.identity);
         }
         else{
             lampSpawned = false;
+            return null;
         }
     }
 
-    void RandomlyGenerateEnemy(int chance, Vector3 position){
+    GameObject RandomlyGenerateCrate(int chance, Vector3 position){
         if(!lampSpawned){
-            int newRand = Random.Range(1, 101);
-            if(newRand <= chance){
-                newRand = Random.Range(-1, 2);
+            int crateRand = Random.Range(1, 101);
+            if(crateRand <= chance){
+                crateRand = Random.Range(-1, 2);
                 int temp = Random.Range(-1, 2);
-                Vector3 newPosition = new Vector3(position.x + newRand, position.y + temp, 0);
-                Instantiate(enemy, newPosition, Quaternion.identity);
+                Vector3 newPosition = new Vector3(position.x + crateRand, position.y + temp, 0);
+                crateSpawned = true;
+                return Instantiate(crate, newPosition, Quaternion.identity);
+            }
+            else{
+                crateSpawned = false;
+                return null;
             }
         }
+        return null;
+    }
+
+    GameObject RandomlyGenerateEnemy(int chance, Vector3 position){
+        if(!lampSpawned){
+            if(!crateSpawned){
+                int newRand = Random.Range(1, 101);
+                if(newRand <= chance){
+                    newRand = Random.Range(-1, 2);
+                    int temp = Random.Range(-1, 2);
+                    Vector3 newPosition = new Vector3(position.x + newRand, position.y + temp, 0);
+                    return Instantiate(enemy, newPosition, Quaternion.identity);
+                }
+                return null;
+            }
+            return null;
+        }
+        return null;
     }
 
     void MakeLevel(int columnPos, int rowPos){
@@ -103,6 +139,8 @@ public class RoomTemplates : MonoBehaviour
             //rooms[columnPos, rowPos] = Instantiate(allRoomTypes[rand], transform.position, Quaternion.identity);
             rooms[columnPos, rowPos] = Instantiate(allRoomTypes[0], transform.position, Quaternion.identity);
             RandomlyGenerateLamp(8, transform.position);
+            RandomlyGenerateCrate(crateChance, transform.position);
+            RandomlyGenerateEnemy(enemyChance, transform.position);
             if(rooms[columnPos, rowPos].GetComponent<RoomType>().openingDirections.Contains(1) && rooms[columnPos, rowPos + 1] == null){
                 MakeLevel(columnPos, rowPos + 1);
             }
@@ -165,7 +203,24 @@ public class RoomTemplates : MonoBehaviour
                 int rowAdjustment = (rowPos - rowHeight / 2) * 4;
                 Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
                 rooms[columnPos, rowPos] = Instantiate(possibleRooms[rand], newPosition, Quaternion.identity);
+                if(rowPos < lowestIndex){
+                    lowestIndex = rowPos;
+                    lowestFloor = rooms[columnPos, rowPos];
+                    GameObject tempGameObject = RandomlyGenerateLamp(lampChance, newPosition);
+                    if(tempGameObject != null){
+                        destroyPossibleSpawn = tempGameObject;
+                    }
+                    tempGameObject = RandomlyGenerateCrate(crateChance, newPosition);
+                    if(tempGameObject != null){
+                        destroyPossibleSpawn = tempGameObject;
+                    }
+                    tempGameObject = RandomlyGenerateEnemy(enemyChance, newPosition);
+                    if(tempGameObject != null){
+                        destroyPossibleSpawn = tempGameObject;
+                    }
+                }
                 RandomlyGenerateLamp(lampChance, newPosition);
+                RandomlyGenerateCrate(crateChance, newPosition);
                 RandomlyGenerateEnemy(enemyChance, newPosition);
                 if(rooms[columnPos, rowPos].GetComponent<RoomType>().openingDirections.Contains(1) && rooms[columnPos, rowPos + 1] == null){
                     MakeLevel(columnPos, rowPos + 1);
