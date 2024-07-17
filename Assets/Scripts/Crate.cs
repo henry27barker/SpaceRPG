@@ -8,6 +8,10 @@ public class Crate : Interactable
 
     public GameObject crateUI;
 
+    void Awake(){
+        inventoryUI = GameObject.FindWithTag("InventoryUI");
+    }
+
     public override void Interact()
     {
         base.Interact();

@@ -260,7 +260,8 @@ PrefabInstance:
       value: InventorySlot (7)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5233728888583742717, guid: f7cf022b416272946af4e1b631cda044, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1979405401413193439, guid: f7cf022b416272946af4e1b631cda044, type: 3}
@@ -426,7 +427,8 @@ PrefabInstance:
       value: InventorySlot (12)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5233728888583742717, guid: f7cf022b416272946af4e1b631cda044, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1979405401413193439, guid: f7cf022b416272946af4e1b631cda044, type: 3}
@@ -1573,7 +1575,8 @@ PrefabInstance:
       value: InventorySlot (16)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5233728888583742717, guid: f7cf022b416272946af4e1b631cda044, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1979405401413193439, guid: f7cf022b416272946af4e1b631cda044, type: 3}
@@ -2449,7 +2452,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1193290955}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
         m_MethodName: DecrementFireRate
         m_Mode: 4
@@ -3502,7 +3505,8 @@ PrefabInstance:
       value: InventorySlot (20)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5233728888583742717, guid: f7cf022b416272946af4e1b631cda044, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1979405401413193439, guid: f7cf022b416272946af4e1b631cda044, type: 3}
@@ -4171,7 +4175,8 @@ PrefabInstance:
       value: InventorySlot (4)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5233728888583742717, guid: f7cf022b416272946af4e1b631cda044, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1979405401413193439, guid: f7cf022b416272946af4e1b631cda044, type: 3}
@@ -5636,7 +5641,8 @@ PrefabInstance:
       value: InventorySlot (27)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5233728888583742717, guid: f7cf022b416272946af4e1b631cda044, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1979405401413193439, guid: f7cf022b416272946af4e1b631cda044, type: 3}
@@ -6314,7 +6320,8 @@ PrefabInstance:
       value: InventorySlot (14)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5233728888583742717, guid: f7cf022b416272946af4e1b631cda044, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1979405401413193439, guid: f7cf022b416272946af4e1b631cda044, type: 3}
@@ -6674,7 +6681,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1193290955}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
         m_MethodName: EnableTab
         m_Mode: 5
@@ -6880,7 +6887,8 @@ PrefabInstance:
       value: InventorySlot (18)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5233728888583742717, guid: f7cf022b416272946af4e1b631cda044, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1979405401413193439, guid: f7cf022b416272946af4e1b631cda044, type: 3}
@@ -8324,7 +8332,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1193290955}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
         m_MethodName: IncrementStompDistance
         m_Mode: 4
@@ -8836,7 +8844,8 @@ PrefabInstance:
       value: InventorySlot (19)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5233728888583742717, guid: f7cf022b416272946af4e1b631cda044, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1979405401413193439, guid: f7cf022b416272946af4e1b631cda044, type: 3}
@@ -9273,7 +9282,8 @@ PrefabInstance:
       value: InventorySlot (10)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5233728888583742717, guid: f7cf022b416272946af4e1b631cda044, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1979405401413193439, guid: f7cf022b416272946af4e1b631cda044, type: 3}
@@ -10055,7 +10065,8 @@ PrefabInstance:
       value: InventorySlot (24)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5233728888583742717, guid: f7cf022b416272946af4e1b631cda044, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1979405401413193439, guid: f7cf022b416272946af4e1b631cda044, type: 3}
@@ -10167,7 +10178,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1193290955}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
         m_MethodName: ResetUpgrades
         m_Mode: 1
@@ -10217,11 +10228,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 760449326}
   m_CullTransparentMesh: 1
---- !u!95 &782255914 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 8154195089337959407, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
-  m_PrefabInstance: {fileID: 1704542485}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &783727201
 GameObject:
   m_ObjectHideFlags: 0
@@ -10493,7 +10499,8 @@ PrefabInstance:
       value: InventorySlot (8)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5233728888583742717, guid: f7cf022b416272946af4e1b631cda044, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1979405401413193439, guid: f7cf022b416272946af4e1b631cda044, type: 3}
@@ -10735,7 +10742,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1193290955}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
         m_MethodName: IncrementAmmoCapacity
         m_Mode: 3
@@ -11002,7 +11009,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1193290955}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
         m_MethodName: IncrementDamage
         m_Mode: 3
@@ -11320,7 +11327,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1193290955}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
         m_MethodName: IncrementSyringeAmount
         m_Mode: 3
@@ -12371,7 +12378,8 @@ PrefabInstance:
       value: InventorySlot (26)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5233728888583742717, guid: f7cf022b416272946af4e1b631cda044, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1979405401413193439, guid: f7cf022b416272946af4e1b631cda044, type: 3}
@@ -12521,7 +12529,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1193290955}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
         m_MethodName: EnableTab
         m_Mode: 5
@@ -12986,7 +12994,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1193290955}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
         m_MethodName: IncrementStompDamage
         m_Mode: 3
@@ -13538,7 +13546,8 @@ PrefabInstance:
       value: InventorySlot (9)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5233728888583742717, guid: f7cf022b416272946af4e1b631cda044, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1979405401413193439, guid: f7cf022b416272946af4e1b631cda044, type: 3}
@@ -13753,7 +13762,8 @@ PrefabInstance:
       value: InventorySlot (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5233728888583742717, guid: f7cf022b416272946af4e1b631cda044, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1979405401413193439, guid: f7cf022b416272946af4e1b631cda044, type: 3}
@@ -13782,11 +13792,6 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
---- !u!1 &999992729 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 272148265335966016, guid: f7cf022b416272946af4e1b631cda044, type: 3}
-  m_PrefabInstance: {fileID: 8934971538954268707}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1009280967
 GameObject:
   m_ObjectHideFlags: 0
@@ -14399,7 +14404,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1193290955}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
         m_MethodName: EnableTab
         m_Mode: 5
@@ -14494,7 +14499,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1193290955}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
         m_MethodName: IncrementMaxHealth
         m_Mode: 3
@@ -14829,7 +14834,8 @@ PrefabInstance:
       value: InventorySlot (13)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5233728888583742717, guid: f7cf022b416272946af4e1b631cda044, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1979405401413193439, guid: f7cf022b416272946af4e1b631cda044, type: 3}
@@ -16435,7 +16441,8 @@ PrefabInstance:
       value: InventorySlot (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5233728888583742717, guid: f7cf022b416272946af4e1b631cda044, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1979405401413193439, guid: f7cf022b416272946af4e1b631cda044, type: 3}
@@ -16485,56 +16492,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3693b5d530fa9f459d349bb18c25bd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1193290955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1193290942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c437379ce623b3447b6713426660e6d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  items: []
-  upgradeTokens: 0
-  maxHealth: 100
-  minHealth: 100
-  maxMaxHealth: 300
-  speed: 5
-  minSpeed: 3
-  maxSpeed: 6
-  lifeSteal: 10
-  minLifeSteal: 0
-  maxLifeSteal: 100
-  fireRate: 1
-  maxFireRate: 2
-  minFireRate: 0.1
-  damage: 10
-  minDamage: 5
-  maxDamage: 100
-  ammoCapacity: 20
-  maxAmmoCapacity: 50
-  minAmmoCapacity: 10
-  medkitAmount: 20
-  minMedkitAmount: 10
-  maxMedkitAmount: 100
-  inventorySize: 10
-  minInventorySize: 5
-  maxInventorySize: 30
-  syringeAmount: 50
-  minSyringeAmount: 10
-  maxSyringeAmount: 150
-  pillAmount: 30
-  minPillAmount: 10
-  maxPillAmount: 100
-  stompDistance: 1
-  minStompDistance: 0.5
-  maxStompDistance: 2
-  stompDamage: 50
-  minStompDamage: 20
-  maxStompDamage: 100
 --- !u!1 &1203132022
 GameObject:
   m_ObjectHideFlags: 0
@@ -16978,7 +16935,8 @@ PrefabInstance:
       value: InventorySlot (29)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5233728888583742717, guid: f7cf022b416272946af4e1b631cda044, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1979405401413193439, guid: f7cf022b416272946af4e1b631cda044, type: 3}
@@ -17703,7 +17661,8 @@ PrefabInstance:
       value: InventorySlot (21)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5233728888583742717, guid: f7cf022b416272946af4e1b631cda044, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1979405401413193439, guid: f7cf022b416272946af4e1b631cda044, type: 3}
@@ -17869,7 +17828,8 @@ PrefabInstance:
       value: InventorySlot (6)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5233728888583742717, guid: f7cf022b416272946af4e1b631cda044, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1979405401413193439, guid: f7cf022b416272946af4e1b631cda044, type: 3}
@@ -18525,7 +18485,8 @@ PrefabInstance:
       value: InventorySlot (11)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5233728888583742717, guid: f7cf022b416272946af4e1b631cda044, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1979405401413193439, guid: f7cf022b416272946af4e1b631cda044, type: 3}
@@ -20864,7 +20825,8 @@ PrefabInstance:
       value: InventorySlot (25)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5233728888583742717, guid: f7cf022b416272946af4e1b631cda044, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1979405401413193439, guid: f7cf022b416272946af4e1b631cda044, type: 3}
@@ -21030,7 +20992,8 @@ PrefabInstance:
       value: InventorySlot (28)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5233728888583742717, guid: f7cf022b416272946af4e1b631cda044, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1979405401413193439, guid: f7cf022b416272946af4e1b631cda044, type: 3}
@@ -22136,7 +22099,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1193290955}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
         m_MethodName: EnableTab
         m_Mode: 5
@@ -22245,7 +22208,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1193290955}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
         m_MethodName: IncrementLifeSteal
         m_Mode: 4
@@ -22461,7 +22424,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1193290955}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
         m_MethodName: IncrementSpeed
         m_Mode: 4
@@ -23110,7 +23073,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1193290955}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
         m_MethodName: IncrementInventorySize
         m_Mode: 3
@@ -23338,102 +23301,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1357962228313159850, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
-      propertyPath: animator
-      value: 
-      objectReference: {fileID: 782255914}
-    - target: {fileID: 1438696587772398955, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
-      propertyPath: health
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 1438696587772398955, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
-      propertyPath: lifeSteal
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1438696587772398955, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
-      propertyPath: maxHealth
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1438696587772398955, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
-      propertyPath: inventoryUI
-      value: 
-      objectReference: {fileID: 14176726}
-    - target: {fileID: 1438696587772398955, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
-      propertyPath: pickupRadius
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1438696587772398955, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
-      propertyPath: stompDuration
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1438696587772398955, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
-      propertyPath: inventoryFirst
-      value: 
-      objectReference: {fileID: 999992729}
-    - target: {fileID: 1438696587772398955, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
-      propertyPath: skillTreeFirst
-      value: 
-      objectReference: {fileID: 434770853}
-    - target: {fileID: 1438696587772398955, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
-      propertyPath: InteractablePrompt
-      value: 
-      objectReference: {fileID: 1998334157}
-    - target: {fileID: 1438696587772398955, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
-      propertyPath: healthParticleSystem
-      value: 
-      objectReference: {fileID: 4324954059509009693, guid: a62185b3d2da7104c9c809a0adba8685, type: 3}
-    - target: {fileID: 1438696587772398955, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
-      propertyPath: crateLayerMask.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 1438696587772398955, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
-      propertyPath: floorLayerMask.m_Bits
-      value: 128
-      objectReference: {fileID: 0}
-    - target: {fileID: 1438696587772398955, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
-      propertyPath: interactableLayerMask.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 1691877163533958959, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
-      propertyPath: fireRate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1691877163533958959, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
-      propertyPath: ammoCount
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1691877163533958959, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
-      propertyPath: inventoryUI
-      value: 
-      objectReference: {fileID: 14176726}
-    - target: {fileID: 1691877163533958959, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
-      propertyPath: projectilePrefab
-      value: 
-      objectReference: {fileID: 1165675747940340940, guid: 34243c2846fc46b4491bf90de6cbe4d1, type: 3}
-    - target: {fileID: 3323280537712322383, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 306ac6c792d4c6540b6743c9f3efb626, type: 3}
-    - target: {fileID: 4356286523379830957, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
-      propertyPath: m_Intensity
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 4356286523379830957, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
-      propertyPath: m_PointLightOuterRadius
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5022706866799061034, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
-      propertyPath: m_Actions
-      value: 
-      objectReference: {fileID: -944628639613478452, guid: eae0eba24d8a191478b2df185a76c8b3, type: 3}
-    - target: {fileID: 5022706866799061034, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
-      propertyPath: m_UIInputModule
-      value: 
-      objectReference: {fileID: 1215897089}
-    - target: {fileID: 5022706866799061034, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
-      propertyPath: m_DefaultActionMap
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 5282061660691578340, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -60
@@ -23480,27 +23347,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0
+      value: 0.13626686
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0
+      value: 0.12870014
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 1
+      value: 0.7267566
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 1
+      value: 0.74131274
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6377114168526726802, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1193290955}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
 --- !u!1 &1707805779
 GameObject:
@@ -24288,7 +24152,8 @@ PrefabInstance:
       value: InventorySlot (3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5233728888583742717, guid: f7cf022b416272946af4e1b631cda044, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1979405401413193439, guid: f7cf022b416272946af4e1b631cda044, type: 3}
@@ -24666,7 +24531,8 @@ PrefabInstance:
       value: InventorySlot (23)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5233728888583742717, guid: f7cf022b416272946af4e1b631cda044, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1979405401413193439, guid: f7cf022b416272946af4e1b631cda044, type: 3}
@@ -24977,7 +24843,8 @@ PrefabInstance:
       value: InventorySlot (5)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5233728888583742717, guid: f7cf022b416272946af4e1b631cda044, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1979405401413193439, guid: f7cf022b416272946af4e1b631cda044, type: 3}
@@ -25621,7 +25488,8 @@ PrefabInstance:
       value: InventorySlot (15)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5233728888583742717, guid: f7cf022b416272946af4e1b631cda044, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1979405401413193439, guid: f7cf022b416272946af4e1b631cda044, type: 3}
@@ -26171,7 +26039,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1193290955}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
         m_MethodName: EnableTab
         m_Mode: 5
@@ -27002,7 +26870,8 @@ PrefabInstance:
       value: InventorySlot (22)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5233728888583742717, guid: f7cf022b416272946af4e1b631cda044, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1979405401413193439, guid: f7cf022b416272946af4e1b631cda044, type: 3}
@@ -27240,18 +27109,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7470284921360955886, guid: f2ea0877bab777f4793c41240faaa082, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7470284921360955886, guid: f2ea0877bab777f4793c41240faaa082, type: 3}
+      propertyPath: m_TagString
+      value: InteractablePrompt
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2ea0877bab777f4793c41240faaa082, type: 3}
---- !u!1 &1998334157 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7470284921360955886, guid: f2ea0877bab777f4793c41240faaa082, type: 3}
-  m_PrefabInstance: {fileID: 1998334156}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2005478427
 GameObject:
   m_ObjectHideFlags: 0
@@ -27454,7 +27322,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1193290955}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
         m_MethodName: IncrementMedkitAmount
         m_Mode: 3
@@ -27641,7 +27509,8 @@ PrefabInstance:
       value: InventorySlot (17)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5233728888583742717, guid: f7cf022b416272946af4e1b631cda044, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1979405401413193439, guid: f7cf022b416272946af4e1b631cda044, type: 3}
@@ -28928,7 +28797,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1193290955}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SkillTree, Assembly-CSharp
         m_MethodName: IncrementPillAmount
         m_Mode: 3
@@ -29943,7 +29812,8 @@ PrefabInstance:
       value: InventorySlot
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5233728888583742717, guid: f7cf022b416272946af4e1b631cda044, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1979405401413193439, guid: f7cf022b416272946af4e1b631cda044, type: 3}

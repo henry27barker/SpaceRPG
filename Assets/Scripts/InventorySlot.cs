@@ -8,7 +8,7 @@ public class InventorySlot : MonoBehaviour
 
     public Item item;
 
-    public Button removeButton;
+    //public Button removeButton;
 
     private TMP_Text slotText;
 
@@ -40,7 +40,7 @@ public class InventorySlot : MonoBehaviour
 
         icon.sprite = item.icon;
         icon.enabled = true;
-        removeButton.interactable = true;
+        //removeButton.interactable = true;
     }
 
     public void ClearSlot(){
@@ -48,7 +48,7 @@ public class InventorySlot : MonoBehaviour
 
         icon.sprite = null;
         icon.enabled = false;
-        removeButton.interactable = false;
+        //removeButton.interactable = false;
     }
 
     public void OnRemoveButton(){
@@ -64,11 +64,13 @@ public class InventorySlot : MonoBehaviour
     }
 
     public void Use(){
-        if(item.name != "UpgradeToken"){
-            if(item != null){
-                item.Use();
-            }
-            Inventory.instance.Remove(item);
+        if(item != null){
+            if(item.name != "UpgradeToken"){
+                if(item.name != "Ammo"){
+                    item.Use();
+                    Inventory.instance.Remove(item);
+                }
+            }  
         }
     }
 }

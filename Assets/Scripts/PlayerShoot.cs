@@ -56,6 +56,7 @@ public class PlayerShoot : MonoBehaviour
 
     public void Shoot()
     {
+        Debug.Log("Shoot called");
         if(inventoryUI.activeSelf == true){
             return;
         }
@@ -66,8 +67,10 @@ public class PlayerShoot : MonoBehaviour
             return;
         }
         if(fireRateCounter < fireRate){
+            Debug.Log("Fire rate problem");
             return;
         }
+        Debug.Log("If statement not the problem");
         // if(ammoCount <= 0){
         //     return;
         // }
@@ -82,6 +85,7 @@ public class PlayerShoot : MonoBehaviour
                     if(ammoItem.ammoAmount <= 0){
                         inventory.Remove(item);
                     }
+                    fireRateCounter = 0;
                     break;
                 }
             }
@@ -89,6 +93,8 @@ public class PlayerShoot : MonoBehaviour
         if(!ammoFound){
             return;
         }
+
+        Debug.Log("Ammo found");
 
         float rng = Random.Range(0f, 100f);
 
@@ -108,7 +114,6 @@ public class PlayerShoot : MonoBehaviour
             Instantiate(explosiveProjectile, shootingPoint.position, shootingPoint.rotation);
         }
 
-        fireRateCounter = 0;
         // ammoCount--;
     }
 }

@@ -76,6 +76,8 @@ public class PlayerMovement : MonoBehaviour
         playerControls = gameObject.GetComponent<PlayerInput>();
         Cursor.visible = false;
         skillTreeUI = GameObject.FindWithTag("SkillTree");
+        inventoryUI = GameObject.FindWithTag("InventoryUI");
+        InteractablePrompt = GameObject.FindWithTag("InteractablePrompt");
         interactMenu = GameObject.FindObjectOfType<InteractMenu>().gameObject;
         shootingPointOffset = shootingPoint.localPosition.y;
     }
@@ -101,6 +103,7 @@ public class PlayerMovement : MonoBehaviour
         health = 100;
         stompDamageWait = 0.625f * stompDuration;
         healthBar.currentHealth = health;
+        InteractablePrompt.SetActive(false);
     }
  
     void Update()

@@ -736,6 +736,10 @@ PrefabInstance:
       propertyPath: crateUI
       value: 
       objectReference: {fileID: 2308191161979568243}
+    - target: {fileID: 7274439249551650757, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
+      propertyPath: removeButton
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8700445161944028838, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -817,7 +821,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6250985971327197317, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
@@ -883,6 +888,10 @@ PrefabInstance:
       propertyPath: crateUI
       value: 
       objectReference: {fileID: 2308191161979568243}
+    - target: {fileID: 7274439249551650757, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
+      propertyPath: removeButton
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8700445161944028838, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -964,7 +973,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6250985971327197317, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
@@ -1036,6 +1046,10 @@ PrefabInstance:
       propertyPath: crateUI
       value: 
       objectReference: {fileID: 2308191161979568243}
+    - target: {fileID: 7274439249551650757, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
+      propertyPath: removeButton
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8700445161944028838, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1129,7 +1143,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6250985971327197317, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
@@ -1201,6 +1216,10 @@ PrefabInstance:
       propertyPath: crateUI
       value: 
       objectReference: {fileID: 2308191161979568243}
+    - target: {fileID: 7274439249551650757, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
+      propertyPath: removeButton
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8700445161944028838, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1294,7 +1313,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6250985971327197317, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
@@ -1366,6 +1386,10 @@ PrefabInstance:
       propertyPath: crateUI
       value: 
       objectReference: {fileID: 2308191161979568243}
+    - target: {fileID: 7274439249551650757, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
+      propertyPath: removeButton
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8700445161944028838, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1447,7 +1471,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6250985971327197317, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
@@ -1519,6 +1544,10 @@ PrefabInstance:
       propertyPath: crateUI
       value: 
       objectReference: {fileID: 2308191161979568243}
+    - target: {fileID: 7274439249551650757, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
+      propertyPath: removeButton
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8700445161944028838, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1612,7 +1641,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6250985971327197317, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
@@ -1684,6 +1714,10 @@ PrefabInstance:
       propertyPath: crateUI
       value: 
       objectReference: {fileID: 2308191161979568243}
+    - target: {fileID: 7274439249551650757, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
+      propertyPath: removeButton
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8700445161944028838, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1777,7 +1811,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6250985971327197317, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
@@ -1849,6 +1884,10 @@ PrefabInstance:
       propertyPath: crateUI
       value: 
       objectReference: {fileID: 2308191161979568243}
+    - target: {fileID: 7274439249551650757, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
+      propertyPath: removeButton
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8700445161944028838, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1942,7 +1981,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6250985971327197317, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
@@ -2014,6 +2054,10 @@ PrefabInstance:
       propertyPath: crateUI
       value: 
       objectReference: {fileID: 2308191161979568243}
+    - target: {fileID: 7274439249551650757, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
+      propertyPath: removeButton
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8700445161944028838, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2107,7 +2151,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6250985971327197317, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
@@ -2179,6 +2224,10 @@ PrefabInstance:
       propertyPath: crateUI
       value: 
       objectReference: {fileID: 2308191161979568243}
+    - target: {fileID: 7274439249551650757, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
+      propertyPath: removeButton
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8700445161944028838, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2272,7 +2321,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6250985971327197317, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b0c50447629fa34c8129d6e1caf03d6, type: 3}

@@ -24,6 +24,7 @@ public class CrateUI : MonoBehaviour
         crateUI.SetActive(false);
         slots = itemsParent.GetComponentsInChildren<CrateSlot>();
         UpdateUI();
+        inventoryUI = GameObject.FindWithTag("InventoryUI");
         playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
     }
 

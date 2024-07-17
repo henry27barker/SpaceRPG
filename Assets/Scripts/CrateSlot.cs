@@ -7,7 +7,7 @@ public class CrateSlot : MonoBehaviour
 
     Item item;
 
-    public Button removeButton;
+    //public Button removeButton;
 
     public CrateUI crateUI;
 
@@ -16,7 +16,7 @@ public class CrateSlot : MonoBehaviour
 
         icon.sprite = item.icon;
         icon.enabled = true;
-        removeButton.interactable = true;
+        //removeButton.interactable = true;
     }
 
     public void ClearSlot(){
@@ -24,7 +24,7 @@ public class CrateSlot : MonoBehaviour
 
         icon.sprite = null;
         icon.enabled = false;
-        removeButton.interactable = false;
+        //removeButton.interactable = false;
     }
 
     public void OnRemoveButton(){
