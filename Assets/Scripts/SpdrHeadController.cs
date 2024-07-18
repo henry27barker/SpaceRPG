@@ -38,6 +38,7 @@ public class SpdrHeadController : MonoBehaviour
     void Start()
     {
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
@@ -67,7 +68,9 @@ public class SpdrHeadController : MonoBehaviour
 
         UpdateSprite(lookRotation);
 
-        Shoot();
+        if(Vector3.Distance(player.transform.position, gameObject.transform.position) <= 12){
+            Shoot();
+        }
     }
 
     private void Shoot()

@@ -42,6 +42,7 @@ public class SpdrBotController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
         playerController = player.GetComponent<PlayerMovement>();
         enemyMovement = GetComponent<EnemyMovement>();
 

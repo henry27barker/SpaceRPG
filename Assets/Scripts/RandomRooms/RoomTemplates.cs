@@ -12,6 +12,7 @@ public class RoomTemplates : MonoBehaviour
     public GameObject[] allRoomTypes;
 
     public GameObject[] allWallTypes;
+    public GameObject[] enemyTypes;
 
     public GameObject lamp;
     public GameObject crate;
@@ -123,7 +124,8 @@ public class RoomTemplates : MonoBehaviour
                     newRand = Random.Range(-1, 2);
                     int temp = Random.Range(-1, 2);
                     Vector3 newPosition = new Vector3(position.x + newRand, position.y + temp, 0);
-                    return Instantiate(enemy, newPosition, Quaternion.identity);
+                    int enemyRand = Random.Range(0, enemyTypes.Length);
+                    return Instantiate(enemyTypes[enemyRand], newPosition, Quaternion.identity);
                 }
                 return null;
             }

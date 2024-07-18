@@ -26,6 +26,8 @@ public class ChainBotController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
+
         animator = GetComponent<Animator>();
         enemyMovement = GetComponent<EnemyMovement>();
         spriteRenderer = GetComponent<SpriteRenderer>();    
