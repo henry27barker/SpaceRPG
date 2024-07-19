@@ -45,8 +45,8 @@ public class CrateUI : MonoBehaviour
     }
 
     void OnDisable(){
-        EventSystem.current.SetSelectedGameObject(null);
-        playerMovement.playerControls.SwitchCurrentActionMap("Player");
+        //EventSystem.current.SetSelectedGameObject(null);
+        //playerMovement.playerControls.SwitchCurrentActionMap("Player");
     }
 
     void Update(){

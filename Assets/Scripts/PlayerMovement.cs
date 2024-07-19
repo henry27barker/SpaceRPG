@@ -77,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
         Cursor.visible = false;
         skillTreeUI = GameObject.FindWithTag("SkillTree");
         inventoryUI = GameObject.FindWithTag("InventoryUI");
+        inventoryFirst = inventoryUI.transform.Find("Inventory/ItemsParent/InventorySlot/ItemButton").gameObject;
         InteractablePrompt = GameObject.FindWithTag("InteractablePrompt");
         interactMenu = GameObject.FindObjectOfType<InteractMenu>().gameObject;
         shootingPointOffset = shootingPoint.localPosition.y;

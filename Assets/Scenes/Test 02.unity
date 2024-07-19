@@ -3758,7 +3758,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3546195814298739331, guid: 134710e20b2337949833f1c7bbfeb442, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5137166700263515561, guid: 134710e20b2337949833f1c7bbfeb442, type: 3}
       propertyPath: player
@@ -13769,7 +13769,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7470284921360955886, guid: f2ea0877bab777f4793c41240faaa082, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7579094140380606325, guid: f2ea0877bab777f4793c41240faaa082, type: 3}
       propertyPath: m_Enabled
@@ -22247,6 +22247,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CHAIN Bot Parent (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 108750251153743386, guid: d63d1ac9515fb3f4cb4327b5cc50e743, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2648942824676303358, guid: d63d1ac9515fb3f4cb4327b5cc50e743, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.55
@@ -22487,7 +22491,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3546195814298739331, guid: 134710e20b2337949833f1c7bbfeb442, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5137166700263515561, guid: 134710e20b2337949833f1c7bbfeb442, type: 3}
       propertyPath: player
@@ -26905,6 +26909,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CHAIN Bot Parent
       objectReference: {fileID: 0}
+    - target: {fileID: 108750251153743386, guid: d63d1ac9515fb3f4cb4327b5cc50e743, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2648942824676303358, guid: d63d1ac9515fb3f4cb4327b5cc50e743, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.55
@@ -29846,7 +29854,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8947813847384248774, guid: 894bd74b72785d044aadf4281a9f71a4, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
