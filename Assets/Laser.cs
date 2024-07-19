@@ -9,11 +9,11 @@ using UnityEngine.AI;
 
 public class Laser : MonoBehaviour
 {
-    private bool up, down, flag;
-    private float count = 0;
+    private bool up, down, flag, startDestroy;
+    private float count = 0, count2 = 0, count3 = 0;
     private float activeHeight;
     private SpriteRenderer spriteRenderer;
-    public Sprite activeSprite;
+    public Sprite activeSprite, inactiveSprite;
     public Material emissiveMaterial;
 
     public float timer;
@@ -76,7 +76,29 @@ public class Laser : MonoBehaviour
             {
                 count += Time.deltaTime;
             }
+        } else if (!startDestroy)
+        {
+            if (count2 > timer)
+            {
+                emissiveMaterial.SetColor("_Color", new UnityEngine.Color(43, 0, 0,100));
+                activeHeight = 0.25f;
+                startDestroy = true;
+            }
+            else
+            {
+                count2 += Time.deltaTime;
+            }
+        } else
+        {
+            if (count3 > timer)
+            {
+                Destroy(gameObject);
+            } else
+            {
+                count3 += Time.deltaTime;
+            }
         }
+
 
 
     }
