@@ -40,7 +40,7 @@ public class Projectile : MonoBehaviour
         {
             col.gameObject.GetComponent<MissileUp>().Explode();
         }
-        if(col.gameObject.tag == "Money"){
+        if(col.gameObject.tag == "Money" || col.gameObject.tag == "Obstacle"){
 
         }
         else{

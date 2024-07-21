@@ -11,6 +11,8 @@ public class LaserController : MonoBehaviour
     public int duration;
 
     private float counter = 0;
+    private bool right;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,12 +24,19 @@ public class LaserController : MonoBehaviour
     {
         if (counter > duration) 
         {
-            float temp = 0;
+            float temp = 0; 
+            float temp2 = transform.position.x;
+            if(right)
+                temp2 *= -1;
             for(int i = 0; i < 5; i++)
             {
-                Instantiate(laserPrefab, new Vector3(transform.position.x, transform.position.y - temp, transform.position.z), transform.rotation);
+                Instantiate(laserPrefab, new Vector3(temp2, transform.position.y - temp, transform.position.z), transform.rotation);
                 temp++;
             }
+            if (right)
+                right = false;
+            else 
+                right = true;
             counter = 0;
         } else
         {

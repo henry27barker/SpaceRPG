@@ -50,6 +50,7 @@ public class TITANBotController : MonoBehaviour
     private int count2 = 0;
     private float chillTime = 2;
     private float chillCount = 3;
+    private int projectileOffset = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -77,28 +78,7 @@ public class TITANBotController : MonoBehaviour
         claw.GetComponent<SpriteRenderer>().material.SetColor("_FlashColor", enemyMovement.spriteRenderer.material.GetColor("_FlashColor"));
 
         //HealthBar
-        if (enemyMovement.health < (0.3 * maxHealth) && !phase3)
-        {
-            animator.SetTrigger("Low"); 
-            mainAnimator.SetTrigger("Low");
-            rate *= 0.75f;
-            shootRate *= 0.5f;
-            shots += 2;
-            chillTime = 3;
-            count2 = 0;
-            chillCount = 30;
-            phase3 = true;
-        } else if (enemyMovement.health < (0.6 * maxHealth) && !phase2)
-        {
-            animator.SetTrigger("Mid");
-            rate *= 0.75f;
-            shootRate *= 0.5f;
-            shots += 2;
-            chillTime = 2;
-            count2 = 0;
-            chillCount = 20;
-            phase2 = true;
-        } else if (enemyMovement.health < 0 && !death)
+        if (enemyMovement.health < 0 && !death)
         {
             mainAnimator.SetTrigger("Death");
             health.SetActive(false);
@@ -112,6 +92,35 @@ public class TITANBotController : MonoBehaviour
             Instantiate(explosion, deathExplosionPoint5.position, transform.rotation);
             Instantiate(explosion, deathExplosionPoint6.position, transform.rotation);
             powerDown.Play();
+        }
+        else if (enemyMovement.health < (0.3 * maxHealth) && !phase3)
+        {
+            animator.SetTrigger("Low");
+            mainAnimator.SetTrigger("Low");
+            rate *= 0.75f;
+            shootRate *= 0.5f;
+            shots += 2;
+            chillTime = 3;
+            count2 = 0;
+            count = 0;
+            chillCount = 30;
+            clawShootCounter = 10;
+            chill = false;
+            phase3 = true;
+        }
+        else if (enemyMovement.health < (0.6 * maxHealth) && !phase2)
+        {
+            animator.SetTrigger("Mid");
+            rate *= 0.75f;
+            shootRate *= 0.5f;
+            shots += 2;
+            chillTime = 2;
+            count2 = 0;
+            count = 0;
+            chillCount = 20;
+            clawShootCounter = 10;
+            chill = false;
+            phase2 = true;
         }
 
         if (!death)
@@ -141,51 +150,55 @@ public class TITANBotController : MonoBehaviour
             }
 
             //Claw Weapon Logic
-            if (phase2 && !chill)
+            if ((phase2 || phase3) && !chill)
             {
                 if (clawShootCounter > 0.1)
                 {
                     switch (count)
                     {
                         case 0:
-                            Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, 0));
+                            Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, 0 + projectileOffset));
                             count++;
                             break;
                         case 1:
-                            Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, -20));
+                            Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, -20 + projectileOffset));
                             count++;
                             break;
                         case 2:
-                            Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, -40));
+                            Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, -40 + projectileOffset));
                             count++;
                             break;
                         case 3:
-                            Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, -60));
+                            Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, -60 + projectileOffset));
                             count++;
                             break;
                         case 4:
-                            Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, -80));
+                            Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, -80 + projectileOffset));
                             count++;
                             break;
                         case 5:
-                            Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, -100));
+                            Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, -100 + projectileOffset));
                             count++;
                             break;
                         case 6:
-                            Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, -120));
+                            Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, -120 + projectileOffset));
                             count++;
                             break;
                         case 7:
-                            Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, -140));
+                            Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, -140 + projectileOffset));
                             count++;
                             break;
                         case 8:
-                            Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, -160));
+                            Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, -160 + projectileOffset));
                             count++;
                             break;
                         default:
-                            Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, -180));
+                            Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, -180 + projectileOffset));
                             count = 0;
+                            if (projectileOffset == 0)
+                                projectileOffset = 10;
+                            else
+                                projectileOffset = 0;
                             break;
                     }
                     projectileLaunch.Play();

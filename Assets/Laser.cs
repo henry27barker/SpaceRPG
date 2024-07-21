@@ -80,8 +80,9 @@ public class Laser : MonoBehaviour
         {
             if (count2 > timer)
             {
-                emissiveMaterial.SetColor("_Color", new UnityEngine.Color(43, 0, 0,100));
+                emissiveMaterial.SetColor("_Color", new UnityEngine.Color(43, 0, 0) * 0);
                 activeHeight = 0.25f;
+                spriteRenderer.sprite = inactiveSprite;
                 startDestroy = true;
             }
             else
@@ -95,6 +96,8 @@ public class Laser : MonoBehaviour
                 Destroy(gameObject);
             } else
             {
+                if (spriteRenderer.color.a > 0) ;
+                spriteRenderer.color = new UnityEngine.Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, spriteRenderer.color.a - 1);
                 count3 += Time.deltaTime;
             }
         }
