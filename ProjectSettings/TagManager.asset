@@ -16,6 +16,8 @@ TagManager:
   - Obstacle
   - Missile
   - InteractablePrompt
+  - DeathScreen
+  - GlobalVolume
   layers:
   - Default
   - TransparentFX

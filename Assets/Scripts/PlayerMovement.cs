@@ -95,6 +95,7 @@ public class PlayerMovement : MonoBehaviour
         //playerControls.Disable();
         playerControls.actions["Move"].performed -= ctx => moveInputValue = ctx.ReadValue<Vector2>();
         playerControls.actions["Move"].canceled -= ctx => moveInputValue = Vector2.zero;
+        playerControls.SwitchCurrentActionMap("UI");
     }
 
     void Start()
