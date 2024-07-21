@@ -18,6 +18,8 @@ public class RoomTemplates : MonoBehaviour
     public GameObject crate;
     public GameObject enemy;
 
+    public GameObject door;
+
     public Sprite window;
 
     public int flickerChance = 10;
@@ -48,6 +50,9 @@ public class RoomTemplates : MonoBehaviour
     private GameObject lowestFloor;
     private GameObject destroyPossibleSpawn;
 
+    private Vector3 highestY = new Vector3(0, -99999, 0);
+    private GameObject highestWall;
+
     private int rand;
 
     void Awake(){
@@ -61,6 +66,8 @@ public class RoomTemplates : MonoBehaviour
         }
         player.transform.position = lowestFloor.transform.position;
         MakeWalls();
+        Instantiate(door, highestY, Quaternion.identity);
+        Destroy(highestWall);
         AstarPath.active.Scan();
     }
 
@@ -669,6 +676,10 @@ public class RoomTemplates : MonoBehaviour
                                     int rowAdjustment = (j - rowHeight / 2) * 4;
                                     Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
                                     GameObject tempWallPiece = Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                                    if(newPosition.y > highestY.y){
+                                        highestY = newPosition;
+                                        highestWall = tempWallPiece;
+                                    }
                                     int windowRand = Random.Range(1, 101);
                                     if(windowRand <= windowChance){
                                         tempWallPiece.transform.Find("BlueWalls2_16").gameObject.GetComponent<SpriteRenderer>().sprite = window;
@@ -1073,7 +1084,15 @@ public class RoomTemplates : MonoBehaviour
                         int columnAdjustment = (i - columnHeight / 2) * 4;
                         int rowAdjustment = (rowHeight - 1 - rowHeight / 2) * 4;
                         Vector3 newPosition = new Vector3(transform.position.x + columnAdjustment, transform.position.y + rowAdjustment, 0);
-                        Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                        GameObject tempWallPiece = Instantiate(tempGameObject, newPosition, Quaternion.identity);
+                        if(newPosition.y > highestY.y){
+                            highestY = newPosition;
+                            highestWall = tempWallPiece;
+                        }
+                        int windowRand = Random.Range(1, 101);
+                        if(windowRand <= windowChance){
+                            tempWallPiece.transform.Find("BlueWalls2_16").gameObject.GetComponent<SpriteRenderer>().sprite = window;
+                        }
                         break;
                     }
                 }

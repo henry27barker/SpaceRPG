@@ -100,6 +100,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        //DontDestroyOnLoad(gameObject);
         rb2d = GetComponent<Rigidbody2D> ();
         spriteRenderer = GetComponent<SpriteRenderer>();
         health = 100;
