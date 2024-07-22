@@ -256,11 +256,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1630222}
   m_CullTransparentMesh: 1
---- !u!1 &13048135 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2594695321183820805, guid: 894bd74b72785d044aadf4281a9f71a4, type: 3}
-  m_PrefabInstance: {fileID: 935133836707632266}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &14329276
 GameObject:
   m_ObjectHideFlags: 0
@@ -11600,7 +11595,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1520607f355b3e04d88298b57a586515, type: 2}
+  - {fileID: 2100000, guid: ec63239504da60f46b1fd5747295efa5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14632,19 +14627,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.13626686
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.12870014
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.7267566
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.74131274
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -28155,17 +28150,6 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
---- !u!114 &1976281494 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6131526469911016178, guid: 894bd74b72785d044aadf4281a9f71a4, type: 3}
-  m_PrefabInstance: {fileID: 935133836707632266}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9679e68a0f1144e79c664d9a11ca121, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2012925394
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29785,21 +29769,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 216475351}
     - target: {fileID: 121031282364674827, guid: 894bd74b72785d044aadf4281a9f71a4, type: 3}
-      propertyPath: rayCastPoint
-      value: 
-      objectReference: {fileID: 13048135}
-    - target: {fileID: 121031282364674827, guid: 894bd74b72785d044aadf4281a9f71a4, type: 3}
       propertyPath: playerController
       value: 
       objectReference: {fileID: 994341069}
-    - target: {fileID: 121031282364674827, guid: 894bd74b72785d044aadf4281a9f71a4, type: 3}
-      propertyPath: enemyDestinationSetter
-      value: 
-      objectReference: {fileID: 1976281494}
-    - target: {fileID: 3800780441996987747, guid: 894bd74b72785d044aadf4281a9f71a4, type: 3}
-      propertyPath: m_IncludeLayers.m_Bits
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 4545916382767798769, guid: 894bd74b72785d044aadf4281a9f71a4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.7
@@ -29851,10 +29823,6 @@ PrefabInstance:
     - target: {fileID: 8947813847384248774, guid: 894bd74b72785d044aadf4281a9f71a4, type: 3}
       propertyPath: m_Name
       value: SPDR Bot Parent
-      objectReference: {fileID: 0}
-    - target: {fileID: 8947813847384248774, guid: 894bd74b72785d044aadf4281a9f71a4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

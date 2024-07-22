@@ -31,12 +31,16 @@ public class SpdrHeadController : MonoBehaviour
 
     public float raycastOffsetMultiplier;
 
-    private float counter;
-    public float fireRate;
+    private float counter, counter2;
+    private bool reloading;
+    public float fireRate, reloadTime;
+    public int ammo;
+    private int ammoCount;
 
     // Start is called before the first frame update
     void Start()
     {
+        ammoCount = ammo;
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         player = GameObject.FindWithTag("Player");
     }
@@ -69,20 +73,44 @@ public class SpdrHeadController : MonoBehaviour
         UpdateSprite(lookRotation);
 
         if(Vector3.Distance(player.transform.position, gameObject.transform.position) <= 12){
-            Shoot();
+            Shoot(lookRotation);
         }
     }
 
-    private void Shoot()
+    private void Shoot(int look)
     {
-        if (counter > 0)
+        if (ammoCount < 1)
         {
-            counter -= Time.deltaTime;
+            reloading = true;
+            ammoCount = ammo;
+        }
+
+        if (reloading)
+        {
+            if (counter2 > reloadTime)
+            {
+                reloading = false;
+                counter2 = 0;
+            }
+            else
+            {
+                counter2 += Time.deltaTime;
+            }
         }
         else
         {
-            Instantiate(projectile, shootingPoint.position, shootingPoint.rotation);
-            counter = fireRate;
+            if (counter > fireRate)
+            {
+                //Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, look + 15));
+                Instantiate(projectile, shootingPoint.position, shootingPoint.rotation);
+                ammoCount--;
+                //Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, look - 15));
+                counter = 0;
+            }
+            else
+            {
+                counter += Time.deltaTime;
+            }
         }
         
     }

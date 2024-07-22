@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6656503838137012045}
   m_Layer: 2
   m_Name: SPDR Projectile
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56,7 +56,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: -876546973899608171, guid: 0fb22cd3730329b449203511554a4c92, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -77,8 +77,8 @@ SpriteRenderer:
   m_SortingLayerID: -106069355
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4cedd52976000c340a9da58239327467, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 37b91fd1032713c4881a2b024dd5d470, type: 3}
+  m_Color: {r: 1, g: 0.4198113, b: 0.4198113, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.649
-  m_Color: {r: 0.49803925, g: 1, b: 0.8588236, a: 1}
+  m_Color: {r: 1, g: 0.32929745, b: 0.11792451, a: 1}
   m_Intensity: 1.39
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
@@ -213,5 +213,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 25
-  speed: 10
+  speed: 5
   rb2d: {fileID: -8011421567402628524}
+  destroyObject: {fileID: 6478091831861615277, guid: 22b624f3a97d18547af481a0e93e9361, type: 3}

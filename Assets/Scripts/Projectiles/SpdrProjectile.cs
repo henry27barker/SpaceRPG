@@ -7,6 +7,7 @@ public class SpdrProjectile : MonoBehaviour
     public int damage;
     public float speed;
     public Rigidbody2D rb2d;
+    public GameObject destroyObject;
 
     private PlayerMovement playerMovement;
 
@@ -28,10 +29,16 @@ public class SpdrProjectile : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
+            Instantiate(destroyObject, transform.position, transform.rotation);
             col.gameObject.GetComponent<PlayerMovement>().decreaseHealth(damage);
+            
+            Destroy(gameObject);
         }
-        if (col.gameObject.tag != "Enemy")
+        if(col.gameObject.tag == "Enemy" || col.gameObject.tag == "Obstacle" )
+        { }
+        else
         {
+            Instantiate(destroyObject, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }
