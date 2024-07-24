@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering.Universal;
 
 public class CrateUI : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class CrateUI : MonoBehaviour
     public List<Item> possibleItems = new List<Item>();
     public Transform itemsParent;
     CrateSlot[] slots;
+    public Material emissiveMaterial;
 
     private PlayerMovement playerMovement;
 
@@ -29,6 +31,7 @@ public class CrateUI : MonoBehaviour
     }
 
     void Start(){
+        emissiveMaterial = gameObject.transform.parent.gameObject.GetComponent<SpriteRenderer>().material;
         Random.seed = System.DateTime.Now.Millisecond;
         int size = Random.Range(0, maxPossibleItems);
         for(int i = 0; i <= size; i++){
@@ -52,6 +55,12 @@ public class CrateUI : MonoBehaviour
     void Update(){
         if(inventoryUI.activeSelf == false){
             crateUI.SetActive(false);
+        }
+        if(items.Count > 0){
+            emissiveMaterial.SetColor("_Color", Color.green * 3);
+        }
+        else{
+            emissiveMaterial.SetColor("_Color", Color.red * 3);
         }
     }
     
