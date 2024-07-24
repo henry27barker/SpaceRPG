@@ -180,6 +180,7 @@ GameObject:
   - component: {fileID: 2148027872895621646}
   - component: {fileID: 2941621928983845829}
   - component: {fileID: 6327072034147587186}
+  - component: {fileID: -3535036813707725078}
   m_Layer: 8
   m_Name: TRCBLW
   m_TagString: Untagged
@@ -316,6 +317,36 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.75, y: 3}
   m_EdgeRadius: 0
+--- !u!114 &-3535036813707725078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3177992941750728632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 0
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 000000007bafa1b219df21e59582adf9519544a2
+  m_ShapePath:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  m_ShapePathHash: 0
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -144332
+  m_LocalBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
 --- !u!1 &3617312814554907708
 GameObject:
   m_ObjectHideFlags: 0

@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 1158967303706170988}
   - component: {fileID: 2996065137367102332}
   - component: {fileID: 1209013109776206360}
+  - component: {fileID: 7745592314653263953}
   m_Layer: 8
   m_Name: BLCTRW
   m_TagString: Untagged
@@ -230,6 +231,36 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.5, y: 3}
   m_EdgeRadius: 0
+--- !u!114 &7745592314653263953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1142719066179197491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 0
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 000000007bafa1b219df21e59582adf9519544a2
+  m_ShapePath:
+  - {x: -1.75, y: -1.5, z: 0}
+  - {x: -1.75, y: 1.5, z: 0}
+  - {x: 2, y: 1.5, z: 0}
+  - {x: 2, y: -1.5, z: 0}
+  m_ShapePathHash: 0
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -7726
+  m_LocalBounds:
+    m_Center: {x: 0.125, y: 0, z: 0}
+    m_Extent: {x: 1.875, y: 1.5, z: 0}
 --- !u!1 &1257856642235009861
 GameObject:
   m_ObjectHideFlags: 0
