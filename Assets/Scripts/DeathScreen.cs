@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class DeathScreen : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class DeathScreen : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         deathScreen = GameObject.FindWithTag("DeathScreen");
         globalVolume = GameObject.FindWithTag("GlobalVolume");
+        deathScreenFirst = deathScreen.transform.Find("DeathScreenPanel/DeathScreenBackgroundPanel/MainMenuPanel").gameObject;
     }
 
     // Start is called before the first frame update
@@ -26,7 +28,7 @@ public class DeathScreen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(player.activeSelf == false){
+        if(player.GetComponent<PlayerMovement>().health <= 0){
             Time.timeScale = 0;
             deathScreen.SetActive(true);
             EventSystem.current.SetSelectedGameObject(null);
@@ -35,11 +37,11 @@ public class DeathScreen : MonoBehaviour
         }
     }
 
-    void MainMenu(){
-
+    public void MainMenu(){
+        SceneManager.LoadScene(0);
     }
 
-    void Restart(){
-
+    public void Restart(){
+        SceneManager.LoadScene(1);
     }
 }

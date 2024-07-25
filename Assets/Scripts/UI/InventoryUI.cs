@@ -4,6 +4,8 @@ using TMPro;
 
 public class InventoryUI : MonoBehaviour
 {
+    public static InventoryUI inventoryInstance;
+
     public PlayerMovement playerMovement;
 
     public Inventory inventory;
@@ -17,6 +19,15 @@ public class InventoryUI : MonoBehaviour
     public TMP_Text moneyText;
 
     void Awake(){
+        if (inventoryInstance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        inventoryInstance = this;
+        DontDestroyOnLoad(gameObject);
+
         playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
         moneyText = GameObject.FindWithTag("MoneyText").GetComponent<TMP_Text>();
     }

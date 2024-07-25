@@ -11,10 +11,12 @@ public class Inventory : MonoBehaviour
 
     void Awake(){
         if(instance != null){
+            Destroy(gameObject);
             Debug.LogWarning("More than one instance of Inventory found!");
             return;
         }
         instance = this;
+        DontDestroyOnLoad(gameObject);
         player = GameObject.FindWithTag("Player");
     }
 

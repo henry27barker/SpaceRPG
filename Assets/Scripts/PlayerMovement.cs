@@ -7,6 +7,8 @@ using UnityEngine.Rendering.Universal;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement playerInstance;
+
     //Ability Specifications
     public float speed;
     public int maxHealth;
@@ -73,6 +75,15 @@ public class PlayerMovement : MonoBehaviour
     
     private void Awake()
     {   
+        if (playerInstance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        playerInstance = this;
+        DontDestroyOnLoad(gameObject);
+
         playerControls = gameObject.GetComponent<PlayerInput>();
         Cursor.visible = false;
         skillTreeUI = GameObject.FindWithTag("SkillTree");
@@ -95,7 +106,6 @@ public class PlayerMovement : MonoBehaviour
         //playerControls.Disable();
         playerControls.actions["Move"].performed -= ctx => moveInputValue = ctx.ReadValue<Vector2>();
         playerControls.actions["Move"].canceled -= ctx => moveInputValue = Vector2.zero;
-        playerControls.SwitchCurrentActionMap("UI");
     }
 
     void Start()
@@ -111,6 +121,10 @@ public class PlayerMovement : MonoBehaviour
  
     void Update()
     {
+        if(health <= 0){
+            playerControls.SwitchCurrentActionMap("UI");
+            return;
+        }
         if(inventoryUI.activeSelf == true || skillTreeUI.activeSelf == true || shopUI != null || codeUI != null){
             Time.timeScale = 0;
             return;
@@ -349,17 +363,49 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateLookRotation()
     {
-        float angleRadians = 0;
-        // GAMEPAD
-        if (playerControls.currentControlScheme == "Gamepad")// && (Gamepad.current.leftStick.ReadValue() != Vector2.zero || Gamepad.current.rightStick.ReadValue() != Vector2.zero))
-        {
-            // Remove Crosshair
-            mouseCursor.SetActive(false);
-            // DEADZONE
-            if (Mathf.Abs(lookInputValue[0]) > rightStickDeadZone || Mathf.Abs(lookInputValue[1]) > rightStickDeadZone)
+        if(health > 0){
+            float angleRadians = 0;
+            // GAMEPAD
+            if (playerControls.currentControlScheme == "Gamepad")// && (Gamepad.current.leftStick.ReadValue() != Vector2.zero || Gamepad.current.rightStick.ReadValue() != Vector2.zero))
             {
+                // Remove Crosshair
+                mouseCursor.SetActive(false);
+                // DEADZONE
+                if (Mathf.Abs(lookInputValue[0]) > rightStickDeadZone || Mathf.Abs(lookInputValue[1]) > rightStickDeadZone)
+                {
+                    // Calculate the angle in radians
+                    angleRadians = Mathf.Atan2(lookInputValue[1], lookInputValue[0]);
+                    // Convert radians to degrees
+                    float angleDegrees = angleRadians * Mathf.Rad2Deg;
+
+                    // Convert negative angles to positive equivalent
+                    if (angleDegrees < 0)
+                    {
+                        angleDegrees += 360f;
+                    }
+                    lookRotation = Mathf.RoundToInt(angleDegrees);
+                    weapon.UpdateRotation(lookRotation);
+                }
+            }
+            // MOUSE
+            
+            else
+            {
+                //Add Crosshair
+                mouseCursor.SetActive(true);
+                // Find mouse position
+                Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                mouseWorldPosition.z = 0f;
+                mouseCursor.transform.position = mouseWorldPosition;
+
+                // Find difference in player and mouse position
+                float deltaX = mouseWorldPosition.x - transform.position.x;
+                float deltaY = mouseWorldPosition.y - transform.position.y;
+
+
                 // Calculate the angle in radians
-                angleRadians = Mathf.Atan2(lookInputValue[1], lookInputValue[0]);
+                angleRadians = Mathf.Atan2(deltaY, deltaX);
+
                 // Convert radians to degrees
                 float angleDegrees = angleRadians * Mathf.Rad2Deg;
 
@@ -368,43 +414,12 @@ public class PlayerMovement : MonoBehaviour
                 {
                     angleDegrees += 360f;
                 }
+            
                 lookRotation = Mathf.RoundToInt(angleDegrees);
                 weapon.UpdateRotation(lookRotation);
             }
+        
         }
-        // MOUSE
-        
-        else
-        {
-            //Add Crosshair
-            mouseCursor.SetActive(true);
-            // Find mouse position
-            Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mouseWorldPosition.z = 0f;
-            mouseCursor.transform.position = mouseWorldPosition;
-
-            // Find difference in player and mouse position
-            float deltaX = mouseWorldPosition.x - transform.position.x;
-            float deltaY = mouseWorldPosition.y - transform.position.y;
-
-
-            // Calculate the angle in radians
-            angleRadians = Mathf.Atan2(deltaY, deltaX);
-
-            // Convert radians to degrees
-            float angleDegrees = angleRadians * Mathf.Rad2Deg;
-
-            // Convert negative angles to positive equivalent
-            if (angleDegrees < 0)
-            {
-                angleDegrees += 360f;
-            }
-        
-            lookRotation = Mathf.RoundToInt(angleDegrees);
-            weapon.UpdateRotation(lookRotation);
-        }
-        
-
 
     }
 

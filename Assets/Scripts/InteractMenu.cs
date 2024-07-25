@@ -5,9 +5,22 @@ using UnityEngine.EventSystems;
 
 public class InteractMenu : MonoBehaviour
 {
+    public static InteractMenu interactMenuInstance;
+
     public GameObject useButton;
     private GameObject previousSelection;
     private InventorySlot inventorySlot;
+
+    void Awake(){
+        if (interactMenuInstance != null)
+        {
+            Destroy(gameObject.transform.parent.gameObject);
+            return;
+        }
+
+        interactMenuInstance = this;
+        DontDestroyOnLoad(gameObject.transform.parent.gameObject);
+    }
 
     // Start is called before the first frame update
     void Start()
