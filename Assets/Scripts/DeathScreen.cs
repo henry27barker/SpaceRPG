@@ -10,12 +10,20 @@ public class DeathScreen : MonoBehaviour
     public GameObject deathScreen;
     public GameObject deathScreenFirst;
     public GameObject globalVolume;
+    private GameObject skillTree;
+    private GameObject interactMenu;
+    private GameObject interactablePrompt;
+    private GameObject inventoryUI;
 
     void Awake(){
         player = GameObject.FindWithTag("Player");
         deathScreen = GameObject.FindWithTag("DeathScreen");
         globalVolume = GameObject.FindWithTag("GlobalVolume");
         deathScreenFirst = deathScreen.transform.Find("DeathScreenPanel/DeathScreenBackgroundPanel/MainMenuPanel").gameObject;
+        skillTree = GameObject.FindWithTag("SkillTree");
+        interactMenu = FindObjectOfType<InteractMenu>().gameObject.transform.parent.gameObject;
+        interactablePrompt = GameObject.FindWithTag("InteractablePrompt");
+        inventoryUI = GameObject.FindWithTag("InventoryUI");
     }
 
     // Start is called before the first frame update
@@ -38,10 +46,26 @@ public class DeathScreen : MonoBehaviour
     }
 
     public void MainMenu(){
+        Destroy(player);
+        Destroy(deathScreen);
+        Destroy(globalVolume);
+        Destroy(skillTree);
+        Destroy(interactMenu);
+        Destroy(interactablePrompt);
+        Destroy(inventoryUI);
         SceneManager.LoadScene(0);
+        Destroy(gameObject);
     }
 
     public void Restart(){
+        Destroy(player);
+        Destroy(deathScreen);
+        Destroy(globalVolume);
+        Destroy(skillTree);
+        Destroy(interactMenu);
+        Destroy(interactablePrompt);
+        Destroy(inventoryUI);
         SceneManager.LoadScene(1);
+        Destroy(gameObject);
     }
 }
