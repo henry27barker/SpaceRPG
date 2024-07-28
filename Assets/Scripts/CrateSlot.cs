@@ -32,9 +32,9 @@ public class CrateSlot : MonoBehaviour
     }
 
     public void UseItem(){
-        if(item != null){
+        if(item != null && Inventory.instance.items.Count < Inventory.instance.space){
             crateUI.TakeItem(item);
+            crateUI.Remove(item);
         }
-        crateUI.Remove(item);
     }
 }

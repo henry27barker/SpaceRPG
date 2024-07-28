@@ -8,9 +8,15 @@ public class Inventory : MonoBehaviour
 
     public static Inventory instance;
     private GameObject player;
+    public int rowIncrementer = 3;
+    public int startingRowIncrementer = 0;
+    public int columnIncrementer = 3;
+    public int startingColumnIncrementer = 0;
 
     void Awake(){
         if(instance != null){
+            instance.startingRowIncrementer += rowIncrementer;
+            instance.startingColumnIncrementer += columnIncrementer;
             Destroy(gameObject);
             Debug.LogWarning("More than one instance of Inventory found!");
             return;

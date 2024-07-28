@@ -34,6 +34,8 @@ public class RoomTemplates : MonoBehaviour
     private bool crateSpawned = false;
 
     private GameObject player;
+
+    private Inventory incrementers;
     //public GameObject wall;
 
     //1->top
@@ -56,6 +58,9 @@ public class RoomTemplates : MonoBehaviour
     private int rand;
 
     void Awake(){
+        incrementers = GameObject.FindWithTag("GameManager").GetComponent<Inventory>();
+        columnHeight += incrementers.startingColumnIncrementer;
+        rowHeight += incrementers.startingRowIncrementer;
         lowestIndex = rowHeight / 2;
         player = GameObject.FindWithTag("Player");
         Random.InitState(System.DateTime.Now.Millisecond);
