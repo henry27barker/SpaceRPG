@@ -308,6 +308,171 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4845695906738846458, guid: 335cb7f88fe5e234c92f8ba0b26b9105, type: 3}
   m_PrefabInstance: {fileID: 130499050}
   m_PrefabAsset: {fileID: 0}
+--- !u!43 &142725464
+Mesh:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 11
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 0
+    topology: 0
+    baseVertex: 0
+    firstVertex: 0
+    vertexCount: 0
+    localAABB:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0, y: 0, z: 0}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_BonesAABB: []
+  m_VariableBoneCountWeights:
+    m_Data: 
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 1
+  m_KeepIndices: 1
+  m_IndexFormat: 0
+  m_IndexBuffer: 
+  m_VertexData:
+    serializedVersion: 3
+    m_VertexCount: 0
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 0
+    _typelessdata: 
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  m_MeshUsageFlags: 0
+  m_CookingOptions: 30
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  m_MeshMetrics[0]: 1
+  m_MeshMetrics[1]: 1
+  m_MeshOptimizationFlags: 1
+  m_StreamData:
+    serializedVersion: 2
+    offset: 0
+    size: 0
+    path: 
 --- !u!1001 &145140394
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -854,6 +1019,17 @@ MonoBehaviour:
   deathScreen: {fileID: 0}
   deathScreenFirst: {fileID: 0}
   globalVolume: {fileID: 0}
+--- !u!114 &232766431 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4703187022787160584, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
+  m_PrefabInstance: {fileID: 920683215}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c437379ce623b3447b6713426660e6d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &269537403
 GameObject:
   m_ObjectHideFlags: 0
@@ -1613,6 +1789,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 235253833349531667, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 232766431}
+    - target: {fileID: 235253833349531667, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncrementSpeed
+      objectReference: {fileID: 0}
     - target: {fileID: 239681031804168144, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1636,6 +1820,14 @@ PrefabInstance:
     - target: {fileID: 239681031804168144, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 293949365367676710, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 232766431}
+    - target: {fileID: 293949365367676710, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncrementLifeSteal
       objectReference: {fileID: 0}
     - target: {fileID: 312527999047690730, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1709,6 +1901,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1065404533721347305, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 232766431}
+    - target: {fileID: 1065404533721347305, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncrementMaxHealth
+      objectReference: {fileID: 0}
     - target: {fileID: 1321658146387310413, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1780,6 +1980,14 @@ PrefabInstance:
     - target: {fileID: 2224092810086753258, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2475819418416981165, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 232766431}
+    - target: {fileID: 2475819418416981165, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncrementDamage
       objectReference: {fileID: 0}
     - target: {fileID: 2600455097288300324, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1857,6 +2065,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2940753997918513355, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 232766431}
+    - target: {fileID: 2940753997918513355, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DecrementFireRate
+      objectReference: {fileID: 0}
     - target: {fileID: 2950292046150985255, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1881,6 +2097,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3146080448686047418, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 232766431}
+    - target: {fileID: 3146080448686047418, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncrementStompDistance
+      objectReference: {fileID: 0}
+    - target: {fileID: 4028902939610171773, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 232766431}
+    - target: {fileID: 4028902939610171773, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncrementPillAmount
+      objectReference: {fileID: 0}
     - target: {fileID: 4211792489640252842, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1904,6 +2136,30 @@ PrefabInstance:
     - target: {fileID: 4211792489640252842, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4353924327481111760, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 232766431}
+    - target: {fileID: 4353924327481111760, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncrementInventorySize
+      objectReference: {fileID: 0}
+    - target: {fileID: 4414052426066003964, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 232766431}
+    - target: {fileID: 4414052426066003964, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncrementSyringeAmount
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649698709276637608, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 232766431}
+    - target: {fileID: 4649698709276637608, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EnableTab
       objectReference: {fileID: 0}
     - target: {fileID: 4936601578238096571, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2105,6 +2361,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6397195376490587482, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 232766431}
+    - target: {fileID: 6397195376490587482, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EnableTab
+      objectReference: {fileID: 0}
     - target: {fileID: 6568987811896276848, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2129,6 +2393,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6607144263441755364, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 232766431}
+    - target: {fileID: 6607144263441755364, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncrementMedkitAmount
+      objectReference: {fileID: 0}
     - target: {fileID: 6615551756108464769, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2201,6 +2473,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7630578652687946672, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 232766431}
+    - target: {fileID: 7630578652687946672, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EnableTab
+      objectReference: {fileID: 0}
+    - target: {fileID: 8199679711871036668, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 232766431}
+    - target: {fileID: 8199679711871036668, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EnableTab
+      objectReference: {fileID: 0}
     - target: {fileID: 8240328745139248179, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2224,6 +2512,30 @@ PrefabInstance:
     - target: {fileID: 8240328745139248179, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8509767576799761447, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 232766431}
+    - target: {fileID: 8509767576799761447, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EnableTab
+      objectReference: {fileID: 0}
+    - target: {fileID: 8681003440509809815, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 232766431}
+    - target: {fileID: 8681003440509809815, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncrementStompDamage
+      objectReference: {fileID: 0}
+    - target: {fileID: 8741064606874743183, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 232766431}
+    - target: {fileID: 8741064606874743183, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IncrementAmmoCapacity
       objectReference: {fileID: 0}
     - target: {fileID: 8836380086634982013, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2250,7 +2562,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7813620584341098119, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 552c89ad5614a67458cc9dbd6f5529df, type: 3}
@@ -2321,19 +2634,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.067510545
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.010186758
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.864135
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.9779287
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4420,171 +4733,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b396a18f0fff524a9369faa83d193b1, type: 3}
---- !u!43 &1827219805
-Mesh:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  serializedVersion: 11
-  m_SubMeshes:
-  - serializedVersion: 2
-    firstByte: 0
-    indexCount: 0
-    topology: 0
-    baseVertex: 0
-    firstVertex: 0
-    vertexCount: 0
-    localAABB:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0, y: 0, z: 0}
-  m_Shapes:
-    vertices: []
-    shapes: []
-    channels: []
-    fullWeights: []
-  m_BindPose: []
-  m_BoneNameHashes: 
-  m_RootBoneNameHash: 0
-  m_BonesAABB: []
-  m_VariableBoneCountWeights:
-    m_Data: 
-  m_MeshCompression: 0
-  m_IsReadable: 1
-  m_KeepVertices: 1
-  m_KeepIndices: 1
-  m_IndexFormat: 0
-  m_IndexBuffer: 
-  m_VertexData:
-    serializedVersion: 3
-    m_VertexCount: 0
-    m_Channels:
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 3
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    m_DataSize: 0
-    _typelessdata: 
-  m_CompressedMesh:
-    m_Vertices:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UV:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Normals:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Tangents:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Weights:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_NormalSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_TangentSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_FloatColors:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_BoneIndices:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Triangles:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UVInfo: 0
-  m_LocalAABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  m_MeshUsageFlags: 0
-  m_CookingOptions: 30
-  m_BakedConvexCollisionMesh: 
-  m_BakedTriangleCollisionMesh: 
-  m_MeshMetrics[0]: 1
-  m_MeshMetrics[1]: 1
-  m_MeshOptimizationFlags: 1
-  m_StreamData:
-    serializedVersion: 2
-    offset: 0
-    size: 0
-    path: 
 --- !u!1 &1865356027
 GameObject:
   m_ObjectHideFlags: 0

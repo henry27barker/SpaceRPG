@@ -26,11 +26,11 @@ public class CrateUI : MonoBehaviour
         crateUI.SetActive(false);
         slots = itemsParent.GetComponentsInChildren<CrateSlot>();
         UpdateUI();
-        inventoryUI = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().inventoryUI;
-        playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
     }
 
     void Start(){
+        inventoryUI = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().inventoryUI;
+        playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
         emissiveMaterial = gameObject.transform.parent.gameObject.GetComponent<SpriteRenderer>().material;
         Random.seed = System.DateTime.Now.Millisecond;
         int size = Random.Range(0, maxPossibleItems);
