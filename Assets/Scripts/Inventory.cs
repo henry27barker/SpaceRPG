@@ -12,6 +12,7 @@ public class Inventory : MonoBehaviour
     public int startingRowIncrementer = 0;
     public int columnIncrementer = 3;
     public int startingColumnIncrementer = 0;
+    public int level = 1;
 
     void Awake(){
         if(instance != null){

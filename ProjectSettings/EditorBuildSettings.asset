@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Test 01.unity
     guid: 5c672dc3aa0817940b5221077b503f44
   - enabled: 1
+    path: Assets/Scenes/RestRoom.unity
+    guid: 187f3704c5772114ea2c86f73d053c8e
+  - enabled: 1
     path: Assets/Scenes/Test 02.unity
     guid: 1dd44c6d3f0dfe44aa7a54e74c77be2c
   - enabled: 1

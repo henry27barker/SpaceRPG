@@ -9,8 +9,8 @@ public class UpgradeStation : Interactable
     private SkillTree skillTree;
     private PlayerMovement playerMovement;
 
-    void Awake(){
-        skillTreeUI = GameObject.FindWithTag("SkillTree");
+    void Start(){
+        skillTreeUI = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().skillTreeUI;
         skillTree = GameObject.FindWithTag("Player").GetComponent<SkillTree>();
         playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
     }
