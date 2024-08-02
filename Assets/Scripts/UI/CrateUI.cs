@@ -42,6 +42,7 @@ public class CrateUI : MonoBehaviour
     }
 
     void OnEnable(){
+        playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
         EventSystem.current.SetSelectedGameObject(null);
         playerMovement.playerControls.SwitchCurrentActionMap("UI");
         EventSystem.current.SetSelectedGameObject(crateFirst);

@@ -18,6 +18,7 @@ public class EnemyMovement : MonoBehaviour
     public AIDestinationSetter aiDestinationSetter;
     private GameObject player;
     public float seeRadius = 10f;
+    public GameObject moneyItem;
  
     void Start()
     {
@@ -50,6 +51,10 @@ public class EnemyMovement : MonoBehaviour
         else{
             spriteRenderer.material.SetFloat("_FlashAmount", 0);
         }
+    }
+
+    void OnDestroy(){
+        Instantiate(moneyItem, gameObject.transform.position, Quaternion.identity);
     }
         
 
