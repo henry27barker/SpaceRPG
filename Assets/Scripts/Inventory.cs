@@ -13,6 +13,7 @@ public class Inventory : MonoBehaviour
     public int columnIncrementer = 3;
     public int startingColumnIncrementer = 0;
     public int level = 1;
+    public int bossLevel = 26;
 
     void Awake(){
         if(instance != null){
