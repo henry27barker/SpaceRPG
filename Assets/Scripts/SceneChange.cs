@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneChange : MonoBehaviour
 {
@@ -31,17 +32,20 @@ public class SceneChange : MonoBehaviour
             return;
         Debug.Log("Went through door");
         if(gameManager.level == gameManager.bossLevel){
+            //SceneManager.LoadScene(3);
             player.transform.position = new Vector3(0, -1.5f, 0);
-            SceneManager.LoadScene(3);
+            gameManager.LoadSceneIndex(3);
         }
         else if(gameManager.level % restRoomInterval == 0){
             gameManager.level++;
+            //SceneManager.LoadScene(2);
             player.transform.position = new Vector3(4, -1.5f, 0);
-            SceneManager.LoadScene(2);
+            gameManager.LoadSceneIndex(2);
         }
         else{
             gameManager.level++;
-            SceneManager.LoadScene(1);
+            //SceneManager.LoadScene(1);
+            gameManager.LoadSceneIndex(1);
         }
         //SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }

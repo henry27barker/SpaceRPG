@@ -350,7 +350,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5033156371534922067}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 
@@ -533,6 +533,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 24e5d112042166349b6a22013a812011, type: 2}
   - {fileID: 11400000, guid: 82e1c6928035aa140812a3b171d538ff, type: 2}
   itemsParent: {fileID: 625479816483529887}
+  emissiveMaterial: {fileID: 0}
   crateFirst: {fileID: 4088797208741616184}
   maxPossibleItems: 5
   space: 10

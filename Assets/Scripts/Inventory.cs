@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Inventory : MonoBehaviour
 {
@@ -14,6 +16,8 @@ public class Inventory : MonoBehaviour
     public int startingColumnIncrementer = 0;
     public int level = 1;
     public int bossLevel = 26;
+    private Slider slider;
+    private GameObject loadingScreen;
 
     void Awake(){
         if(instance != null){
@@ -36,6 +40,12 @@ public class Inventory : MonoBehaviour
     public OnItemChanged onItemChangedCallback;
 
     public List<Item> items = new List<Item>();
+
+    void Start(){
+        loadingScreen = gameObject.transform.Find("LoadingScreenCanvas").gameObject;
+        slider = gameObject.transform.Find("LoadingScreenCanvas/BlackPanel/LoadSlider").gameObject.GetComponent<Slider>();
+        loadingScreen.SetActive(false);
+    }
 
     public bool Add(Item item){
         if(!item.isDefaultItem){
@@ -61,5 +71,19 @@ public class Inventory : MonoBehaviour
 
         if(onItemChangedCallback != null)
             onItemChangedCallback.Invoke();
+    }
+
+    public void LoadSceneIndex(int index){
+        StartCoroutine(LoadSceneAsynchronously(index));
+        loadingScreen.SetActive(false);
+    }
+
+    IEnumerator LoadSceneAsynchronously(int levelIndex){
+        AsyncOperation operation = SceneManager.LoadSceneAsync(levelIndex);
+        loadingScreen.SetActive(true);
+        while(!operation.isDone){
+            slider.value = operation.progress;
+            yield return null;
+        }
     }
 }
