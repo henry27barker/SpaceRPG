@@ -39,7 +39,6 @@ public class PlayerShoot : MonoBehaviour
         inventoryUI = GameObject.FindWithTag("InventoryUI");
         skillTreeUI = GameObject.FindWithTag("SkillTree");
         inventory = GameObject.FindWithTag("GameManager").GetComponent<Inventory>();
-        shootSource.Play();
     }
 
     void Start(){

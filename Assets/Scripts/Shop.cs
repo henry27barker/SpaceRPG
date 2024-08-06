@@ -6,6 +6,8 @@ public class Shop : Interactable
 {
     public GameObject shopUI;
 
+    public AudioSource shopSound;
+
     void Awake(){
         shopUI = gameObject.transform.Find("ShopCanvas").gameObject;
     }
@@ -22,6 +24,7 @@ public class Shop : Interactable
 
         shopUI.GetComponent<ShopUI>().ActivateShop();
 
+        //shopSound.Play();
         //Implement CrateUI
     }
 }

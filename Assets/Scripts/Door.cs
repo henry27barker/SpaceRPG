@@ -11,6 +11,8 @@ public class Door : Interactable
     public GameObject openCollisionBox;
     private BoxCollider2D closedCollisionBox;
 
+    public AudioSource doorOpenSound;
+
     public override void Interact()
     {
         base.Interact();
@@ -35,6 +37,6 @@ public class Door : Interactable
         spriteRenderer.sprite = doorOpen;
         closedCollisionBox.enabled = false;
         openCollisionBox.SetActive(true);
-        Debug.Log("Open Door");
+        doorOpenSound.Play();
     }
 }

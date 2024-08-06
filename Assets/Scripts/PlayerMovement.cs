@@ -53,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject skillTreeFirst;
     private GameObject interactMenu;
     public GameObject codeUI = null;
-    public AudioSource footstepSource;
+    public AudioSource footstepSource, moneySound;
     public AudioSource stompSource;
     public Transform shootingPoint;
 
@@ -348,7 +348,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb2d.velocity = new Vector2(moveInputValue[0], moveInputValue[1]).normalized * new Vector2(speed, speed);
 
-        if(footstepCounter > Mathf.Abs(rb2d.velocity.magnitude / 10))
+        if(footstepCounter > Mathf.Abs(rb2d.velocity.magnitude / 10) && rb2d.velocity.magnitude != 0)
         {
             footstepSource.volume = Random.Range(0.5f, 0.75f);
             footstepSource.pitch = Random.Range(0.85f, 1f);
@@ -571,6 +571,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void AddMoney(int amount){
         money += amount;
+        //moneySound.Play();
     }
 
     public void StartPill(int healthAmount, int time){
