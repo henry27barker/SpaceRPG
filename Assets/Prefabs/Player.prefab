@@ -410,6 +410,8 @@ GameObject:
   - component: {fileID: 5002328440788314502}
   - component: {fileID: 6005847082765365249}
   - component: {fileID: 7836856683707172582}
+  - component: {fileID: 6812074850637190295}
+  - component: {fileID: 6059977648693060455}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -524,7 +526,11 @@ MonoBehaviour:
   skillTreeFirst: {fileID: 0}
   codeUI: {fileID: 0}
   footstepSource: {fileID: 5002328440788314502}
+  moneySound: {fileID: 6812074850637190295}
   stompSource: {fileID: 7836856683707172582}
+  openInventorySound: {fileID: 0}
+  closeInvetorySound: {fileID: 0}
+  navigationSound: {fileID: 0}
   shootingPoint: {fileID: 2055562610798257817}
   healthBar: {fileID: 5081715507185458052}
   weapon: {fileID: 8496650875515938418}
@@ -701,7 +707,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c437379ce623b3447b6713426660e6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items: []
   upgradeTokens: 0
   maxHealth: 100
   minHealth: 100
@@ -1027,6 +1032,110 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!82 &6812074850637190295
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6377114168526726802}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: d4c26ee295aae3e4ea1bbd8abd9db841, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!81 &6059977648693060455
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6377114168526726802}
+  m_Enabled: 1
 --- !u!1 &7220982650035495712
 GameObject:
   m_ObjectHideFlags: 0
@@ -1190,7 +1299,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4049244595029969365}
   - component: {fileID: 8137583830104501126}
-  - component: {fileID: 5018407100954443755}
   - component: {fileID: 7660225901296995147}
   - component: {fileID: 4647275076582870860}
   m_Layer: 3
@@ -1242,9 +1350,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: -0.017721519
-    y: 0.24278438
-    width: 0.4320675
+    x: 0.37440306
+    y: 0.023769101
+    width: 0.48901623
     height: 0.48896435
   near clip plane: 0.3
   far clip plane: 1000
@@ -1266,14 +1374,6 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &5018407100954443755
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8054702179363845669}
-  m_Enabled: 1
 --- !u!114 &7660225901296995147
 MonoBehaviour:
   m_ObjectHideFlags: 0

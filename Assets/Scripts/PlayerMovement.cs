@@ -394,9 +394,9 @@ public class PlayerMovement : MonoBehaviour
     {
         rb2d.velocity = new Vector2(moveInputValue[0], moveInputValue[1]).normalized * new Vector2(speed, speed);
 
-        if(footstepCounter > Mathf.Abs(rb2d.velocity.magnitude / 10) && rb2d.velocity.magnitude != 0)
+        if(footstepCounter > 0.3 && rb2d.velocity.magnitude != 0)// Mathf.Abs(rb2d.velocity.magnitude / 10) && rb2d.velocity.magnitude != 0)
         {
-            footstepSource.volume = Random.Range(0.5f, 0.75f);
+            footstepSource.volume = Random.Range(0.25f, 0.35f);
             footstepSource.pitch = Random.Range(0.85f, 1f);
             footstepSource.Play();
             footstepCounter = 0;

@@ -16,6 +16,7 @@ public class Locker : Interactable
     public GameObject thirdLetter;
 
     public PlayerMovement playerMovement;
+    public AudioSource confirm;
 
     public Sprite open;
 
@@ -67,6 +68,7 @@ public class Locker : Interactable
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = open;
         isOpen = true;
+        confirm.PlayOneShot(confirm.clip);
     }
 
     public string GetCode()

@@ -13,6 +13,7 @@ public class CrateUI : MonoBehaviour
     public Transform itemsParent;
     CrateSlot[] slots;
     public Material emissiveMaterial;
+    public Color green, red;
 
     private PlayerMovement playerMovement;
 
@@ -58,10 +59,10 @@ public class CrateUI : MonoBehaviour
             crateUI.SetActive(false);
         }
         if(items.Count > 0){
-            emissiveMaterial.SetColor("_Color", Color.green * 3);
+            emissiveMaterial.SetColor("_Color", green * 3);
         }
         else{
-            emissiveMaterial.SetColor("_Color", Color.red * 3);
+            emissiveMaterial.SetColor("_Color", red * 3);
         }
     }
     

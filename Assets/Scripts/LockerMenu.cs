@@ -16,6 +16,7 @@ public class LockerMenu : MonoBehaviour
     private GameObject messagePanel;
     public Locker locker;
     public PlayerMovement playerMovement;
+    public AudioSource deny;
 
     private int firstIndex = 0;
     private int secondIndex = 0;
@@ -160,6 +161,7 @@ public class LockerMenu : MonoBehaviour
         {
             messageText.text = "Incorrect Code";
             messageTimer = 3f;
+            deny.PlayOneShot(deny.clip);
         }
     }
 
