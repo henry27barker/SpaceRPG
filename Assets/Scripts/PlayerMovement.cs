@@ -55,6 +55,8 @@ public class PlayerMovement : MonoBehaviour
     public GameObject codeUI = null;
     public AudioSource footstepSource, moneySound;
     public AudioSource stompSource;
+    public AudioSource openInventorySound, closeInvetorySound;
+    public AudioSource navigationSound;
     public Transform shootingPoint;
 
     //Scripts
@@ -151,7 +153,12 @@ public class PlayerMovement : MonoBehaviour
         WhiteFlash();
     }
 
+    // private void OnNavigate(){
+    //     navigationSound.PlayOneShot(navigationSound.clip);
+    // }
+
     private void OnOpenInventory(){
+        openInventorySound.Play();
         if(interactMenu.transform.parent.gameObject.activeSelf == false && skillTreeUI.activeSelf == false && shopUI == null && codeUI == null){
             inventoryUI.SetActive(!inventoryUI.activeSelf);
             if(inventoryUI.activeSelf == true){
@@ -183,8 +190,10 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void OnCloseInventory(){
-        if(interactMenu.transform.parent.gameObject.activeSelf == false && skillTreeUI.activeSelf == false && shopUI == null && codeUI == null){
+        closeInvetorySound.Play();
+        if(skillTreeUI.activeSelf == false && shopUI == null && codeUI == null){
             inventoryUI.SetActive(!inventoryUI.activeSelf);
+            interactMenu.transform.parent.gameObject.SetActive(false);
             if(inventoryUI.activeSelf == true){
                 EventSystem.current.SetSelectedGameObject(null);
                 playerControls.SwitchCurrentActionMap("UI");
@@ -217,8 +226,42 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void OnCancel(){
-        if(interactMenu.activeSelf == true){
+        if(interactMenu.transform.parent.gameObject.activeSelf == true){
             interactMenu.transform.parent.gameObject.SetActive(false);
+        }
+        else{
+        closeInvetorySound.Play();
+        if(interactMenu.transform.parent.gameObject.activeSelf == false && skillTreeUI.activeSelf == false && shopUI == null && codeUI == null){
+            inventoryUI.SetActive(!inventoryUI.activeSelf);
+            if(inventoryUI.activeSelf == true){
+                EventSystem.current.SetSelectedGameObject(null);
+                playerControls.SwitchCurrentActionMap("UI");
+                EventSystem.current.SetSelectedGameObject(inventoryFirst);
+            }
+            else{
+                playerControls.SwitchCurrentActionMap("Player");
+                EventSystem.current.SetSelectedGameObject(null);
+            }
+        }
+        skillTreeUI.SetActive(false);
+        if(interactMenu.transform.parent.gameObject.activeSelf == false){
+            EventSystem.current.SetSelectedGameObject(null);
+            playerControls.SwitchCurrentActionMap("Player");
+        }
+        if(shopUI != null){
+            shopUI.SetActive(false);
+            shopUI = null;
+        }/*
+        if (lockerUI != null)
+        {
+            lockerUI.SetActive(false);
+            lockerUI = null;
+        }*/
+        if (codeUI != null)
+        {
+            codeUI.SetActive(false);
+            codeUI = null;
+        }
         }
     }
 

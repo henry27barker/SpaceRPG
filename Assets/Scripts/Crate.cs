@@ -8,6 +8,8 @@ public class Crate : Interactable
 
     public GameObject crateUI;
 
+    public AudioSource openSound;
+
     void Start(){
         inventoryUI = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().inventoryUI;
     }
@@ -20,6 +22,8 @@ public class Crate : Interactable
         inventoryUI.SetActive(true);
 
         crateUI.SetActive(true);
+
+        openSound.Play();
 
         //Implement CrateUI
     }

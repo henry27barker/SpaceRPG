@@ -24,7 +24,7 @@ public class Shop : Interactable
 
         shopUI.GetComponent<ShopUI>().ActivateShop();
 
-        //shopSound.Play();
+        shopSound.Play();
         //Implement CrateUI
     }
 }

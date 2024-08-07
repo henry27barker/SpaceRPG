@@ -29,13 +29,8 @@ public class SkillTree : MonoBehaviour
     private GameObject basicTab;
     private GameObject weaponTab;
     private GameObject healthTab;
-    private GameObject critTab;
-    private GameObject itemsTab;
 
     private InventoryUI inventoryUI;
-
-    public List<Item> items = new List<Item>();
-    private UpgradeInventorySlot[] slots;
 
     private float messageTimer = 0f;
 
@@ -82,7 +77,6 @@ public class SkillTree : MonoBehaviour
     void Awake(){
         inventoryUI = GameObject.FindObjectOfType<InventoryUI>();
         skillTreeUI = GameObject.FindWithTag("SkillTree");
-        slots = skillTreeUI.transform.Find("UpgradeInventory/UpgradeInventoryUI/ItemsParent").gameObject.GetComponentsInChildren<UpgradeInventorySlot>();
     }
 
     // Start is called before the first frame update
@@ -94,8 +88,6 @@ public class SkillTree : MonoBehaviour
         basicTab = skillTreeUI.transform.Find("Basic/BasicUpgrades").gameObject;
         weaponTab = skillTreeUI.transform.Find("Weapon/WeaponUpgrades").gameObject;
         healthTab = skillTreeUI.transform.Find("Health/HealthUpgrades").gameObject;
-        critTab = skillTreeUI.transform.Find("Crit/CritUpgrades").gameObject;
-        itemsTab = skillTreeUI.transform.Find("UpgradeInventory/UpgradeInventoryUI").gameObject;
         maxHealthText = skillTreeUI.transform.Find("Health/HealthUpgrades/MaxHealth/MaxHealthPanel/MaxHealthBackgroundPanel/MaxHealthTextNumber").gameObject.GetComponent<TMP_Text>();
         speedText = skillTreeUI.transform.Find("Basic/BasicUpgrades/Speed/SpeedPanel/SpeedBackgroundPanel/SpeedTextNumber").gameObject.GetComponent<TMP_Text>();
         inventorySizeText = skillTreeUI.transform.Find("Basic/BasicUpgrades/InventorySize/InventorySizePanel/InventorySizeBackgroundPanel/InventorySizeTextNumber").gameObject.GetComponent<TMP_Text>();
@@ -113,8 +105,6 @@ public class SkillTree : MonoBehaviour
         messagePanel = skillTreeUI.transform.Find("MessagePanel").gameObject;
         weaponTab.SetActive(false);
         healthTab.SetActive(false);
-        critTab.SetActive(false);
-        itemsTab.SetActive(false);
         messagePanel.SetActive(false);
         skillTreeUI.SetActive(false);
     }
@@ -158,37 +148,17 @@ public class SkillTree : MonoBehaviour
         if(tab == "Basic"){
             weaponTab.SetActive(false);
             healthTab.SetActive(false);
-            critTab.SetActive(false);
-            itemsTab.SetActive(false);
             basicTab.SetActive(true);
         }
         if(tab == "Weapon"){
             basicTab.SetActive(false);
             healthTab.SetActive(false);
-            critTab.SetActive(false);
-            itemsTab.SetActive(false);
             weaponTab.SetActive(true);
         }
         if(tab == "Health"){
             weaponTab.SetActive(false);
             basicTab.SetActive(false);
-            critTab.SetActive(false);
-            itemsTab.SetActive(false);
             healthTab.SetActive(true);
-        }
-        if(tab == "Crit"){
-            weaponTab.SetActive(false);
-            healthTab.SetActive(false);
-            basicTab.SetActive(false);
-            itemsTab.SetActive(false);
-            critTab.SetActive(true);
-        }
-        if(tab == "Items"){
-            weaponTab.SetActive(false);
-            healthTab.SetActive(false);
-            basicTab.SetActive(false);
-            critTab.SetActive(false);
-            itemsTab.SetActive(true);
         }
     }
 
@@ -202,65 +172,65 @@ public class SkillTree : MonoBehaviour
         }
     }
 
-    public void ResetUpgrades(){
-        inventoryUI.gameObject.SetActive(true);
-        if(inventoryUI.inventory.items.Count - minInventorySize <= space - items.Count){
-            int amount = inventoryUI.inventory.items.Count;
-            for(int i = minInventorySize; i < amount; i++){
-                items.Add(inventoryUI.slots[minInventorySize].item);
-                Debug.Log(items.Count);
-                slots[items.Count - 1].AddItem(inventoryUI.slots[minInventorySize].item);
-                inventoryUI.slots[minInventorySize].OnRemoveButton();
-                UpdateUI();
-                inventoryUI.UpdateUI();
-            }
-            for(int i = minInventorySize; i < inventorySize; i++){
-                inventoryUI.slots[i].gameObject.SetActive(false);
-            }
-        }
-        else{
-            messageText.text = "Upgrade station inventory too full to reset. Empty it, or your own inventory to proceed.";
-            messageTimer = 5f;
-            inventoryUI.gameObject.SetActive(false);
-            return;
-        }
-        inventoryUI.inventory.space = minInventorySize;
-        inventoryUI.gameObject.SetActive(false);
-        inventorySize = minInventorySize;
-        maxHealth = minHealth;
-        playerMovement.health = minHealth;
-        speed = minSpeed;
-        lifeSteal = minLifeSteal;
-        fireRate = maxFireRate;
-        damage = minDamage;
-        ammoCapacity = minAmmoCapacity;
-        medkitAmount = minMedkitAmount;
-        syringeAmount = minSyringeAmount;
-        pillAmount = minPillAmount;
-        stompDistance = minStompDistance;
-        stompDamage = minStompDamage;
-        upgradeTokens = totalUpgradeTokens;
-    }
+    // public void ResetUpgrades(){
+    //     inventoryUI.gameObject.SetActive(true);
+    //     if(inventoryUI.inventory.items.Count - minInventorySize <= space - items.Count){
+    //         int amount = inventoryUI.inventory.items.Count;
+    //         for(int i = minInventorySize; i < amount; i++){
+    //             items.Add(inventoryUI.slots[minInventorySize].item);
+    //             Debug.Log(items.Count);
+    //             slots[items.Count - 1].AddItem(inventoryUI.slots[minInventorySize].item);
+    //             inventoryUI.slots[minInventorySize].OnRemoveButton();
+    //             UpdateUI();
+    //             inventoryUI.UpdateUI();
+    //         }
+    //         for(int i = minInventorySize; i < inventorySize; i++){
+    //             inventoryUI.slots[i].gameObject.SetActive(false);
+    //         }
+    //     }
+    //     else{
+    //         messageText.text = "Upgrade station inventory too full to reset. Empty it, or your own inventory to proceed.";
+    //         messageTimer = 5f;
+    //         inventoryUI.gameObject.SetActive(false);
+    //         return;
+    //     }
+    //     inventoryUI.inventory.space = minInventorySize;
+    //     inventoryUI.gameObject.SetActive(false);
+    //     inventorySize = minInventorySize;
+    //     maxHealth = minHealth;
+    //     playerMovement.health = minHealth;
+    //     speed = minSpeed;
+    //     lifeSteal = minLifeSteal;
+    //     fireRate = maxFireRate;
+    //     damage = minDamage;
+    //     ammoCapacity = minAmmoCapacity;
+    //     medkitAmount = minMedkitAmount;
+    //     syringeAmount = minSyringeAmount;
+    //     pillAmount = minPillAmount;
+    //     stompDistance = minStompDistance;
+    //     stompDamage = minStompDamage;
+    //     upgradeTokens = totalUpgradeTokens;
+    // }
 
-    public void UpdateUI(){
-        for(int i = 0; i < slots.Length; i++){
-            if(i < items.Count){
-                slots[i].AddItem(items[i]);
-            }
-            else{
-                slots[i].ClearSlot();
-            }
-        }
-    }
+    // public void UpdateUI(){
+    //     for(int i = 0; i < slots.Length; i++){
+    //         if(i < items.Count){
+    //             slots[i].AddItem(items[i]);
+    //         }
+    //         else{
+    //             slots[i].ClearSlot();
+    //         }
+    //     }
+    // }
 
-    public void TakeItem(Item item){
-        Inventory.instance.Add(item);
-    }
+    // public void TakeItem(Item item){
+    //     Inventory.instance.Add(item);
+    // }
 
-    public void Remove(Item item){
-        items.Remove(item);
-        UpdateUI();
-    }
+    // public void Remove(Item item){
+    //     items.Remove(item);
+    //     UpdateUI();
+    // }
 
 
     public void IncrementMaxHealth(int incrementAmount){
