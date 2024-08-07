@@ -9,6 +9,8 @@ public class UpgradeStation : Interactable
     private SkillTree skillTree;
     private PlayerMovement playerMovement;
 
+    public AudioSource openSound;
+
     void Start(){
         skillTreeUI = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().skillTreeUI;
         skillTree = GameObject.FindWithTag("Player").GetComponent<SkillTree>();
@@ -22,6 +24,8 @@ public class UpgradeStation : Interactable
         skillTreeUI.SetActive(true);
 
         skillTree.UpdateUpgradeTokens();
+
+        openSound.Play();
 
         EventSystem.current.SetSelectedGameObject(null);
         playerMovement.playerControls.SwitchCurrentActionMap("UI");
