@@ -16,6 +16,9 @@ public class Chainsaw : MonoBehaviour
     private bool canDoDamage;
     private GameObject player;
 
+    public AudioSource idle;
+    public AudioSource rev;
+
 
     // Start is called before the first frame update
     void Start()

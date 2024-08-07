@@ -234,17 +234,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnStomp()
     {
-        Invoke("StompDamage", stompDamageWait);
-        animator.SetTrigger("Stomp");
-        animator.SetBool("isStomping", true);
+        if (!isStomping)
+        {
+            Invoke("StompDamage", stompDamageWait);
+            animator.SetTrigger("Stomp");
+            animator.SetBool("isStomping", true);
 
-        healthBar.animator.SetTrigger("Stomp");
-        hands.animator.SetTrigger("Stomp");
+            healthBar.animator.SetTrigger("Stomp");
+            hands.animator.SetTrigger("Stomp");
 
-        healthBar.animator.SetBool("isStomping", true);
-        hands.animator.SetBool("isStomping", true);
+            healthBar.animator.SetBool("isStomping", true);
+            hands.animator.SetBool("isStomping", true);
 
-        isStomping = true;
+            isStomping = true;
+        }
     }
 
     private void StompDamage()
@@ -253,7 +256,7 @@ public class PlayerMovement : MonoBehaviour
         stompSource.Play();
         Collider2D[] stompHits = Physics2D.OverlapCircleAll(transform.position, stompRadius);
 
-        foreach (Collider2D hit in stompHits) 
+        foreach (Collider2D hit in stompHits)
         {
             if (hit.gameObject.tag == "Enemy")
             {
@@ -571,7 +574,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void AddMoney(int amount){
         money += amount;
-        //moneySound.Play();
+        moneySound.PlayOneShot(moneySound.clip);
     }
 
     public void StartPill(int healthAmount, int time){

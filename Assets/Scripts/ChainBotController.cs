@@ -11,16 +11,18 @@ public class ChainBotController : MonoBehaviour
     public GameObject player;
     public SpriteRenderer spriteRenderer;
     public GameObject parent;
+    public AudioSource moveSound, footstep;
 
     public float deathAnimDuration;
     public Vector2 weaponOffsets;
-    private float counter;
+    private float counter, counter2, counter3;
 
     private Vector3 lastPosition;
     private float lastCheckTime;
     private float speedThreshold = 0.5f;
 
     private int lastFrameHealth;
+
 
 
     // Start is called before the first frame update
@@ -36,12 +38,34 @@ public class ChainBotController : MonoBehaviour
         lastCheckTime = Time.time;
 
         lastFrameHealth = enemyMovement.health;
-
+        counter3 = 0.15f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(counter2 > 0.35)
+        {
+            moveSound.pitch = Random.Range(0.85f, 1f);
+            moveSound.volume = Random.Range(0f, 0.2f);
+            moveSound.PlayOneShot(moveSound.clip);
+            counter2 = 0;
+        } else
+        {
+            counter2 += Time.deltaTime;
+        }
+        if (counter3 > 0.35)
+        {
+            footstep.pitch = Random.Range(0.85f, 1f);
+            footstep.volume = Random.Range(0.85f, 1f);
+            footstep.PlayOneShot(footstep.clip);
+            counter3 = 0;
+        }
+        else
+        {
+            counter3 += Time.deltaTime;
+        }
+
         //Weapon Flash Material Updates to match parent
         weapon.GetComponent<SpriteRenderer>().material.SetFloat("_FlashAmount", enemyMovement.spriteRenderer.material.GetFloat("_FlashAmount"));
         weapon.GetComponent<SpriteRenderer>().material.SetColor("_FlashColor", enemyMovement.spriteRenderer.material.GetColor("_FlashColor"));

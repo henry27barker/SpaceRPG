@@ -7,7 +7,6 @@ public class MoneyPickup : MonoBehaviour
     Collider2D collider;
 
     public int amount;
-    public AudioSource clip;
 
     void Awake(){
         collider = GetComponent<Collider2D>();
@@ -17,7 +16,6 @@ public class MoneyPickup : MonoBehaviour
         if(col.tag == "Player"){
             col.GetComponent<PlayerMovement>().AddMoney(amount);
             Destroy(gameObject);
-            clip.Play();
         }
     }
 }
