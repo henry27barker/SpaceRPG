@@ -14,7 +14,7 @@ public class Inventory : MonoBehaviour
     public int startingRowIncrementer = 0;
     public int columnIncrementer = 3;
     public int startingColumnIncrementer = 0;
-    public int level = 1;
+    public int level = 0;
     public int bossLevel = 26;
     private Slider slider;
     private GameObject loadingScreen;

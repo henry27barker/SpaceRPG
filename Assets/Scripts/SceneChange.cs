@@ -30,6 +30,7 @@ public class SceneChange : MonoBehaviour
     {
         if (trigger.gameObject.tag != "Player")
             return;
+        gameManager.level++;
         Debug.Log("Went through door");
         if(gameManager.level == gameManager.bossLevel){
             //SceneManager.LoadScene(3);
@@ -37,13 +38,11 @@ public class SceneChange : MonoBehaviour
             gameManager.LoadSceneIndex(3);
         }
         else if(gameManager.level % restRoomInterval == 0){
-            gameManager.level++;
             //SceneManager.LoadScene(2);
             player.transform.position = new Vector3(4, -1.5f, 0);
             gameManager.LoadSceneIndex(2);
         }
         else{
-            gameManager.level++;
             //SceneManager.LoadScene(1);
             gameManager.LoadSceneIndex(1);
         }

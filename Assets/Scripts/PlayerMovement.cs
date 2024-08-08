@@ -158,6 +158,9 @@ public class PlayerMovement : MonoBehaviour
     // }
 
     private void OnOpenInventory(){
+        if(health <= 0){
+            return;
+        }
         openInventorySound.Play();
         if(interactMenu.transform.parent.gameObject.activeSelf == false && skillTreeUI.activeSelf == false && shopUI == null && codeUI == null){
             inventoryUI.SetActive(!inventoryUI.activeSelf);
@@ -190,6 +193,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void OnCloseInventory(){
+        if(health <= 0){
+            return;
+        }
         closeInvetorySound.Play();
         if(skillTreeUI.activeSelf == false && shopUI == null && codeUI == null){
             inventoryUI.SetActive(!inventoryUI.activeSelf);
@@ -229,7 +235,7 @@ public class PlayerMovement : MonoBehaviour
         if(interactMenu.transform.parent.gameObject.activeSelf == true){
             interactMenu.transform.parent.gameObject.SetActive(false);
         }
-        else{
+        else if(health > 0){
         closeInvetorySound.Play();
         if(interactMenu.transform.parent.gameObject.activeSelf == false && skillTreeUI.activeSelf == false && shopUI == null && codeUI == null){
             inventoryUI.SetActive(!inventoryUI.activeSelf);
