@@ -63,6 +63,8 @@ public class ShopUI : MonoBehaviour
                 }
             }
         }
+        messageText.text = "No full ammo in inventory.";
+        messageTimer = 5f;
     }
 
     void OnEnable(){
@@ -102,6 +104,8 @@ public class ShopUI : MonoBehaviour
                 return;
             }
         }
+        messageText.text = "No medkit in inventory.";
+        messageTimer = 5f;
     }
 
     public void BuyMedkit(){
@@ -130,6 +134,8 @@ public class ShopUI : MonoBehaviour
                 return;
             }
         }
+        messageText.text = "No pill in inventory.";
+        messageTimer = 5f;
     }
 
     public void BuyPill(){
@@ -158,6 +164,8 @@ public class ShopUI : MonoBehaviour
                 return;
             }
         }
+        messageText.text = "No syringe in inventory.";
+        messageTimer = 5f;
     }
 
     public void BuySyringe(){
@@ -186,6 +194,8 @@ public class ShopUI : MonoBehaviour
                 return;
             }
         }
+        messageText.text = "No upgrade token in inventory.";
+        messageTimer = 5f;
     }
 
     public void BuyUpgradeToken(){
