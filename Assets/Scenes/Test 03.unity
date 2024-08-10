@@ -19031,11 +19031,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbb3332cf72fe3e44a8a5e6210d9376c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 300
+  health: 2000
   spriteRenderer: {fileID: 0}
   whiteFlashTime: 0.15
   aiDestinationSetter: {fileID: 0}
-  seeRadius: 10
+  seeRadius: 200
   moneyItem: {fileID: 0}
 --- !u!114 &1525718389
 MonoBehaviour:

@@ -5019,7 +5019,7 @@ MonoBehaviour:
   damage: 100
   playerDamage: 1
   enemyDamage: 0
-  radius: 3
+  radius: 1.5
 --- !u!82 &4102033186042209170
 AudioSource:
   m_ObjectHideFlags: 0

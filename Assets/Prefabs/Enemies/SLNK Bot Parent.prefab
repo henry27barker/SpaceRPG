@@ -193,11 +193,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7850119893267426642, guid: 7a9b1abd332856a46b45d22aa3041665, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 0.24056602
       objectReference: {fileID: 0}
     - target: {fileID: 7850119893267426642, guid: 7a9b1abd332856a46b45d22aa3041665, type: 3}
       propertyPath: m_Color.g
-      value: 0.029372733
+      value: 0.5622392
       objectReference: {fileID: 0}
     - target: {fileID: 7850119893267426642, guid: 7a9b1abd332856a46b45d22aa3041665, type: 3}
       propertyPath: m_Color.r
@@ -205,7 +205,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7850119893267426642, guid: 7a9b1abd332856a46b45d22aa3041665, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7850119893267426642, guid: 7a9b1abd332856a46b45d22aa3041665, type: 3}
       propertyPath: m_Intensity
@@ -278,8 +278,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   damage: 50
-  deathRadius: 1.5
-  explosionRadius: 3
+  deathRadius: 2
+  explosionRadius: 1.5
   deathTime: 2
   whiteFlashTime: 0.15
   animator: {fileID: 6873194639382291505}
@@ -288,6 +288,7 @@ MonoBehaviour:
   playerController: {fileID: 0}
   enemyMovement: {fileID: 6105115520038846963}
   spriteRenderer: {fileID: 0}
+  projectile: {fileID: 1165675747940340940, guid: 2d79ddc7d421e1847b3396a5bf309611, type: 3}
 --- !u!4 &5697397457766364943 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7444597373494111544, guid: 7a9b1abd332856a46b45d22aa3041665, type: 3}

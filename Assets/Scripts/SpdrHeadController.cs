@@ -9,6 +9,7 @@ public class SpdrHeadController : MonoBehaviour
     public Transform shootingPoint;
     public Transform raycastPoint;
     public SpriteRenderer spriteRenderer;
+    public AudioSource shootSource;
 
     //Head Sprites
     public Sprite angle_0;
@@ -102,6 +103,9 @@ public class SpdrHeadController : MonoBehaviour
             if (counter > fireRate)
             {
                 //Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, look + 15));
+                shootSource.volume = Random.Range(0.5f, 0.75f);
+                shootSource.pitch = Random.Range(0.5f, 0.65f);
+                shootSource.Play();
                 Instantiate(projectile, shootingPoint.position, shootingPoint.rotation);
                 ammoCount--;
                 //Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, look - 15));

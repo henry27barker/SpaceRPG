@@ -14,7 +14,7 @@ public class SpdrBotController : MonoBehaviour
     public int health;
     public int damage;
     public int deathDamage;
-    public int explosionRadius;
+    public float explosionRadius;
 
     //HELPERS
     private Vector3 lastPosition;
@@ -51,9 +51,6 @@ public class SpdrBotController : MonoBehaviour
 
         lastPosition = transform.position;
 
-        enemyExplosionParticle.GetComponent<EnemyExplosionDamage>().damage = deathDamage;
-        enemyExplosionParticle.GetComponent<EnemyExplosionDamage>().radius = explosionRadius;
-        enemyExplosionParticle.GetComponent<EnemyExplosionDamage>().playerDamage = true;
     }
 
     // Update is called once per frame
@@ -65,6 +62,7 @@ public class SpdrBotController : MonoBehaviour
         head.GetComponent<SpriteRenderer>().material.SetColor("_FlashColor", enemyMovement.spriteRenderer.material.GetColor("_FlashColor"));
 
         //Movement Logic
+        /*
         Vector3 direction = player.transform.position - rayCastPoint.transform.position;
         Vector3 normalizedDirection = direction.normalized;
         RaycastHit2D hit = Physics2D.Raycast(rayCastPoint.transform.position, normalizedDirection);
@@ -97,12 +95,15 @@ public class SpdrBotController : MonoBehaviour
             // If the player is in sight, stop adjusting position
             aipath.enabled = false;
         }
-        
+        */
 
         //Death Logic
         if (enemyMovement.health <= 0)
         {
-            Instantiate(enemyExplosionParticle, transform.position, new Quaternion(0, 0, 0, 0));
+            var explosionTemp = Instantiate(enemyExplosionParticle, transform.position, new Quaternion(0, 0, 0, 0));
+            explosionTemp.GetComponent<EnemyExplosionDamage>().damage = deathDamage;
+            explosionTemp.GetComponent<EnemyExplosionDamage>().radius = explosionRadius;
+            explosionTemp.GetComponent<EnemyExplosionDamage>().playerDamage = true;
             Destroy(gameObject);
         }
 

@@ -1,0 +1,10 @@
+Henry - 
+1. When you upgrade your ammo ammount, it needs to handle the ammo packs in your inventory at the time.
+2. Smooth out the loading levels
+3! Add the money icon in the top left to the upgrade station UI
+4. Better chance for enemy spawns. (I already messed with this a little)
+5! Don't stop the time scale right away when you die, because what happens is if you die to an explosion in doesnt spawn the explosion in.
+6! Crates need to have better spawn rates. Example: 50% chance the item spawned is ammo, 15% chance med kid, 15% adrenaline, 15% pill, 5% wrench 
+7. Adjust enemy spawns so that the most common is ATK and CHAIN with SLNK being less common and SPDR being most common
+9. When money is picked up, it would be really nice to see how much money you earned (Maybe like a little +$X in the top right or something)
+10! Enemies vary on how much money they drop.

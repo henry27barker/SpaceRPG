@@ -29,6 +29,7 @@ public class SlnkBotController : MonoBehaviour
     public PlayerMovement playerController;
     public EnemyMovement enemyMovement;
     public SpriteRenderer spriteRenderer;
+    public GameObject projectile;
 
     // Start is called before the first frame update
     void Start()
@@ -58,7 +59,7 @@ public class SlnkBotController : MonoBehaviour
 
         if (distance <= deathRadius)
         {
-            deathLight.enabled = true;
+            deathLight.color = Color.red;
             deathRadiusReached = true;
             animator.SetBool("Explode", true);
         }
@@ -66,6 +67,7 @@ public class SlnkBotController : MonoBehaviour
         if (enemyMovement.health <= 0)
         {
             Instantiate(enemyExplosionParticle, transform.position, new Quaternion(0, 0, 0, 0));
+            Projectiles();
             Destroy(gameObject);
         }
 
@@ -76,11 +78,13 @@ public class SlnkBotController : MonoBehaviour
         else if (deathTime <= 0)
         {
             Instantiate(enemyExplosionParticle, transform.position, new Quaternion(0, 0, 0, 0));
+            Projectiles();
             Destroy(gameObject);
         }
         
         if (enemyMovement.health <= 0) {
             Instantiate(enemyExplosionParticle, transform.position, new Quaternion(0,0,0,0));
+            Projectiles();
             Destroy(gameObject);
         }
 
@@ -96,5 +100,24 @@ public class SlnkBotController : MonoBehaviour
         }
 
         lastPosition = transform.position;
+    }
+
+    private void Projectiles()
+    {
+        var explosionTemp = Instantiate(projectile, new Vector3(transform.position.x + 1, transform.position.y, 0), new Quaternion(0, 0, 0, 0));
+        explosionTemp = Instantiate(projectile, new Vector3(transform.position.x + 0.71f, transform.position.y + 0.71f, 0), new Quaternion(0, 0, 0, 0));
+        explosionTemp.transform.rotation = Quaternion.Euler(0, 0, 45);
+        explosionTemp = Instantiate(projectile, new Vector3(transform.position.x, transform.position.y + 1, 0), new Quaternion(0, 0, 0, 0));
+        explosionTemp.transform.rotation = Quaternion.Euler(0, 0, 90);
+        explosionTemp = Instantiate(projectile, new Vector3(transform.position.x - 0.71f, transform.position.y + 0.71f, 0), new Quaternion(0, 0, 0, 0));
+        explosionTemp.transform.rotation = Quaternion.Euler(0, 0, 135);
+        explosionTemp = Instantiate(projectile, new Vector3(transform.position.x - 1, transform.position.y, 0), new Quaternion(0, 0, 0, 0));
+        explosionTemp.transform.rotation = Quaternion.Euler(0, 0, 180);
+        explosionTemp = Instantiate(projectile, new Vector3(transform.position.x - 0.71f, transform.position.y - 0.71f, 0), new Quaternion(0,0,0, 0));
+        explosionTemp.transform.rotation = Quaternion.Euler(0, 0, 225);
+        explosionTemp = Instantiate(projectile, new Vector3(transform.position.x, transform.position.y - 1, 0), new Quaternion(0, 0, 0, 0));
+        explosionTemp.transform.rotation = Quaternion.Euler(0, 0, 270);
+        explosionTemp = Instantiate(projectile, new Vector3(transform.position.x + 0.71f, transform.position.y - 0.71f, 0), new Quaternion(0, 0, 0, 0));
+        explosionTemp.transform.rotation = Quaternion.Euler(0, 0, 315);
     }
 }
