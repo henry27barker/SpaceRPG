@@ -386,6 +386,12 @@ public class SkillTree : MonoBehaviour
         if(upgradeTokens > 0){
             if(ammoCapacity < maxAmmoCapacity){
                 ammoCapacity += incrementAmount;
+                foreach(Item item in inventory.items){
+                    if(item.name == "Ammo"){
+                        Ammo tempItem = (Ammo)item;
+                        tempItem.ammoAmount += incrementAmount;
+                    }
+                }
                 upgradeTokens--;
             }
             else{

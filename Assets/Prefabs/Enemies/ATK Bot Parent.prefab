@@ -296,6 +296,7 @@ MonoBehaviour:
   aiDestinationSetter: {fileID: 0}
   seeRadius: 6
   moneyItem: {fileID: 5532243446610562132, guid: f3c92a557ca10e64fb7c01fade6fa7f8, type: 3}
+  moneyAmount: 5
 --- !u!114 &4981693885183546677
 MonoBehaviour:
   m_ObjectHideFlags: 0

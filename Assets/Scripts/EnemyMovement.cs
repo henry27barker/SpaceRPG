@@ -19,6 +19,7 @@ public class EnemyMovement : MonoBehaviour
     private GameObject player;
     public float seeRadius = 10f;
     public GameObject moneyItem;
+    public int moneyAmount;
  
     void Start()
     {
@@ -53,13 +54,12 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    void OnDestroy(){
-        Instantiate(moneyItem, gameObject.transform.position, Quaternion.identity);
-    }
-        
-
     public void decreaseHealth(int damage){
         whiteFlashCounter = whiteFlashTime;
         health -= damage;
+        if(health <= 0){
+            GameObject tempMoney = Instantiate(moneyItem, gameObject.transform.position, Quaternion.identity);
+            tempMoney.GetComponent<MoneyPickup>().amount = moneyAmount;
+        }
     }
 }

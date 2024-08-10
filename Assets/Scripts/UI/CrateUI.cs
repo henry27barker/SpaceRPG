@@ -10,6 +10,7 @@ public class CrateUI : MonoBehaviour
     public GameObject crateUI;
     public List<Item> items = new List<Item>();
     public List<Item> possibleItems = new List<Item>();
+    public int[] possibleItemsChances;
     public Transform itemsParent;
     CrateSlot[] slots;
     public Material emissiveMaterial;
@@ -34,10 +35,16 @@ public class CrateUI : MonoBehaviour
         playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
         emissiveMaterial = gameObject.transform.parent.gameObject.GetComponent<SpriteRenderer>().material;
         Random.seed = System.DateTime.Now.Millisecond;
-        int size = Random.Range(0, maxPossibleItems);
-        for(int i = 0; i <= size; i++){
-            int index = Random.Range(0, possibleItems.Count);
-            items.Add(possibleItems[index]);
+        int size = Random.Range(1, maxPossibleItems + 1);
+        for(int i = 0; i < size; i++){
+            int rand = Random.Range(1, 101);
+            if(rand <= possibleItemsChances[0]){
+                items.Add(possibleItems[0]);
+            }
+            for(int j = 1; j < possibleItems.Count; j++){
+                if(rand > possibleItemsChances[j - 1] && rand <= possibleItemsChances[j])
+                    items.Add(possibleItems[j]);
+            }
         }
         UpdateUI();
     }

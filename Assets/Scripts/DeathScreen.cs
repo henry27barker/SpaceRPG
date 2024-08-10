@@ -14,6 +14,7 @@ public class DeathScreen : MonoBehaviour
     private GameObject interactMenu;
     private GameObject interactablePrompt;
     private GameObject inventoryUI;
+    public float deathSlowSpeed = 0.5f;
 
     void Awake(){
         player = GameObject.FindWithTag("Player");
@@ -37,7 +38,8 @@ public class DeathScreen : MonoBehaviour
     void Update()
     {
         if(player.GetComponent<PlayerMovement>().health <= 0){
-            Time.timeScale = 0;
+            if(Time.timeScale > 0)
+                Time.timeScale -= Time.deltaTime * deathSlowSpeed;
             deathScreen.SetActive(true);
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(deathScreenFirst);

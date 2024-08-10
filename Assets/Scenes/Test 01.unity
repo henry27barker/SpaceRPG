@@ -1523,10 +1523,11 @@ MonoBehaviour:
   - {fileID: 6864864253130128458, guid: 218595fa689c0b243b05eaf26bc57fe9, type: 3}
   - {fileID: 3773414039769644906, guid: a0734b678f1f7ca478c625f8120bbc3a, type: 3}
   enemyTypes:
-  - {fileID: 3546195814298739331, guid: 134710e20b2337949833f1c7bbfeb442, type: 3}
-  - {fileID: 108750251153743386, guid: d63d1ac9515fb3f4cb4327b5cc50e743, type: 3}
   - {fileID: 8947813847384248774, guid: 894bd74b72785d044aadf4281a9f71a4, type: 3}
+  - {fileID: 108750251153743386, guid: d63d1ac9515fb3f4cb4327b5cc50e743, type: 3}
+  - {fileID: 3546195814298739331, guid: 134710e20b2337949833f1c7bbfeb442, type: 3}
   - {fileID: 108750251153743386, guid: d9494aa3e6b2a554db3511d6ab7a18c1, type: 3}
+  enemyTypeChances: 0a000000190000003200000064000000
   lamp: {fileID: 4265719620121517933, guid: a2469e275240f2043a90ddb0cd561354, type: 3}
   crate: {fileID: 5033156371534922067, guid: ce949d5ee8d2ba647abc6a7d189a2ef2, type: 3}
   enemy: {fileID: 3546195814298739331, guid: 134710e20b2337949833f1c7bbfeb442, type: 3}
@@ -1536,9 +1537,10 @@ MonoBehaviour:
   windowChance: 20
   lampChance: 10
   crateChance: 3
-  enemyChance: 5
+  enemyChance: 10
   columnHeight: 5
   rowHeight: 5
+  spdrBotStartingLevel: 5
 --- !u!1 &357039984
 GameObject:
   m_ObjectHideFlags: 0
@@ -7666,19 +7668,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.010506208
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.010186758
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.97803247
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8137583830104501126, guid: 89e2e95192a3a024986675af8316d6b4, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.9779287
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7956,6 +7958,7 @@ MonoBehaviour:
   deathScreen: {fileID: 0}
   deathScreenFirst: {fileID: 0}
   globalVolume: {fileID: 0}
+  deathSlowSpeed: 0.5
 --- !u!1001 &1962078986
 PrefabInstance:
   m_ObjectHideFlags: 0

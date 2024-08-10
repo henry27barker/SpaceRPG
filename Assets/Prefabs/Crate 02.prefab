@@ -630,6 +630,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ca5afabe68f586d45afedae805631f67, type: 2}
   - {fileID: 11400000, guid: 24e5d112042166349b6a22013a812011, type: 2}
   - {fileID: 11400000, guid: 82e1c6928035aa140812a3b171d538ff, type: 2}
+  possibleItemsChances: 0a00000019000000280000002b00000064000000
   itemsParent: {fileID: 625479816483529887}
   emissiveMaterial: {fileID: 0}
   green: {r: 0.37696335, g: 1, b: 0.3853874, a: 1}

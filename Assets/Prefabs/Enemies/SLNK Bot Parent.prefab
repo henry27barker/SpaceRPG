@@ -251,6 +251,10 @@ PrefabInstance:
       propertyPath: moneyItem
       value: 
       objectReference: {fileID: 5532243446610562132, guid: f3c92a557ca10e64fb7c01fade6fa7f8, type: 3}
+    - target: {fileID: 9004955336530942916, guid: 7a9b1abd332856a46b45d22aa3041665, type: 3}
+      propertyPath: moneyAmount
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

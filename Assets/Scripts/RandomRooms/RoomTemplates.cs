@@ -13,6 +13,7 @@ public class RoomTemplates : MonoBehaviour
 
     public GameObject[] allWallTypes;
     public GameObject[] enemyTypes;
+    public int[] enemyTypeChances;
 
     public GameObject lamp;
     public GameObject crate;
@@ -30,7 +31,7 @@ public class RoomTemplates : MonoBehaviour
     public int crateChance = 8;
     public int enemyChance = 8;
 
-    private bool lampSpawned = false;
+    private bool enemySpawned = false;
     private bool crateSpawned = false;
 
     private GameObject player;
@@ -56,6 +57,7 @@ public class RoomTemplates : MonoBehaviour
     private GameObject highestWall;
 
     private int rand;
+    public int spdrBotStartingLevel = 5;
 
     void Awake(){
         incrementers = GameObject.FindWithTag("GameManager").GetComponent<Inventory>();
@@ -89,29 +91,33 @@ public class RoomTemplates : MonoBehaviour
     }
 
     GameObject RandomlyGenerateLamp(int chance, Vector3 position){
-        int rand = Random.Range(1, 101);
-        if(rand <= chance){
-            rand = Random.Range(-1, 2);
-            int temp = Random.Range(-1, 2);
-            int flickerRand = Random.Range(1,101);
-            if(flickerRand <= flickerChance){
-                lamp.GetComponent<Flicker>().flickerOn = true;
+        if(!enemySpawned){
+            if(!crateSpawned){
+                int rand = Random.Range(1, 101);
+                if(rand <= chance){
+                    rand = Random.Range(-1, 2);
+                    int temp = Random.Range(-1, 2);
+                    int flickerRand = Random.Range(1,101);
+                    if(flickerRand <= flickerChance){
+                        lamp.GetComponent<Flicker>().flickerOn = true;
+                    }
+                    else{
+                        lamp.GetComponent<Flicker>().flickerOn = false;
+                    }
+                    Vector3 newPosition = new Vector3(position.x + rand, position.y + temp, 0);
+                    return Instantiate(lamp, newPosition, Quaternion.identity);
+                }
+                else{
+                    return null;
+                }
             }
-            else{
-                lamp.GetComponent<Flicker>().flickerOn = false;
-            }
-            Vector3 newPosition = new Vector3(position.x + rand, position.y + temp, 0);
-            lampSpawned = true;
-            return Instantiate(lamp, newPosition, Quaternion.identity);
-        }
-        else{
-            lampSpawned = false;
             return null;
         }
+        return null;
     }
 
     GameObject RandomlyGenerateCrate(int chance, Vector3 position){
-        if(!lampSpawned){
+        if(!enemySpawned){
             int crateRand = Random.Range(1, 101);
             if(crateRand <= chance){
                 crateRand = Random.Range(-1, 2);
@@ -129,21 +135,32 @@ public class RoomTemplates : MonoBehaviour
     }
 
     GameObject RandomlyGenerateEnemy(int chance, Vector3 position){
-        if(!lampSpawned){
-            if(!crateSpawned){
-                int newRand = Random.Range(1, 101);
-                if(newRand <= chance){
-                    newRand = Random.Range(-1, 2);
-                    int temp = Random.Range(-1, 2);
-                    Vector3 newPosition = new Vector3(position.x + newRand, position.y + temp, 0);
-                    int enemyRand = Random.Range(0, enemyTypes.Length);
-                    return Instantiate(enemyTypes[enemyRand], newPosition, Quaternion.identity);
+        int newRand = Random.Range(1, 101);
+        if(newRand <= chance){
+            newRand = Random.Range(-1, 2);
+            int temp = Random.Range(-1, 2);
+            Vector3 newPosition = new Vector3(position.x + newRand, position.y + temp, 0);
+            enemySpawned = true;
+            int index = 0;
+            int rand = Random.Range(1, 101);
+            if(rand <= enemyTypeChances[0]){
+                if(incrementers.level < spdrBotStartingLevel){
+                    rand = Random.Range(enemyTypeChances[0] + 1, 101);
                 }
-                return null;
+                else{
+                    index = 0;
+                }
             }
+            for(int j = 1; j < enemyTypeChances.Length; j++){
+                if(rand > enemyTypeChances[j - 1] && rand <= enemyTypeChances[j])
+                    index = j;
+            }
+            return Instantiate(enemyTypes[index], newPosition, Quaternion.identity);
+        }
+        else{
+            enemySpawned = false;
             return null;
         }
-        return null;
     }
 
     void MakeLevel(int columnPos, int rowPos){
@@ -152,9 +169,9 @@ public class RoomTemplates : MonoBehaviour
             //rand = Random.Range(0, allRoomTypes.Length);
             //rooms[columnPos, rowPos] = Instantiate(allRoomTypes[rand], transform.position, Quaternion.identity);
             rooms[columnPos, rowPos] = Instantiate(allRoomTypes[0], transform.position, Quaternion.identity);
-            RandomlyGenerateLamp(8, transform.position);
-            RandomlyGenerateCrate(crateChance, transform.position);
             RandomlyGenerateEnemy(enemyChance, transform.position);
+            RandomlyGenerateCrate(crateChance, transform.position);
+            RandomlyGenerateLamp(8, transform.position);
             if(rooms[columnPos, rowPos].GetComponent<RoomType>().openingDirections.Contains(1) && rooms[columnPos, rowPos + 1] == null){
                 MakeLevel(columnPos, rowPos + 1);
             }
@@ -220,7 +237,7 @@ public class RoomTemplates : MonoBehaviour
                 if(rowPos < lowestIndex){
                     lowestIndex = rowPos;
                     lowestFloor = rooms[columnPos, rowPos];
-                    GameObject tempGameObject = RandomlyGenerateLamp(lampChance, newPosition);
+                    GameObject tempGameObject = RandomlyGenerateEnemy(enemyChance, newPosition);
                     if(tempGameObject != null){
                         destroyPossibleSpawn = tempGameObject;
                     }
@@ -228,14 +245,16 @@ public class RoomTemplates : MonoBehaviour
                     if(tempGameObject != null){
                         destroyPossibleSpawn = tempGameObject;
                     }
-                    tempGameObject = RandomlyGenerateEnemy(enemyChance, newPosition);
+                    tempGameObject = RandomlyGenerateLamp(lampChance, newPosition);
                     if(tempGameObject != null){
                         destroyPossibleSpawn = tempGameObject;
                     }
                 }
-                RandomlyGenerateLamp(lampChance, newPosition);
-                RandomlyGenerateCrate(crateChance, newPosition);
-                RandomlyGenerateEnemy(enemyChance, newPosition);
+                else{
+                    RandomlyGenerateEnemy(enemyChance, newPosition);
+                    RandomlyGenerateCrate(crateChance, newPosition);
+                    RandomlyGenerateLamp(lampChance, newPosition);
+                }
                 if(rooms[columnPos, rowPos].GetComponent<RoomType>().openingDirections.Contains(1) && rooms[columnPos, rowPos + 1] == null){
                     MakeLevel(columnPos, rowPos + 1);
                 }

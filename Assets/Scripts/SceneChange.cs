@@ -46,6 +46,10 @@ public class SceneChange : MonoBehaviour
             //SceneManager.LoadScene(1);
             gameManager.LoadSceneIndex(1);
         }
+        // GameObject[] moneyItems = GameObject.FindGameObjectsWithTag("Money");
+        // foreach(GameObject temp in moneyItems){
+        //     Destroy(temp);
+        // }
         //SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
 }
