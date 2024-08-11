@@ -27,11 +27,11 @@ public class ThirdMusicInstance : MonoBehaviour
     }
 
     void Update(){
-        if((gameManager.level == 16 || gameManager.level == 21) && tempLevel != gameManager.level){
+        if(gameManager.level == 16 && tempLevel != gameManager.level){
             music.volume = startingVolume;
             music.Play();
         }
-        else if(gameManager.level == 20 || gameManager.level >= 25){
+        else if(gameManager.level >= 20){
             if(music.volume > 0){
                 music.volume -= Time.deltaTime * musicFadeSpeed;
                 tempLevel = gameManager.level;

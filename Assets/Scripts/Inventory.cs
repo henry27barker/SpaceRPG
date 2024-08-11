@@ -10,10 +10,10 @@ public class Inventory : MonoBehaviour
 
     public static Inventory instance;
     private GameObject player;
-    public int rowIncrementer = 3;
-    public int startingRowIncrementer = 0;
-    public int columnIncrementer = 3;
-    public int startingColumnIncrementer = 0;
+    public int rowIncrementer = 2;
+    public int startingRowIncrementer = 5;
+    public int columnIncrementer = 1;
+    public int startingColumnIncrementer = 5;
     public int level = 0;
     public int bossLevel = 26;
     private Slider slider;

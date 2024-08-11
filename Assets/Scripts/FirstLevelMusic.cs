@@ -27,11 +27,11 @@ public class FirstLevelMusic : MonoBehaviour
     }
 
     void Update(){
-        if(gameManager.level == 1 && tempLevel != gameManager.level){
+        if((gameManager.level == 1 || gameManager.level == 6) && tempLevel != gameManager.level){
             music.volume = startingVolume;
             music.Play();
         }
-        else if(gameManager.level >= 5){
+        else if(gameManager.level >= 10){
             if(music.volume > 0){
                 music.volume -= Time.deltaTime * musicFadeSpeed;
                 tempLevel = gameManager.level;

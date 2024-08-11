@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SecondMusicInstance : MonoBehaviour
+public class FourthMusicInstance : MonoBehaviour
 {
-    public static SecondMusicInstance secondMusicInstance;
+    public static FourthMusicInstance fourthMusicInstance;
     private Inventory gameManager;
     private AudioSource music;
     private int tempLevel;
@@ -12,13 +12,13 @@ public class SecondMusicInstance : MonoBehaviour
     public float musicFadeSpeed;
 
     void Awake(){
-        if (secondMusicInstance != null)
+        if (fourthMusicInstance != null)
         {
             Destroy(gameObject);
             return;
         }
 
-        secondMusicInstance = this;
+        fourthMusicInstance = this;
         DontDestroyOnLoad(gameObject);
         gameManager = GameObject.FindWithTag("GameManager").GetComponent<Inventory>();
         music = gameObject.GetComponent<AudioSource>();
@@ -27,11 +27,11 @@ public class SecondMusicInstance : MonoBehaviour
     }
 
     void Update(){
-        if(gameManager.level == 11 && tempLevel != gameManager.level){
+        if(gameManager.level == 21 && tempLevel != gameManager.level){
             music.volume = startingVolume;
             music.Play();
         }
-        else if(gameManager.level >= 15){
+        else if(gameManager.level >= 25){
             if(music.volume > 0){
                 music.volume -= Time.deltaTime * musicFadeSpeed;
                 tempLevel = gameManager.level;
