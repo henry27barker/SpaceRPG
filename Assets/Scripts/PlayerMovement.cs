@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     private float whiteFlashCounter = 0f;
     private float footstepCounter = 0;
     private float shootingPointOffset = 0;
+    public bool dead = false;
 
     //Inputs
     private Vector2 lookInputValue;
@@ -58,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource openInventorySound, closeInvetorySound;
     public AudioSource navigationSound;
     public Transform shootingPoint;
+    public Camera mainCamera;
 
     //Scripts
     public HealthBar healthBar;
@@ -77,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
     
     private void Awake()
     {   
+        mainCamera = Camera.main;
         if (playerInstance != null)
         {
             Destroy(gameObject);
@@ -125,6 +128,16 @@ public class PlayerMovement : MonoBehaviour
     {
         if(health <= 0){
             playerControls.SwitchCurrentActionMap("UI");
+            if (!dead)
+            {
+                animator.SetBool("Death", true);
+                spriteRenderer.material.SetFloat("_FlashAmount", 0f);
+                hands.gameObject.SetActive(false);
+                weapon.gameObject.SetActive(false);
+                healthBar.gameObject.SetActive(false);
+                mainCamera.orthographicSize = 5;
+            }
+            dead = true;
             return;
         }
         if(inventoryUI.activeSelf == true || skillTreeUI.activeSelf == true || shopUI != null || codeUI != null){
@@ -446,7 +459,7 @@ public class PlayerMovement : MonoBehaviour
                 //Add Crosshair
                 mouseCursor.SetActive(true);
                 // Find mouse position
-                Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
                 mouseWorldPosition.z = 0f;
                 mouseCursor.transform.position = mouseWorldPosition;
 
