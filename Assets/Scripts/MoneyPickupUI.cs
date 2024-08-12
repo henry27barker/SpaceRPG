@@ -29,7 +29,12 @@ public class MoneyPickupUI : MonoBehaviour
         if(tempMoney != playerMovement.money){
             child.SetActive(true);
             moneyText.color = Color.white;
-            moneyText.text = "+$" + (playerMovement.money - tempMoney + currentMoneyDisplayed).ToString();
+            if(playerMovement.money - tempMoney + currentMoneyDisplayed > 0){
+                moneyText.text = "+$" + (playerMovement.money - tempMoney + currentMoneyDisplayed).ToString();
+            }
+            else if(playerMovement.money - tempMoney + currentMoneyDisplayed < 0){
+                moneyText.text = "-$" + (-1 * (playerMovement.money - tempMoney + currentMoneyDisplayed)).ToString();
+            }
             currentMoneyDisplayed += playerMovement.money - tempMoney;
             messageTimerCounter = messageTimer;
         }

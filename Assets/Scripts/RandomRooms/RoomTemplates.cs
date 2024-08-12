@@ -58,6 +58,7 @@ public class RoomTemplates : MonoBehaviour
 
     private int rand;
     public int spdrBotStartingLevel = 5;
+    public float healthIncrementAmount = 10;
 
     void Awake(){
         incrementers = GameObject.FindWithTag("GameManager").GetComponent<Inventory>();
@@ -169,7 +170,9 @@ public class RoomTemplates : MonoBehaviour
             //rand = Random.Range(0, allRoomTypes.Length);
             //rooms[columnPos, rowPos] = Instantiate(allRoomTypes[rand], transform.position, Quaternion.identity);
             rooms[columnPos, rowPos] = Instantiate(allRoomTypes[0], transform.position, Quaternion.identity);
-            RandomlyGenerateEnemy(enemyChance, transform.position);
+            GameObject tempEnemy = RandomlyGenerateEnemy(enemyChance, transform.position);
+            if(tempEnemy != null)
+                tempEnemy.GetComponentInChildren<EnemyMovement>().health += (int)((incrementers.level / 5) * healthIncrementAmount);
             RandomlyGenerateCrate(crateChance, transform.position);
             RandomlyGenerateLamp(8, transform.position);
             if(rooms[columnPos, rowPos].GetComponent<RoomType>().openingDirections.Contains(1) && rooms[columnPos, rowPos + 1] == null){
@@ -238,6 +241,8 @@ public class RoomTemplates : MonoBehaviour
                     lowestIndex = rowPos;
                     lowestFloor = rooms[columnPos, rowPos];
                     GameObject tempGameObject = RandomlyGenerateEnemy(enemyChance, newPosition);
+                    if(tempGameObject != null)
+                        tempGameObject.GetComponentInChildren<EnemyMovement>().health += (int)((incrementers.level / 5) * healthIncrementAmount);
                     if(tempGameObject != null){
                         destroyPossibleSpawn = tempGameObject;
                     }
@@ -251,7 +256,9 @@ public class RoomTemplates : MonoBehaviour
                     }
                 }
                 else{
-                    RandomlyGenerateEnemy(enemyChance, newPosition);
+                    GameObject tempEnemy = RandomlyGenerateEnemy(enemyChance, newPosition);
+                    if(tempEnemy != null)
+                        tempEnemy.GetComponentInChildren<EnemyMovement>().health += (int)((incrementers.level / 5) * healthIncrementAmount);
                     RandomlyGenerateCrate(crateChance, newPosition);
                     RandomlyGenerateLamp(lampChance, newPosition);
                 }
