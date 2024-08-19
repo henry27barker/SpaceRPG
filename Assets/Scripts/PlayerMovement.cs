@@ -555,7 +555,7 @@ public class PlayerMovement : MonoBehaviour
 
             weapon.transform.position = new Vector2(transform.position[0] + weapon.offsets[0], transform.position[1] + (weapon.offsets[1]) / 2);
         }
-        else if(lookRotation > 90 && lookRotation < 135)
+        else if(lookRotation >= 90 && lookRotation < 135)
         {
             direction = 2;
             animator.SetBool("FacingDown", false);
@@ -574,16 +574,8 @@ public class PlayerMovement : MonoBehaviour
             weapon.transform.position = new Vector2(transform.position[0] - weapon.offsets[0], transform.position[1] + weapon.offsets[1]);
         }
 
-        if (direction < 2)
-        {
-            //Facing Right
-            spriteRenderer.flipX = false;
-            healthBar.spriteRenderer.flipX = false;
-            weapon.spriteRenderer.flipY = false;
-            hands.spriteRenderer.flipX = false;
-            shootingPoint.localPosition = new Vector3(0.5f, 0.164f, 0);
-        }
-        else
+
+        if (direction == 2 || direction == 3)
         {
             //Facing Left
             spriteRenderer.flipX = true;
@@ -591,6 +583,14 @@ public class PlayerMovement : MonoBehaviour
             weapon.spriteRenderer.flipY = true;
             hands.spriteRenderer.flipX = true;
             shootingPoint.localPosition = new Vector3(0.5f, -0.164f, 0);
+        } else 
+        {
+            //Facing Right
+            spriteRenderer.flipX = false;
+            healthBar.spriteRenderer.flipX = false;
+            weapon.spriteRenderer.flipY = false;
+            hands.spriteRenderer.flipX = false;
+            shootingPoint.localPosition = new Vector3(0.5f, 0.164f, 0);
         }
 
         if (rb2d.velocity.x != 0 || rb2d.velocity.y != 0)
