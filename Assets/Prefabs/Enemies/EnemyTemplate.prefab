@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2240898189453775091}
+  - component: {fileID: 6267703303035320388}
   m_Layer: 0
   m_Name: Control
   m_TagString: Untagged
@@ -32,6 +33,18 @@ Transform:
   - {fileID: 434618918280128864}
   m_Father: {fileID: 6253093682378865443}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6267703303035320388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3006918996921485515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e21b30a61a1055943a158200e1643f76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3185355008210912669
 GameObject:
   m_ObjectHideFlags: 0
@@ -41,6 +54,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 434618918280128864}
+  - component: {fileID: 7324362875263701683}
   m_Layer: 0
   m_Name: Shooting Point
   m_TagString: Untagged
@@ -63,6 +77,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2240898189453775091}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7324362875263701683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3185355008210912669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa27b96958419c340bd9368d41ddcb50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 1165675747940340940, guid: 2d79ddc7d421e1847b3396a5bf309611, type: 3}
+  rate: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &5162541593059121481
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,11 +392,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b0b3cb550447914985a1593f67d4fc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
+  health: 500
   spriteRenderer: {fileID: 0}
   whiteFlashTime: 0.1
   moneyItem: {fileID: 5532243446610562132, guid: f3c92a557ca10e64fb7c01fade6fa7f8, type: 3}
-  moneyAmount: 0
+  moneyAmount: 5
 --- !u!114 &3829298603511182416
 MonoBehaviour:
   m_ObjectHideFlags: 0

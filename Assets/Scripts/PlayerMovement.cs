@@ -16,6 +16,9 @@ public class PlayerMovement : MonoBehaviour
     public int health;
     public int money;
     public float lifeSteal;
+    public float maxShieldHealth;
+    public float shieldHealth;
+    public float shieldRecharge;
 
     //Settings
     public float rightStickDeadZone;
@@ -35,6 +38,8 @@ public class PlayerMovement : MonoBehaviour
     private float footstepCounter = 0;
     private float shootingPointOffset = 0;
     public bool dead = false;
+
+    private bool rechargeShield;
 
     //Inputs
     private Vector2 lookInputValue;
@@ -61,6 +66,8 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource navigationSound;
     public Transform shootingPoint;
     public Camera mainCamera;
+    public GameObject shield;
+    public Light2D shieldLight;
 
     //Scripts
     public HealthBar healthBar;
@@ -105,6 +112,16 @@ public class PlayerMovement : MonoBehaviour
         //playerControls.Enable();
         playerControls.actions["Move"].performed += ctx => moveInputValue = ctx.ReadValue<Vector2>();
         playerControls.actions["Move"].canceled += ctx => moveInputValue = Vector2.zero;
+        playerControls.actions["Shield"].performed += ctx =>
+        {
+            shield.SetActive(true);
+            rechargeShield = false;
+        };
+        playerControls.actions["Shield"].canceled += ctx =>
+        {
+            shield.SetActive(false);
+            rechargeShield = true;
+        };
     }
 
     private void OnDisable()
@@ -112,6 +129,16 @@ public class PlayerMovement : MonoBehaviour
         //playerControls.Disable();
         playerControls.actions["Move"].performed -= ctx => moveInputValue = ctx.ReadValue<Vector2>();
         playerControls.actions["Move"].canceled -= ctx => moveInputValue = Vector2.zero;
+        playerControls.actions["Shield"].performed -= ctx =>
+        {
+            shield.SetActive(true);
+            rechargeShield = false;
+        };
+        playerControls.actions["Shield"].canceled -= ctx =>
+        {
+            shield.SetActive(false);
+            rechargeShield = true;
+        };
     }
 
     void Start()
@@ -123,6 +150,8 @@ public class PlayerMovement : MonoBehaviour
         stompDamageWait = 0.625f * stompDuration;
         healthBar.currentHealth = health;
         InteractablePrompt.SetActive(false);
+        shield = transform.Find("Shield").gameObject;
+        shieldLight = shield.GetComponent<Light2D> ();
     }
  
     void Update()
@@ -165,6 +194,8 @@ public class PlayerMovement : MonoBehaviour
         CheckInteractPrompt();
 
         WhiteFlash();
+
+        HandleShield();
     }
 
     // private void OnNavigate(){
@@ -324,10 +355,13 @@ public class PlayerMovement : MonoBehaviour
             if (hit.gameObject.tag == "Enemy")
             {
                 hit.gameObject.GetComponent<EnemyMovement>().decreaseHealth(stompDamage);
-            } else if (hit.gameObject.tag == "Enemy2")
+            }
+            if (hit.gameObject.tag == "Enemy2")
             {
                 hit.gameObject.GetComponent<AIPath>().canMove = false;
-                hit.gameObject.GetComponent<Rigidbody2D>().AddForce((transform.position - hit.gameObject.transform.position) * -50f, ForceMode2D.Impulse);
+                Vector2 direction = transform.position - hit.transform.position;
+                direction.Normalize();
+                hit.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * -50f, ForceMode2D.Impulse);
                 hit.gameObject.GetComponent<Damage>().decreaseHealth(stompDamage);
             }
         }
@@ -590,10 +624,27 @@ public class PlayerMovement : MonoBehaviour
 
     public void decreaseHealth(int damage)
     {
-        whiteFlashCounter = whiteFlashTime;
-        health -= damage;
+        if(shield.activeSelf)
+        {
+            if (shieldHealth - damage < 0)
+            {
+                damage -= (int)shieldHealth;
+                shieldHealth = 0;
+                whiteFlashCounter = whiteFlashTime;
+                health -= damage;
 
-        healthBar.UpdateColor();
+                healthBar.UpdateColor();
+            } else
+            {
+                shieldHealth -= damage;
+            }
+        } else
+        {
+            whiteFlashCounter = whiteFlashTime;
+            health -= damage;
+
+            healthBar.UpdateColor();
+        }
     }
 
     public void IncreaseHealth(int amount){
@@ -676,5 +727,19 @@ public class PlayerMovement : MonoBehaviour
             counter -= Time.deltaTime;
             yield return null;
         }
+    }
+
+    private void HandleShield()
+    {
+        if(rechargeShield && shieldHealth < maxShieldHealth)
+        {
+            shieldHealth += shieldRecharge * Time.deltaTime;
+        } else if (!rechargeShield && shieldHealth > 0)
+        {
+            shieldHealth -= 50f * Time.deltaTime;
+        }
+        float tempScale = shieldHealth / maxShieldHealth;
+        shield.transform.localScale = new Vector3(tempScale, tempScale, 1);
+        shieldLight.pointLightOuterRadius = 3 * tempScale;
     }
 }

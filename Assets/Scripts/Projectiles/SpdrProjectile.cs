@@ -34,7 +34,7 @@ public class SpdrProjectile : MonoBehaviour
             
             Destroy(gameObject);
         }
-        if(col.gameObject.tag == "Enemy" || col.gameObject.tag == "Obstacle" || col.gameObject.tag == "Money" || col.gameObject.tag == "Enemy2")
+        if(col.gameObject.tag == "Enemy" || col.gameObject.tag == "Obstacle" || col.gameObject.tag == "Money" || col.gameObject.tag == "Enemy2" || col.gameObject.tag == "Projectile")
         { }
         else
         {

@@ -30,9 +30,8 @@ public class TitanProjectile : MonoBehaviour
         {
             col.gameObject.GetComponent<PlayerMovement>().decreaseHealth(damage);
         }
-        if (col.gameObject.tag == "Missile" || col.gameObject.tag == "Enemy" || col.gameObject.tag == "Obstacle") 
+        if (col.gameObject.tag == "Missile" || col.gameObject.tag == "Enemy" || col.gameObject.tag == "Obstacle" || col.gameObject.tag == "Projectile") 
         { 
-            Debug.Log("Dont Destroy"); 
         }
         else
             Destroy(gameObject);

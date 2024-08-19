@@ -22,10 +22,6 @@ public class Damage : MonoBehaviour
 
     void Update()
     {
-        if(health < 0)
-        {
-            Destroy(gameObject);
-        }
         if (whiteFlashCounter > 0)
         {
             spriteRenderer.material.SetFloat("_FlashAmount", 0.5f);
@@ -45,6 +41,7 @@ public class Damage : MonoBehaviour
         {
             GameObject tempMoney = Instantiate(moneyItem, gameObject.transform.position, Quaternion.identity);
             tempMoney.GetComponent<MoneyPickup>().amount = moneyAmount;
+            Destroy(gameObject);
         }
     }
 }

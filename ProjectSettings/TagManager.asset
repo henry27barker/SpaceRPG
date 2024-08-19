@@ -19,6 +19,7 @@ TagManager:
   - DeathScreen
   - GlobalVolume
   - Enemy2
+  - Projectile
   layers:
   - Default
   - TransparentFX
