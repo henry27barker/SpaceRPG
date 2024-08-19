@@ -35,7 +35,7 @@ public class CrateUI : MonoBehaviour
         playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
         emissiveMaterial = gameObject.transform.parent.gameObject.GetComponent<SpriteRenderer>().material;
         Random.seed = System.DateTime.Now.Millisecond;
-        int size = Random.Range(1, maxPossibleItems + 1);
+        int size = Random.Range(0, maxPossibleItems + 1);
         for(int i = 0; i < size; i++){
             int rand = Random.Range(1, 101);
             if(rand <= possibleItemsChances[0]){

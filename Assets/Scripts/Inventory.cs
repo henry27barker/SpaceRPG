@@ -10,10 +10,10 @@ public class Inventory : MonoBehaviour
 
     public static Inventory instance;
     private GameObject player;
-    public int rowIncrementer = 2;
-    public int startingRowIncrementer = 5;
-    public int columnIncrementer = 1;
-    public int startingColumnIncrementer = 5;
+    public int rowIncrementer = 3;
+    public int startingRowIncrementer = 7;
+    public int columnIncrementer = 3;
+    public int startingColumnIncrementer = 7;
     public int level = 0;
     public int bossLevel = 26;
     private Slider slider;
@@ -21,8 +21,10 @@ public class Inventory : MonoBehaviour
 
     void Awake(){
         if(instance != null){
-            instance.startingRowIncrementer += rowIncrementer;
-            instance.startingColumnIncrementer += columnIncrementer;
+            if(level % 5 == 0){
+                instance.startingRowIncrementer += rowIncrementer;
+                instance.startingColumnIncrementer += columnIncrementer;
+            }
             Destroy(gameObject);
             Debug.LogWarning("More than one instance of Inventory found!");
             return;

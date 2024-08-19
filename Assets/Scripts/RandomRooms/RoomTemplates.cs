@@ -46,8 +46,8 @@ public class RoomTemplates : MonoBehaviour
 
     public GameObject[,] rooms;
 
-    public int columnHeight = 20;
-    public int rowHeight = 20;
+    public int columnHeight = 0;
+    public int rowHeight = 0;
 
     private int lowestIndex;
     private GameObject lowestFloor;

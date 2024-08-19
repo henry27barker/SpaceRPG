@@ -752,8 +752,8 @@ MonoBehaviour:
   lampChance: 10
   crateChance: 3
   enemyChance: 10
-  columnHeight: 5
-  rowHeight: 5
+  columnHeight: 0
+  rowHeight: 0
   spdrBotStartingLevel: 5
   healthIncrementAmount: 10
 --- !u!1 &357039984

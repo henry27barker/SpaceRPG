@@ -251,8 +251,8 @@ public class PlayerMovement : MonoBehaviour
         else if(health > 0){
         closeInvetorySound.Play();
         if(interactMenu.transform.parent.gameObject.activeSelf == false && skillTreeUI.activeSelf == false && shopUI == null && codeUI == null){
-            inventoryUI.SetActive(!inventoryUI.activeSelf);
             if(inventoryUI.activeSelf == true){
+                inventoryUI.SetActive(!inventoryUI.activeSelf);
                 EventSystem.current.SetSelectedGameObject(null);
                 playerControls.SwitchCurrentActionMap("UI");
                 EventSystem.current.SetSelectedGameObject(inventoryFirst);
