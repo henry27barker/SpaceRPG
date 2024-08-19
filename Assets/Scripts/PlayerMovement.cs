@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using UnityEngine.Rendering.Universal;
+using Pathfinding;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -323,7 +324,11 @@ public class PlayerMovement : MonoBehaviour
             if (hit.gameObject.tag == "Enemy")
             {
                 hit.gameObject.GetComponent<EnemyMovement>().decreaseHealth(stompDamage);
-                //hit.gameObject.GetComponent<EnemyMovement>().Knockback(stompKnockback);
+            } else if (hit.gameObject.tag == "Enemy2")
+            {
+                hit.gameObject.GetComponent<AIPath>().canMove = false;
+                hit.gameObject.GetComponent<Rigidbody2D>().AddForce((transform.position - hit.gameObject.transform.position) * -50f, ForceMode2D.Impulse);
+                hit.gameObject.GetComponent<Damage>().decreaseHealth(stompDamage);
             }
         }
     }

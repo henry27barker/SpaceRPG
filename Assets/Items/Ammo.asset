@@ -15,4 +15,5 @@ MonoBehaviour:
   name: Ammo
   icon: {fileID: 21300000, guid: 17c11e6ccfae92a449e2aff55f9c55cb, type: 3}
   isDefaultItem: 0
-  ammoAmount: 17
+  ammoAmount: 43
+  canSell: 0

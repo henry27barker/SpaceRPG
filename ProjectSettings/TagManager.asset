@@ -18,6 +18,7 @@ TagManager:
   - InteractablePrompt
   - DeathScreen
   - GlobalVolume
+  - Enemy2
   layers:
   - Default
   - TransparentFX
@@ -61,11 +62,11 @@ TagManager:
   - name: Foreground
     uniqueID: 3844202265
     locked: 0
-  - name: LilBro
-    uniqueID: 4188897941
-    locked: 0
   - name: Enemy
     uniqueID: 2722403665
+    locked: 0
+  - name: LilBro
+    uniqueID: 4188897941
     locked: 0
   - name: MaxFront
     uniqueID: 2271978111
