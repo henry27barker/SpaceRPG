@@ -253,7 +253,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0057799816, y: -0.014450103}
+  m_Offset: {x: 0.0057799816, y: -0.09850991}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -264,7 +264,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.52603626, y: 0.6011767}
+  m_Size: {x: 0.52603626, y: 0.43305707}
   m_EdgeRadius: 0
 --- !u!114 &544129109809845894
 MonoBehaviour:
@@ -293,10 +293,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b0b3cb550447914985a1593f67d4fc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 500
+  health: 100
   spriteRenderer: {fileID: 0}
   whiteFlashTime: 0.1
   moneyItem: {fileID: 5532243446610562132, guid: f3c92a557ca10e64fb7c01fade6fa7f8, type: 3}
+  puff: {fileID: 1036290871177327590, guid: e8df7801798ac234eb9335971782d17c, type: 3}
   moneyAmount: 5
 --- !u!114 &5261493644243133783
 MonoBehaviour:

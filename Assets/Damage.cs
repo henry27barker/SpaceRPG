@@ -12,6 +12,7 @@ public class Damage : MonoBehaviour
     private float whiteFlashCounter;
     private GameObject player;
     public GameObject moneyItem;
+    public GameObject puff;
     public int moneyAmount;
 
     void Start()
@@ -41,6 +42,7 @@ public class Damage : MonoBehaviour
         {
             GameObject tempMoney = Instantiate(moneyItem, gameObject.transform.position, Quaternion.identity);
             tempMoney.GetComponent<MoneyPickup>().amount = moneyAmount;
+            Instantiate(puff, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

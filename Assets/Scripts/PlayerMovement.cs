@@ -40,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
     public bool dead = false;
 
     private bool rechargeShield;
+    private bool shoot;
 
     //Inputs
     private Vector2 lookInputValue;
@@ -122,6 +123,9 @@ public class PlayerMovement : MonoBehaviour
             shield.SetActive(false);
             rechargeShield = true;
         };
+
+        playerControls.actions["Fire"].performed += ctx => shoot = true;
+        playerControls.actions["Fire"].canceled += ctx => shoot = false;
     }
 
     private void OnDisable()
@@ -139,6 +143,9 @@ public class PlayerMovement : MonoBehaviour
             shield.SetActive(false);
             rechargeShield = true;
         };
+
+        playerControls.actions["Fire"].performed -= ctx => shoot = true;
+        playerControls.actions["Fire"].canceled -= ctx => shoot = false;
     }
 
     void Start()
@@ -197,6 +204,8 @@ public class PlayerMovement : MonoBehaviour
         WhiteFlash();
 
         HandleShield();
+
+        HandleShoot();
     }
 
     // private void OnNavigate(){
@@ -320,11 +329,6 @@ public class PlayerMovement : MonoBehaviour
     private void OnLook(InputValue value)
     {
         lookInputValue = value.Get<Vector2>();
-    }
-
-    private void OnFire()
-    {
-        playerShoot.Shoot();
     }
 
     private void OnStomp()
@@ -583,7 +587,7 @@ public class PlayerMovement : MonoBehaviour
             healthBar.spriteRenderer.flipX = true;
             weapon.transform.localScale = new Vector2(1,-1);
             hands.spriteRenderer.flipX = true;
-            shootingPoint.localPosition = new Vector3(0.5f, -0.164f, 0);
+            //shootingPoint.localPosition = new Vector3(0.5f, -0.164f, 0);
         } else 
         {
             //Facing Right
@@ -591,7 +595,7 @@ public class PlayerMovement : MonoBehaviour
             healthBar.spriteRenderer.flipX = false;
             weapon.transform.localScale = new Vector2(1, 1);
             hands.spriteRenderer.flipX = false;
-            shootingPoint.localPosition = new Vector3(0.5f, 0.164f, 0);
+            //shootingPoint.localPosition = new Vector3(0.5f, 0.164f, 0);
         }
 
         if (rb2d.velocity.x != 0 || rb2d.velocity.y != 0)
@@ -742,5 +746,13 @@ public class PlayerMovement : MonoBehaviour
         float tempScale = shieldHealth / maxShieldHealth;
         shield.transform.localScale = new Vector3(tempScale, tempScale, 1);
         shieldLight.pointLightOuterRadius = 3 * tempScale;
+    }
+
+    private void HandleShoot()
+    {
+        if(shoot)
+        {
+            playerShoot.Shoot();
+        }
     }
 }
