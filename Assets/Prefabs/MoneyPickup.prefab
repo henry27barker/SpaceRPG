@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1207143409098994084}
   - component: {fileID: 4722613889938426687}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 199259618348647299}
   - component: {fileID: 6538199379301145588}
   - component: {fileID: 8503984015925101271}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MoneyPickup
   m_TagString: Money
   m_Icon: {fileID: 0}
