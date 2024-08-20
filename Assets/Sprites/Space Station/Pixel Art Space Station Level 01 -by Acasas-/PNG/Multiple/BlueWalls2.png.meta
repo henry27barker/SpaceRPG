@@ -705,6 +705,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: BlueWalls2_29
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a05ac5e52c02c64baa8253a22a30374
+      internalID: 1915062699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -738,6 +759,7 @@ TextureImporter:
       BlueWalls2_26: -821587638
       BlueWalls2_27: 987843495
       BlueWalls2_28: 15036823
+      BlueWalls2_29: 1915062699
       BlueWalls2_3: -654428663
       BlueWalls2_4: -1051271942
       BlueWalls2_5: -1220454539

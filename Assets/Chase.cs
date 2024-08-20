@@ -20,6 +20,7 @@ public class Chase : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         shootingPointControl = transform.Find("Control").gameObject;
+        GetComponent<AIDestinationSetter>().target = playerTransform;
     }
 
     // Update is called once per frame

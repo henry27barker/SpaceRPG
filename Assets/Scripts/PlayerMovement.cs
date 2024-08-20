@@ -152,6 +152,7 @@ public class PlayerMovement : MonoBehaviour
         InteractablePrompt.SetActive(false);
         shield = transform.Find("Shield").gameObject;
         shieldLight = shield.GetComponent<Light2D> ();
+        rechargeShield = true;
     }
  
     void Update()
@@ -580,7 +581,7 @@ public class PlayerMovement : MonoBehaviour
             //Facing Left
             spriteRenderer.flipX = true;
             healthBar.spriteRenderer.flipX = true;
-            weapon.spriteRenderer.flipY = true;
+            weapon.transform.localScale = new Vector2(1,-1);
             hands.spriteRenderer.flipX = true;
             shootingPoint.localPosition = new Vector3(0.5f, -0.164f, 0);
         } else 
@@ -588,7 +589,7 @@ public class PlayerMovement : MonoBehaviour
             //Facing Right
             spriteRenderer.flipX = false;
             healthBar.spriteRenderer.flipX = false;
-            weapon.spriteRenderer.flipY = false;
+            weapon.transform.localScale = new Vector2(1, 1);
             hands.spriteRenderer.flipX = false;
             shootingPoint.localPosition = new Vector3(0.5f, 0.164f, 0);
         }

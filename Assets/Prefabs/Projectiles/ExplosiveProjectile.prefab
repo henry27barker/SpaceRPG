@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5885890474398383501}
   m_Layer: 2
   m_Name: ExplosiveProjectile
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -106069355
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 37b91fd1032713c4881a2b024dd5d470, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -150,8 +150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77b22f3f878060d4f820088e119c80a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 100
-  speed: 10
+  damage: 50
+  speed: 3
   radius: 1.5
   explosion: {fileID: 4022939666424673761, guid: 1bb5d70149b4fe845bc41fd997c3fe25, type: 3}
   rb2d: {fileID: 1779183956284513886}

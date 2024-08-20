@@ -48,7 +48,8 @@ public class Projectile : MonoBehaviour
             col.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.right * 10f, ForceMode2D.Impulse);
             col.gameObject.GetComponent<Damage>().decreaseHealth(damage);
         }
-        if(col.gameObject.tag == "Money" || col.gameObject.tag == "Obstacle" || col.gameObject.tag == "Projectile"){
+        if(col.gameObject.tag == "Money" || col.gameObject.tag == "Obstacle" || col.gameObject.tag == "Projectile" || col.gameObject.tag == "Player")
+        {
 
         }
         else{

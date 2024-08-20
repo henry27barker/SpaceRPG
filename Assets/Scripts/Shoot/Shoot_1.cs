@@ -8,6 +8,8 @@ public class Shoot_1 : MonoBehaviour
 {
     public GameObject projectile;
     public float rate;
+    public int damage;
+    public Transform groupLeader;
 
     private float counter;
     public LayerMask layerMask; 
@@ -23,9 +25,9 @@ public class Shoot_1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 direction = new Vector2(Mathf.Cos(transform.eulerAngles.z * Mathf.Deg2Rad), Mathf.Sin(transform.eulerAngles.z * Mathf.Deg2Rad));
-        RaycastHit2D hit = Physics2D.CircleCast(transform.position, 0.25f, direction, 50, layerMask);
-        Debug.DrawLine(transform.position, (Vector2)transform.position + direction * 10, Color.red);
+        Vector2 direction = new Vector2(Mathf.Cos(groupLeader.eulerAngles.z * Mathf.Deg2Rad), Mathf.Sin(groupLeader.eulerAngles.z * Mathf.Deg2Rad));
+        RaycastHit2D hit = Physics2D.CircleCast(groupLeader.position, 0.25f, direction, 50, layerMask);
+        Debug.DrawLine(groupLeader.position, (Vector2)groupLeader.position + direction * 10, Color.red);
         if (counter > rate)
         {
             if (hit.collider != null)
@@ -34,7 +36,9 @@ public class Shoot_1 : MonoBehaviour
                 // Check if the hit object is tagged as "Player"
                 if (hit.collider.gameObject.tag == "Player")
                 {
-                    Instantiate(projectile, transform.position, transform.rotation);
+                    var copy = Instantiate(projectile, transform.position, transform.rotation);
+                    if(copy.GetComponent<SpdrProjectile>() != null)
+                        copy.GetComponent<SpdrProjectile>().damage = damage;
                 }
             }
             counter = 0;
