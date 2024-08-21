@@ -5018,7 +5018,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 100
   playerDamage: 1
-  enemyDamage: 0
+  enemyDamage: 1
   radius: 1.5
 --- !u!82 &4102033186042209170
 AudioSource:

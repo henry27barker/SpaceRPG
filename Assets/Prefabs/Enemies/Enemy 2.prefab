@@ -322,10 +322,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b0b3cb550447914985a1593f67d4fc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 250
+  health: 150
   spriteRenderer: {fileID: 0}
   whiteFlashTime: 0.1
   moneyItem: {fileID: 5532243446610562132, guid: f3c92a557ca10e64fb7c01fade6fa7f8, type: 3}
+  puff: {fileID: 1036290871177327590, guid: e8df7801798ac234eb9335971782d17c, type: 3}
   moneyAmount: 5
 --- !u!114 &497088115211570698
 MonoBehaviour:

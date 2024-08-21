@@ -1,3 +1,4 @@
+using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,12 @@ public class EnemyExplosionDamage : MonoBehaviour
             if (hit.gameObject.tag == "Enemy" && enemyDamage)
             {
                 hit.gameObject.GetComponent<EnemyMovement>().decreaseHealth(damage);
+            }
+            if (hit.gameObject.tag == "Enemy2" && enemyDamage)
+            {
+                hit.gameObject.GetComponent<Damage>().decreaseHealth(damage);
+                hit.gameObject.GetComponent<AIPath>().canMove = false;
+                hit.gameObject.GetComponent<Rigidbody2D>().AddForce((hit.gameObject.transform.position - transform.position) * 20f, ForceMode2D.Impulse);
             }
             else if (hit.gameObject.tag == "Player" && playerDamage)
             {

@@ -65,6 +65,7 @@ public class Shoot_2 : MonoBehaviour
             Vector2 direction = new Vector2(Mathf.Cos(transform.eulerAngles.z * Mathf.Deg2Rad), Mathf.Sin(transform.eulerAngles.z * Mathf.Deg2Rad));
             RaycastHit2D hit = Physics2D.CircleCast(transform.position, 0.25f, direction, 50, layerMask);
 
+            
             if (counter > rate)
             {
                 if (hit.collider != null)
@@ -78,6 +79,44 @@ public class Shoot_2 : MonoBehaviour
                     }
                 }
                 counter = 0;
+            }
+            else if (counter > rate * 0.75)
+            {
+                counter += Time.deltaTime;
+
+                if (hit.collider.tag == "Player" || hit.collider.tag == "Obstacle")
+                {
+                    Vector3 delayedPosition = playerPositions.Peek().Position;
+
+                    // Extend the line beyond the delayed position
+                    Vector2 lineDirection = (delayedPosition - transform.position).normalized;
+                    float maxDistance = 100f; // Maximum distance the line can extend
+                    RaycastHit2D extendedHit = Physics2D.Raycast(delayedPosition, lineDirection, maxDistance, layerMask);
+
+                    Vector3 lineEndPosition;
+                    if (extendedHit.collider != null)
+                    {
+                        // Line hit an obstacle or the player
+                        lineEndPosition = extendedHit.point;
+                    }
+                    else
+                    {
+                        // No hit, draw the line to the maximum distance
+                        lineEndPosition = delayedPosition + (Vector3)lineDirection * maxDistance;
+                    }
+
+                    // Draw the line from the enemy to the extended position
+                    lineRenderer.startColor = new Color(1,0.5f,0);
+                    lineRenderer.endColor = Color.red;
+                    lineRenderer.SetPosition(0, transform.position);
+                    lineRenderer.SetPosition(1, lineEndPosition);
+                }
+                else
+                {
+                    // Hide the line when not shooting
+                    lineRenderer.SetPosition(0, transform.position);
+                    lineRenderer.SetPosition(1, transform.position);
+                }
             }
             else
             {
@@ -105,6 +144,8 @@ public class Shoot_2 : MonoBehaviour
                     }
 
                     // Draw the line from the enemy to the extended position
+                    lineRenderer.startColor = Color.red;
+                    lineRenderer.endColor = Color.red;
                     lineRenderer.SetPosition(0, transform.position);
                     lineRenderer.SetPosition(1, lineEndPosition);
                 }

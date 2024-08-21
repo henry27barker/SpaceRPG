@@ -549,7 +549,7 @@ public class PlayerMovement : MonoBehaviour
             healthBar.animator.SetBool("FacingDown", true);
             hands.animator.SetBool("FacingDown", true);
 
-            weapon.transform.position = new Vector2(transform.position[0] + weapon.offsets[0], transform.position[1] + weapon.offsets[1]);
+            //weapon.transform.position = new Vector2(transform.position[0] + weapon.offsets[0], transform.position[1] + weapon.offsets[1]);
         }
         else if (lookRotation > 45 && lookRotation < 90)
         {
@@ -558,7 +558,7 @@ public class PlayerMovement : MonoBehaviour
             healthBar.animator.SetBool("FacingDown", false);
             hands.animator.SetBool("FacingDown", false);
 
-            weapon.transform.position = new Vector2(transform.position[0] + weapon.offsets[0], transform.position[1] + (weapon.offsets[1]) / 2);
+            //weapon.transform.position = new Vector2(transform.position[0] + weapon.offsets[0], transform.position[1] + (weapon.offsets[1]));
         }
         else if(lookRotation >= 90 && lookRotation < 135)
         {
@@ -567,7 +567,7 @@ public class PlayerMovement : MonoBehaviour
             healthBar.animator.SetBool("FacingDown", false);
             hands.animator.SetBool("FacingDown", false);
 
-            weapon.transform.position = new Vector2(transform.position[0] - weapon.offsets[0], transform.position[1] + (weapon.offsets[1] / 2));
+            //weapon.transform.position = new Vector2(transform.position[0] - weapon.offsets[0], transform.position[1] + (weapon.offsets[1]));
         }
         else
         {
@@ -576,16 +576,36 @@ public class PlayerMovement : MonoBehaviour
             healthBar.animator.SetBool("FacingDown", true);
             hands.animator.SetBool("FacingDown", true);
  
-            weapon.transform.position = new Vector2(transform.position[0] - weapon.offsets[0], transform.position[1] + weapon.offsets[1]);
+            //weapon.transform.position = new Vector2(transform.position[0] - weapon.offsets[0], transform.position[1] + weapon.offsets[1]);
         }
 
+        if(lookRotation <= 90 || lookRotation > 350)
+        {
+            //Aiming From 12 o'clock to aroud 5 o'clock
+            weapon.transform.localScale = new Vector2(1, 1); 
+            weapon.spriteRenderer.sortingOrder = 0;
+        } else if (lookRotation <= 315 && lookRotation > 270)
+        {
+            //Aiming From around 5 o'clock to 6 o'clock
+            weapon.transform.localScale = new Vector2(1, -1);
+            weapon.spriteRenderer.sortingOrder = 10;
+        } else if (lookRotation <= 270 && lookRotation > 225)
+        {
+            //Aiming From 6 o'clock to aroud 8 o'clock
+            weapon.transform.localScale = new Vector2(1, 1);
+            weapon.spriteRenderer.sortingOrder = 10;
+        } else
+        {
+            //Aiming From around 8 o'clock to 12 o'clock
+            weapon.transform.localScale = new Vector2(1, -1);
+            weapon.spriteRenderer.sortingOrder = 0;
+        }
 
-        if (direction == 2 || direction == 3)
+            if (direction == 2 || direction == 3)
         {
             //Facing Left
             spriteRenderer.flipX = true;
             healthBar.spriteRenderer.flipX = true;
-            weapon.transform.localScale = new Vector2(1,-1);
             hands.spriteRenderer.flipX = true;
             //shootingPoint.localPosition = new Vector3(0.5f, -0.164f, 0);
         } else 
@@ -593,7 +613,6 @@ public class PlayerMovement : MonoBehaviour
             //Facing Right
             spriteRenderer.flipX = false;
             healthBar.spriteRenderer.flipX = false;
-            weapon.transform.localScale = new Vector2(1, 1);
             hands.spriteRenderer.flipX = false;
             //shootingPoint.localPosition = new Vector3(0.5f, 0.164f, 0);
         }

@@ -34,6 +34,7 @@ public class ExplosionProjectile : MonoBehaviour
                 copy.GetComponent<EnemyExplosionDamage>().damage = damage;
                 copy.GetComponent<EnemyExplosionDamage>().radius = radius;
                 copy.GetComponent<EnemyExplosionDamage>().playerDamage = true;
+                copy.GetComponent<EnemyExplosionDamage>().enemyDamage = true;
                 Destroy(gameObject);
             }
             else

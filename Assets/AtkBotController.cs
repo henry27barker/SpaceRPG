@@ -167,41 +167,43 @@ public class AtkBotController : MonoBehaviour
 
     private void Shoot(int look)
     {
-
-        if (ammoCount < 1)
+        if (!dead)
         {
-            reloading = true;
-            ammoCount = ammo;
-        }
-
-        if (reloading)
-        {
-            if (counter5 > reloadTime)
+            if (ammoCount < 1)
             {
-                reloading = false;
-                counter5 = 0;
+                reloading = true;
+                ammoCount = ammo;
+            }
+
+            if (reloading)
+            {
+                if (counter5 > reloadTime)
+                {
+                    reloading = false;
+                    counter5 = 0;
+                }
+                else
+                {
+                    counter5 += Time.deltaTime;
+                }
             }
             else
             {
-                counter5 += Time.deltaTime;
-            }
-        }
-        else
-        {
-            if (counter4 > fireRate)
-            {
-                //Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, look + 15));
-                shootSource.volume = Random.Range(0.5f, 0.75f);
-                shootSource.pitch = Random.Range(0.5f, 0.65f);
-                shootSource.Play();
-                Instantiate(projectile, shootingPoint.position, shootingPoint.rotation);
-                ammoCount--;
-                //Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, look - 15));
-                counter4 = 0;
-            }
-            else
-            {
-                counter4 += Time.deltaTime;
+                if (counter4 > fireRate)
+                {
+                    //Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, look + 15));
+                    shootSource.volume = Random.Range(0.5f, 0.75f);
+                    shootSource.pitch = Random.Range(0.5f, 0.65f);
+                    shootSource.Play();
+                    Instantiate(projectile, shootingPoint.position, shootingPoint.rotation);
+                    ammoCount--;
+                    //Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0, 0, look - 15));
+                    counter4 = 0;
+                }
+                else
+                {
+                    counter4 += Time.deltaTime;
+                }
             }
         }
     }

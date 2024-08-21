@@ -13,7 +13,6 @@ public class MoneyPickup : MonoBehaviour
     public int amount;
 
     void Awake(){
-        collider = GetComponent<Collider2D>();
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
