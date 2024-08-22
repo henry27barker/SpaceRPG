@@ -49,7 +49,12 @@ public class Projectile : MonoBehaviour
         }
         if(col.gameObject.tag == "Money" || col.gameObject.tag == "Obstacle" || col.gameObject.tag == "Projectile" || col.gameObject.tag == "Player")
         {
-
+            if(col.gameObject.GetComponent<Mine>())
+            {
+                Instantiate(destroyObject, transform.position, transform.rotation);
+                Destroy(gameObject);
+                col.gameObject.GetComponent<Mine>().DestroyMine();
+            }
         }
         else{
             Instantiate(destroyObject, transform.position, transform.rotation);

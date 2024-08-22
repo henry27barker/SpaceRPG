@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Lamp
+  m_Name: Mine
   m_Shader: {fileID: -6465566751694194690, guid: 7eaa3c6d9437fe8488fbdc1752b9c9a9, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -24,11 +24,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Emission:
-        m_Texture: {fileID: 2800000, guid: ee214de2c7e7b6a4ebc5eb78e6b281f3, type: 3}
+        m_Texture: {fileID: 2800000, guid: e0a1d423129ed034ea79406f0b7f9aac, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: d4f8acf364042ae45af2e90a7b2caf4e, type: 3}
+        m_Texture: {fileID: 2800000, guid: 443c73cf3a30d624897025c7f83dd745, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:

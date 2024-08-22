@@ -20,10 +20,6 @@ public class MissileUp : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb2d.velocity = new Vector2(0,speed); 
-        explosion.GetComponent<EnemyExplosionDamage>().damage = damage;
-        explosion.GetComponent<EnemyExplosionDamage>().radius = 3;
-        explosion.GetComponent<EnemyExplosionDamage>().playerDamage = true;
-        explosion.GetComponent<EnemyExplosionDamage>().enemyDamage = false;
     }
 
     // Update is called once per frame
@@ -67,14 +63,22 @@ public class MissileUp : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             col.gameObject.GetComponent<PlayerMovement>().decreaseHealth(damage);
-            Instantiate(explosion, transform.position, transform.rotation);
+            var copy = Instantiate(explosion, transform.position, transform.rotation);
+            copy.GetComponent<EnemyExplosionDamage>().damage = damage;
+            copy.GetComponent<EnemyExplosionDamage>().radius = 1.5f;
+            copy.GetComponent<EnemyExplosionDamage>().playerDamage = true;
+            copy.GetComponent<EnemyExplosionDamage>().enemyDamage = false;
             Destroy(gameObject);
         }
     }
 
     public void Explode()
     {
-        Instantiate(explosion, transform.position, transform.rotation);
+        var copy = Instantiate(explosion, transform.position, transform.rotation);
+        copy.GetComponent<EnemyExplosionDamage>().damage = damage;
+        copy.GetComponent<EnemyExplosionDamage>().radius = 1.5f;
+        copy.GetComponent<EnemyExplosionDamage>().playerDamage = true;
+        copy.GetComponent<EnemyExplosionDamage>().enemyDamage = false;
         Destroy(gameObject);
     }
 }

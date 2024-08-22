@@ -369,6 +369,13 @@ public class PlayerMovement : MonoBehaviour
                 hit.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * -50f, ForceMode2D.Impulse);
                 hit.gameObject.GetComponent<Damage>().decreaseHealth(stompDamage);
             }
+            if(hit.gameObject.tag == "Obstacle")
+            {
+                if (hit.gameObject.GetComponent<Mine>())
+                {
+                    hit.gameObject.GetComponent<Mine>().DestroyMine();
+                }
+            }
         }
     }
 
@@ -584,6 +591,7 @@ public class PlayerMovement : MonoBehaviour
             //Aiming From 12 o'clock to aroud 5 o'clock
             weapon.transform.localScale = new Vector2(1, 1); 
             weapon.spriteRenderer.sortingOrder = 0;
+        } else if (lookRotation <= 315 && lookRotation > 270) { 
         } else if (lookRotation <= 315 && lookRotation > 270)
         {
             //Aiming From around 5 o'clock to 6 o'clock

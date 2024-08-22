@@ -27,9 +27,16 @@ public class EnemyExplosionDamage : MonoBehaviour
                 hit.gameObject.GetComponent<AIPath>().canMove = false;
                 hit.gameObject.GetComponent<Rigidbody2D>().AddForce((hit.gameObject.transform.position - transform.position) * 20f, ForceMode2D.Impulse);
             }
-            else if (hit.gameObject.tag == "Player" && playerDamage)
+            if (hit.gameObject.tag == "Player" && playerDamage)
             {
                 hit.gameObject.GetComponent<PlayerMovement>().decreaseHealth(damage);
+            }
+            if(hit.gameObject.tag == "Obstacle")
+            {
+                if (hit.gameObject.GetComponent<Mine>())
+                {
+                    hit.gameObject.GetComponent<Mine>().DestroyMine();
+                }
             }
         }
     }
