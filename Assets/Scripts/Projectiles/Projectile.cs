@@ -47,16 +47,14 @@ public class Projectile : MonoBehaviour
             col.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.right * 10f, ForceMode2D.Impulse);
             col.gameObject.GetComponent<Damage>().decreaseHealth(damage);
         }
-        if(col.gameObject.tag == "Money" || col.gameObject.tag == "Obstacle" || col.gameObject.tag == "Projectile" || col.gameObject.tag == "Player")
+        if (col.gameObject.GetComponent<Mine>())
         {
-            if(col.gameObject.GetComponent<Mine>())
-            {
-                Instantiate(destroyObject, transform.position, transform.rotation);
-                Destroy(gameObject);
-                col.gameObject.GetComponent<Mine>().DestroyMine();
-            }
+            Instantiate(destroyObject, transform.position, transform.rotation);
+            Destroy(gameObject);
+            col.gameObject.GetComponent<Mine>().DestroyMine();
         }
-        else{
+        if (col.gameObject.tag == "Wall" || col.gameObject.tag == "Obstacle")
+        {
             Instantiate(destroyObject, transform.position, transform.rotation);
             Destroy(gameObject);
         }

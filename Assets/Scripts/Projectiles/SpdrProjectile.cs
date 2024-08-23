@@ -34,7 +34,7 @@ public class SpdrProjectile : MonoBehaviour
             
             Destroy(gameObject);
         }
-        if(col.gameObject.tag == "Enemy" || col.gameObject.tag == "Obstacle" || col.gameObject.tag == "Money" || col.gameObject.tag == "Enemy2" || col.gameObject.tag == "Projectile")
+        if(col.gameObject.tag == "Enemy" || col.gameObject.tag == "Money" || col.gameObject.tag == "Enemy2" || col.gameObject.tag == "Projectile")
         {
             if (col.gameObject.GetComponent<Mine>())
             {
@@ -43,7 +43,7 @@ public class SpdrProjectile : MonoBehaviour
                 col.gameObject.GetComponent<Mine>().DestroyMine();
             }
         }
-        else
+        if (col.gameObject.tag == "Wall" || col.gameObject.tag == "Obstacle")
         {
             Instantiate(destroyObject, transform.position, transform.rotation);
             Destroy(gameObject);

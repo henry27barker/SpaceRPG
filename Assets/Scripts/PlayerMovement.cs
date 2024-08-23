@@ -39,6 +39,8 @@ public class PlayerMovement : MonoBehaviour
     private float shootingPointOffset = 0;
     public bool dead = false;
 
+    public GameObject currentRoom;
+
     private bool rechargeShield;
     private bool shoot;
 
@@ -781,5 +783,10 @@ public class PlayerMovement : MonoBehaviour
         {
             playerShoot.Shoot();
         }
+    }
+
+    public void SetCurrentRoom(GameObject roomReference)
+    {
+        currentRoom = roomReference;
     }
 }
