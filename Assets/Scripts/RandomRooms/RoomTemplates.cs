@@ -18,6 +18,7 @@ public class RoomTemplates : MonoBehaviour
     public GameObject lamp;
     public GameObject crate;
     public GameObject enemy;
+    public GameObject mine;
 
     public GameObject door;
 
@@ -30,9 +31,11 @@ public class RoomTemplates : MonoBehaviour
     public int lampChance = 8;
     public int crateChance = 8;
     public int enemyChance = 8;
+    public int mineChance = 5;
 
     private bool enemySpawned = false;
     private bool crateSpawned = false;
+    private bool mineSpawned = false;
 
     private GameObject player;
 
@@ -94,23 +97,26 @@ public class RoomTemplates : MonoBehaviour
     GameObject RandomlyGenerateLamp(int chance, Vector3 position){
         if(!enemySpawned){
             if(!crateSpawned){
-                int rand = Random.Range(1, 101);
-                if(rand <= chance){
-                    rand = Random.Range(-1, 2);
-                    int temp = Random.Range(-1, 2);
-                    int flickerRand = Random.Range(1,101);
-                    if(flickerRand <= flickerChance){
-                        lamp.GetComponent<Flicker>().flickerOn = true;
+                if(!mineSpawned){
+                    int rand = Random.Range(1, 101);
+                    if(rand <= chance){
+                        rand = Random.Range(-1, 2);
+                        int temp = Random.Range(-1, 2);
+                        int flickerRand = Random.Range(1,101);
+                        if(flickerRand <= flickerChance){
+                            lamp.GetComponent<Flicker>().flickerOn = true;
+                        }
+                        else{
+                            lamp.GetComponent<Flicker>().flickerOn = false;
+                        }
+                        Vector3 newPosition = new Vector3(position.x + rand, position.y + temp, 0);
+                        return Instantiate(lamp, newPosition, Quaternion.identity);
                     }
                     else{
-                        lamp.GetComponent<Flicker>().flickerOn = false;
+                        return null;
                     }
-                    Vector3 newPosition = new Vector3(position.x + rand, position.y + temp, 0);
-                    return Instantiate(lamp, newPosition, Quaternion.identity);
                 }
-                else{
-                    return null;
-                }
+                return null;
             }
             return null;
         }
@@ -164,6 +170,27 @@ public class RoomTemplates : MonoBehaviour
         }
     }
 
+    GameObject RandomlyGenerateMine(int chance, Vector3 position){
+        if(!enemySpawned){
+            if(!crateSpawned){
+                int rand = Random.Range(1, 101);
+                if(rand <= chance){
+                    rand = Random.Range(-1, 2);
+                    int temp = Random.Range(-1, 2);
+                    mineSpawned = true;
+                    Vector3 newPosition = new Vector3(position.x + rand, position.y + temp, 0);
+                    return Instantiate(mine, newPosition, Quaternion.identity);
+                }
+                else{
+                    mineSpawned = false;
+                    return null;
+                }
+            }
+            return null;
+        }
+        return null;
+    }
+
     void MakeLevel(int columnPos, int rowPos){
         Debug.Log(columnPos + " " + rowPos);
         if(columnPos == columnHeight / 2 && rowPos == rowHeight / 2){
@@ -174,7 +201,8 @@ public class RoomTemplates : MonoBehaviour
             if(tempEnemy != null)
                 tempEnemy.GetComponentInChildren<EnemyMovement>().health += (int)((incrementers.level / 5) * healthIncrementAmount);
             RandomlyGenerateCrate(crateChance, transform.position);
-            RandomlyGenerateLamp(8, transform.position);
+            RandomlyGenerateMine(mineChance, transform.position);
+            RandomlyGenerateLamp(lampChance, transform.position);
             if(rooms[columnPos, rowPos].GetComponent<RoomType>().openingDirections.Contains(1) && rooms[columnPos, rowPos + 1] == null){
                 MakeLevel(columnPos, rowPos + 1);
             }
@@ -250,6 +278,10 @@ public class RoomTemplates : MonoBehaviour
                     if(tempGameObject != null){
                         destroyPossibleSpawn = tempGameObject;
                     }
+                    tempGameObject = RandomlyGenerateMine(mineChance, newPosition);
+                    if(tempGameObject != null){
+                        destroyPossibleSpawn = tempGameObject;
+                    }
                     tempGameObject = RandomlyGenerateLamp(lampChance, newPosition);
                     if(tempGameObject != null){
                         destroyPossibleSpawn = tempGameObject;
@@ -260,6 +292,7 @@ public class RoomTemplates : MonoBehaviour
                     if(tempEnemy != null)
                         tempEnemy.GetComponentInChildren<EnemyMovement>().health += (int)((incrementers.level / 5) * healthIncrementAmount);
                     RandomlyGenerateCrate(crateChance, newPosition);
+                    RandomlyGenerateMine(mineChance, newPosition);
                     RandomlyGenerateLamp(lampChance, newPosition);
                 }
                 if(rooms[columnPos, rowPos].GetComponent<RoomType>().openingDirections.Contains(1) && rooms[columnPos, rowPos + 1] == null){
