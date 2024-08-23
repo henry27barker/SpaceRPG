@@ -745,6 +745,7 @@ MonoBehaviour:
   lamp: {fileID: 4265719620121517933, guid: a2469e275240f2043a90ddb0cd561354, type: 3}
   crate: {fileID: 5033156371534922067, guid: ce949d5ee8d2ba647abc6a7d189a2ef2, type: 3}
   enemy: {fileID: 3546195814298739331, guid: 134710e20b2337949833f1c7bbfeb442, type: 3}
+  mine: {fileID: 2931743309832830958, guid: ca8b15eafe50f474383bcd75c076171b, type: 3}
   door: {fileID: 6594500964305024282, guid: 9a5c2b6557407104dbc1c986c01280ca, type: 3}
   window: {fileID: 21300000, guid: d790c2a6560229144a9946768f8f3b60, type: 3}
   flickerChance: 10
@@ -752,6 +753,7 @@ MonoBehaviour:
   lampChance: 10
   crateChance: 3
   enemyChance: 10
+  mineChance: 10
   columnHeight: 0
   rowHeight: 0
   spdrBotStartingLevel: 5
