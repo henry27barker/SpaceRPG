@@ -217,7 +217,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.16607904, y: 0.15560567}
+  m_Offset: {x: 0.57, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -488,6 +488,7 @@ Transform:
   - {fileID: 4072237589235683449}
   - {fileID: 158026291557904832}
   - {fileID: 530120489383360026}
+  - {fileID: 3743796550758550127}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2278723420548383351
@@ -570,6 +571,8 @@ MonoBehaviour:
   whiteFlashTime: 0.15
   lookRotation: 0
   dead: 0
+  stompPointOffsets: {x: 0.1, y: -0.36}
+  currentRoom: {fileID: 0}
   animator: {fileID: 8154195089337959407}
   playerControls: {fileID: 0}
   mouseCursor: {fileID: 1023518832695749715}
@@ -586,9 +589,11 @@ MonoBehaviour:
   closeInvetorySound: {fileID: 3657009029715561767}
   navigationSound: {fileID: 4031919304079275304}
   shootingPoint: {fileID: 2055562610798257817}
+  stompPoint: {fileID: 3743796550758550127}
   mainCamera: {fileID: 0}
   shield: {fileID: 0}
   shieldLight: {fileID: 0}
+  stompEffect: {fileID: 4959859383843585956, guid: bdf4ef5cbbe2b98409e7c32af644d8dd, type: 3}
   healthBar: {fileID: 5081715507185458052}
   weapon: {fileID: 8496650875515938418}
   hands: {fileID: 684520942684252937}
@@ -1634,6 +1639,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 368645446761303845}
   spriteRenderer: {fileID: 0}
+--- !u!1 &7781228625317852920
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3743796550758550127}
+  m_Layer: 3
+  m_Name: StompPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3743796550758550127
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7781228625317852920}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.1, y: -0.36, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5282061660691578340}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8054702179363845669
 GameObject:
   m_ObjectHideFlags: 0
@@ -1648,7 +1684,7 @@ GameObject:
   - component: {fileID: 4647275076582870860}
   m_Layer: 3
   m_Name: Main Camera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1780,7 +1816,7 @@ MonoBehaviour:
   m_RefResolutionX: 512
   m_RefResolutionY: 288
   m_CropFrame: 3
-  m_GridSnapping: 1
+  m_GridSnapping: 2
   m_FilterMode: 0
   m_UpscaleRT: 0
   m_PixelSnapping: 0
@@ -1924,7 +1960,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: -876546973899608171, guid: 0fb22cd3730329b449203511554a4c92, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1946,7 +1982,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 12
   m_Sprite: {fileID: -2029270455, guid: 16a43f56b654f4a4789d3ec851d08282, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.9137255, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

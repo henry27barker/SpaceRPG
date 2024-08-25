@@ -32,20 +32,28 @@ public class Projectile : MonoBehaviour
         {
             col.gameObject.GetComponent<Chainsaw>().enemyMovement.decreaseHealth(damage);
             playerMovement.IncreaseHealth((int)(damage * (playerMovement.lifeSteal / 100f)));
+            Instantiate(destroyObject, transform.position, transform.rotation);
+            Destroy(gameObject);
         }
         if (col.gameObject.tag == "Enemy"){
             col.gameObject.GetComponent<EnemyMovement>().decreaseHealth(damage);
             playerMovement.IncreaseHealth((int)(damage * (playerMovement.lifeSteal / 100f)));
+            Instantiate(destroyObject, transform.position, transform.rotation);
+            Destroy(gameObject);
         }
         if(col.gameObject.tag == "Missile")
         {
             col.gameObject.GetComponent<MissileUp>().Explode();
+            Instantiate(destroyObject, transform.position, transform.rotation);
+            Destroy(gameObject);
         }
         if(col.gameObject.tag == "Enemy2")
         {
             col.gameObject.GetComponent<AIPath>().canMove = false;
             col.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.right * 10f, ForceMode2D.Impulse);
             col.gameObject.GetComponent<Damage>().decreaseHealth(damage);
+            Instantiate(destroyObject, transform.position, transform.rotation);
+            Destroy(gameObject);
         }
         if (col.gameObject.GetComponent<Mine>())
         {

@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using UnityEngine.Rendering.Universal;
 using Pathfinding;
+using Cinemachine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -38,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     private float footstepCounter = 0;
     private float shootingPointOffset = 0;
     public bool dead = false;
+    public Vector2 stompPointOffsets;
 
     public GameObject currentRoom;
 
@@ -68,9 +70,12 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource openInventorySound, closeInvetorySound;
     public AudioSource navigationSound;
     public Transform shootingPoint;
+    public Transform stompPoint;
     public Camera mainCamera;
     public GameObject shield;
     public Light2D shieldLight;
+    private CinemachineVirtualCamera cinemachineVirtualCamera;
+    public ParticleSystem stompEffect;
 
     //Scripts
     public HealthBar healthBar;
@@ -108,6 +113,11 @@ public class PlayerMovement : MonoBehaviour
         InteractablePrompt = GameObject.FindWithTag("InteractablePrompt");
         interactMenu = GameObject.FindObjectOfType<InteractMenu>().gameObject;
         shootingPointOffset = shootingPoint.localPosition.y;
+        if(GameObject.FindWithTag("VirtualCamera") != null)
+        {
+            cinemachineVirtualCamera = GameObject.FindWithTag("VirtualCamera").GetComponent<CinemachineVirtualCamera>();
+        }
+        
     }
 
     private void OnEnable()
@@ -353,9 +363,22 @@ public class PlayerMovement : MonoBehaviour
 
     private void StompDamage()
     {
+        //Audio
         stompSource.pitch = Random.Range(0.85f, 1f);
         stompSource.Play();
-        Collider2D[] stompHits = Physics2D.OverlapCircleAll(transform.position, stompRadius);
+
+        //Camera Shake
+        if(cinemachineVirtualCamera != null)
+        {
+            cinemachineVirtualCamera.GetComponent<CameraShake>().Shake(stompDamage/20, 0.5f);
+        }
+
+        //Particle Effect
+        var copy = Instantiate(stompEffect, stompPoint.position, Quaternion.identity);
+        copy.startSpeed = stompRadius * 5;
+
+        //Hit Detection
+        Collider2D[] stompHits = Physics2D.OverlapCircleAll(stompPoint.position, stompRadius);
 
         foreach (Collider2D hit in stompHits)
         {
@@ -509,17 +532,19 @@ public class PlayerMovement : MonoBehaviour
             
             else
             {
-                //Add Crosshair
+                // Add Crosshair
                 mouseCursor.SetActive(true);
-                // Find mouse position
+
+                // Find mouse position in world space using the main camera
                 Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-                mouseWorldPosition.z = 0f;
+                mouseWorldPosition.z = 0f;  // Ensure Z-axis is set to 0 for 2D
+
+                // Update the crosshair position
                 mouseCursor.transform.position = mouseWorldPosition;
 
                 // Find difference in player and mouse position
                 float deltaX = mouseWorldPosition.x - transform.position.x;
                 float deltaY = mouseWorldPosition.y - transform.position.y;
-
 
                 // Calculate the angle in radians
                 angleRadians = Mathf.Atan2(deltaY, deltaX);
@@ -532,7 +557,8 @@ public class PlayerMovement : MonoBehaviour
                 {
                     angleDegrees += 360f;
                 }
-            
+
+                // Update weapon rotation
                 lookRotation = Mathf.RoundToInt(angleDegrees);
                 weapon.UpdateRotation(lookRotation);
             }
@@ -547,7 +573,7 @@ public class PlayerMovement : MonoBehaviour
          * Directions:
          * 0 = Right
          * 1 = UpRight
-         * 2 = DownLeft
+         * 2 = UpLeft
          * 3 = Left
          *********************/
 
@@ -558,6 +584,7 @@ public class PlayerMovement : MonoBehaviour
             healthBar.animator.SetBool("FacingDown", true);
             hands.animator.SetBool("FacingDown", true);
 
+            stompPoint.localPosition = new Vector3(stompPointOffsets.x, stompPointOffsets.y, 0);
             //weapon.transform.position = new Vector2(transform.position[0] + weapon.offsets[0], transform.position[1] + weapon.offsets[1]);
         }
         else if (lookRotation > 45 && lookRotation < 90)
@@ -567,6 +594,7 @@ public class PlayerMovement : MonoBehaviour
             healthBar.animator.SetBool("FacingDown", false);
             hands.animator.SetBool("FacingDown", false);
 
+            stompPoint.localPosition = new Vector3(stompPointOffsets.x, 0, 0);
             //weapon.transform.position = new Vector2(transform.position[0] + weapon.offsets[0], transform.position[1] + (weapon.offsets[1]));
         }
         else if(lookRotation >= 90 && lookRotation < 135)
@@ -576,6 +604,7 @@ public class PlayerMovement : MonoBehaviour
             healthBar.animator.SetBool("FacingDown", false);
             hands.animator.SetBool("FacingDown", false);
 
+            stompPoint.localPosition = new Vector3(-1 * stompPointOffsets.x, 0, 0);
             //weapon.transform.position = new Vector2(transform.position[0] - weapon.offsets[0], transform.position[1] + (weapon.offsets[1]));
         }
         else
@@ -584,7 +613,8 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("FacingDown", true);
             healthBar.animator.SetBool("FacingDown", true);
             hands.animator.SetBool("FacingDown", true);
- 
+
+            stompPoint.localPosition = new Vector3(-1 * stompPointOffsets.x, stompPointOffsets.y, 0);
             //weapon.transform.position = new Vector2(transform.position[0] - weapon.offsets[0], transform.position[1] + weapon.offsets[1]);
         }
 

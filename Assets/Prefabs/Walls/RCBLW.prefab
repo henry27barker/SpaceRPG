@@ -686,7 +686,7 @@ GameObject:
   - component: {fileID: 9059541665442506136}
   m_Layer: 8
   m_Name: RCBLW
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

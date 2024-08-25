@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 3961257661189001763}
   m_Layer: 8
   m_Name: CTRCRB
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

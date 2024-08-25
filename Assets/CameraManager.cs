@@ -9,6 +9,21 @@ public class CameraManager : MonoBehaviour
     public PlayerMovement playerMovement;
     public CinemachineVirtualCamera virtualCamera;
 
+    public bool oldSystem;
+    public static CameraManager cameraManagerInstance;
+
+    void Awake()
+    {
+        if (cameraManagerInstance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        cameraManagerInstance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +32,8 @@ public class CameraManager : MonoBehaviour
         {
             playerMovement = player.GetComponent<PlayerMovement>();
         }
+        if(oldSystem)
+            virtualCamera.Follow = player.transform;
     }
 
     // Update is called once per frame

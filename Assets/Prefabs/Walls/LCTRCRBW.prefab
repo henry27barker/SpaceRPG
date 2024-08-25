@@ -518,7 +518,7 @@ GameObject:
   - component: {fileID: 6591368153935738464}
   m_Layer: 8
   m_Name: LCTRCRBW
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

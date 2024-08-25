@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: -3535036813707725078}
   m_Layer: 8
   m_Name: TRCBLW
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

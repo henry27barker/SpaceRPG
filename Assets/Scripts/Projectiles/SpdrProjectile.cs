@@ -38,10 +38,10 @@ public class SpdrProjectile : MonoBehaviour
         {
             if (col.gameObject.GetComponent<Mine>())
             {
-                Instantiate(destroyObject, transform.position, transform.rotation);
-                Destroy(gameObject);
                 col.gameObject.GetComponent<Mine>().DestroyMine();
             }
+            Instantiate(destroyObject, transform.position, transform.rotation);
+            Destroy(gameObject);
         }
         if (col.gameObject.tag == "Wall" || col.gameObject.tag == "Obstacle")
         {

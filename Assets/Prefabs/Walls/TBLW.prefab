@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 8347392799817119357}
   m_Layer: 8
   m_Name: TBLW
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
