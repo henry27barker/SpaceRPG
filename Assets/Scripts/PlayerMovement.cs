@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.Rendering.Universal;
 using Pathfinding;
 using Cinemachine;
+using Unity.VisualScripting.Antlr3.Runtime;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -40,6 +41,9 @@ public class PlayerMovement : MonoBehaviour
     private float shootingPointOffset = 0;
     public bool dead = false;
     public Vector2 stompPointOffsets;
+    private float shieldTime;
+    public bool parry;
+    private int parryLayerMask = LayerMask.GetMask("Ignore Raycast") | ~0;
 
     public GameObject currentRoom;
 
@@ -76,6 +80,7 @@ public class PlayerMovement : MonoBehaviour
     public Light2D shieldLight;
     private CinemachineVirtualCamera cinemachineVirtualCamera;
     public ParticleSystem stompEffect;
+    public ParticleSystem parryEffect;
 
     //Scripts
     public HealthBar healthBar;
@@ -218,6 +223,8 @@ public class PlayerMovement : MonoBehaviour
         HandleShield();
 
         HandleShoot();
+
+        parry = false;
     }
 
     // private void OnNavigate(){
@@ -534,10 +541,11 @@ public class PlayerMovement : MonoBehaviour
             {
                 // Add Crosshair
                 mouseCursor.SetActive(true);
-
-                // Find mouse position in world space using the main camera
-                Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-                mouseWorldPosition.z = 0f;  // Ensure Z-axis is set to 0 for 2D
+                
+                //Find World Position
+                var mousePos = Input.mousePosition;
+                mousePos.z = 10; // select distance = 10 units from the camera
+                Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(mousePos);
 
                 // Update the crosshair position
                 mouseCursor.transform.position = mouseWorldPosition;
@@ -690,7 +698,33 @@ public class PlayerMovement : MonoBehaviour
     {
         if(shield.activeSelf)
         {
-            if (shieldHealth - damage < 0)
+            //Parry
+            if(shieldHealth > (maxShieldHealth * 0.9f))
+            {
+                parry = true;
+                var copy = Instantiate(parryEffect, transform.position, Quaternion.identity);
+                //Reflect all Projectiles
+                Collider2D[] parryHits = Physics2D.OverlapCircleAll(transform.position, 3f, parryLayerMask);
+                
+                foreach (Collider2D hit in parryHits)
+                {
+                    Vector2 direction = transform.position - hit.transform.position;
+                    direction.Normalize();
+                    if (hit.gameObject.GetComponent<SpdrProjectile>())
+                    {
+                        Debug.Log(hit);
+                        hit.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                        hit.gameObject.GetComponent<Rigidbody2D>().velocity = direction * -10;
+                    }
+                    if (hit.gameObject.tag == "Enemy2")
+                    {
+                        hit.gameObject.GetComponent<AIPath>().canMove = false;
+                        hit.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * -50f, ForceMode2D.Impulse);
+                    }
+                }
+            }
+            //Break
+            else if (shieldHealth - damage < 0)
             {
                 damage -= (int)shieldHealth;
                 shieldHealth = 0;
@@ -698,7 +732,9 @@ public class PlayerMovement : MonoBehaviour
                 health -= damage;
 
                 healthBar.UpdateColor();
-            } else
+            } 
+            //Normal
+            else
             {
                 shieldHealth -= damage;
             }

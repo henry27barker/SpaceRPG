@@ -31,7 +31,6 @@ public class Shoot_1 : MonoBehaviour
         {
             if (hit.collider != null)
             {
-                Debug.Log(hit.collider.gameObject.tag);
                 // Check if the hit object is tagged as "Player"
                 if (hit.collider.gameObject.tag == "Player")
                 {

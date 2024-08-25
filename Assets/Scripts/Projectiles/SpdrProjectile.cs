@@ -29,17 +29,16 @@ public class SpdrProjectile : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            Instantiate(destroyObject, transform.position, transform.rotation);
             col.gameObject.GetComponent<PlayerMovement>().decreaseHealth(damage);
-            
-            Destroy(gameObject);
-        }
-        if(col.gameObject.tag == "Enemy" || col.gameObject.tag == "Money" || col.gameObject.tag == "Enemy2" || col.gameObject.tag == "Projectile")
-        {
-            if (col.gameObject.GetComponent<Mine>())
+            if (!col.gameObject.GetComponent<PlayerMovement>().parry)
             {
-                col.gameObject.GetComponent<Mine>().DestroyMine();
+                Instantiate(destroyObject, transform.position, transform.rotation);
+                Destroy(gameObject);
             }
+        }
+        if(col.gameObject.GetComponent<Mine>())
+        {
+            col.gameObject.GetComponent<Mine>().DestroyMine();
             Instantiate(destroyObject, transform.position, transform.rotation);
             Destroy(gameObject);
         }
