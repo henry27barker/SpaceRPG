@@ -116,7 +116,7 @@ public class SkillTree : MonoBehaviour
         playerMovement.maxHealth = maxHealth;
         maxHealthText.text = maxHealth.ToString();
         speedText.text = speed.ToString();
-        lifeStealText.text = lifeSteal.ToString();
+        lifeStealText.text = lifeSteal.ToString() + "%";
         playerMovement.speed = speed;
         playerMovement.lifeSteal = lifeSteal;
         playerShoot.fireRate = fireRate;
