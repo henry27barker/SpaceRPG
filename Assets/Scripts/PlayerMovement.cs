@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     public int stompDamage;
     public float stompKnockback;
     public float whiteFlashTime;
+    public float parryWindow;
 
     //Helper Fields
     public int lookRotation;
@@ -43,7 +44,8 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 stompPointOffsets;
     private float shieldTime;
     public bool parry;
-    private int parryLayerMask = LayerMask.GetMask("Ignore Raycast") | ~0;
+    private int parryLayerMask;
+    private float parryCounter;
 
     public GameObject currentRoom;
 
@@ -69,10 +71,6 @@ public class PlayerMovement : MonoBehaviour
     public GameObject skillTreeFirst;
     private GameObject interactMenu;
     public GameObject codeUI = null;
-    public AudioSource footstepSource, moneySound;
-    public AudioSource stompSource;
-    public AudioSource openInventorySound, closeInvetorySound;
-    public AudioSource navigationSound;
     public Transform shootingPoint;
     public Transform stompPoint;
     public Camera mainCamera;
@@ -81,6 +79,15 @@ public class PlayerMovement : MonoBehaviour
     private CinemachineVirtualCamera cinemachineVirtualCamera;
     public ParticleSystem stompEffect;
     public ParticleSystem parryEffect;
+
+    //Audio Sources
+    public AudioSource footstepSource, moneySound;
+    public AudioSource stompSource;
+    public AudioSource openInventorySound, closeInvetorySound;
+    public AudioSource navigationSound;
+    public AudioSource parrySound;
+    public AudioSource shieldDamageSound;
+    public AudioSource damageSound;
 
     //Scripts
     public HealthBar healthBar;
@@ -122,7 +129,7 @@ public class PlayerMovement : MonoBehaviour
         {
             cinemachineVirtualCamera = GameObject.FindWithTag("VirtualCamera").GetComponent<CinemachineVirtualCamera>();
         }
-        
+        parryLayerMask = LayerMask.GetMask("Ignore Raycast") | ~0;
     }
 
     private void OnEnable()
@@ -134,6 +141,7 @@ public class PlayerMovement : MonoBehaviour
         {
             shield.SetActive(true);
             rechargeShield = false;
+            HandleParryBefore();
         };
         playerControls.actions["Shield"].canceled += ctx =>
         {
@@ -154,6 +162,7 @@ public class PlayerMovement : MonoBehaviour
         {
             shield.SetActive(true);
             rechargeShield = false;
+            HandleParryBefore();
         };
         playerControls.actions["Shield"].canceled -= ctx =>
         {
@@ -224,7 +233,15 @@ public class PlayerMovement : MonoBehaviour
 
         HandleShoot();
 
-        parry = false;
+        if(parryCounter > parryWindow)
+        {
+            //HandleParryBefore();
+            parryCounter = 0;
+            parry = false;
+        } else
+        {
+            parryCounter += Time.deltaTime;
+        }
     }
 
     // private void OnNavigate(){
@@ -696,35 +713,37 @@ public class PlayerMovement : MonoBehaviour
 
     public void decreaseHealth(int damage)
     {
-        if(shield.activeSelf)
+        //Parry
+        if (parry)
         {
-            //Parry
-            if(shieldHealth > (maxShieldHealth * 0.9f))
+            var copy = Instantiate(parryEffect, transform.position, Quaternion.identity);
+            PlayParrySound();
+
+            //Reflect all Projectiles
+            Collider2D[] parryHits = Physics2D.OverlapCircleAll(transform.position, 3f, parryLayerMask);
+
+            foreach (Collider2D hit in parryHits)
             {
-                parry = true;
-                var copy = Instantiate(parryEffect, transform.position, Quaternion.identity);
-                //Reflect all Projectiles
-                Collider2D[] parryHits = Physics2D.OverlapCircleAll(transform.position, 3f, parryLayerMask);
-                
-                foreach (Collider2D hit in parryHits)
+                Vector2 direction = transform.position - hit.transform.position;
+                direction.Normalize();
+                if (hit.gameObject.GetComponent<SpdrProjectile>())
                 {
-                    Vector2 direction = transform.position - hit.transform.position;
-                    direction.Normalize();
-                    if (hit.gameObject.GetComponent<SpdrProjectile>())
-                    {
-                        Debug.Log(hit);
-                        hit.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-                        hit.gameObject.GetComponent<Rigidbody2D>().velocity = direction * -10;
-                    }
-                    if (hit.gameObject.tag == "Enemy2")
-                    {
-                        hit.gameObject.GetComponent<AIPath>().canMove = false;
-                        hit.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * -50f, ForceMode2D.Impulse);
-                    }
+                    Debug.Log(hit);
+                    hit.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                    hit.gameObject.GetComponent<Rigidbody2D>().velocity = direction * -10;
+                }
+                if (hit.gameObject.tag == "Enemy2")
+                {
+                    hit.gameObject.GetComponent<AIPath>().canMove = false;
+                    hit.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * -50f, ForceMode2D.Impulse);
                 }
             }
-            //Break
-            else if (shieldHealth - damage < 0)
+            parry = false;
+        }
+        if (shield.activeSelf)
+        {
+            PlayShieldDamageSound();
+            if (shieldHealth - damage < 0)
             {
                 damage -= (int)shieldHealth;
                 shieldHealth = 0;
@@ -740,6 +759,7 @@ public class PlayerMovement : MonoBehaviour
             }
         } else
         {
+            PlayDamageSound();
             whiteFlashCounter = whiteFlashTime;
             health -= damage;
 
@@ -843,6 +863,44 @@ public class PlayerMovement : MonoBehaviour
         shieldLight.pointLightOuterRadius = 3 * tempScale;
     }
 
+    private void HandleParryBefore()
+    {
+        bool success = false;
+        Collider2D[] isItAParry = Physics2D.OverlapCircleAll(transform.position, 0.7f, parryLayerMask);
+
+        //Detect if parry should execute
+        foreach (Collider2D hit in isItAParry)
+        {
+            if (hit.gameObject.GetComponent<SpdrProjectile>())
+            {
+                Vector2 direction = transform.position - hit.transform.position;
+                direction.Normalize();
+                var copy = Instantiate(parryEffect, transform.position, Quaternion.identity);
+                Debug.Log(hit);
+                hit.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                hit.gameObject.GetComponent<Rigidbody2D>().velocity = direction * -10;
+                success = true;
+            }
+        }
+        if(success)
+        {
+            Collider2D[] parryHits = Physics2D.OverlapCircleAll(transform.position, 2f, parryLayerMask);
+            //If parry is executed, knockback enemies
+            foreach (Collider2D hit in parryHits)
+            {
+                if (hit.gameObject.tag == "Enemy2")
+                {
+                    Vector2 direction = transform.position - hit.transform.position;
+                    direction.Normalize();
+                    hit.gameObject.GetComponent<AIPath>().canMove = false;
+                    hit.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * -50f, ForceMode2D.Impulse);
+                }
+            }
+            PlayParrySound();
+            parry = false;
+        }
+    }
+
     private void HandleShoot()
     {
         if(shoot)
@@ -854,5 +912,24 @@ public class PlayerMovement : MonoBehaviour
     public void SetCurrentRoom(GameObject roomReference)
     {
         currentRoom = roomReference;
+    }
+
+    private void PlayParrySound()
+    {
+        parrySound.pitch = Random.Range(0.9f, 1.1f);
+        parrySound.volume = Random.Range(0.8f, 0.9f);
+        parrySound.PlayOneShot(parrySound.clip);
+    }
+    private void PlayShieldDamageSound()
+    {
+        shieldDamageSound.pitch = Random.Range(0.9f, 1.1f);
+        shieldDamageSound.volume = Random.Range(0.5f, 0.6f);
+        shieldDamageSound.PlayOneShot(shieldDamageSound.clip);
+    }
+    private void PlayDamageSound()
+    {
+        damageSound.pitch = Random.Range(0.9f, 1.1f);
+        damageSound.volume = Random.Range(0.2f, 0.3f);
+        damageSound.PlayOneShot(damageSound.clip);
     }
 }
