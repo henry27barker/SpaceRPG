@@ -30,7 +30,12 @@ public class Projectile : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col){
         if (col.gameObject.tag == "Chainsaw")
         {
-            col.gameObject.GetComponent<Chainsaw>().enemyMovement.decreaseHealth(damage);
+            col.gameObject.GetComponent<Chainsaw>().enemyMovement.decreaseHealth(damage); 
+            if (col.gameObject.GetComponent<Chainsaw>().enemyMovement.hasRB)
+            {
+                col.gameObject.transform.parent.GetComponent<AIPath>().canMove = false;
+                col.gameObject.transform.parent.GetComponent<Rigidbody2D>().AddForce(transform.right * 10f, ForceMode2D.Impulse);
+            }
             playerMovement.IncreaseHealth((int)(damage * (playerMovement.lifeSteal / 100f)));
             Instantiate(destroyObject, transform.position, transform.rotation);
             Destroy(gameObject);
@@ -38,6 +43,11 @@ public class Projectile : MonoBehaviour
         if (col.gameObject.tag == "Enemy"){
             col.gameObject.GetComponent<EnemyMovement>().decreaseHealth(damage);
             playerMovement.IncreaseHealth((int)(damage * (playerMovement.lifeSteal / 100f)));
+            if(col.gameObject.GetComponent<EnemyMovement>().hasRB)
+            {
+                col.gameObject.GetComponent<AIPath>().canMove = false;
+                col.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.right * 10f, ForceMode2D.Impulse);
+            }
             Instantiate(destroyObject, transform.position, transform.rotation);
             Destroy(gameObject);
         }

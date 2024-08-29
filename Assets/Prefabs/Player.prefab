@@ -573,6 +573,7 @@ MonoBehaviour:
   stompKnockback: 4
   whiteFlashTime: 0.15
   parryWindow: 0.2
+  canParry: 0
   lookRotation: 0
   dead: 0
   stompPointOffsets: {x: 0.1, y: -0.36}
@@ -785,7 +786,7 @@ MonoBehaviour:
   speed: 5
   minSpeed: 3
   maxSpeed: 6
-  lifeSteal: 10
+  lifeSteal: 0
   minLifeSteal: 0
   maxLifeSteal: 100
   fireRate: 0.5
@@ -815,6 +816,7 @@ MonoBehaviour:
   stompDamage: 50
   minStompDamage: 20
   maxStompDamage: 100
+  parry: 0
 --- !u!82 &5002328440788314502
 AudioSource:
   m_ObjectHideFlags: 0

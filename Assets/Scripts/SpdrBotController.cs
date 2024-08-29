@@ -34,6 +34,7 @@ public class SpdrBotController : MonoBehaviour
     public AIPath aipath;
     public AIDestinationSetter enemyDestinationSetter;
     public GameObject rayCastPoint;
+    public Rigidbody2D rb2d;
 
     //Debugging
     public GameObject circle;
@@ -51,6 +52,10 @@ public class SpdrBotController : MonoBehaviour
 
         lastPosition = transform.position;
 
+        if(enemyMovement.hasRB)
+        {
+            rb2d = GetComponent<Rigidbody2D>();
+        }
     }
 
     // Update is called once per frame
@@ -117,10 +122,8 @@ public class SpdrBotController : MonoBehaviour
             spriteRenderer.flipX = true;
         }
 
-        if(lastPosition != transform.position)
-        {
+        if (enemyMovement.hasSeen)
             animator.SetFloat("Speed", 1);
-        }
         else
         {
             animator.SetFloat("Speed", 0);

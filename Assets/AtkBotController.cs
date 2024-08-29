@@ -14,6 +14,7 @@ public class AtkBotController : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public GameObject parent;
     public AudioSource moveSound, footstep, deathSource, shootSource;
+    public bool hasRB;
 
     public float deathAnimDuration;
     public Vector2 weaponOffsets;
@@ -90,9 +91,18 @@ public class AtkBotController : MonoBehaviour
         {
             
             dead = true;
-            parent.GetComponent<AIPath>().canMove = false;
+            if(hasRB)
+            {
+                GetComponent<AIPath>().canMove = false;
+                GetComponent<PolygonCollider2D>().enabled = false;
+                enemyMovement.dead = true;
+
+            } else
+            {
+                parent.GetComponent<AIPath>().canMove = false;
+                GetComponent<BoxCollider2D>().enabled = false;
+            }
             animator.SetBool("Death", true);
-            GetComponent<BoxCollider2D>().enabled = false;
             weapon.SetActive(false);
             if (counter < deathAnimDuration)
             {

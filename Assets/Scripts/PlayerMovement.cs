@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     public float stompKnockback;
     public float whiteFlashTime;
     public float parryWindow;
+    public bool canParry;
 
     //Helper Fields
     public int lookRotation;
@@ -141,7 +142,8 @@ public class PlayerMovement : MonoBehaviour
         {
             shield.SetActive(true);
             rechargeShield = false;
-            HandleParryBefore();
+            if(canParry)
+                HandleParryBefore();
         };
         playerControls.actions["Shield"].canceled += ctx =>
         {
@@ -162,7 +164,8 @@ public class PlayerMovement : MonoBehaviour
         {
             shield.SetActive(true);
             rechargeShield = false;
-            HandleParryBefore();
+            if (canParry)
+                HandleParryBefore();
         };
         playerControls.actions["Shield"].canceled -= ctx =>
         {
@@ -187,10 +190,11 @@ public class PlayerMovement : MonoBehaviour
         shieldLight = shield.GetComponent<Light2D> ();
         rechargeShield = true;
     }
- 
+
     void Update()
     {
-        if(health <= 0){
+        if (health <= 0)
+        {
             playerControls.SwitchCurrentActionMap("UI");
             if (!dead)
             {
@@ -204,23 +208,25 @@ public class PlayerMovement : MonoBehaviour
             dead = true;
             return;
         }
-        if(inventoryUI.activeSelf == true || skillTreeUI.activeSelf == true || shopUI != null || codeUI != null){
+        if (inventoryUI.activeSelf == true || skillTreeUI.activeSelf == true || shopUI != null || codeUI != null)
+        {
             Time.timeScale = 0;
             return;
         }
-        else{
+        else
+        {
             Time.timeScale = 1;
             healthBar.UpdateColor();
         }
 
         MovementLogic();
-        
+
         UpdateLookRotation();
 
 
         UpdateAnimations();
 
-        
+
         UpdateHealthBar();
 
         StompTimer();
@@ -233,14 +239,18 @@ public class PlayerMovement : MonoBehaviour
 
         HandleShoot();
 
-        if(parryCounter > parryWindow)
-        {
-            //HandleParryBefore();
-            parryCounter = 0;
-            parry = false;
-        } else
-        {
-            parryCounter += Time.deltaTime;
+        if (canParry) 
+        { 
+            if (parryCounter > parryWindow)
+            {
+                //HandleParryBefore();
+                parryCounter = 0;
+                parry = false;
+            }
+            else
+            {
+                parryCounter += Time.deltaTime;
+            }
         }
     }
 
@@ -252,13 +262,13 @@ public class PlayerMovement : MonoBehaviour
         if(health <= 0){
             return;
         }
-        openInventorySound.Play();
         if(interactMenu.transform.parent.gameObject.activeSelf == false && skillTreeUI.activeSelf == false && shopUI == null && codeUI == null){
             inventoryUI.SetActive(!inventoryUI.activeSelf);
             if(inventoryUI.activeSelf == true){
                 EventSystem.current.SetSelectedGameObject(null);
                 playerControls.SwitchCurrentActionMap("UI");
                 EventSystem.current.SetSelectedGameObject(inventoryFirst);
+                openInventorySound.PlayOneShot(openInventorySound.clip);
             }
             else{
                 playerControls.SwitchCurrentActionMap("Player");
@@ -287,7 +297,6 @@ public class PlayerMovement : MonoBehaviour
         if(health <= 0){
             return;
         }
-        closeInvetorySound.Play();
         if(skillTreeUI.activeSelf == false && shopUI == null && codeUI == null){
             inventoryUI.SetActive(!inventoryUI.activeSelf);
             interactMenu.transform.parent.gameObject.SetActive(false);
@@ -295,6 +304,7 @@ public class PlayerMovement : MonoBehaviour
                 EventSystem.current.SetSelectedGameObject(null);
                 playerControls.SwitchCurrentActionMap("UI");
                 EventSystem.current.SetSelectedGameObject(inventoryFirst);
+                closeInvetorySound.PlayOneShot(closeInvetorySound.clip);
             }
             else{
                 playerControls.SwitchCurrentActionMap("Player");
@@ -409,13 +419,20 @@ public class PlayerMovement : MonoBehaviour
             if (hit.gameObject.tag == "Enemy")
             {
                 hit.gameObject.GetComponent<EnemyMovement>().decreaseHealth(stompDamage);
+                if(hit.gameObject.GetComponent<EnemyMovement>().hasRB)
+                {
+                    hit.gameObject.GetComponent<AIPath>().canMove = false;
+                    Vector2 direction = transform.position - hit.transform.position;
+                    direction.Normalize();
+                    hit.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * -1f * stompDamage, ForceMode2D.Impulse);
+                }
             }
             if (hit.gameObject.tag == "Enemy2")
             {
                 hit.gameObject.GetComponent<AIPath>().canMove = false;
                 Vector2 direction = transform.position - hit.transform.position;
                 direction.Normalize();
-                hit.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * -50f, ForceMode2D.Impulse);
+                hit.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * -1f * stompDamage, ForceMode2D.Impulse);
                 hit.gameObject.GetComponent<Damage>().decreaseHealth(stompDamage);
             }
             if(hit.gameObject.tag == "Obstacle")
@@ -714,7 +731,7 @@ public class PlayerMovement : MonoBehaviour
     public void decreaseHealth(int damage)
     {
         //Parry
-        if (parry)
+        if (parry && canParry)
         {
             var copy = Instantiate(parryEffect, transform.position, Quaternion.identity);
             PlayParrySound();
@@ -873,18 +890,12 @@ public class PlayerMovement : MonoBehaviour
         {
             if (hit.gameObject.GetComponent<SpdrProjectile>())
             {
-                Vector2 direction = transform.position - hit.transform.position;
-                direction.Normalize();
-                var copy = Instantiate(parryEffect, transform.position, Quaternion.identity);
-                Debug.Log(hit);
-                hit.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-                hit.gameObject.GetComponent<Rigidbody2D>().velocity = direction * -10;
                 success = true;
             }
         }
         if(success)
         {
-            Collider2D[] parryHits = Physics2D.OverlapCircleAll(transform.position, 2f, parryLayerMask);
+            Collider2D[] parryHits = Physics2D.OverlapCircleAll(transform.position, 4f, parryLayerMask);
             //If parry is executed, knockback enemies
             foreach (Collider2D hit in parryHits)
             {
@@ -894,6 +905,26 @@ public class PlayerMovement : MonoBehaviour
                     direction.Normalize();
                     hit.gameObject.GetComponent<AIPath>().canMove = false;
                     hit.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * -50f, ForceMode2D.Impulse);
+                }
+                if(hit.gameObject.tag == "Enemy")
+                {
+                    if (hit.gameObject.GetComponent<EnemyMovement>().hasRB)
+                    {
+                        hit.gameObject.GetComponent<AIPath>().canMove = false;
+                        Vector2 direction = transform.position - hit.transform.position;
+                        direction.Normalize();
+                        hit.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * -50f, ForceMode2D.Impulse);
+                    }
+                }
+                if (hit.gameObject.GetComponent<SpdrProjectile>())
+                {
+                    Vector2 direction = transform.position - hit.transform.position;
+                    direction.Normalize();
+                    var copy = Instantiate(parryEffect, transform.position, Quaternion.identity);
+                    Debug.Log(hit);
+                    hit.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                    hit.gameObject.GetComponent<Rigidbody2D>().velocity = direction * -10;
+                    success = true;
                 }
             }
             PlayParrySound();

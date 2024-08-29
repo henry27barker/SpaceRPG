@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class SkillTree : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class SkillTree : MonoBehaviour
     private TMP_Text pillAmountText;
     private TMP_Text stompDistanceText;
     private TMP_Text stompDamageText;
+    private TMP_Text parryText;
     private TMP_Text messageText;
     private GameObject messagePanel;
 
@@ -73,6 +75,7 @@ public class SkillTree : MonoBehaviour
     public int stompDamage;
     public int minStompDamage;
     public int maxStompDamage;
+    public bool parry;
 
     void Awake(){
         inventoryUI = GameObject.FindObjectOfType<InventoryUI>();
@@ -100,6 +103,7 @@ public class SkillTree : MonoBehaviour
         pillAmountText = skillTreeUI.transform.Find("Health/HealthUpgrades/PillAmount/PillAmountPanel/PillAmountBackgroundPanel/PillAmountTextNumber").gameObject.GetComponent<TMP_Text>();
         stompDistanceText = skillTreeUI.transform.Find("Basic/BasicUpgrades/StompDistance/StompDistancePanel/StompDistanceBackgroundPanel/StompDistanceTextNumber").gameObject.GetComponent<TMP_Text>();
         stompDamageText = skillTreeUI.transform.Find("Basic/BasicUpgrades/StompDamage/StompDamagePanel/StompDamageBackgroundPanel/StompDamageTextNumber").gameObject.GetComponent<TMP_Text>();
+        parryText = skillTreeUI.transform.Find("Basic/BasicUpgrades/Parry/ParryPanel/ParryBackgroundPanel/ParryTextNumber").gameObject.GetComponent<TMP_Text>();
         upgradeTokensText = skillTreeUI.transform.Find("UpgradeTokensPanel/UpgradeTokensBackgroundPanel/UpgradeTokensTextNumber").gameObject.GetComponent<TMP_Text>();
         messageText = skillTreeUI.transform.Find("MessagePanel/MessageBackgroundPanel/MessageText").gameObject.GetComponent<TMP_Text>();
         messagePanel = skillTreeUI.transform.Find("MessagePanel").gameObject;
@@ -107,6 +111,8 @@ public class SkillTree : MonoBehaviour
         healthTab.SetActive(false);
         messagePanel.SetActive(false);
         skillTreeUI.SetActive(false);
+
+        Debug.Log(upgradeTokensText);
     }
 
     // Update is called once per frame
@@ -134,8 +140,17 @@ public class SkillTree : MonoBehaviour
         stompDistanceText.text = stompDistance.ToString();
         playerMovement.stompDamage = stompDamage;
         stompDamageText.text = stompDamage.ToString();
+        if(parry)
+        {
+            parryText.text = "";
+        }
+        else
+        {
+            parryText.text = "-";
+        }
+        playerMovement.canParry = parry;
 
-        if(messageTimer > 0){
+        if (messageTimer > 0){
             messageTimer -= Time.unscaledDeltaTime;
             messagePanel.SetActive(true);
         }
@@ -596,6 +611,29 @@ public class SkillTree : MonoBehaviour
         }
         else{
             messageText.text = "Out of upgrade tokens.";
+            messageTimer = 5f;
+        }
+    }
+    public void AddParry()
+    {
+        if (upgradeTokens > 2)
+        {
+            if (!parry)
+            {
+                parry = true; 
+                skillTreeUI.transform.Find("Basic/BasicUpgrades/StompDamage/StompDamagePanel/StompDamageBackgroundPanel/IncreaseStompDamage").gameObject.GetComponent<Button>().Select();
+                skillTreeUI.transform.Find("Basic/BasicUpgrades/Parry/ParryPanel/ParryBackgroundPanel/AddParry").gameObject.SetActive(false);
+                upgradeTokens -= 3;
+            }
+            else
+            {
+                messageText.text = "Already Unlocked Parry";
+                messageTimer = 5f;
+            }
+        }
+        else
+        {
+            messageText.text = "Need 3 Upgrade Tokens.";
             messageTimer = 5f;
         }
     }

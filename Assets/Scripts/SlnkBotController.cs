@@ -13,6 +13,7 @@ public class SlnkBotController : MonoBehaviour
     public float deathRadius;
     public float explosionRadius;
     public float deathTime;
+    public bool hasRB;
 
     //HELPERS
     private bool deathRadiusReached;

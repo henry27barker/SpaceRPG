@@ -12,6 +12,7 @@ public class EnemyMovement : MonoBehaviour
 {
     public int health;
     public SpriteRenderer spriteRenderer;
+    public Rigidbody2D rb;
     public float whiteFlashTime;
     private float whiteFlashCounter;
     private AIPath aiPath;
@@ -20,29 +21,44 @@ public class EnemyMovement : MonoBehaviour
     public float seeRadius = 10f;
     public GameObject moneyItem;
     public int moneyAmount;
+    public bool hasRB;
+    public bool hasSeen;
+    public bool dead;
  
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.material.SetFloat("_FlashAmount", 0);
-        if(transform.parent != null){
+        if(!hasRB){
             aiPath = transform.parent.gameObject.GetComponent<AIPath>();
             aiDestinationSetter = transform.parent.gameObject.GetComponent<AIDestinationSetter>();
+            player = GameObject.FindWithTag("Player"); if (player != null)
+            {
+                aiDestinationSetter.target = player.transform;
+            }
+            aiPath.canMove = false;
+        } else
+        {
+            aiPath = GetComponent<AIPath>();
+            aiDestinationSetter = GetComponent<AIDestinationSetter>();
+            rb = GetComponent<Rigidbody2D>();
             player = GameObject.FindWithTag("Player");
+            if(player != null)
+            {
+                aiDestinationSetter.target = player.transform;
+            }
             aiPath.canMove = false;
         }
     }
 
     void Update()
     {
-        if(transform.parent != null){
-            aiDestinationSetter.target = player.transform;
-            if(Vector3.Distance(gameObject.transform.position, player.transform.position) <= seeRadius){
-                aiPath.canMove = true;
-            }
-            else{
-                //aiPath.canMove = false;
-            }
+        if(Vector3.Distance(gameObject.transform.position, player.transform.position) <= seeRadius && !hasSeen && !dead){
+            aiPath.canMove = true;
+            hasSeen = true;
+        }
+        else{
+            //aiPath.canMove = false;
         }
 
         if(whiteFlashCounter > 0){
@@ -51,6 +67,14 @@ public class EnemyMovement : MonoBehaviour
         }
         else{
             spriteRenderer.material.SetFloat("_FlashAmount", 0);
+        }
+        if (hasRB && !dead)
+        {
+            if (GetComponent<AIPath>().canMove == false && rb.velocity.magnitude < 0.5f)
+            {
+                if(hasSeen)
+                    GetComponent<AIPath>().canMove = true;
+            }
         }
     }
 
