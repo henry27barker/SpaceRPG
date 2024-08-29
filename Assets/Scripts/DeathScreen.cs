@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
 public class DeathScreen : MonoBehaviour
@@ -9,7 +11,7 @@ public class DeathScreen : MonoBehaviour
     private GameObject player;
     public GameObject deathScreen;
     public GameObject deathScreenFirst;
-    public GameObject globalVolume;
+    public Volume globalVolume;
     private GameObject skillTree;
     private GameObject interactMenu;
     private GameObject interactablePrompt;
@@ -19,7 +21,7 @@ public class DeathScreen : MonoBehaviour
     void Awake(){
         player = GameObject.FindWithTag("Player");
         deathScreen = GameObject.FindWithTag("DeathScreen");
-        globalVolume = GameObject.FindWithTag("GlobalVolume");
+        globalVolume = GameObject.FindWithTag("GlobalVolume").GetComponent<Volume>();
         deathScreenFirst = deathScreen.transform.Find("DeathScreenPanel/DeathScreenBackgroundPanel/MainMenuPanel").gameObject;
         skillTree = GameObject.FindWithTag("SkillTree");
         interactMenu = FindObjectOfType<InteractMenu>().gameObject.transform.parent.gameObject;
@@ -31,7 +33,10 @@ public class DeathScreen : MonoBehaviour
     void Start()
     {
         deathScreen.SetActive(false);
-        globalVolume.SetActive(false);
+        if (globalVolume.profile.TryGet(out ColorAdjustments colorAdjustments))
+        {
+            colorAdjustments.saturation.value = 0;
+        }
     }
 
     // Update is called once per frame
@@ -43,7 +48,10 @@ public class DeathScreen : MonoBehaviour
             deathScreen.SetActive(true);
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(deathScreenFirst);
-            globalVolume.SetActive(true);
+            if (globalVolume.profile.TryGet(out ColorAdjustments colorAdjustments))
+            {
+                colorAdjustments.saturation.value = -100;
+            }
         }
     }
 

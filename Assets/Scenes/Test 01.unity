@@ -2164,11 +2164,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8576627516745491961, guid: 83bc468d703d2374aabaef8ab6dd2921, type: 3}
       propertyPath: m_Name
-      value: Global Volume (2)
+      value: Global Volume
       objectReference: {fileID: 0}
     - target: {fileID: 8576627516745491961, guid: 83bc468d703d2374aabaef8ab6dd2921, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: GlobalVolume
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

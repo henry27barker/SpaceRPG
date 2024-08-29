@@ -251,7 +251,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   whiteFlashTime: 0.15
   aiDestinationSetter: {fileID: 0}
-  seeRadius: 6
+  seeRadius: 8
   moneyItem: {fileID: 5532243446610562132, guid: f3c92a557ca10e64fb7c01fade6fa7f8, type: 3}
   moneyAmount: 5
   hasRB: 1
