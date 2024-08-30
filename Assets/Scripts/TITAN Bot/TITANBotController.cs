@@ -78,7 +78,7 @@ public class TITANBotController : MonoBehaviour
         claw.GetComponent<SpriteRenderer>().material.SetColor("_FlashColor", enemyMovement.spriteRenderer.material.GetColor("_FlashColor"));
 
         //HealthBar
-        if (enemyMovement.health < 0 && !death)
+        if (enemyMovement.health <= 0 && !death)
         {
             mainAnimator.SetTrigger("Death");
             health.SetActive(false);
@@ -312,4 +312,8 @@ public class TITANBotController : MonoBehaviour
         missileLaunch.Play();
     }
 
+    public bool isDead()
+    {
+        return death;
+    }
 }

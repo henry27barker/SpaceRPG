@@ -17,7 +17,7 @@ public class EnemyMovement : MonoBehaviour
     private float whiteFlashCounter;
     private AIPath aiPath;
     public AIDestinationSetter aiDestinationSetter;
-    private GameObject player;
+    public GameObject player;
     public float seeRadius = 10f;
     public GameObject moneyItem;
     public int moneyAmount;
@@ -29,14 +29,19 @@ public class EnemyMovement : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.material.SetFloat("_FlashAmount", 0);
+            player = GameObject.FindWithTag("Player"); 
         if(!hasRB){
-            aiPath = transform.parent.gameObject.GetComponent<AIPath>();
-            aiDestinationSetter = transform.parent.gameObject.GetComponent<AIDestinationSetter>();
-            player = GameObject.FindWithTag("Player"); if (player != null)
+            player = GameObject.FindWithTag("Player");
+            if (transform.parent != null)
             {
-                aiDestinationSetter.target = player.transform;
+                aiPath = transform.parent.gameObject.GetComponent<AIPath>();
+                aiDestinationSetter = transform.parent.gameObject.GetComponent<AIDestinationSetter>();
+                if (player != null)
+                {
+                    aiDestinationSetter.target = player.transform;
+                }
+                aiPath.canMove = false;
             }
-            aiPath.canMove = false;
         } else
         {
             aiPath = GetComponent<AIPath>();
@@ -53,12 +58,18 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
-        if(Vector3.Distance(gameObject.transform.position, player.transform.position) <= seeRadius && !hasSeen && !dead){
-            aiPath.canMove = true;
-            hasSeen = true;
-        }
-        else{
-            //aiPath.canMove = false;
+        if (player != null)
+        {
+            if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= seeRadius && !hasSeen && !dead)
+            {
+                if (aiPath != null)
+                    aiPath.canMove = true;
+                hasSeen = true;
+            }
+            else
+            {
+                //aiPath.canMove = false;
+            }
         }
 
         if(whiteFlashCounter > 0){
@@ -82,8 +93,11 @@ public class EnemyMovement : MonoBehaviour
         whiteFlashCounter = whiteFlashTime;
         health -= damage;
         if(health <= 0){
-            GameObject tempMoney = Instantiate(moneyItem, gameObject.transform.position, Quaternion.identity);
-            tempMoney.GetComponent<MoneyPickup>().amount = moneyAmount;
+            if (moneyAmount > 0)
+            {
+                GameObject tempMoney = Instantiate(moneyItem, gameObject.transform.position, Quaternion.identity);
+                tempMoney.GetComponent<MoneyPickup>().amount = moneyAmount;
+            }
         }
     }
 }
