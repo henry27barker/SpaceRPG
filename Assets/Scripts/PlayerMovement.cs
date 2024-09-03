@@ -210,11 +210,15 @@ public class PlayerMovement : MonoBehaviour
         }
         if (inventoryUI.activeSelf == true || skillTreeUI.activeSelf == true || shopUI != null || codeUI != null)
         {
+            if(playerControls.currentControlScheme != "Gamepad"){
+                Cursor.visible = true;
+            }
             Time.timeScale = 0;
             return;
         }
         else
         {
+            Cursor.visible = false;
             Time.timeScale = 1;
             healthBar.UpdateColor();
         }
