@@ -235,6 +235,8 @@ public class PlayerMovement : MonoBehaviour
 
         UpdateHealthBar();
 
+        UpdateInteractablePrompt();
+
         StompTimer();
 
         CheckInteractPrompt();
@@ -515,6 +517,11 @@ public class PlayerMovement : MonoBehaviour
         else{
             InteractablePrompt.SetActive(false);
         }
+    }
+
+    private void UpdateInteractablePrompt()
+    {
+        InteractablePrompt.GetComponent<InteractablePromptInstance>().ChangeControlScheme(GetControlScheme());
     }
 
     private void StompTimer()
@@ -996,5 +1003,17 @@ public class PlayerMovement : MonoBehaviour
         damageSound.pitch = Random.Range(0.9f, 1.1f);
         damageSound.volume = Random.Range(0.2f, 0.3f);
         damageSound.PlayOneShot(damageSound.clip);
+    }
+
+    public string GetActionMap()
+    {
+        if (playerControls.currentActionMap.name == "UI")
+            return "UI";
+        else
+            return "Player";
+    }
+    public string GetControlScheme()
+    {
+        return playerControls.currentControlScheme;
     }
 }

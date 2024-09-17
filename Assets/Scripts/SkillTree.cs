@@ -159,7 +159,7 @@ public class SkillTree : MonoBehaviour
         }
         else
         {
-            parryText.text = "-";
+            parryText.text = "";
         }
         playerMovement.canParry = parry;
 
@@ -172,33 +172,36 @@ public class SkillTree : MonoBehaviour
         }
     }
 
-    public void EnableTab(string tab){
-        if(tab == "Basic"){
+    public void EnableTab(string tab)
+    {
+        Color unselectedColor = new Color(94f / 255f, 94f / 255f, 94f / 255f);
+        Color selectedColor = new Color(25f / 255f, 25f / 255f, 25f / 255f);
+        if (tab == "Basic"){
             weaponTab.SetActive(false);
             healthTab.SetActive(false);
             basicTab.SetActive(true);
             EventSystem.current.SetSelectedGameObject(basicFirst);
-            basicPanel.GetComponent<Image>().color = new Color(0, 255, 255);
-            weaponPanel.GetComponent<Image>().color = Color.white;
-            healthPanel.GetComponent<Image>().color = Color.white;
+            basicPanel.GetComponent<Image>().color = selectedColor;
+            weaponPanel.GetComponent<Image>().color = unselectedColor;
+            healthPanel.GetComponent<Image>().color = unselectedColor;
         }
         if(tab == "Weapon"){
             basicTab.SetActive(false);
             healthTab.SetActive(false);
             weaponTab.SetActive(true);
             EventSystem.current.SetSelectedGameObject(weaponFirst);
-            weaponPanel.GetComponent<Image>().color = new Color(0, 255, 255);
-            basicPanel.GetComponent<Image>().color = Color.white;
-            healthPanel.GetComponent<Image>().color = Color.white;
+            weaponPanel.GetComponent<Image>().color = selectedColor;
+            basicPanel.GetComponent<Image>().color = unselectedColor;
+            healthPanel.GetComponent<Image>().color = unselectedColor;
         }
         if(tab == "Health"){
             weaponTab.SetActive(false);
             basicTab.SetActive(false);
             healthTab.SetActive(true);
             EventSystem.current.SetSelectedGameObject(healthFirst);
-            healthPanel.GetComponent<Image>().color = new Color(0, 255, 255);
-            weaponPanel.GetComponent<Image>().color = Color.white;
-            basicPanel.GetComponent<Image>().color = Color.white;
+            healthPanel.GetComponent<Image>().color = selectedColor;
+            weaponPanel.GetComponent<Image>().color = unselectedColor;
+            basicPanel.GetComponent<Image>().color = unselectedColor;
         }
     }
 

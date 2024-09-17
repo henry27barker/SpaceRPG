@@ -28,6 +28,7 @@ public class CrateUI : MonoBehaviour
         crateUI.SetActive(false);
         slots = itemsParent.GetComponentsInChildren<CrateSlot>();
         UpdateUI();
+        
     }
 
     void Start(){
