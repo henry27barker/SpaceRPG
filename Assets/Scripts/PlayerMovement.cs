@@ -67,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject mouseCursor;
     public ParticleSystem healthParticleSystem;
     public GameObject skillTreeUI;
+    private SkillTree skillTree;
     public GameObject shopUI = null;
     public GameObject inventoryFirst;
     public GameObject skillTreeFirst;
@@ -121,6 +122,7 @@ public class PlayerMovement : MonoBehaviour
         playerControls = gameObject.GetComponent<PlayerInput>();
         Cursor.visible = false;
         skillTreeUI = GameObject.FindWithTag("SkillTree");
+        skillTree = gameObject.GetComponent<SkillTree>();
         inventoryUI = GameObject.FindWithTag("InventoryUI");
         inventoryFirst = inventoryUI.transform.Find("Inventory/ItemsParent/InventorySlot/ItemButton").gameObject;
         InteractablePrompt = GameObject.FindWithTag("InteractablePrompt");
@@ -333,6 +335,34 @@ public class PlayerMovement : MonoBehaviour
         {
             codeUI.SetActive(false);
             codeUI = null;
+        }
+    }
+
+    private void OnLeftBumper(){
+        if(skillTreeUI.activeSelf == true){
+            if(skillTree.basicTab.activeSelf == true){
+                skillTree.EnableTab("Weapon");
+            }
+            else if(skillTree.healthTab.activeSelf == true){
+                skillTree.EnableTab("Basic");
+            }
+            else{
+                skillTree.EnableTab("Health");
+            }
+        }
+    }
+
+    private void OnRightBumper(){
+        if(skillTreeUI.activeSelf == true){
+            if(skillTree.basicTab.activeSelf == true){
+                skillTree.EnableTab("Health");
+            }
+            else if(skillTree.healthTab.activeSelf == true){
+                skillTree.EnableTab("Weapon");
+            }
+            else{
+                skillTree.EnableTab("Basic");
+            }
         }
     }
 

@@ -28,9 +28,15 @@ public class SkillTree : MonoBehaviour
     private TMP_Text messageText;
     private GameObject messagePanel;
 
-    private GameObject basicTab;
-    private GameObject weaponTab;
-    private GameObject healthTab;
+    public GameObject basicTab;
+    public GameObject weaponTab;
+    public GameObject healthTab;
+    private GameObject basicFirst;
+    private GameObject weaponFirst;
+    private GameObject healthFirst;
+    private GameObject basicPanel;
+    private GameObject weaponPanel;
+    private GameObject healthPanel;
 
     private InventoryUI inventoryUI;
 
@@ -89,8 +95,14 @@ public class SkillTree : MonoBehaviour
         playerShoot = GameObject.FindWithTag("Player").GetComponent<PlayerShoot>();
         inventory = GameObject.FindWithTag("GameManager").GetComponent<Inventory>();
         basicTab = skillTreeUI.transform.Find("Basic/BasicUpgrades").gameObject;
+        basicPanel = skillTreeUI.transform.Find("Basic/BasicPanel").gameObject;
+        basicFirst = skillTreeUI.transform.Find("Basic/BasicUpgrades/Speed/SpeedPanel/SpeedBackgroundPanel/IncreaseSpeed").gameObject;
         weaponTab = skillTreeUI.transform.Find("Weapon/WeaponUpgrades").gameObject;
+        weaponPanel = skillTreeUI.transform.Find("Weapon/WeaponPanel").gameObject;
+        weaponFirst = skillTreeUI.transform.Find("Weapon/WeaponUpgrades/FireRate/FireRatePanel/FireRateBackgroundPanel/DecreaseFireRate").gameObject;
         healthTab = skillTreeUI.transform.Find("Health/HealthUpgrades").gameObject;
+        healthPanel = skillTreeUI.transform.Find("Health/HealthPanel").gameObject;
+        healthFirst = skillTreeUI.transform.Find("Health/HealthUpgrades/MaxHealth/MaxHealthPanel/MaxHealthBackgroundPanel/IncreaseMaxHealth").gameObject;
         maxHealthText = skillTreeUI.transform.Find("Health/HealthUpgrades/MaxHealth/MaxHealthPanel/MaxHealthBackgroundPanel/MaxHealthTextNumber").gameObject.GetComponent<TMP_Text>();
         speedText = skillTreeUI.transform.Find("Basic/BasicUpgrades/Speed/SpeedPanel/SpeedBackgroundPanel/SpeedTextNumber").gameObject.GetComponent<TMP_Text>();
         inventorySizeText = skillTreeUI.transform.Find("Basic/BasicUpgrades/InventorySize/InventorySizePanel/InventorySizeBackgroundPanel/InventorySizeTextNumber").gameObject.GetComponent<TMP_Text>();
@@ -107,6 +119,7 @@ public class SkillTree : MonoBehaviour
         upgradeTokensText = skillTreeUI.transform.Find("UpgradeTokensPanel/UpgradeTokensBackgroundPanel/UpgradeTokensTextNumber").gameObject.GetComponent<TMP_Text>();
         messageText = skillTreeUI.transform.Find("MessagePanel/MessageBackgroundPanel/MessageText").gameObject.GetComponent<TMP_Text>();
         messagePanel = skillTreeUI.transform.Find("MessagePanel").gameObject;
+        EnableTab("Basic");
         weaponTab.SetActive(false);
         healthTab.SetActive(false);
         messagePanel.SetActive(false);
@@ -164,16 +177,28 @@ public class SkillTree : MonoBehaviour
             weaponTab.SetActive(false);
             healthTab.SetActive(false);
             basicTab.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(basicFirst);
+            basicPanel.GetComponent<Image>().color = new Color(0, 255, 255);
+            weaponPanel.GetComponent<Image>().color = Color.white;
+            healthPanel.GetComponent<Image>().color = Color.white;
         }
         if(tab == "Weapon"){
             basicTab.SetActive(false);
             healthTab.SetActive(false);
             weaponTab.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(weaponFirst);
+            weaponPanel.GetComponent<Image>().color = new Color(0, 255, 255);
+            basicPanel.GetComponent<Image>().color = Color.white;
+            healthPanel.GetComponent<Image>().color = Color.white;
         }
         if(tab == "Health"){
             weaponTab.SetActive(false);
             basicTab.SetActive(false);
             healthTab.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(healthFirst);
+            healthPanel.GetComponent<Image>().color = new Color(0, 255, 255);
+            weaponPanel.GetComponent<Image>().color = Color.white;
+            basicPanel.GetComponent<Image>().color = Color.white;
         }
     }
 
