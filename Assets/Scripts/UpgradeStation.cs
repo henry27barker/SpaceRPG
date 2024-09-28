@@ -27,6 +27,7 @@ public class UpgradeStation : Interactable
 
         openSound.Play();
 
+        skillTree.EnableTab("Basic");
         EventSystem.current.SetSelectedGameObject(null);
         playerMovement.playerControls.SwitchCurrentActionMap("UI");
         EventSystem.current.SetSelectedGameObject(playerMovement.skillTreeFirst);
